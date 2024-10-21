@@ -1,0 +1,221 @@
+/workspace/devenv/ultra/lib/python3.10/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/workspace/piclub-project/deep-person-reid/torchreid/data/datasets/image/market1501.py:37: UserWarning: The current data structure is deprecated. Please put data folders such as "bounding_box_train" under "Market-1501-v15.09.15".
+  warnings.warn(
+/workspace/piclub-project/deep-person-reid/torchreid/models/osnet_ain.py:492: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(cached_file)
+[Warning] Fused window process have not been installed. Please refer to get_started.md for installation.
+Show configuration
+adam:
+  beta1: 0.9
+  beta2: 0.999
+cuhk03:
+  classic_split: False
+  labeled_images: False
+  use_metric_cuhk03: False
+data:
+  combineall: False
+  height: 256
+  k_tfm: 1
+  load_train_targets: False
+  norm_mean: [0.485, 0.456, 0.406]
+  norm_std: [0.229, 0.224, 0.225]
+  root: /workspace/dataset/pose/reid_combine/
+  save_dir: resutls/osnet_ain_x1_0_market1501_softmax/241021
+  sources: ['market1501']
+  split_id: 0
+  targets: ['market1501']
+  transforms: ['random_flip', 'color_jitter']
+  type: image
+  width: 128
+  workers: 4
+loss:
+  name: softmax
+  softmax:
+    label_smooth: True
+  triplet:
+    margin: 0.3
+    weight_t: 1.0
+    weight_x: 0.0
+market1501:
+  use_500k_distractors: False
+model:
+  load_weights: 
+  name: osnet_ain_x1_0
+  pretrained: True
+  resume: 
+rmsprop:
+  alpha: 0.99
+sampler:
+  num_cams: 1
+  num_datasets: 1
+  num_instances: 4
+  train_sampler: RandomSampler
+  train_sampler_t: RandomSampler
+sgd:
+  dampening: 0.0
+  momentum: 0.9
+  nesterov: False
+test:
+  batch_size: 512
+  dist_metric: cosine
+  eval_freq: 2
+  evaluate: False
+  normalize_feature: False
+  ranks: [1, 5, 10, 20]
+  rerank: False
+  start_eval: 2
+  visrank: False
+  visrank_topk: 10
+train:
+  base_lr_mult: 0.1
+  batch_size: 512
+  fixbase_epoch: 10
+  gamma: 0.1
+  lr: 0.002
+  lr_scheduler: cosine
+  max_epoch: 50
+  new_layers: ['classifier']
+  open_layers: ['classifier']
+  optim: amsgrad
+  print_freq: 20
+  seed: 1
+  staged_lr: False
+  start_epoch: 0
+  stepsize: [20]
+  weight_decay: 0.0005
+use_gpu: True
+video:
+  pooling_method: avg
+  sample_method: evenly
+  seq_len: 15
+
+Collecting env info ...
+** System info **
+PyTorch version: 2.5.0+cu124
+Is debug build: False
+CUDA used to build PyTorch: 12.4
+ROCM used to build PyTorch: N/A
+
+OS: Ubuntu 22.04.3 LTS (x86_64)
+GCC version: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+Clang version: Could not collect
+CMake version: version 3.26.0
+Libc version: glibc-2.35
+
+Python version: 3.10.12 (main, Sep 11 2024, 15:47:36) [GCC 11.4.0] (64-bit runtime)
+Python platform: Linux-6.8.0-40-generic-x86_64-with-glibc2.35
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: GPU 0: NVIDIA RTX A5000
+Nvidia driver version: 535.183.01
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+CPU:
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        46 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               32
+On-line CPU(s) list:                  0-31
+Vendor ID:                            GenuineIntel
+Model name:                           13th Gen Intel(R) Core(TM) i9-13900K
+CPU family:                           6
+Model:                                183
+Thread(s) per core:                   2
+Core(s) per socket:                   24
+Socket(s):                            1
+Stepping:                             1
+CPU max MHz:                          5800.0000
+CPU min MHz:                          800.0000
+BogoMIPS:                             5990.40
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq tme rdpid movdiri movdir64b fsrm md_clear serialize pconfig arch_lbr ibt flush_l1d arch_capabilities
+Virtualization:                       VT-x
+L1d cache:                            896 KiB (24 instances)
+L1i cache:                            1.3 MiB (24 instances)
+L2 cache:                             32 MiB (12 instances)
+L3 cache:                             36 MiB (1 instance)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0-31
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Not affected
+Vulnerability Reg file data sampling: Mitigation; Clear Register File
+Vulnerability Retbleed:               Not affected
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Not affected
+
+Versions of relevant libraries:
+[pip3] flake8==7.1.1
+[pip3] numpy==2.1.2
+[pip3] onnx==1.17.0
+[pip3] onnxruntime==1.19.2
+[pip3] onnxsim==0.4.36
+[pip3] torch==2.5.0
+[pip3] torchreid==1.4.0
+[pip3] torchvision==0.20.0
+[pip3] triton==3.1.0
+[conda] Could not collect
+        Pillow (11.0.0)
+
+Building train transforms ...
++ resize to 256x128
++ random flip
++ color jitter
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+Building test transforms ...
++ resize to 256x128
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+=> Loading train (source) dataset
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  7183 |   579826 |         6
+  query    |  1383 |    36597 |         9
+  gallery  |  1373 |    84882 |         9
+  ----------------------------------------
+=> Loading test (target) dataset
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  7183 |   579826 |         6
+  query    |  1383 |    36597 |         9
+  gallery  |  1373 |    84882 |         9
+  ----------------------------------------
+
+
+  **************** Summary ****************
+  source            : ['market1501']
+  # source datasets : 1
+  # source ids      : 7183
+  # source images   : 579826
+  # source cameras  : 6
+  target            : ['market1501']
+  *****************************************
+
+
+Building model: osnet_ain_x1_0
+Successfully loaded imagenet pretrained weights from "/home/pi/.cache/torch/checkpoints/osnet_ain_x1_0_imagenet.pth"
+** The following layers are discarded due to unmatched keys or layer size: ['classifier.weight', 'classifier.bias']
+use gpu model: osnet_ain_x1_0
+Model complexity: params=2,193,616 flops=978,878,352
+Building softmax-engine for image-reid
+=========================TRILD============================
+
+=> Start training
+* Only train ['classifier'] (epoch: 1/10)

@@ -1,0 +1,38 @@
+model:
+  name: 'mamba_vision_S'
+  pretrained: True
+  load_weights: 'new_1407/mamba_vision_S/model/model.pth.tar-20'
+
+data:
+  type: 'image'
+  sources: ['market1501']
+  targets: ['market1501']
+  height: 224
+  width: 224
+  combineall: False
+  transforms: ['random_flip', 'color_jitter']
+  save_dir: 'new_1407/mamba_vision_S'
+
+loss:
+  name: 'softmax'
+  softmax:
+    label_smooth: True
+
+train:
+  optim: 'amsgrad'
+  lr: 0.0015
+  max_epoch: 50
+  batch_size: 128
+  fixbase_epoch: 10
+  open_layers: ['classifier']
+  lr_scheduler: 'cosine'
+
+test:
+  batch_size: 300
+  dist_metric: 'cosine'
+  normalize_feature: False
+  evaluate: False
+  visrank: False
+  eval_freq: 2
+  rerank: False
+  start_eval: 2

@@ -1,0 +1,32 @@
+numpy
+Cython
+h5py
+Pillow
+six
+scipy
+opencv-python
+matplotlib
+tb-nightly
+future
+yacs
+gdown
+flake8
+yapf
+isort==4.3.21
+imageio
+chardet
+ml_collections
+timm==1.0.11
+einops
+#causal-conv1d==1.0.2
+#mamba-ssm==1.0.1
+#timm==0.9.0
+#tensorboardX
+#einops
+# Export --------------------------------------
+# onnx
+# onnx-simplified
+# openvino-dev
+# openvino2tensorflow
+# tensorflow
+# tensorflow_datasets

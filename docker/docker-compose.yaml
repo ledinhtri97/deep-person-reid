@@ -1,0 +1,22 @@
+version: '3.2'
+services:   
+  deepreid:
+    container_name: deepreid
+    image: tridinh2docker/deepreid:v1.0.0
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /workspace/:/workspace/
+
+    runtime: nvidia
+    restart: unless-stopped
+    ipc: host
+    
+    environment:
+      PYTHONIOENCODING: utf-8
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+
+    stdin_open: true
+    tty: true
+    privileged: true

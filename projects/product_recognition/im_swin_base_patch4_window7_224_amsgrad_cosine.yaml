@@ -1,0 +1,39 @@
+model:
+  name: 'swin_base_patch4_window7_224'
+  pretrained: True
+  load_weights: 'new_log2106/swin_base_patch4_window7_224_market1501_softmax/model/model.pth.tar-20'
+  resume: ''
+
+data:
+  type: 'image'
+  sources: ['market1501']
+  targets: ['market1501']
+  height: 224
+  width: 224
+  combineall: False
+  transforms: ['random_flip', 'color_jitter']
+  save_dir: 'new_log2106/swin_base_patch4_window7_224_market1501_softmax'
+
+loss:
+  name: 'softmax'
+  softmax:
+    label_smooth: True
+
+train:
+  optim: 'amsgrad'
+  lr: 0.0015
+  max_epoch: 40
+  batch_size: 64
+  fixbase_epoch: 10
+  open_layers: ['classifier']
+  lr_scheduler: 'cosine'
+
+test:
+  batch_size: 300
+  dist_metric: 'cosine'
+  normalize_feature: False
+  evaluate: False
+  visrank: False
+  eval_freq: 2
+  rerank: False
+  start_eval: 2
