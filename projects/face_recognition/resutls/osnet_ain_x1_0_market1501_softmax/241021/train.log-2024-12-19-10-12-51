@@ -62,7 +62,7 @@ test:
   visrank_topk: 10
 train:
   base_lr_mult: 0.1
-  batch_size: 512
+  batch_size: 1024
   fixbase_epoch: 10
   gamma: 0.1
   lr: 0.002

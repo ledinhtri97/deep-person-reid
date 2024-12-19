@@ -1,7 +1,7 @@
-W1219 09:37:00.203000 29328 site-packages/torch/distributed/run.py:793] 
-W1219 09:37:00.203000 29328 site-packages/torch/distributed/run.py:793] *****************************************
-W1219 09:37:00.203000 29328 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W1219 09:37:00.203000 29328 site-packages/torch/distributed/run.py:793] *****************************************
+W1219 10:12:48.229000 32267 site-packages/torch/distributed/run.py:793] 
+W1219 10:12:48.229000 32267 site-packages/torch/distributed/run.py:793] *****************************************
+W1219 10:12:48.229000 32267 site-packages/torch/distributed/run.py:793] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1219 10:12:48.229000 32267 site-packages/torch/distributed/run.py:793] *****************************************
 /home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
   warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
 [Warning] Fused window process have not been installed. Please refer to get_started.md for installation.
@@ -72,7 +72,7 @@ test:
   visrank_topk: 10
 train:
   base_lr_mult: 0.1
-  batch_size: 512
+  batch_size: 1024
   fixbase_epoch: 10
   gamma: 0.1
   lr: 0.002
@@ -158,7 +158,7 @@ test:
   visrank_topk: 10
 train:
   base_lr_mult: 0.1
-  batch_size: 512
+  batch_size: 1024
   fixbase_epoch: 10
   gamma: 0.1
   lr: 0.002

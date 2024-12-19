@@ -23,7 +23,7 @@ train:
   optim: 'amsgrad'
   lr: 0.002
   max_epoch: 50
-  batch_size: 512
+  batch_size: 1024
   fixbase_epoch: 10
   open_layers: ['classifier']
   lr_scheduler: 'cosine'
