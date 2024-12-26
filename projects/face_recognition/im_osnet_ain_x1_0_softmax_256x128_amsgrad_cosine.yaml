@@ -1,8 +1,8 @@
 model:
   name: 'osnet_ain_x1_0'
   pretrained: True
-  load_weights: ''
-  resume: ''
+  load_weights: 'model.pth.tar-10'
+  resume: 'model.pth.tar-10'
 
 data:
   type: 'image'
@@ -23,13 +23,13 @@ train:
   optim: 'amsgrad'
   lr: 0.002
   max_epoch: 50
-  batch_size: 1024
+  batch_size: 512
   fixbase_epoch: 10
   open_layers: ['classifier']
   lr_scheduler: 'cosine'
 
 test:
-  batch_size: 512
+  batch_size: 256
   dist_metric: 'cosine'
   normalize_feature: False
   evaluate: False
