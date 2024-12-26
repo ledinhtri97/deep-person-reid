@@ -35,7 +35,18 @@ def build_engine(cfg, datamanager, model, optimizer, scheduler):
                 use_gpu=cfg.use_gpu,
                 label_smooth=cfg.loss.softmax.label_smooth
             )
-
+        elif cfg.loss.name == 'arcface':
+            engine = torchreid.engine.ImageArcfaceEngine(
+                datamanager,
+                model,
+                optimizer=optimizer,
+                scheduler=scheduler,
+                use_gpu=cfg.use_gpu,
+                scale=cfg.loss.arcface.scale,
+                margin=cfg.loss.arcface.margin,
+                easy_margin=cfg.loss.arcface.easy_margin,
+                label_smooth=cfg.loss.arcface.label_smooth
+            )
         else:
             engine = torchreid.engine.ImageTripletEngine(
                 datamanager,
@@ -57,7 +68,7 @@ def build_engine(cfg, datamanager, model, optimizer, scheduler):
                 optimizer=optimizer,
                 scheduler=scheduler,
                 use_gpu=cfg.use_gpu,
-                label_smooth=cfg.loss.softmax.label_smooth,
+                label_smooth=cfg.loss.arcface.label_smooth,
                 pooling_method=cfg.video.pooling_method
             )
 
