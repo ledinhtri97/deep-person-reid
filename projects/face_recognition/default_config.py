@@ -92,7 +92,12 @@ def get_default_config():
     cfg.loss.triplet.margin = 0.3 # distance margin
     cfg.loss.triplet.weight_t = 1. # weight to balance hard triplet loss
     cfg.loss.triplet.weight_x = 0. # weight to balance cross entropy loss
-
+    cfg.loss.arcface = CN()
+    cfg.loss.arcface.scale = 64 # feature scale
+    cfg.loss.arcface.margin = 0.5 # angular margin
+    cfg.loss.arcface.easy_margin = False # easy margin
+    cfg.loss.arcface.label_smooth = True # use label smoothing regularizer
+    
     # test
     cfg.test = CN()
     cfg.test.batch_size = 100

@@ -2,6 +2,7 @@ from __future__ import division, print_function, absolute_import
 
 from torchreid import metrics
 from torchreid.losses import ArcFaceLoss
+import torch 
 
 from ..engine import Engine
 
@@ -73,7 +74,7 @@ class ImageArcfaceEngine(Engine):
         self.register_model('model', model, optimizer, scheduler)
         
         self.criterion = ArcFaceLoss(
-            embed_size=self.model.feature_dim,
+            embed_size=self.model.module.feature_dim,
             num_classes=self.datamanager.num_train_pids,
             scale=scale, margin=margin, easy_margin=easy_margin,
             use_gpu=self.use_gpu,
@@ -87,9 +88,22 @@ class ImageArcfaceEngine(Engine):
             imgs = imgs.cuda()
             pids = pids.cuda()
 
-        outputs = self.model(imgs)
-        loss = self.compute_loss(self.criterion, outputs, pids)
-
+        emds = self.model(imgs)
+        # print(f"compute_loss imgs shape: {imgs.size()}")
+        # print(f"compute_loss pids shape: {pids.size()}")
+        # print(f"compute_loss output shape: {outputs.size()}")
+        res = self.compute_loss(self.criterion, emds, pids)
+        loss = res['loss']
+        outputs = res['probs']
+        
+        # """ probs [B, Numclasses] """
+        # print(probs.size())
+        # print(probs)
+        # max_probs, outputs = torch.max(probs, dim=1)
+        # print(max_probs)
+        # print(outputs)
+        # print(pids)
+        
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()

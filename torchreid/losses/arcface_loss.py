@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import math
 import torch.nn.functional as F
-from cross_entropy_loss import CrossEntropyLoss
+# from .cross_entropy_loss import CrossEntropyLoss
 
 class ArcFaceLoss(nn.Module):
     def __init__(self, embed_size, num_classes, scale=64, margin=0.5, easy_margin=False, use_gpu=True, label_smooth=True, **kwargs):
@@ -23,13 +23,18 @@ class ArcFaceLoss(nn.Module):
         self.margin = margin
         self.ce = nn.CrossEntropyLoss()
         # self.ce = CrossEntropyLoss(num_classes, use_gpu=use_gpu, label_smooth=label_smooth)
-        self.weight = nn.Parameter(torch.FloatTensor(num_classes, embed_size))
+        if self.use_gpu:
+            self.weight = nn.Parameter(torch.FloatTensor(num_classes, embed_size).cuda())
+        else:
+            self.weight = nn.Parameter(torch.FloatTensor(num_classes, embed_size))
         self.easy_margin = easy_margin
         self.cos_m = math.cos(margin)
         self.sin_m = math.sin(margin)
         self.th = math.cos(math.pi - margin)
         self.mm = math.sin(math.pi - margin) * margin
-
+        
+        print(f"Using ArcFace Loss weight nc_em: {num_classes}x{embed_size}")
+        
         nn.init.xavier_uniform_(self.weight)
 
     def forward(self, inputs, targets):
@@ -43,6 +48,9 @@ class ArcFaceLoss(nn.Module):
         54.804054962005466 ms for every 100 times of input (50, 512) and output (50, 10000) on 2080Ti.
         """
         # --------------------------- cos(theta) & phi(theta) ---------------------------
+        # print(f"ground_truth shape: {ground_truth.size()}")
+        # print(f"embedding shape: {embedding.size()}")
+        # print(f"weight shape: {self.weight.size()}")
         cos_theta = F.linear(F.normalize(embedding), F.normalize(self.weight)).clamp(-1 + 1e-7, 1 - 1e-7)
         sin_theta = torch.sqrt((1.0 - torch.pow(cos_theta, 2)).clamp(-1 + 1e-7, 1 - 1e-7))
         phi = cos_theta * self.cos_m - sin_theta * self.sin_m
@@ -59,7 +67,8 @@ class ArcFaceLoss(nn.Module):
         output *= self.scale
 
         loss = self.ce(output, ground_truth)
-        return loss
+        res = {'loss': loss, 'probs': output}
+        return res
 
     def forward2(self, embedding: torch.Tensor, ground_truth):
         if self.use_gpu:

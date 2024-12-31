@@ -431,6 +431,7 @@ class OSNet(nn.Module):
 
     def forward(self, x, return_featuremaps=False):
         x = self.featuremaps(x)
+        # print("fm", x.size())
         if return_featuremaps:
             return x
         v = self.global_avgpool(x)
@@ -440,10 +441,13 @@ class OSNet(nn.Module):
         if not self.training:
             return v
         y = self.classifier(v)
+        # print("y", y.size())
         if self.loss == 'softmax':
             return y
         elif self.loss == 'triplet':
             return y, v
+        elif self.loss == 'arcface':
+            return v
         else:
             raise KeyError("Unsupported loss: {}".format(self.loss))
 
