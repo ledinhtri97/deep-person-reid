@@ -10,6 +10,15 @@ from torchvision.transforms import (
     Resize, Compose, ToTensor, Normalize, ColorJitter, RandomHorizontalFlip, RandomVerticalFlip
 )
 
+class ToGrayscaleRGB(object):
+    def __init__(self, prob=0.5):
+        self.prob = prob
+
+    def __call__(self, img):
+        if random.random() < self.prob:
+            img = img.convert("L")  # Convert to grayscale
+            img = img.convert("RGB")  # Convert back to RGB
+        return img
 
 class Random2DTranslation(object):
     """Randomly translates the input image with a probability.
@@ -319,6 +328,10 @@ def build_transforms(
         Resize((height, width))
         # LetterBox(new_shape=(height, width)),
     ]
+    
+    if 'random_blackwhite' in transforms:
+        print('+ random grayscale rgb')
+        transform_tr += [ToGrayscaleRGB()]
 
     if 'random_flip' in transforms:
         print('+ random flip')

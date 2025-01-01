@@ -1,0 +1,45 @@
+model:
+  name: 'osnet_ain_x1_0'
+  pretrained: True
+  load_weights: ''
+  resume: ''
+
+data:
+  type: 'image'
+  sources: ['market1501']
+  targets: ['market1501']
+  height: 256
+  width: 128
+  combineall: False
+  transforms: ['random_flip', 'color_jitter', 'random_crop', 'random_erase']
+  save_dir: 'resutls/osnet_ain_x1_0_market1501_triplet/241021'
+
+loss:
+  name: 'triplet'
+  softmax:
+    label_smooth: True
+  triplet:
+    margin: 0.3
+    weight_t: 0.5
+    weight_x: 1.
+  # dml:
+  #   weight_ml: 1.
+
+train:
+  optim: 'amsgrad'
+  lr: 0.002
+  max_epoch: 30
+  batch_size: 512
+  fixbase_epoch: 10
+  open_layers: ['classifier']
+  lr_scheduler: 'cosine'
+
+test:
+  batch_size: 256
+  dist_metric: 'cosine'
+  normalize_feature: False
+  evaluate: False
+  visrank: False
+  eval_freq: 2
+  rerank: False
+  start_eval: 2
