@@ -1,0 +1,474 @@
+/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+[Warning] Fused window process have not been installed. Please refer to get_started.md for installation.
+Show configuration
+adam:
+  beta1: 0.9
+  beta2: 0.999
+cuhk03:
+  classic_split: False
+  labeled_images: False
+  use_metric_cuhk03: False
+data:
+  combineall: False
+  height: 256
+  k_tfm: 1
+  load_train_targets: False
+  norm_mean: [0.485, 0.456, 0.406]
+  norm_std: [0.229, 0.224, 0.225]
+  root: /home/trild/dataset/facerec/facerec_combine/
+  save_dir: resutls/resnet50_market1501_softmax1
+  sources: ['market1501']
+  split_id: 0
+  targets: ['market1501']
+  transforms: ['random_flip', 'color_jitter', 'random_crop', 'random_erase', 'random_blackwhite']
+  type: image
+  width: 256
+  workers: 4
+loss:
+  arcface:
+    easy_margin: False
+    label_smooth: True
+    margin: 0.5
+    scale: 64
+  name: softmax
+  softmax:
+    label_smooth: True
+  triplet:
+    margin: 0.3
+    weight_t: 1.0
+    weight_x: 0.0
+market1501:
+  use_500k_distractors: False
+model:
+  load_weights: 
+  name: resnet50_fc512
+  pretrained: True
+  resume: 
+rmsprop:
+  alpha: 0.99
+sampler:
+  num_cams: 1
+  num_datasets: 1
+  num_instances: 4
+  train_sampler: RandomSampler
+  train_sampler_t: RandomSampler
+sgd:
+  dampening: 0.0
+  momentum: 0.9
+  nesterov: False
+test:
+  batch_size: 128
+  dist_metric: cosine
+  eval_freq: 2
+  evaluate: False
+  normalize_feature: False
+  ranks: [1, 5, 10, 20]
+  rerank: False
+  start_eval: 2
+  visrank: False
+  visrank_topk: 10
+train:
+  base_lr_mult: 0.1
+  batch_size: 512
+  fixbase_epoch: 5
+  gamma: 0.1
+  lr: 0.002
+  lr_scheduler: cosine
+  max_epoch: 50
+  new_layers: ['classifier']
+  open_layers: ['classifier']
+  optim: amsgrad
+  print_freq: 20
+  seed: 1
+  staged_lr: False
+  start_epoch: 0
+  stepsize: [20]
+  weight_decay: 0.0005
+use_gpu: True
+video:
+  pooling_method: avg
+  sample_method: evenly
+  seq_len: 15
+
+Collecting env info ...
+** System info **
+PyTorch version: 2.5.1+cu124
+Is debug build: False
+CUDA used to build PyTorch: 12.4
+ROCM used to build PyTorch: N/A
+
+OS: Ubuntu 22.04.5 LTS (x86_64)
+GCC version: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.35
+
+Python version: 3.11.9 (main, Apr 19 2024, 16:48:06) [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-6.8.0-1020-gcp-x86_64-with-glibc2.35
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA L4
+GPU 1: NVIDIA L4
+
+Nvidia driver version: 560.35.03
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+CPU:
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        46 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               24
+On-line CPU(s) list:                  0-23
+Vendor ID:                            GenuineIntel
+Model name:                           Intel(R) Xeon(R) CPU @ 2.20GHz
+CPU family:                           6
+Model:                                85
+Thread(s) per core:                   2
+Core(s) per socket:                   12
+Socket(s):                            1
+Stepping:                             7
+BogoMIPS:                             4400.38
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat avx512_vnni md_clear arch_capabilities
+Hypervisor vendor:                    KVM
+Virtualization type:                  full
+L1d cache:                            384 KiB (12 instances)
+L1i cache:                            384 KiB (12 instances)
+L2 cache:                             12 MiB (12 instances)
+L3 cache:                             38.5 MiB (1 instance)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0-23
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Reg file data sampling: Not affected
+Vulnerability Retbleed:               Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+
+Versions of relevant libraries:
+[pip3] flake8==7.1.1
+[pip3] numpy==2.2.0
+[pip3] onnx==1.17.0
+[pip3] onnxruntime==1.20.1
+[pip3] onnxsim==0.4.36
+[pip3] torch==2.5.1
+[pip3] torchreid==1.4.0
+[pip3] torchvision==0.20.1
+[pip3] triton==3.1.0
+[conda] numpy                     2.2.0                    pypi_0    pypi
+[conda] torch                     2.5.1                    pypi_0    pypi
+[conda] torchreid                 1.4.0                     dev_0    <develop>
+[conda] torchvision               0.20.1                   pypi_0    pypi
+[conda] triton                    3.1.0                    pypi_0    pypi
+        Pillow (11.0.0)
+
+Building train transforms ...
++ resize to 256x256
++ random grayscale rgb
++ random flip
++ random crop (enlarge to 288x288 and crop 256x256)
++ color jitter
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
++ random erase
+Building test transforms ...
++ resize to 256x256
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+=> Loading train (source) dataset
+/home/trild/workspace/deep-person-reid/torchreid/data/datasets/image/market1501.py:37: UserWarning: The current data structure is deprecated. Please put data folders such as "bounding_box_train" under "Market-1501-v15.09.15".
+  warnings.warn(
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  3375 |   201767 |         6
+  query    |   595 |    10254 |         1
+  gallery  |   595 |    23265 |         5
+  ----------------------------------------
+=> Loading test (target) dataset
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  3375 |   201767 |         6
+  query    |   595 |    10254 |         1
+  gallery  |   595 |    23265 |         5
+  ----------------------------------------
+
+
+  **************** Summary ****************
+  source            : ['market1501']
+  # source datasets : 1
+  # source ids      : 3375
+  # source images   : 201767
+  # source cameras  : 6
+  target            : ['market1501']
+  *****************************************
+
+
+Building model: resnet50_fc512
+use gpu model: resnet50_fc512
+Model complexity: params=0 flops=8,107,590,144
+Building softmax-engine for image-reid
+=========================TRILD============================
+
+=> Start training
+* Only train ['classifier'] (epoch: 1/5)
+epoch: [1/50][20/394]	time 5.064 (5.347)	data 0.000 (0.267)	eta 1 day, 5:13:43	loss 8.0754 (8.0964)	acc 0.3906 (0.0977)	lr 0.002000
+epoch: [1/50][40/394]	time 5.031 (5.194)	data 0.001 (0.134)	eta 1 day, 4:22:01	loss 8.0229 (8.0730)	acc 0.0000 (0.0781)	lr 0.002000
+epoch: [1/50][60/394]	time 5.014 (5.140)	data 0.001 (0.089)	eta 1 day, 4:02:28	loss 8.0184 (8.0551)	acc 0.0000 (0.0879)	lr 0.002000
+epoch: [1/50][80/394]	time 5.037 (5.119)	data 0.001 (0.067)	eta 1 day, 3:53:59	loss 7.9805 (8.0426)	acc 0.0000 (0.0830)	lr 0.002000
+epoch: [1/50][100/394]	time 4.990 (5.104)	data 0.001 (0.054)	eta 1 day, 3:47:14	loss 7.9905 (8.0328)	acc 0.0000 (0.0859)	lr 0.002000
+epoch: [1/50][120/394]	time 5.008 (5.093)	data 0.000 (0.045)	eta 1 day, 3:41:59	loss 7.9950 (8.0256)	acc 0.1953 (0.0928)	lr 0.002000
+epoch: [1/50][140/394]	time 5.078 (5.085)	data 0.000 (0.038)	eta 1 day, 3:37:49	loss 7.9862 (8.0189)	acc 0.3906 (0.1060)	lr 0.002000
+epoch: [1/50][160/394]	time 5.033 (5.079)	data 0.001 (0.034)	eta 1 day, 3:34:02	loss 7.9832 (8.0135)	acc 0.0000 (0.1184)	lr 0.002000
+epoch: [1/50][180/394]	time 5.000 (5.074)	data 0.000 (0.030)	eta 1 day, 3:30:50	loss 7.9804 (8.0090)	acc 0.3906 (0.1324)	lr 0.002000
+epoch: [1/50][200/394]	time 5.030 (5.070)	data 0.001 (0.027)	eta 1 day, 3:27:47	loss 7.9619 (8.0055)	acc 0.5859 (0.1367)	lr 0.002000
+epoch: [1/50][220/394]	time 5.083 (5.067)	data 0.000 (0.025)	eta 1 day, 3:25:07	loss 7.9854 (8.0021)	acc 0.7812 (0.1394)	lr 0.002000
+epoch: [1/50][240/394]	time 5.027 (5.064)	data 0.001 (0.023)	eta 1 day, 3:22:25	loss 7.9796 (7.9987)	acc 0.3906 (0.1506)	lr 0.002000
+epoch: [1/50][260/394]	time 5.004 (5.061)	data 0.001 (0.021)	eta 1 day, 3:19:48	loss 7.9507 (7.9954)	acc 0.1953 (0.1525)	lr 0.002000
+epoch: [1/50][280/394]	time 5.012 (5.059)	data 0.000 (0.019)	eta 1 day, 3:17:34	loss 7.9523 (7.9928)	acc 0.3906 (0.1549)	lr 0.002000
+epoch: [1/50][300/394]	time 5.036 (5.058)	data 0.000 (0.018)	eta 1 day, 3:15:32	loss 7.9443 (7.9903)	acc 0.0000 (0.1621)	lr 0.002000
+epoch: [1/50][320/394]	time 5.008 (5.057)	data 0.000 (0.017)	eta 1 day, 3:13:19	loss 7.9351 (7.9881)	acc 0.3906 (0.1697)	lr 0.002000
+epoch: [1/50][340/394]	time 5.021 (5.056)	data 0.000 (0.016)	eta 1 day, 3:11:24	loss 7.9495 (7.9862)	acc 0.5859 (0.1741)	lr 0.002000
+epoch: [1/50][360/394]	time 5.042 (5.055)	data 0.000 (0.015)	eta 1 day, 3:09:28	loss 7.9549 (7.9846)	acc 0.5859 (0.1752)	lr 0.002000
+epoch: [1/50][380/394]	time 5.015 (5.055)	data 0.000 (0.014)	eta 1 day, 3:07:37	loss 7.9522 (7.9826)	acc 0.1953 (0.1830)	lr 0.002000
+* Only train ['classifier'] (epoch: 2/5)
+epoch: [2/50][20/394]	time 5.011 (5.244)	data 0.000 (0.212)	eta 1 day, 4:05:44	loss 7.9359 (7.9363)	acc 0.1953 (0.2148)	lr 0.001998
+epoch: [2/50][40/394]	time 5.035 (5.142)	data 0.000 (0.106)	eta 1 day, 3:31:03	loss 7.9687 (7.9387)	acc 0.1953 (0.1855)	lr 0.001998
+epoch: [2/50][60/394]	time 5.034 (5.103)	data 0.000 (0.071)	eta 1 day, 3:16:44	loss 7.9440 (7.9402)	acc 0.3906 (0.2572)	lr 0.001998
+epoch: [2/50][80/394]	time 5.074 (5.087)	data 0.000 (0.053)	eta 1 day, 3:10:02	loss 7.9516 (7.9431)	acc 0.1953 (0.2588)	lr 0.001998
+epoch: [2/50][100/394]	time 5.045 (5.077)	data 0.000 (0.043)	eta 1 day, 3:05:15	loss 7.9287 (7.9432)	acc 0.1953 (0.2676)	lr 0.001998
+epoch: [2/50][120/394]	time 5.024 (5.070)	data 0.000 (0.036)	eta 1 day, 3:01:05	loss 7.9465 (7.9428)	acc 0.1953 (0.2620)	lr 0.001998
+epoch: [2/50][140/394]	time 5.015 (5.065)	data 0.001 (0.031)	eta 1 day, 2:57:49	loss 7.9534 (7.9431)	acc 0.3906 (0.2567)	lr 0.001998
+epoch: [2/50][160/394]	time 5.098 (5.061)	data 0.000 (0.027)	eta 1 day, 2:55:02	loss 7.9480 (7.9431)	acc 0.3906 (0.2576)	lr 0.001998
+epoch: [2/50][180/394]	time 5.035 (5.059)	data 0.000 (0.024)	eta 1 day, 2:52:31	loss 7.9370 (7.9428)	acc 0.1953 (0.2572)	lr 0.001998
+epoch: [2/50][200/394]	time 5.004 (5.058)	data 0.001 (0.022)	eta 1 day, 2:50:31	loss 7.9232 (7.9428)	acc 0.0000 (0.2578)	lr 0.001998
+epoch: [2/50][220/394]	time 5.055 (5.055)	data 0.000 (0.020)	eta 1 day, 2:48:02	loss 7.9571 (7.9431)	acc 0.1953 (0.2539)	lr 0.001998
+epoch: [2/50][240/394]	time 5.019 (5.053)	data 0.000 (0.018)	eta 1 day, 2:45:43	loss 7.9837 (7.9430)	acc 0.3906 (0.2547)	lr 0.001998
+epoch: [2/50][260/394]	time 5.018 (5.051)	data 0.000 (0.017)	eta 1 day, 2:43:19	loss 7.9518 (7.9432)	acc 0.1953 (0.2554)	lr 0.001998
+epoch: [2/50][280/394]	time 5.039 (5.050)	data 0.000 (0.016)	eta 1 day, 2:41:23	loss 7.9453 (7.9431)	acc 0.0000 (0.2560)	lr 0.001998
+epoch: [2/50][300/394]	time 4.997 (5.049)	data 0.001 (0.015)	eta 1 day, 2:39:23	loss 7.9528 (7.9430)	acc 0.0000 (0.2533)	lr 0.001998
+epoch: [2/50][320/394]	time 5.039 (5.049)	data 0.001 (0.014)	eta 1 day, 2:37:32	loss 7.9204 (7.9427)	acc 0.7812 (0.2655)	lr 0.001998
+epoch: [2/50][340/394]	time 5.090 (5.048)	data 0.001 (0.013)	eta 1 day, 2:35:35	loss 7.9040 (7.9426)	acc 0.5859 (0.2671)	lr 0.001998
+epoch: [2/50][360/394]	time 5.040 (5.047)	data 0.000 (0.012)	eta 1 day, 2:33:44	loss 7.9425 (7.9430)	acc 0.3906 (0.2713)	lr 0.001998
+epoch: [2/50][380/394]	time 5.002 (5.047)	data 0.001 (0.012)	eta 1 day, 2:31:52	loss 7.8987 (7.9429)	acc 0.7812 (0.2745)	lr 0.001998
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 1.3384 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 8.1%
+CMC curve
+Rank-1  : 40.1%
+Rank-5  : 61.3%
+Rank-10 : 70.3%
+Rank-20 : 79.3%
+Checkpoint saved to "resutls/resnet50_market1501_softmax1/model/model.pth.tar-2"
+* Only train ['classifier'] (epoch: 3/5)
+epoch: [3/50][20/394]	time 5.061 (5.270)	data 0.000 (0.217)	eta 1 day, 3:39:22	loss 7.9441 (7.9286)	acc 0.0000 (0.3223)	lr 0.001992
+epoch: [3/50][40/394]	time 5.052 (5.154)	data 0.000 (0.108)	eta 1 day, 3:01:11	loss 7.9422 (7.9298)	acc 0.1953 (0.2930)	lr 0.001992
+epoch: [3/50][60/394]	time 5.015 (5.115)	data 0.000 (0.072)	eta 1 day, 2:47:14	loss 7.9336 (7.9338)	acc 0.3906 (0.3027)	lr 0.001992
+epoch: [3/50][80/394]	time 5.052 (5.094)	data 0.000 (0.054)	eta 1 day, 2:38:55	loss 7.9332 (7.9352)	acc 0.3906 (0.3149)	lr 0.001992
+epoch: [3/50][100/394]	time 5.043 (5.084)	data 0.001 (0.044)	eta 1 day, 2:33:52	loss 7.9328 (7.9356)	acc 0.1953 (0.2969)	lr 0.001992
+epoch: [3/50][120/394]	time 5.012 (5.075)	data 0.000 (0.036)	eta 1 day, 2:29:36	loss 7.9560 (7.9358)	acc 0.0000 (0.2962)	lr 0.001992
+epoch: [3/50][140/394]	time 5.009 (5.068)	data 0.000 (0.031)	eta 1 day, 2:25:43	loss 7.9386 (7.9364)	acc 0.0000 (0.2958)	lr 0.001992
+epoch: [3/50][160/394]	time 5.027 (5.063)	data 0.000 (0.027)	eta 1 day, 2:22:23	loss 7.9558 (7.9365)	acc 0.0000 (0.2917)	lr 0.001992
+epoch: [3/50][180/394]	time 5.058 (5.060)	data 0.000 (0.024)	eta 1 day, 2:19:34	loss 7.9122 (7.9366)	acc 0.5859 (0.2767)	lr 0.001992
+epoch: [3/50][200/394]	time 5.011 (5.057)	data 0.000 (0.022)	eta 1 day, 2:16:59	loss 7.9413 (7.9376)	acc 0.0000 (0.2793)	lr 0.001992
+epoch: [3/50][220/394]	time 5.057 (5.055)	data 0.000 (0.020)	eta 1 day, 2:14:46	loss 7.9437 (7.9378)	acc 0.3906 (0.2814)	lr 0.001992
+epoch: [3/50][240/394]	time 5.044 (5.053)	data 0.000 (0.018)	eta 1 day, 2:12:34	loss 7.9478 (7.9377)	acc 0.0000 (0.2702)	lr 0.001992
+epoch: [3/50][260/394]	time 5.024 (5.051)	data 0.000 (0.017)	eta 1 day, 2:10:11	loss 7.9492 (7.9381)	acc 0.1953 (0.2569)	lr 0.001992
+epoch: [3/50][280/394]	time 5.034 (5.050)	data 0.001 (0.016)	eta 1 day, 2:08:05	loss 7.9594 (7.9384)	acc 0.0000 (0.2609)	lr 0.001992
+epoch: [3/50][300/394]	time 5.040 (5.048)	data 0.000 (0.015)	eta 1 day, 2:06:00	loss 7.9471 (7.9385)	acc 0.1953 (0.2559)	lr 0.001992
+epoch: [3/50][320/394]	time 5.059 (5.048)	data 0.000 (0.014)	eta 1 day, 2:04:07	loss 7.9404 (7.9387)	acc 0.3906 (0.2594)	lr 0.001992
+epoch: [3/50][340/394]	time 5.034 (5.047)	data 0.000 (0.013)	eta 1 day, 2:02:05	loss 7.9507 (7.9388)	acc 0.0000 (0.2551)	lr 0.001992
+epoch: [3/50][360/394]	time 5.050 (5.046)	data 0.000 (0.012)	eta 1 day, 2:00:05	loss 7.9574 (7.9387)	acc 0.1953 (0.2577)	lr 0.001992
+epoch: [3/50][380/394]	time 5.016 (5.045)	data 0.000 (0.012)	eta 1 day, 1:58:17	loss 7.9168 (7.9385)	acc 0.1953 (0.2590)	lr 0.001992
+* Only train ['classifier'] (epoch: 4/5)
+epoch: [4/50][20/394]	time 5.036 (5.214)	data 0.000 (0.177)	eta 1 day, 2:47:20	loss 7.9528 (7.9285)	acc 0.1953 (0.2246)	lr 0.001982
+epoch: [4/50][40/394]	time 5.066 (5.122)	data 0.000 (0.089)	eta 1 day, 2:17:28	loss 7.9387 (7.9294)	acc 0.3906 (0.2734)	lr 0.001982
+epoch: [4/50][60/394]	time 5.035 (5.097)	data 0.000 (0.059)	eta 1 day, 2:08:05	loss 7.9366 (7.9315)	acc 0.1953 (0.2734)	lr 0.001982
+epoch: [4/50][80/394]	time 5.027 (5.083)	data 0.000 (0.044)	eta 1 day, 2:02:03	loss 7.9203 (7.9315)	acc 0.5859 (0.2710)	lr 0.001982
+epoch: [4/50][100/394]	time 5.026 (5.073)	data 0.000 (0.036)	eta 1 day, 1:57:21	loss 7.9048 (7.9330)	acc 0.3906 (0.2812)	lr 0.001982
+epoch: [4/50][120/394]	time 5.027 (5.065)	data 0.000 (0.030)	eta 1 day, 1:53:07	loss 7.9216 (7.9343)	acc 0.3906 (0.2751)	lr 0.001982
+epoch: [4/50][140/394]	time 5.047 (5.061)	data 0.000 (0.026)	eta 1 day, 1:50:01	loss 7.9275 (7.9354)	acc 0.1953 (0.2930)	lr 0.001982
+epoch: [4/50][160/394]	time 5.032 (5.058)	data 0.000 (0.022)	eta 1 day, 1:47:25	loss 7.9743 (7.9360)	acc 0.0000 (0.2942)	lr 0.001982
+epoch: [4/50][180/394]	time 5.049 (5.056)	data 0.000 (0.020)	eta 1 day, 1:45:14	loss 7.9413 (7.9364)	acc 0.0000 (0.3006)	lr 0.001982
+epoch: [4/50][200/394]	time 5.035 (5.054)	data 0.000 (0.018)	eta 1 day, 1:42:52	loss 7.9270 (7.9359)	acc 0.5859 (0.3076)	lr 0.001982
+epoch: [4/50][220/394]	time 5.041 (5.051)	data 0.000 (0.016)	eta 1 day, 1:40:23	loss 7.9234 (7.9365)	acc 0.3906 (0.3089)	lr 0.001982
+epoch: [4/50][240/394]	time 5.009 (5.049)	data 0.000 (0.015)	eta 1 day, 1:38:09	loss 7.9214 (7.9366)	acc 0.7812 (0.3027)	lr 0.001982
+epoch: [4/50][260/394]	time 5.104 (5.048)	data 0.000 (0.014)	eta 1 day, 1:36:15	loss 7.9599 (7.9366)	acc 0.0000 (0.2930)	lr 0.001982
+epoch: [4/50][280/394]	time 5.046 (5.047)	data 0.000 (0.013)	eta 1 day, 1:34:13	loss 7.9247 (7.9369)	acc 0.5859 (0.2965)	lr 0.001982
+epoch: [4/50][300/394]	time 5.041 (5.047)	data 0.000 (0.012)	eta 1 day, 1:32:18	loss 7.9309 (7.9371)	acc 0.7812 (0.2930)	lr 0.001982
+epoch: [4/50][320/394]	time 5.028 (5.046)	data 0.000 (0.011)	eta 1 day, 1:30:28	loss 7.9227 (7.9371)	acc 0.1953 (0.2942)	lr 0.001982
+epoch: [4/50][340/394]	time 5.065 (5.045)	data 0.000 (0.011)	eta 1 day, 1:28:31	loss 7.8938 (7.9372)	acc 0.3906 (0.2895)	lr 0.001982
+epoch: [4/50][360/394]	time 5.061 (5.045)	data 0.000 (0.010)	eta 1 day, 1:26:52	loss 7.9231 (7.9373)	acc 0.1953 (0.2886)	lr 0.001982
+epoch: [4/50][380/394]	time 5.061 (5.045)	data 0.000 (0.010)	eta 1 day, 1:24:59	loss 7.9719 (7.9375)	acc 0.3906 (0.2889)	lr 0.001982
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 1.3176 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 8.1%
+CMC curve
+Rank-1  : 40.1%
+Rank-5  : 61.3%
+Rank-10 : 70.3%
+Rank-20 : 79.3%
+Checkpoint saved to "resutls/resnet50_market1501_softmax1/model/model.pth.tar-4"
+* Only train ['classifier'] (epoch: 5/5)
+epoch: [5/50][20/394]	time 5.018 (5.229)	data 0.000 (0.189)	eta 1 day, 2:17:41	loss 7.9109 (7.9296)	acc 0.3906 (0.2832)	lr 0.001969
+epoch: [5/50][40/394]	time 5.037 (5.130)	data 0.000 (0.095)	eta 1 day, 1:46:09	loss 7.9333 (7.9281)	acc 0.5859 (0.2930)	lr 0.001969
+epoch: [5/50][60/394]	time 5.021 (5.097)	data 0.000 (0.063)	eta 1 day, 1:34:26	loss 7.9378 (7.9302)	acc 0.1953 (0.2962)	lr 0.001969
+epoch: [5/50][80/394]	time 5.001 (5.083)	data 0.000 (0.048)	eta 1 day, 1:28:36	loss 7.9380 (7.9316)	acc 0.3906 (0.3101)	lr 0.001969
+epoch: [5/50][100/394]	time 5.069 (5.073)	data 0.000 (0.038)	eta 1 day, 1:24:03	loss 7.9344 (7.9322)	acc 0.3906 (0.3066)	lr 0.001969
+epoch: [5/50][120/394]	time 5.024 (5.067)	data 0.000 (0.032)	eta 1 day, 1:20:24	loss 7.9369 (7.9336)	acc 0.0000 (0.3060)	lr 0.001969
+epoch: [5/50][140/394]	time 5.052 (5.062)	data 0.001 (0.027)	eta 1 day, 1:17:17	loss 7.9059 (7.9334)	acc 0.1953 (0.2985)	lr 0.001969
+epoch: [5/50][160/394]	time 5.052 (5.059)	data 0.001 (0.024)	eta 1 day, 1:14:40	loss 7.9365 (7.9339)	acc 0.0000 (0.2966)	lr 0.001969
+epoch: [5/50][180/394]	time 5.009 (5.056)	data 0.000 (0.021)	eta 1 day, 1:12:02	loss 7.9585 (7.9352)	acc 0.1953 (0.2984)	lr 0.001969
+epoch: [5/50][200/394]	time 5.060 (5.054)	data 0.000 (0.019)	eta 1 day, 1:09:54	loss 7.9398 (7.9356)	acc 0.3906 (0.3018)	lr 0.001969
+epoch: [5/50][220/394]	time 5.077 (5.053)	data 0.000 (0.018)	eta 1 day, 1:07:41	loss 7.9538 (7.9359)	acc 0.3906 (0.3169)	lr 0.001969
+epoch: [5/50][240/394]	time 5.039 (5.051)	data 0.000 (0.016)	eta 1 day, 1:05:40	loss 7.9486 (7.9361)	acc 0.5859 (0.3166)	lr 0.001969
+epoch: [5/50][260/394]	time 5.014 (5.050)	data 0.000 (0.015)	eta 1 day, 1:03:32	loss 7.9348 (7.9359)	acc 0.1953 (0.3057)	lr 0.001969
+epoch: [5/50][280/394]	time 5.055 (5.050)	data 0.001 (0.014)	eta 1 day, 1:01:58	loss 7.9484 (7.9363)	acc 0.1953 (0.3027)	lr 0.001969
+epoch: [5/50][300/394]	time 5.055 (5.049)	data 0.000 (0.013)	eta 1 day, 0:59:58	loss 7.9625 (7.9366)	acc 0.1953 (0.3008)	lr 0.001969
+epoch: [5/50][320/394]	time 5.054 (5.049)	data 0.000 (0.012)	eta 1 day, 0:58:05	loss 7.9311 (7.9365)	acc 0.3906 (0.2954)	lr 0.001969
+epoch: [5/50][340/394]	time 5.052 (5.048)	data 0.000 (0.012)	eta 1 day, 0:56:08	loss 7.9571 (7.9370)	acc 0.1953 (0.2895)	lr 0.001969
+epoch: [5/50][360/394]	time 5.071 (5.047)	data 0.000 (0.011)	eta 1 day, 0:54:14	loss 7.9485 (7.9373)	acc 0.1953 (0.2908)	lr 0.001969
+epoch: [5/50][380/394]	time 5.052 (5.046)	data 0.000 (0.010)	eta 1 day, 0:52:20	loss 7.9246 (7.9374)	acc 0.0000 (0.2950)	lr 0.001969
+Traceback (most recent call last):
+  File "/home/trild/workspace/deep-person-reid/projects/face_recognition/main.py", line 208, in <module>
+    main()
+  File "/home/trild/workspace/deep-person-reid/projects/face_recognition/main.py", line 204, in main
+    engine.run(**engine_run_kwargs(cfg))
+  File "/home/trild/workspace/deep-person-reid/torchreid/engine/engine.py", line 191, in run
+    self.train(
+  File "/home/trild/workspace/deep-person-reid/torchreid/engine/engine.py", line 246, in train
+    loss_summary = self.forward_backward(data)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/workspace/deep-person-reid/torchreid/engine/image/softmax.py", line 85, in forward_backward
+    outputs = self.model(imgs)
+              ^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 193, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 212, in parallel_apply
+    return parallel_apply(
+           ^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/parallel/parallel_apply.py", line 126, in parallel_apply
+    output.reraise()
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/_utils.py", line 715, in reraise
+    raise exception
+torch.OutOfMemoryError: Caught OutOfMemoryError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/parallel/parallel_apply.py", line 96, in _worker
+    output = module(*input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/workspace/deep-person-reid/torchreid/models/resnet.py", line 354, in forward
+    f = self.featuremaps(x)
+        ^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/workspace/deep-person-reid/torchreid/models/resnet.py", line 349, in featuremaps
+    x = self.layer3(x)
+        ^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/workspace/deep-person-reid/torchreid/models/resnet.py", line 145, in forward
+    out = self.conv3(out)
+          ^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/conv.py", line 554, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/nn/modules/conv.py", line 549, in _conv_forward
+    return F.conv2d(
+           ^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 22.06 GiB of which 127.12 MiB is free. Including non-PyTorch memory, this process has 21.92 GiB memory in use. Of the allocated memory 21.15 GiB is allocated by PyTorch, and 192.63 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+E0102 13:13:07.266000 99794 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 99819) of binary: /home/trild/miniconda3/envs/dfine/bin/python3
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 923, in <module>
+    main()
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+main.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-01-02_13:13:07
+  host      : driply-ai-machine-001.us-central1-a.c.driply-417109.internal
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 99819)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -11,6 +11,7 @@ from torchreid.utils.feature_extractor import FeatureExtractor
 from torchreid.models import build_model
 
 __model_types = [
+    'resnet50_fc512',
     'resnet50', 'mlfn', 'hacnn', 'mobilenetv2_x1_0', 'mobilenetv2_x1_4',
     'osnet_x1_0', 'osnet_x0_75', 'osnet_x0_5', 'osnet_x0_25',
     'mamba_vision_T',
@@ -187,12 +188,20 @@ if __name__ == "__main__":
                         nargs='+',
                         default=['onnx', 'openvino', 'tflite'],
                         help='onnx, openvino, tflite')
+    parser.add_argument(
+        "-n",
+        "--name",
+        type=str,
+        default=None,
+        help="type model weights",
+    )
     args = parser.parse_args()
 
+    model_name = args.name if args.name else get_model_name(args.weights)
     # Build model
     extractor = FeatureExtractor(
         # get rid of dataset information DeepSort model name
-        model_name=get_model_name(args.weights),
+        model_name=model_name,
         model_path=args.weights,
         image_size=(args.imgsz[0], args.imgsz[1]),
         device=str('cpu')

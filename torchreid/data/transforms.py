@@ -3,6 +3,7 @@ import math
 import random
 from collections import deque
 import torch
+from torchvision.transforms import v2
 # import cv2
 import numpy as np
 from PIL import Image, ImageOps
@@ -335,7 +336,15 @@ def build_transforms(
 
     if 'random_flip' in transforms:
         print('+ random flip')
-        transform_tr += [RandomHorizontalFlip(), RandomVerticalFlip()]
+        transform_tr += [v2.RandomHorizontalFlip(), v2.RandomVerticalFlip()]
+        
+    if 'random_perpective' in transforms:
+        print('+ random perpective')
+        transform_tr += [v2.RandomPerspective(distortion_scale=0.4)]
+        
+    if 'random_rotation' in transforms:
+        print('+ random rotation')
+        transform_tr += [v2.RandomRotation(degrees=(0, 180))]
 
     if 'random_crop' in transforms:
         print(
@@ -345,7 +354,8 @@ def build_transforms(
                 width
             )
         )
-        transform_tr += [Random2DTranslation(height, width)]
+        # transform_tr += [Random2DTranslation(height, width)]
+        transform_tr += [v2.RandomCrop(size=(height, width))]
 
     if 'random_patch' in transforms:
         print('+ random patch')
@@ -354,7 +364,7 @@ def build_transforms(
     if 'color_jitter' in transforms:
         print('+ color jitter')
         transform_tr += [
-            ColorJitter(brightness=0.2, contrast=0.15, saturation=0, hue=0)
+            v2.ColorJitter(brightness=0.2, contrast=0.15, saturation=0, hue=0)
         ]
 
     print('+ to torch tensor of range [0, 1]')
@@ -365,17 +375,18 @@ def build_transforms(
 
     if 'random_erase' in transforms:
         print('+ random erase')
-        transform_tr += [RandomErasing(mean=norm_mean)]
+        # transform_tr += [RandomErasing(mean=norm_mean)]
+        transform_tr += [v2.RandomErasing(scale=(0.08, 0.22), p=0.3)]
 
-    transform_tr = Compose(transform_tr)
+    transform_tr = v2.Compose(transform_tr)
 
     print('Building test transforms ...')
     print('+ resize to {}x{}'.format(height, width))
     print('+ to torch tensor of range [0, 1]')
     print('+ normalization (mean={}, std={})'.format(norm_mean, norm_std))
 
-    transform_te = Compose([
-        Resize((height, width)),
+    transform_te = v2.Compose([
+        v2.Resize((height, width)),
         # LetterBox(new_shape=(height, width)),
         ToTensor(),
         normalize,

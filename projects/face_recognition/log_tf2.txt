@@ -1,0 +1,452 @@
+/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+[Warning] Fused window process have not been installed. Please refer to get_started.md for installation.
+Show configuration
+adam:
+  beta1: 0.9
+  beta2: 0.999
+cuhk03:
+  classic_split: False
+  labeled_images: False
+  use_metric_cuhk03: False
+data:
+  combineall: False
+  height: 256
+  k_tfm: 1
+  load_train_targets: False
+  norm_mean: [0.485, 0.456, 0.406]
+  norm_std: [0.229, 0.224, 0.225]
+  root: /home/trild/dataset/facerec/facerec_combine/
+  save_dir: resutls/osnet_ain_x1_0_market1501_triplet2/
+  sources: ['market1501']
+  split_id: 0
+  targets: ['market1501']
+  transforms: ['random_flip', 'color_jitter', 'random_crop', 'random_erase', 'random_blackwhite']
+  type: image
+  width: 128
+  workers: 4
+loss:
+  arcface:
+    easy_margin: False
+    label_smooth: True
+    margin: 0.5
+    scale: 64
+  name: triplet
+  softmax:
+    label_smooth: True
+  triplet:
+    margin: 0.3
+    weight_t: 0.5
+    weight_x: 1.0
+market1501:
+  use_500k_distractors: False
+model:
+  load_weights: 
+  name: osnet_ain_x1_0
+  pretrained: True
+  resume: osnet_ain_x1_0_market1501_triplet_model.pth.tar-26
+rmsprop:
+  alpha: 0.99
+sampler:
+  num_cams: 1
+  num_datasets: 1
+  num_instances: 4
+  train_sampler: RandomSampler
+  train_sampler_t: RandomSampler
+sgd:
+  dampening: 0.0
+  momentum: 0.9
+  nesterov: False
+test:
+  batch_size: 256
+  dist_metric: cosine
+  eval_freq: 2
+  evaluate: False
+  normalize_feature: False
+  ranks: [1, 5, 10, 20]
+  rerank: False
+  start_eval: 2
+  visrank: False
+  visrank_topk: 10
+train:
+  base_lr_mult: 0.1
+  batch_size: 512
+  fixbase_epoch: 10
+  gamma: 0.1
+  lr: 0.002
+  lr_scheduler: cosine
+  max_epoch: 50
+  new_layers: ['classifier']
+  open_layers: ['classifier']
+  optim: amsgrad
+  print_freq: 20
+  seed: 1
+  staged_lr: False
+  start_epoch: 0
+  stepsize: [20]
+  weight_decay: 0.0005
+use_gpu: True
+video:
+  pooling_method: avg
+  sample_method: evenly
+  seq_len: 15
+
+Collecting env info ...
+** System info **
+PyTorch version: 2.5.1+cu124
+Is debug build: False
+CUDA used to build PyTorch: 12.4
+ROCM used to build PyTorch: N/A
+
+OS: Ubuntu 22.04.5 LTS (x86_64)
+GCC version: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.35
+
+Python version: 3.11.9 (main, Apr 19 2024, 16:48:06) [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-6.8.0-1020-gcp-x86_64-with-glibc2.35
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA L4
+GPU 1: NVIDIA L4
+
+Nvidia driver version: 560.35.03
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+CPU:
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        46 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               24
+On-line CPU(s) list:                  0-23
+Vendor ID:                            GenuineIntel
+Model name:                           Intel(R) Xeon(R) CPU @ 2.20GHz
+CPU family:                           6
+Model:                                85
+Thread(s) per core:                   2
+Core(s) per socket:                   12
+Socket(s):                            1
+Stepping:                             7
+BogoMIPS:                             4400.38
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat avx512_vnni md_clear arch_capabilities
+Hypervisor vendor:                    KVM
+Virtualization type:                  full
+L1d cache:                            384 KiB (12 instances)
+L1i cache:                            384 KiB (12 instances)
+L2 cache:                             12 MiB (12 instances)
+L3 cache:                             38.5 MiB (1 instance)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0-23
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Reg file data sampling: Not affected
+Vulnerability Retbleed:               Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+
+Versions of relevant libraries:
+[pip3] flake8==7.1.1
+[pip3] numpy==2.2.0
+[pip3] onnx==1.17.0
+[pip3] onnxruntime==1.20.1
+[pip3] onnxsim==0.4.36
+[pip3] torch==2.5.1
+[pip3] torchreid==1.4.0
+[pip3] torchvision==0.20.1
+[pip3] triton==3.1.0
+[conda] numpy                     2.2.0                    pypi_0    pypi
+[conda] torch                     2.5.1                    pypi_0    pypi
+[conda] torchreid                 1.4.0                     dev_0    <develop>
+[conda] torchvision               0.20.1                   pypi_0    pypi
+[conda] triton                    3.1.0                    pypi_0    pypi
+        Pillow (11.0.0)
+
+Building train transforms ...
++ resize to 256x128
++ random grayscale rgb
++ random flip
++ random crop (enlarge to 288x144 and crop 256x128)
++ color jitter
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
++ random erase
+Building test transforms ...
++ resize to 256x128
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+=> Loading train (source) dataset
+/home/trild/workspace/deep-person-reid/torchreid/data/datasets/image/market1501.py:37: UserWarning: The current data structure is deprecated. Please put data folders such as "bounding_box_train" under "Market-1501-v15.09.15".
+  warnings.warn(
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  3375 |   201767 |         6
+  query    |   595 |    10254 |         1
+  gallery  |   595 |    23265 |         5
+  ----------------------------------------
+=> Loading test (target) dataset
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  3375 |   201767 |         6
+  query    |   595 |    10254 |         1
+  gallery  |   595 |    23265 |         5
+  ----------------------------------------
+
+
+  **************** Summary ****************
+  source            : ['market1501']
+  # source datasets : 1
+  # source ids      : 3375
+  # source images   : 201767
+  # source cameras  : 6
+  target            : ['market1501']
+  *****************************************
+
+
+Building model: osnet_ain_x1_0
+/home/trild/workspace/deep-person-reid/torchreid/models/osnet_ain.py:496: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(cached_file)
+Successfully loaded imagenet pretrained weights from "/home/trild/.cache/torch/checkpoints/osnet_ain_x1_0_imagenet.pth"
+** The following layers are discarded due to unmatched keys or layer size: ['classifier.weight', 'classifier.bias']
+use gpu model: osnet_ain_x1_0
+Model complexity: params=0 flops=978,878,352
+Loading checkpoint from "osnet_ain_x1_0_market1501_triplet_model.pth.tar-26"
+/home/trild/workspace/deep-person-reid/torchreid/utils/torchtools.py:85: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(fpath, map_location=map_location)
+Loaded model weights
+Loaded optimizer
+Loaded scheduler
+Last epoch = 26
+Last rank1 = 96.4%
+Building triplet-engine for image-reid
+=========================TRILD============================
+
+=> Start training
+epoch: [27/50][20/394]	time 3.689 (4.018)	data 0.001 (0.165)	eta 10:31:55	loss_t 0.0996 (0.1670)	loss_x 1.7807 (1.8814)	acc 92.7734 (91.6211)	lr 0.000086
+epoch: [27/50][40/394]	time 3.670 (3.858)	data 0.001 (0.083)	eta 10:05:28	loss_t 0.1344 (0.1389)	loss_x 1.6772 (1.7901)	acc 94.7266 (93.0029)	lr 0.000086
+epoch: [27/50][60/394]	time 3.655 (3.802)	data 0.001 (0.055)	eta 9:55:20	loss_t 0.0833 (0.1261)	loss_x 1.6829 (1.7508)	acc 93.5547 (93.5352)	lr 0.000086
+epoch: [27/50][80/394]	time 3.628 (3.765)	data 0.001 (0.042)	eta 9:48:17	loss_t 0.0633 (0.1215)	loss_x 1.6161 (1.7292)	acc 96.4844 (93.7988)	lr 0.000086
+epoch: [27/50][100/394]	time 3.682 (3.749)	data 0.000 (0.033)	eta 9:44:33	loss_t 0.0868 (0.1212)	loss_x 1.6622 (1.7124)	acc 94.1406 (94.0059)	lr 0.000086
+epoch: [27/50][120/394]	time 3.677 (3.739)	data 0.001 (0.028)	eta 9:41:50	loss_t 0.1702 (0.1181)	loss_x 1.6353 (1.7027)	acc 95.5078 (94.0967)	lr 0.000086
+epoch: [27/50][140/394]	time 3.682 (3.732)	data 0.001 (0.024)	eta 9:39:30	loss_t 0.0472 (0.1137)	loss_x 1.5399 (1.6902)	acc 97.0703 (94.3178)	lr 0.000086
+epoch: [27/50][160/394]	time 3.670 (3.727)	data 0.000 (0.021)	eta 9:37:22	loss_t 0.0507 (0.1122)	loss_x 1.6314 (1.6819)	acc 96.0938 (94.4092)	lr 0.000086
+epoch: [27/50][180/394]	time 3.608 (3.719)	data 0.000 (0.019)	eta 9:34:56	loss_t 0.1436 (0.1123)	loss_x 1.6471 (1.6750)	acc 95.1172 (94.4998)	lr 0.000086
+epoch: [27/50][200/394]	time 3.659 (3.715)	data 0.001 (0.017)	eta 9:33:04	loss_t 0.0794 (0.1114)	loss_x 1.5902 (1.6689)	acc 94.3359 (94.5576)	lr 0.000086
+epoch: [27/50][220/394]	time 3.655 (3.712)	data 0.000 (0.015)	eta 9:31:26	loss_t 0.1813 (0.1119)	loss_x 1.6210 (1.6642)	acc 94.5312 (94.6298)	lr 0.000086
+epoch: [27/50][240/394]	time 3.678 (3.710)	data 0.000 (0.014)	eta 9:29:50	loss_t 0.1330 (0.1120)	loss_x 1.6134 (1.6597)	acc 96.4844 (94.6851)	lr 0.000086
+epoch: [27/50][260/394]	time 3.679 (3.708)	data 0.001 (0.013)	eta 9:28:20	loss_t 0.0725 (0.1109)	loss_x 1.6005 (1.6553)	acc 94.7266 (94.7273)	lr 0.000086
+epoch: [27/50][280/394]	time 3.619 (3.705)	data 0.000 (0.012)	eta 9:26:39	loss_t 0.0973 (0.1106)	loss_x 1.6184 (1.6517)	acc 95.8984 (94.7754)	lr 0.000086
+epoch: [27/50][300/394]	time 3.682 (3.704)	data 0.000 (0.011)	eta 9:25:09	loss_t 0.0502 (0.1104)	loss_x 1.5869 (1.6476)	acc 95.3125 (94.8320)	lr 0.000086
+epoch: [27/50][320/394]	time 3.717 (3.703)	data 0.001 (0.011)	eta 9:23:53	loss_t 0.0895 (0.1096)	loss_x 1.6237 (1.6448)	acc 95.3125 (94.8566)	lr 0.000086
+epoch: [27/50][340/394]	time 3.679 (3.702)	data 0.001 (0.010)	eta 9:22:27	loss_t 0.0975 (0.1087)	loss_x 1.6079 (1.6421)	acc 95.5078 (94.8932)	lr 0.000086
+epoch: [27/50][360/394]	time 3.700 (3.702)	data 0.000 (0.010)	eta 9:21:09	loss_t 0.1017 (0.1085)	loss_x 1.5636 (1.6390)	acc 95.1172 (94.9398)	lr 0.000086
+epoch: [27/50][380/394]	time 3.648 (3.699)	data 0.000 (0.009)	eta 9:19:35	loss_t 0.1088 (0.1083)	loss_x 1.6063 (1.6368)	acc 95.7031 (94.9584)	lr 0.000086
+epoch: [28/50][20/394]	time 3.673 (3.805)	data 0.000 (0.136)	eta 9:33:23	loss_t 0.0799 (0.0991)	loss_x 1.5819 (1.5627)	acc 94.5312 (96.1719)	lr 0.000049
+epoch: [28/50][40/394]	time 3.695 (3.745)	data 0.001 (0.069)	eta 9:23:08	loss_t 0.1712 (0.0994)	loss_x 1.5735 (1.5544)	acc 95.3125 (96.2939)	lr 0.000049
+epoch: [28/50][60/394]	time 3.698 (3.725)	data 0.000 (0.046)	eta 9:18:49	loss_t 0.1233 (0.0965)	loss_x 1.5113 (1.5550)	acc 97.4609 (96.1719)	lr 0.000049
+epoch: [28/50][80/394]	time 3.644 (3.716)	data 0.000 (0.034)	eta 9:16:16	loss_t 0.0628 (0.0988)	loss_x 1.5293 (1.5541)	acc 96.8750 (96.1865)	lr 0.000049
+epoch: [28/50][100/394]	time 3.677 (3.703)	data 0.001 (0.028)	eta 9:13:06	loss_t 0.0761 (0.0979)	loss_x 1.6182 (1.5551)	acc 95.1172 (96.1484)	lr 0.000049
+epoch: [28/50][120/394]	time 3.679 (3.702)	data 0.000 (0.023)	eta 9:11:40	loss_t 0.0738 (0.0971)	loss_x 1.5686 (1.5548)	acc 96.4844 (96.1491)	lr 0.000049
+epoch: [28/50][140/394]	time 3.685 (3.698)	data 0.000 (0.020)	eta 9:09:57	loss_t 0.0884 (0.0966)	loss_x 1.5446 (1.5541)	acc 95.5078 (96.1244)	lr 0.000049
+epoch: [28/50][160/394]	time 3.647 (3.697)	data 0.001 (0.017)	eta 9:08:28	loss_t 0.0849 (0.0956)	loss_x 1.5621 (1.5540)	acc 96.2891 (96.1206)	lr 0.000049
+epoch: [28/50][180/394]	time 3.664 (3.696)	data 0.000 (0.016)	eta 9:07:07	loss_t 0.1224 (0.0955)	loss_x 1.5211 (1.5541)	acc 97.6562 (96.1241)	lr 0.000049
+epoch: [28/50][200/394]	time 3.661 (3.692)	data 0.000 (0.014)	eta 9:05:14	loss_t 0.0958 (0.0951)	loss_x 1.5457 (1.5543)	acc 95.1172 (96.1016)	lr 0.000049
+epoch: [28/50][220/394]	time 3.660 (3.691)	data 0.001 (0.013)	eta 9:03:57	loss_t 0.0925 (0.0954)	loss_x 1.5699 (1.5548)	acc 95.7031 (96.1097)	lr 0.000049
+epoch: [28/50][240/394]	time 3.668 (3.691)	data 0.000 (0.012)	eta 9:02:40	loss_t 0.0943 (0.0963)	loss_x 1.5663 (1.5548)	acc 95.3125 (96.1149)	lr 0.000049
+epoch: [28/50][260/394]	time 3.672 (3.690)	data 0.001 (0.011)	eta 9:01:21	loss_t 0.1367 (0.0965)	loss_x 1.5477 (1.5549)	acc 95.8984 (96.1118)	lr 0.000049
+epoch: [28/50][280/394]	time 3.680 (3.690)	data 0.000 (0.010)	eta 9:00:08	loss_t 0.0535 (0.0966)	loss_x 1.5190 (1.5546)	acc 96.0938 (96.1007)	lr 0.000049
+epoch: [28/50][300/394]	time 3.688 (3.688)	data 0.000 (0.010)	eta 8:58:32	loss_t 0.1691 (0.0976)	loss_x 1.5711 (1.5541)	acc 95.3125 (96.1087)	lr 0.000049
+epoch: [28/50][320/394]	time 3.677 (3.687)	data 0.001 (0.009)	eta 8:57:15	loss_t 0.0659 (0.0972)	loss_x 1.5303 (1.5537)	acc 96.4844 (96.1102)	lr 0.000049
+epoch: [28/50][340/394]	time 3.692 (3.688)	data 0.000 (0.008)	eta 8:56:02	loss_t 0.1187 (0.0975)	loss_x 1.5490 (1.5532)	acc 95.5078 (96.1144)	lr 0.000049
+epoch: [28/50][360/394]	time 3.686 (3.688)	data 0.000 (0.008)	eta 8:54:53	loss_t 0.0668 (0.0979)	loss_x 1.5407 (1.5534)	acc 96.0938 (96.1024)	lr 0.000049
+epoch: [28/50][380/394]	time 3.670 (3.688)	data 0.000 (0.008)	eta 8:53:40	loss_t 0.0955 (0.0979)	loss_x 1.5800 (1.5536)	acc 96.0938 (96.1020)	lr 0.000049
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 1.0904 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 79.6%
+CMC curve
+Rank-1  : 96.7%
+Rank-5  : 98.8%
+Rank-10 : 99.2%
+Rank-20 : 99.5%
+Checkpoint saved to "resutls/osnet_ain_x1_0_market1501_triplet2/model/model.pth.tar-28"
+epoch: [29/50][20/394]	time 3.737 (3.780)	data 0.000 (0.123)	eta 9:04:51	loss_t 0.0547 (0.0963)	loss_x 1.5340 (1.5320)	acc 97.0703 (96.4746)	lr 0.000022
+epoch: [29/50][40/394]	time 3.686 (3.739)	data 0.000 (0.062)	eta 8:57:39	loss_t 0.0995 (0.0888)	loss_x 1.5183 (1.5308)	acc 95.7031 (96.5039)	lr 0.000022
+epoch: [29/50][60/394]	time 3.685 (3.713)	data 0.000 (0.041)	eta 8:52:43	loss_t 0.1274 (0.0871)	loss_x 1.5268 (1.5289)	acc 96.6797 (96.4681)	lr 0.000022
+epoch: [29/50][80/394]	time 3.685 (3.711)	data 0.000 (0.031)	eta 8:51:05	loss_t 0.0876 (0.0909)	loss_x 1.5293 (1.5289)	acc 96.2891 (96.4600)	lr 0.000022
+epoch: [29/50][100/394]	time 3.659 (3.710)	data 0.001 (0.025)	eta 8:49:43	loss_t 0.1232 (0.0909)	loss_x 1.6119 (1.5300)	acc 96.0938 (96.4688)	lr 0.000022
+epoch: [29/50][120/394]	time 3.783 (3.708)	data 0.000 (0.021)	eta 8:48:13	loss_t 0.1046 (0.0934)	loss_x 1.4973 (1.5305)	acc 97.0703 (96.4600)	lr 0.000022
+epoch: [29/50][140/394]	time 3.682 (3.706)	data 0.001 (0.018)	eta 8:46:43	loss_t 0.0485 (0.0924)	loss_x 1.5493 (1.5306)	acc 95.7031 (96.4579)	lr 0.000022
+epoch: [29/50][160/394]	time 3.704 (3.700)	data 0.001 (0.016)	eta 8:44:35	loss_t 0.0867 (0.0921)	loss_x 1.4998 (1.5303)	acc 96.8750 (96.4636)	lr 0.000022
+epoch: [29/50][180/394]	time 3.661 (3.700)	data 0.001 (0.014)	eta 8:43:27	loss_t 0.1254 (0.0916)	loss_x 1.5562 (1.5288)	acc 95.5078 (96.4920)	lr 0.000022
+epoch: [29/50][200/394]	time 3.644 (3.700)	data 0.001 (0.013)	eta 8:42:11	loss_t 0.1120 (0.0915)	loss_x 1.5247 (1.5283)	acc 97.2656 (96.5000)	lr 0.000022
+epoch: [29/50][220/394]	time 3.767 (3.699)	data 0.001 (0.012)	eta 8:40:50	loss_t 0.0499 (0.0917)	loss_x 1.5243 (1.5276)	acc 96.6797 (96.5270)	lr 0.000022
+epoch: [29/50][240/394]	time 3.679 (3.700)	data 0.000 (0.011)	eta 8:39:46	loss_t 0.0503 (0.0920)	loss_x 1.5200 (1.5275)	acc 97.0703 (96.5332)	lr 0.000022
+epoch: [29/50][260/394]	time 3.694 (3.697)	data 0.001 (0.010)	eta 8:38:04	loss_t 0.0453 (0.0917)	loss_x 1.5185 (1.5272)	acc 96.0938 (96.5182)	lr 0.000022
+epoch: [29/50][280/394]	time 3.702 (3.698)	data 0.001 (0.009)	eta 8:36:55	loss_t 0.2063 (0.0913)	loss_x 1.5354 (1.5270)	acc 96.6797 (96.5060)	lr 0.000022
+epoch: [29/50][300/394]	time 3.620 (3.698)	data 0.001 (0.009)	eta 8:35:47	loss_t 0.1291 (0.0927)	loss_x 1.5248 (1.5273)	acc 96.8750 (96.4909)	lr 0.000022
+epoch: [29/50][320/394]	time 3.724 (3.698)	data 0.000 (0.008)	eta 8:34:32	loss_t 0.1131 (0.0928)	loss_x 1.5337 (1.5281)	acc 97.4609 (96.4807)	lr 0.000022
+epoch: [29/50][340/394]	time 3.670 (3.698)	data 0.000 (0.008)	eta 8:33:19	loss_t 0.1213 (0.0934)	loss_x 1.5537 (1.5274)	acc 95.7031 (96.5039)	lr 0.000022
+epoch: [29/50][360/394]	time 3.701 (3.697)	data 0.000 (0.007)	eta 8:31:51	loss_t 0.0402 (0.0935)	loss_x 1.5449 (1.5276)	acc 96.8750 (96.5007)	lr 0.000022
+epoch: [29/50][380/394]	time 3.684 (3.697)	data 0.001 (0.007)	eta 8:30:38	loss_t 0.0645 (0.0933)	loss_x 1.4982 (1.5271)	acc 97.6562 (96.5019)	lr 0.000022
+epoch: [30/50][20/394]	time 3.700 (3.809)	data 0.000 (0.128)	eta 8:43:56	loss_t 0.1271 (0.0980)	loss_x 1.5209 (1.5166)	acc 96.6797 (96.7090)	lr 0.000005
+epoch: [30/50][40/394]	time 3.669 (3.755)	data 0.001 (0.064)	eta 8:35:20	loss_t 0.0969 (0.0872)	loss_x 1.5127 (1.5165)	acc 96.8750 (96.6943)	lr 0.000005
+epoch: [30/50][60/394]	time 3.648 (3.725)	data 0.000 (0.043)	eta 8:29:56	loss_t 0.0892 (0.0872)	loss_x 1.5133 (1.5196)	acc 96.6797 (96.6276)	lr 0.000005
+epoch: [30/50][80/394]	time 3.698 (3.716)	data 0.001 (0.032)	eta 8:27:26	loss_t 0.1114 (0.0850)	loss_x 1.5502 (1.5177)	acc 97.0703 (96.6602)	lr 0.000005
+epoch: [30/50][100/394]	time 3.703 (3.713)	data 0.000 (0.026)	eta 8:25:47	loss_t 0.1303 (0.0881)	loss_x 1.4990 (1.5144)	acc 97.4609 (96.7559)	lr 0.000005
+epoch: [30/50][120/394]	time 3.695 (3.710)	data 0.000 (0.022)	eta 8:24:09	loss_t 0.0764 (0.0885)	loss_x 1.4940 (1.5143)	acc 97.6562 (96.7611)	lr 0.000005
+epoch: [30/50][140/394]	time 3.680 (3.708)	data 0.001 (0.019)	eta 8:22:43	loss_t 0.0884 (0.0873)	loss_x 1.4937 (1.5149)	acc 97.0703 (96.7606)	lr 0.000005
+epoch: [30/50][160/394]	time 3.780 (3.706)	data 0.000 (0.016)	eta 8:21:06	loss_t 0.0333 (0.0867)	loss_x 1.4824 (1.5147)	acc 97.4609 (96.7529)	lr 0.000005
+epoch: [30/50][180/394]	time 3.863 (3.703)	data 0.000 (0.015)	eta 8:19:32	loss_t 0.1394 (0.0867)	loss_x 1.5456 (1.5142)	acc 94.3359 (96.7643)	lr 0.000005
+epoch: [30/50][200/394]	time 3.691 (3.702)	data 0.000 (0.013)	eta 8:18:10	loss_t 0.0389 (0.0869)	loss_x 1.4891 (1.5145)	acc 97.6562 (96.7354)	lr 0.000005
+epoch: [30/50][220/394]	time 3.632 (3.698)	data 0.001 (0.012)	eta 8:16:21	loss_t 0.0934 (0.0865)	loss_x 1.5401 (1.5148)	acc 95.5078 (96.7232)	lr 0.000005
+epoch: [30/50][240/394]	time 3.635 (3.694)	data 0.000 (0.011)	eta 8:14:34	loss_t 0.0923 (0.0864)	loss_x 1.5183 (1.5149)	acc 96.8750 (96.7293)	lr 0.000005
+epoch: [30/50][260/394]	time 3.639 (3.690)	data 0.000 (0.010)	eta 8:12:50	loss_t 0.0429 (0.0863)	loss_x 1.5103 (1.5148)	acc 97.0703 (96.7233)	lr 0.000005
+epoch: [30/50][280/394]	time 3.618 (3.687)	data 0.000 (0.010)	eta 8:11:15	loss_t 0.1121 (0.0870)	loss_x 1.4892 (1.5157)	acc 97.6562 (96.7208)	lr 0.000005
+epoch: [30/50][300/394]	time 3.631 (3.685)	data 0.000 (0.009)	eta 8:09:41	loss_t 0.1090 (0.0867)	loss_x 1.5246 (1.5158)	acc 97.0703 (96.7220)	lr 0.000005
+epoch: [30/50][320/394]	time 3.632 (3.682)	data 0.000 (0.008)	eta 8:08:07	loss_t 0.0584 (0.0871)	loss_x 1.5031 (1.5166)	acc 97.6562 (96.6943)	lr 0.000005
+epoch: [30/50][340/394]	time 3.639 (3.680)	data 0.000 (0.008)	eta 8:06:38	loss_t 0.0373 (0.0867)	loss_x 1.5313 (1.5162)	acc 96.6797 (96.7142)	lr 0.000005
+epoch: [30/50][360/394]	time 3.650 (3.679)	data 0.000 (0.008)	eta 8:05:12	loss_t 0.1047 (0.0870)	loss_x 1.5429 (1.5165)	acc 95.8984 (96.7144)	lr 0.000005
+epoch: [30/50][380/394]	time 3.625 (3.677)	data 0.001 (0.007)	eta 8:03:47	loss_t 0.1053 (0.0869)	loss_x 1.5148 (1.5162)	acc 96.6797 (96.7239)	lr 0.000005
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 1.0634 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 79.9%
+CMC curve
+Rank-1  : 96.8%
+Rank-5  : 98.9%
+Rank-10 : 99.3%
+Rank-20 : 99.6%
+Checkpoint saved to "resutls/osnet_ain_x1_0_market1501_triplet2/model/model.pth.tar-30"
+epoch: [31/50][20/394]	time 3.654 (3.751)	data 0.000 (0.130)	eta 8:11:25	loss_t 0.0611 (0.0938)	loss_x 1.5132 (1.5177)	acc 96.4844 (96.6211)	lr 0.000000
+epoch: [31/50][40/394]	time 3.670 (3.710)	data 0.000 (0.065)	eta 8:04:44	loss_t 0.1094 (0.0983)	loss_x 1.5046 (1.5142)	acc 96.4844 (96.7188)	lr 0.000000
+epoch: [31/50][60/394]	time 3.654 (3.694)	data 0.000 (0.044)	eta 8:01:24	loss_t 0.1069 (0.0922)	loss_x 1.4728 (1.5112)	acc 97.0703 (96.6634)	lr 0.000000
+epoch: [31/50][80/394]	time 3.675 (3.687)	data 0.000 (0.033)	eta 7:59:19	loss_t 0.1042 (0.0910)	loss_x 1.4969 (1.5114)	acc 96.2891 (96.6821)	lr 0.000000
+epoch: [31/50][100/394]	time 3.670 (3.682)	data 0.000 (0.026)	eta 7:57:23	loss_t 0.0746 (0.0906)	loss_x 1.4955 (1.5111)	acc 96.6797 (96.7051)	lr 0.000000
+epoch: [31/50][120/394]	time 3.640 (3.681)	data 0.001 (0.022)	eta 7:56:01	loss_t 0.1269 (0.0896)	loss_x 1.4958 (1.5116)	acc 98.0469 (96.6976)	lr 0.000000
+epoch: [31/50][140/394]	time 3.645 (3.679)	data 0.000 (0.019)	eta 7:54:31	loss_t 0.0763 (0.0900)	loss_x 1.4994 (1.5108)	acc 95.8984 (96.7257)	lr 0.000000
+epoch: [31/50][160/394]	time 3.676 (3.677)	data 0.000 (0.017)	eta 7:53:08	loss_t 0.0454 (0.0899)	loss_x 1.4850 (1.5105)	acc 97.2656 (96.7407)	lr 0.000000
+epoch: [31/50][180/394]	time 3.631 (3.675)	data 0.001 (0.015)	eta 7:51:41	loss_t 0.0484 (0.0889)	loss_x 1.5142 (1.5105)	acc 96.6797 (96.7556)	lr 0.000000
+epoch: [31/50][200/394]	time 3.658 (3.673)	data 0.000 (0.013)	eta 7:50:10	loss_t 0.0956 (0.0891)	loss_x 1.5363 (1.5119)	acc 96.6797 (96.7363)	lr 0.000000
+epoch: [31/50][220/394]	time 3.634 (3.671)	data 0.000 (0.012)	eta 7:48:40	loss_t 0.0548 (0.0893)	loss_x 1.4839 (1.5119)	acc 97.4609 (96.7285)	lr 0.000000
+epoch: [31/50][240/394]	time 3.655 (3.669)	data 0.000 (0.011)	eta 7:47:13	loss_t 0.1504 (0.0903)	loss_x 1.5292 (1.5122)	acc 97.2656 (96.7375)	lr 0.000000
+epoch: [31/50][260/394]	time 3.641 (3.668)	data 0.000 (0.010)	eta 7:45:49	loss_t 0.0585 (0.0907)	loss_x 1.4834 (1.5125)	acc 97.0703 (96.7458)	lr 0.000000
+epoch: [31/50][280/394]	time 3.639 (3.667)	data 0.000 (0.010)	eta 7:44:27	loss_t 0.0822 (0.0901)	loss_x 1.5311 (1.5127)	acc 95.1172 (96.7522)	lr 0.000000
+epoch: [31/50][300/394]	time 3.641 (3.665)	data 0.000 (0.009)	eta 7:43:03	loss_t 0.0712 (0.0900)	loss_x 1.5207 (1.5132)	acc 97.0703 (96.7285)	lr 0.000000
+epoch: [31/50][320/394]	time 3.650 (3.665)	data 0.000 (0.008)	eta 7:41:44	loss_t 0.0555 (0.0895)	loss_x 1.5644 (1.5137)	acc 96.2891 (96.7273)	lr 0.000000
+epoch: [31/50][340/394]	time 3.641 (3.664)	data 0.000 (0.008)	eta 7:40:25	loss_t 0.0398 (0.0899)	loss_x 1.5316 (1.5139)	acc 96.8750 (96.7188)	lr 0.000000
+epoch: [31/50][360/394]	time 3.643 (3.664)	data 0.000 (0.008)	eta 7:39:09	loss_t 0.1569 (0.0887)	loss_x 1.5371 (1.5138)	acc 97.0703 (96.7274)	lr 0.000000
+epoch: [31/50][380/394]	time 3.640 (3.663)	data 0.001 (0.007)	eta 7:37:52	loss_t 0.0742 (0.0885)	loss_x 1.4702 (1.5135)	acc 97.6562 (96.7439)	lr 0.000000
+epoch: [32/50][20/394]	time 3.645 (3.753)	data 0.000 (0.130)	eta 7:47:01	loss_t 0.0596 (0.0874)	loss_x 1.5096 (1.5093)	acc 97.6562 (96.8945)	lr 0.000005
+epoch: [32/50][40/394]	time 3.634 (3.701)	data 0.001 (0.065)	eta 7:39:17	loss_t 0.1030 (0.0890)	loss_x 1.4884 (1.5123)	acc 97.8516 (96.8115)	lr 0.000005
+epoch: [32/50][60/394]	time 3.641 (3.684)	data 0.000 (0.044)	eta 7:36:00	loss_t 0.0476 (0.0870)	loss_x 1.5349 (1.5134)	acc 95.7031 (96.7904)	lr 0.000005
+epoch: [32/50][80/394]	time 3.783 (3.678)	data 0.000 (0.033)	eta 7:33:55	loss_t 0.0532 (0.0878)	loss_x 1.5339 (1.5155)	acc 96.0938 (96.7188)	lr 0.000005
+epoch: [32/50][100/394]	time 3.636 (3.671)	data 0.000 (0.026)	eta 7:31:53	loss_t 0.0859 (0.0897)	loss_x 1.5010 (1.5156)	acc 97.4609 (96.7090)	lr 0.000005
+epoch: [32/50][120/394]	time 3.645 (3.666)	data 0.001 (0.022)	eta 7:30:06	loss_t 0.1214 (0.0895)	loss_x 1.4886 (1.5142)	acc 96.6797 (96.7611)	lr 0.000005
+epoch: [32/50][140/394]	time 3.774 (3.666)	data 0.000 (0.019)	eta 7:28:49	loss_t 0.0868 (0.0882)	loss_x 1.4441 (1.5133)	acc 98.2422 (96.7467)	lr 0.000005
+epoch: [32/50][160/394]	time 3.775 (3.663)	data 0.000 (0.017)	eta 7:27:18	loss_t 0.0854 (0.0888)	loss_x 1.5097 (1.5125)	acc 96.8750 (96.7542)	lr 0.000005
+epoch: [32/50][180/394]	time 3.767 (3.662)	data 0.000 (0.015)	eta 7:25:56	loss_t 0.1704 (0.0890)	loss_x 1.5411 (1.5112)	acc 96.4844 (96.8012)	lr 0.000005
+epoch: [32/50][200/394]	time 3.685 (3.661)	data 0.000 (0.013)	eta 7:24:33	loss_t 0.0470 (0.0887)	loss_x 1.4841 (1.5116)	acc 97.8516 (96.7861)	lr 0.000005
+epoch: [32/50][220/394]	time 3.618 (3.660)	data 0.000 (0.012)	eta 7:23:14	loss_t 0.1499 (0.0880)	loss_x 1.5213 (1.5118)	acc 96.2891 (96.7862)	lr 0.000005
+epoch: [32/50][240/394]	time 3.631 (3.660)	data 0.001 (0.011)	eta 7:21:57	loss_t 0.0711 (0.0882)	loss_x 1.4703 (1.5114)	acc 98.2422 (96.7993)	lr 0.000005
+epoch: [32/50][260/394]	time 3.653 (3.659)	data 0.001 (0.010)	eta 7:20:39	loss_t 0.0855 (0.0887)	loss_x 1.5086 (1.5117)	acc 97.6562 (96.7886)	lr 0.000005
+epoch: [32/50][280/394]	time 3.657 (3.659)	data 0.000 (0.010)	eta 7:19:24	loss_t 0.0632 (0.0894)	loss_x 1.4810 (1.5121)	acc 97.6562 (96.7746)	lr 0.000005
+epoch: [32/50][300/394]	time 3.642 (3.658)	data 0.000 (0.009)	eta 7:18:06	loss_t 0.0616 (0.0893)	loss_x 1.5094 (1.5115)	acc 96.8750 (96.7878)	lr 0.000005
+epoch: [32/50][320/394]	time 3.642 (3.657)	data 0.000 (0.008)	eta 7:16:47	loss_t 0.1077 (0.0892)	loss_x 1.5274 (1.5115)	acc 96.2891 (96.7847)	lr 0.000005
+epoch: [32/50][340/394]	time 3.667 (3.657)	data 0.000 (0.008)	eta 7:15:30	loss_t 0.1066 (0.0903)	loss_x 1.5033 (1.5113)	acc 96.6797 (96.7923)	lr 0.000005
+epoch: [32/50][360/394]	time 3.627 (3.656)	data 0.000 (0.008)	eta 7:14:13	loss_t 0.1037 (0.0901)	loss_x 1.5130 (1.5109)	acc 96.4844 (96.7936)	lr 0.000005
+epoch: [32/50][380/394]	time 3.641 (3.655)	data 0.000 (0.007)	eta 7:12:55	loss_t 0.0470 (0.0900)	loss_x 1.5037 (1.5114)	acc 95.7031 (96.7871)	lr 0.000005
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 1.0667 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 80.0%
+CMC curve
+Rank-1  : 96.9%
+Rank-5  : 98.9%
+Rank-10 : 99.3%
+Rank-20 : 99.5%
+Checkpoint saved to "resutls/osnet_ain_x1_0_market1501_triplet2/model/model.pth.tar-32"
+epoch: [33/50][20/394]	time 3.624 (3.728)	data 0.000 (0.132)	eta 7:19:27	loss_t 0.0752 (0.0946)	loss_x 1.4799 (1.5165)	acc 96.4844 (96.5137)	lr 0.000022
+epoch: [33/50][40/394]	time 3.645 (3.688)	data 0.000 (0.066)	eta 7:13:24	loss_t 0.0305 (0.0885)	loss_x 1.4689 (1.5141)	acc 98.4375 (96.6309)	lr 0.000022
+epoch: [33/50][60/394]	time 3.648 (3.674)	data 0.000 (0.044)	eta 7:10:34	loss_t 0.0840 (0.0891)	loss_x 1.4570 (1.5174)	acc 97.6562 (96.5983)	lr 0.000022
+epoch: [33/50][80/394]	time 3.636 (3.670)	data 0.000 (0.033)	eta 7:08:54	loss_t 0.1439 (0.0891)	loss_x 1.5821 (1.5159)	acc 95.1172 (96.6357)	lr 0.000022
+epoch: [33/50][100/394]	time 3.675 (3.665)	data 0.001 (0.027)	eta 7:07:07	loss_t 0.0399 (0.0895)	loss_x 1.4942 (1.5151)	acc 96.8750 (96.6777)	lr 0.000022
+epoch: [33/50][120/394]	time 3.640 (3.664)	data 0.000 (0.022)	eta 7:05:43	loss_t 0.0476 (0.0879)	loss_x 1.4804 (1.5122)	acc 97.8516 (96.7676)	lr 0.000022
+epoch: [33/50][140/394]	time 3.658 (3.663)	data 0.000 (0.019)	eta 7:04:23	loss_t 0.0693 (0.0868)	loss_x 1.4758 (1.5127)	acc 97.6562 (96.7480)	lr 0.000022
+epoch: [33/50][160/394]	time 3.643 (3.662)	data 0.000 (0.017)	eta 7:03:04	loss_t 0.1565 (0.0864)	loss_x 1.5320 (1.5135)	acc 96.2891 (96.7200)	lr 0.000022
+epoch: [33/50][180/394]	time 3.765 (3.661)	data 0.000 (0.015)	eta 7:01:46	loss_t 0.0790 (0.0875)	loss_x 1.4865 (1.5134)	acc 97.2656 (96.7068)	lr 0.000022
+epoch: [33/50][200/394]	time 3.772 (3.660)	data 0.000 (0.014)	eta 7:00:26	loss_t 0.0564 (0.0875)	loss_x 1.5303 (1.5137)	acc 96.8750 (96.7148)	lr 0.000022
+epoch: [33/50][220/394]	time 3.784 (3.660)	data 0.000 (0.012)	eta 6:59:09	loss_t 0.0583 (0.0863)	loss_x 1.5075 (1.5139)	acc 96.2891 (96.7108)	lr 0.000022
+epoch: [33/50][240/394]	time 3.764 (3.659)	data 0.000 (0.011)	eta 6:57:51	loss_t 0.0566 (0.0855)	loss_x 1.4875 (1.5132)	acc 96.8750 (96.7310)	lr 0.000022
+epoch: [33/50][260/394]	time 3.752 (3.659)	data 0.000 (0.011)	eta 6:56:37	loss_t 0.1206 (0.0859)	loss_x 1.5246 (1.5133)	acc 96.2891 (96.7285)	lr 0.000022
+epoch: [33/50][280/394]	time 3.800 (3.660)	data 0.000 (0.010)	eta 6:55:28	loss_t 0.0437 (0.0868)	loss_x 1.5294 (1.5134)	acc 97.2656 (96.7250)	lr 0.000022
+epoch: [33/50][300/394]	time 3.766 (3.660)	data 0.000 (0.009)	eta 6:54:15	loss_t 0.1104 (0.0867)	loss_x 1.4891 (1.5134)	acc 97.0703 (96.7227)	lr 0.000022
+epoch: [33/50][320/394]	time 3.654 (3.659)	data 0.000 (0.009)	eta 6:53:00	loss_t 0.0868 (0.0865)	loss_x 1.4815 (1.5132)	acc 96.6797 (96.7102)	lr 0.000022
+epoch: [33/50][340/394]	time 3.658 (3.660)	data 0.001 (0.008)	eta 6:51:49	loss_t 0.0352 (0.0867)	loss_x 1.5155 (1.5132)	acc 97.4609 (96.7142)	lr 0.000022
+W0101 12:58:54.772000 63288 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received 1 death signal, shutting down workers
+W0101 12:58:54.773000 63288 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 63313 closing signal SIGHUP
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 923, in <module>
+    main()
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+             ^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 63288 got signal: 1

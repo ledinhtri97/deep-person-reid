@@ -1,0 +1,1418 @@
+/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+[Warning] Fused window process have not been installed. Please refer to get_started.md for installation.
+Show configuration
+adam:
+  beta1: 0.9
+  beta2: 0.999
+cuhk03:
+  classic_split: False
+  labeled_images: False
+  use_metric_cuhk03: False
+data:
+  combineall: False
+  height: 256
+  k_tfm: 1
+  load_train_targets: False
+  norm_mean: [0.485, 0.456, 0.406]
+  norm_std: [0.229, 0.224, 0.225]
+  root: /home/trild/dataset/facerec/facerec_combine/
+  save_dir: resutls/resnet50_market1501_triplet1
+  sources: ['market1501']
+  split_id: 0
+  targets: ['market1501']
+  transforms: ['random_flip', 'color_jitter', 'random_blackwhite']
+  type: image
+  width: 128
+  workers: 4
+loss:
+  arcface:
+    easy_margin: False
+    label_smooth: True
+    margin: 0.5
+    scale: 64
+  name: triplet
+  softmax:
+    label_smooth: True
+  triplet:
+    margin: 0.3
+    weight_t: 0.5
+    weight_x: 1.0
+market1501:
+  use_500k_distractors: False
+model:
+  load_weights: 
+  name: resnet50_fc512
+  pretrained: True
+  resume: 
+rmsprop:
+  alpha: 0.99
+sampler:
+  num_cams: 1
+  num_datasets: 1
+  num_instances: 4
+  train_sampler: RandomSampler
+  train_sampler_t: RandomSampler
+sgd:
+  dampening: 0.0
+  momentum: 0.9
+  nesterov: False
+test:
+  batch_size: 64
+  dist_metric: cosine
+  eval_freq: 1
+  evaluate: False
+  normalize_feature: False
+  ranks: [1, 5, 10, 20]
+  rerank: False
+  start_eval: 2
+  visrank: False
+  visrank_topk: 10
+train:
+  base_lr_mult: 0.1
+  batch_size: 512
+  fixbase_epoch: 5
+  gamma: 0.1
+  lr: 0.002
+  lr_scheduler: cosine
+  max_epoch: 50
+  new_layers: ['classifier']
+  open_layers: ['classifier']
+  optim: amsgrad
+  print_freq: 20
+  seed: 1
+  staged_lr: False
+  start_epoch: 0
+  stepsize: [20]
+  weight_decay: 0.0005
+use_gpu: True
+video:
+  pooling_method: avg
+  sample_method: evenly
+  seq_len: 15
+
+Collecting env info ...
+** System info **
+PyTorch version: 2.5.1+cu124
+Is debug build: False
+CUDA used to build PyTorch: 12.4
+ROCM used to build PyTorch: N/A
+
+OS: Ubuntu 22.04.5 LTS (x86_64)
+GCC version: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: glibc-2.35
+
+Python version: 3.11.9 (main, Apr 19 2024, 16:48:06) [GCC 11.2.0] (64-bit runtime)
+Python platform: Linux-6.8.0-1020-gcp-x86_64-with-glibc2.35
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: LAZY
+GPU models and configuration: 
+GPU 0: NVIDIA L4
+GPU 1: NVIDIA L4
+
+Nvidia driver version: 560.35.03
+cuDNN version: Could not collect
+HIP runtime version: N/A
+MIOpen runtime version: N/A
+Is XNNPACK available: True
+
+CPU:
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        46 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               24
+On-line CPU(s) list:                  0-23
+Vendor ID:                            GenuineIntel
+Model name:                           Intel(R) Xeon(R) CPU @ 2.20GHz
+CPU family:                           6
+Model:                                85
+Thread(s) per core:                   2
+Core(s) per socket:                   12
+Socket(s):                            1
+Stepping:                             7
+BogoMIPS:                             4400.38
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves arat avx512_vnni md_clear arch_capabilities
+Hypervisor vendor:                    KVM
+Virtualization type:                  full
+L1d cache:                            384 KiB (12 instances)
+L1i cache:                            384 KiB (12 instances)
+L2 cache:                             12 MiB (12 instances)
+L3 cache:                             38.5 MiB (1 instance)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0-23
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Reg file data sampling: Not affected
+Vulnerability Retbleed:               Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+
+Versions of relevant libraries:
+[pip3] flake8==7.1.1
+[pip3] numpy==2.2.0
+[pip3] onnx==1.17.0
+[pip3] onnxruntime==1.20.1
+[pip3] onnxsim==0.4.36
+[pip3] torch==2.5.1
+[pip3] torchreid==1.4.0
+[pip3] torchvision==0.20.1
+[pip3] triton==3.1.0
+[conda] numpy                     2.2.0                    pypi_0    pypi
+[conda] torch                     2.5.1                    pypi_0    pypi
+[conda] torchreid                 1.4.0                     dev_0    <develop>
+[conda] torchvision               0.20.1                   pypi_0    pypi
+[conda] triton                    3.1.0                    pypi_0    pypi
+        Pillow (11.0.0)
+
+Building train transforms ...
++ resize to 256x128
++ random grayscale rgb
++ random flip
++ color jitter
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+Building test transforms ...
++ resize to 256x128
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+=> Loading train (source) dataset
+/home/trild/workspace/deep-person-reid/torchreid/data/datasets/image/market1501.py:37: UserWarning: The current data structure is deprecated. Please put data folders such as "bounding_box_train" under "Market-1501-v15.09.15".
+  warnings.warn(
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  3375 |   201767 |         6
+  query    |   595 |    10254 |         1
+  gallery  |   595 |    23265 |         5
+  ----------------------------------------
+=> Loading test (target) dataset
+=> Loaded Market1501
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |  3375 |   201767 |         6
+  query    |   595 |    10254 |         1
+  gallery  |   595 |    23265 |         5
+  ----------------------------------------
+
+
+  **************** Summary ****************
+  source            : ['market1501']
+  # source datasets : 1
+  # source ids      : 3375
+  # source images   : 201767
+  # source cameras  : 6
+  target            : ['market1501']
+  *****************************************
+
+
+Building model: resnet50_fc512
+use gpu model: resnet50_fc512
+Model complexity: params=0 flops=4,054,319,616
+Building triplet-engine for image-reid
+=========================TRILD============================
+
+=> Start training
+* Only train ['classifier'] (epoch: 1/5)
+epoch: [1/50][20/394]	time 2.727 (2.917)	data 0.000 (0.128)	eta 15:56:46	loss_t 0.1392 (0.1419)	loss_x 8.0754 (8.0971)	acc 0.3906 (0.1074)	lr 0.002000
+epoch: [1/50][40/394]	time 2.722 (2.828)	data 0.000 (0.064)	eta 15:26:41	loss_t 0.1179 (0.1399)	loss_x 8.0135 (8.0668)	acc 0.0000 (0.1172)	lr 0.002000
+epoch: [1/50][60/394]	time 2.745 (2.797)	data 0.000 (0.043)	eta 15:15:28	loss_t 0.1372 (0.1383)	loss_x 8.0020 (8.0454)	acc 0.0000 (0.1172)	lr 0.002000
+epoch: [1/50][80/394]	time 2.726 (2.779)	data 0.000 (0.032)	eta 15:08:40	loss_t 0.1403 (0.1371)	loss_x 7.9816 (8.0297)	acc 0.0000 (0.1099)	lr 0.002000
+epoch: [1/50][100/394]	time 2.726 (2.769)	data 0.000 (0.026)	eta 15:04:39	loss_t 0.1307 (0.1360)	loss_x 7.9310 (8.0170)	acc 0.1953 (0.1426)	lr 0.002000
+epoch: [1/50][120/394]	time 2.728 (2.763)	data 0.001 (0.022)	eta 15:01:46	loss_t 0.1176 (0.1363)	loss_x 7.9315 (8.0062)	acc 0.1953 (0.1497)	lr 0.002000
+epoch: [1/50][140/394]	time 2.727 (2.759)	data 0.000 (0.019)	eta 14:59:20	loss_t 0.1699 (0.1356)	loss_x 7.9387 (7.9971)	acc 0.1953 (0.1535)	lr 0.002000
+epoch: [1/50][160/394]	time 2.732 (2.755)	data 0.000 (0.016)	eta 14:57:20	loss_t 0.1213 (0.1345)	loss_x 7.9036 (7.9890)	acc 0.5859 (0.2173)	lr 0.002000
+epoch: [1/50][180/394]	time 2.714 (2.753)	data 0.000 (0.015)	eta 14:55:33	loss_t 0.1171 (0.1345)	loss_x 7.9088 (7.9813)	acc 0.3906 (0.2333)	lr 0.002000
+epoch: [1/50][200/394]	time 2.731 (2.751)	data 0.001 (0.013)	eta 14:53:57	loss_t 0.1498 (0.1352)	loss_x 7.9052 (7.9752)	acc 0.0000 (0.2305)	lr 0.002000
+epoch: [1/50][220/394]	time 2.732 (2.749)	data 0.001 (0.012)	eta 14:52:27	loss_t 0.1392 (0.1357)	loss_x 7.9076 (7.9698)	acc 0.5859 (0.2415)	lr 0.002000
+epoch: [1/50][240/394]	time 2.733 (2.747)	data 0.000 (0.011)	eta 14:50:59	loss_t 0.0863 (0.1358)	loss_x 7.9238 (7.9651)	acc 0.5859 (0.2620)	lr 0.002000
+epoch: [1/50][260/394]	time 2.721 (2.746)	data 0.000 (0.010)	eta 14:49:37	loss_t 0.1282 (0.1357)	loss_x 7.9208 (7.9603)	acc 0.3906 (0.2779)	lr 0.002000
+epoch: [1/50][280/394]	time 2.732 (2.745)	data 0.000 (0.010)	eta 14:48:20	loss_t 0.1392 (0.1359)	loss_x 7.9115 (7.9567)	acc 0.3906 (0.2797)	lr 0.002000
+epoch: [1/50][300/394]	time 2.721 (2.744)	data 0.000 (0.009)	eta 14:47:10	loss_t 0.1642 (0.1358)	loss_x 7.8834 (7.9527)	acc 1.3672 (0.2884)	lr 0.002000
+epoch: [1/50][320/394]	time 2.725 (2.743)	data 0.000 (0.008)	eta 14:45:56	loss_t 0.1655 (0.1357)	loss_x 7.8888 (7.9490)	acc 0.3906 (0.2979)	lr 0.002000
+epoch: [1/50][340/394]	time 2.726 (2.742)	data 0.000 (0.008)	eta 14:44:37	loss_t 0.1230 (0.1354)	loss_x 7.9141 (7.9457)	acc 0.7812 (0.3091)	lr 0.002000
+epoch: [1/50][360/394]	time 2.720 (2.742)	data 0.001 (0.008)	eta 14:43:40	loss_t 0.1208 (0.1352)	loss_x 7.9134 (7.9429)	acc 0.3906 (0.3109)	lr 0.002000
+epoch: [1/50][380/394]	time 2.724 (2.741)	data 0.000 (0.007)	eta 14:42:33	loss_t 0.1325 (0.1348)	loss_x 7.8937 (7.9400)	acc 0.5859 (0.3151)	lr 0.002000
+* Only train ['classifier'] (epoch: 2/5)
+epoch: [2/50][20/394]	time 2.742 (2.847)	data 0.000 (0.116)	eta 15:15:08	loss_t 0.1404 (0.1282)	loss_x 7.8890 (7.8699)	acc 0.5859 (0.4785)	lr 0.001998
+epoch: [2/50][40/394]	time 2.733 (2.789)	data 0.001 (0.058)	eta 14:55:29	loss_t 0.1626 (0.1316)	loss_x 7.8965 (7.8735)	acc 0.7812 (0.4346)	lr 0.001998
+epoch: [2/50][60/394]	time 2.734 (2.770)	data 0.000 (0.039)	eta 14:48:38	loss_t 0.1049 (0.1308)	loss_x 7.8809 (7.8739)	acc 0.9766 (0.4850)	lr 0.001998
+epoch: [2/50][80/394]	time 2.729 (2.761)	data 0.000 (0.029)	eta 14:44:39	loss_t 0.1215 (0.1336)	loss_x 7.8605 (7.8736)	acc 0.3906 (0.4956)	lr 0.001998
+epoch: [2/50][100/394]	time 2.719 (2.754)	data 0.000 (0.024)	eta 14:41:40	loss_t 0.1445 (0.1340)	loss_x 7.8601 (7.8738)	acc 0.1953 (0.5410)	lr 0.001998
+epoch: [2/50][120/394]	time 2.731 (2.751)	data 0.000 (0.020)	eta 14:39:36	loss_t 0.1868 (0.1347)	loss_x 7.8990 (7.8756)	acc 1.1719 (0.5160)	lr 0.001998
+epoch: [2/50][140/394]	time 2.736 (2.749)	data 0.001 (0.017)	eta 14:38:10	loss_t 0.1339 (0.1342)	loss_x 7.8887 (7.8762)	acc 0.5859 (0.5232)	lr 0.001998
+epoch: [2/50][160/394]	time 2.719 (2.747)	data 0.001 (0.015)	eta 14:36:27	loss_t 0.1518 (0.1347)	loss_x 7.8825 (7.8764)	acc 0.3906 (0.5212)	lr 0.001998
+epoch: [2/50][180/394]	time 2.729 (2.745)	data 0.000 (0.013)	eta 14:35:07	loss_t 0.1476 (0.1342)	loss_x 7.8788 (7.8767)	acc 0.0000 (0.5122)	lr 0.001998
+epoch: [2/50][200/394]	time 2.712 (2.743)	data 0.000 (0.012)	eta 14:33:22	loss_t 0.1409 (0.1343)	loss_x 7.8807 (7.8767)	acc 0.3906 (0.4990)	lr 0.001998
+epoch: [2/50][220/394]	time 2.729 (2.741)	data 0.000 (0.011)	eta 14:32:03	loss_t 0.1466 (0.1341)	loss_x 7.9064 (7.8770)	acc 0.1953 (0.5025)	lr 0.001998
+epoch: [2/50][240/394]	time 2.720 (2.740)	data 0.000 (0.010)	eta 14:30:49	loss_t 0.1180 (0.1338)	loss_x 7.8664 (7.8764)	acc 0.1953 (0.4980)	lr 0.001998
+epoch: [2/50][260/394]	time 2.728 (2.740)	data 0.000 (0.009)	eta 14:29:40	loss_t 0.1537 (0.1345)	loss_x 7.8408 (7.8761)	acc 0.1953 (0.4815)	lr 0.001998
+epoch: [2/50][280/394]	time 2.727 (2.739)	data 0.000 (0.009)	eta 14:28:27	loss_t 0.1320 (0.1341)	loss_x 7.9004 (7.8760)	acc 0.7812 (0.4855)	lr 0.001998
+epoch: [2/50][300/394]	time 2.726 (2.739)	data 0.000 (0.008)	eta 14:27:30	loss_t 0.1081 (0.1340)	loss_x 7.8639 (7.8761)	acc 0.7812 (0.4805)	lr 0.001998
+epoch: [2/50][320/394]	time 2.743 (2.738)	data 0.000 (0.008)	eta 14:26:23	loss_t 0.1381 (0.1341)	loss_x 7.8753 (7.8759)	acc 0.3906 (0.4797)	lr 0.001998
+epoch: [2/50][340/394]	time 2.731 (2.737)	data 0.000 (0.007)	eta 14:25:17	loss_t 0.1363 (0.1341)	loss_x 7.8681 (7.8756)	acc 0.0000 (0.4722)	lr 0.001998
+epoch: [2/50][360/394]	time 2.730 (2.737)	data 0.000 (0.007)	eta 14:24:15	loss_t 0.1204 (0.1342)	loss_x 7.8454 (7.8752)	acc 0.5859 (0.4671)	lr 0.001998
+epoch: [2/50][380/394]	time 2.727 (2.737)	data 0.001 (0.007)	eta 14:23:16	loss_t 0.1768 (0.1343)	loss_x 7.8678 (7.8750)	acc 0.3906 (0.4636)	lr 0.001998
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5294 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 7.3%
+CMC curve
+Rank-1  : 38.4%
+Rank-5  : 58.5%
+Rank-10 : 68.5%
+Rank-20 : 77.6%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-2"
+* Only train ['classifier'] (epoch: 3/5)
+epoch: [3/50][20/394]	time 2.736 (2.846)	data 0.000 (0.128)	eta 14:55:58	loss_t 0.1274 (0.1318)	loss_x 7.8409 (7.8558)	acc 1.5625 (0.5762)	lr 0.001992
+epoch: [3/50][40/394]	time 2.701 (2.774)	data 0.001 (0.064)	eta 14:32:23	loss_t 0.1462 (0.1353)	loss_x 7.8662 (7.8566)	acc 0.1953 (0.5615)	lr 0.001992
+epoch: [3/50][60/394]	time 2.728 (2.752)	data 0.000 (0.043)	eta 14:24:36	loss_t 0.1334 (0.1344)	loss_x 7.8502 (7.8586)	acc 1.1719 (0.6608)	lr 0.001992
+epoch: [3/50][80/394]	time 2.715 (2.741)	data 0.000 (0.032)	eta 14:20:12	loss_t 0.1217 (0.1344)	loss_x 7.8642 (7.8604)	acc 0.3906 (0.6177)	lr 0.001992
+epoch: [3/50][100/394]	time 2.687 (2.736)	data 0.000 (0.026)	eta 14:17:47	loss_t 0.1428 (0.1346)	loss_x 7.8717 (7.8626)	acc 0.3906 (0.5742)	lr 0.001992
+epoch: [3/50][120/394]	time 2.715 (2.732)	data 0.000 (0.022)	eta 14:15:40	loss_t 0.1300 (0.1356)	loss_x 7.8717 (7.8627)	acc 0.7812 (0.5827)	lr 0.001992
+epoch: [3/50][140/394]	time 2.712 (2.729)	data 0.001 (0.019)	eta 14:13:48	loss_t 0.1179 (0.1359)	loss_x 7.8802 (7.8642)	acc 0.0000 (0.5762)	lr 0.001992
+epoch: [3/50][160/394]	time 2.710 (2.727)	data 0.001 (0.016)	eta 14:12:08	loss_t 0.1624 (0.1363)	loss_x 7.8667 (7.8643)	acc 0.5859 (0.5591)	lr 0.001992
+epoch: [3/50][180/394]	time 2.742 (2.724)	data 0.001 (0.015)	eta 14:10:30	loss_t 0.1394 (0.1359)	loss_x 7.8561 (7.8645)	acc 0.7812 (0.5707)	lr 0.001992
+epoch: [3/50][200/394]	time 2.689 (2.722)	data 0.000 (0.013)	eta 14:08:59	loss_t 0.1387 (0.1360)	loss_x 7.8592 (7.8647)	acc 0.5859 (0.5713)	lr 0.001992
+epoch: [3/50][220/394]	time 2.705 (2.721)	data 0.000 (0.012)	eta 14:07:40	loss_t 0.1714 (0.1364)	loss_x 7.9081 (7.8650)	acc 0.5859 (0.5584)	lr 0.001992
+epoch: [3/50][240/394]	time 2.705 (2.720)	data 0.000 (0.011)	eta 14:06:29	loss_t 0.1618 (0.1369)	loss_x 7.8755 (7.8651)	acc 0.0000 (0.5461)	lr 0.001992
+epoch: [3/50][260/394]	time 2.729 (2.720)	data 0.000 (0.010)	eta 14:05:30	loss_t 0.1145 (0.1368)	loss_x 7.8661 (7.8654)	acc 0.3906 (0.5236)	lr 0.001992
+epoch: [3/50][280/394]	time 2.694 (2.719)	data 0.000 (0.010)	eta 14:04:22	loss_t 0.1385 (0.1370)	loss_x 7.8589 (7.8657)	acc 0.5859 (0.5259)	lr 0.001992
+epoch: [3/50][300/394]	time 2.718 (2.718)	data 0.000 (0.009)	eta 14:03:14	loss_t 0.1780 (0.1371)	loss_x 7.8565 (7.8657)	acc 0.7812 (0.5358)	lr 0.001992
+epoch: [3/50][320/394]	time 2.720 (2.717)	data 0.000 (0.008)	eta 14:02:03	loss_t 0.1549 (0.1370)	loss_x 7.8393 (7.8662)	acc 0.1953 (0.5310)	lr 0.001992
+epoch: [3/50][340/394]	time 2.697 (2.717)	data 0.000 (0.008)	eta 14:00:58	loss_t 0.1511 (0.1373)	loss_x 7.8885 (7.8662)	acc 0.5859 (0.5360)	lr 0.001992
+epoch: [3/50][360/394]	time 2.716 (2.716)	data 0.000 (0.007)	eta 13:59:55	loss_t 0.1147 (0.1375)	loss_x 7.8758 (7.8664)	acc 0.7812 (0.5377)	lr 0.001992
+epoch: [3/50][380/394]	time 2.706 (2.716)	data 0.001 (0.007)	eta 13:58:55	loss_t 0.1417 (0.1375)	loss_x 7.8742 (7.8667)	acc 0.0000 (0.5443)	lr 0.001992
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5337 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 7.3%
+CMC curve
+Rank-1  : 38.4%
+Rank-5  : 58.5%
+Rank-10 : 68.5%
+Rank-20 : 77.6%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-3"
+* Only train ['classifier'] (epoch: 4/5)
+epoch: [4/50][20/394]	time 2.707 (2.839)	data 0.001 (0.124)	eta 14:35:06	loss_t 0.1650 (0.1356)	loss_x 7.8358 (7.8494)	acc 0.3906 (0.5566)	lr 0.001982
+epoch: [4/50][40/394]	time 2.709 (2.770)	data 0.000 (0.062)	eta 14:13:02	loss_t 0.1299 (0.1363)	loss_x 7.8693 (7.8571)	acc 0.3906 (0.5078)	lr 0.001982
+epoch: [4/50][60/394]	time 2.701 (2.752)	data 0.001 (0.042)	eta 14:06:32	loss_t 0.1435 (0.1360)	loss_x 7.8884 (7.8600)	acc 0.7812 (0.4818)	lr 0.001982
+epoch: [4/50][80/394]	time 2.706 (2.740)	data 0.001 (0.031)	eta 14:02:07	loss_t 0.1646 (0.1351)	loss_x 7.8845 (7.8609)	acc 0.3906 (0.5469)	lr 0.001982
+epoch: [4/50][100/394]	time 2.699 (2.733)	data 0.000 (0.025)	eta 13:58:58	loss_t 0.1353 (0.1341)	loss_x 7.8458 (7.8620)	acc 0.1953 (0.5312)	lr 0.001982
+epoch: [4/50][120/394]	time 2.725 (2.729)	data 0.000 (0.021)	eta 13:56:53	loss_t 0.1377 (0.1355)	loss_x 7.8921 (7.8614)	acc 0.1953 (0.5094)	lr 0.001982
+epoch: [4/50][140/394]	time 2.702 (2.727)	data 0.000 (0.018)	eta 13:55:12	loss_t 0.1646 (0.1358)	loss_x 7.8301 (7.8612)	acc 0.3906 (0.5176)	lr 0.001982
+epoch: [4/50][160/394]	time 2.727 (2.726)	data 0.000 (0.016)	eta 13:54:11	loss_t 0.1429 (0.1346)	loss_x 7.8700 (7.8621)	acc 0.7812 (0.5286)	lr 0.001982
+epoch: [4/50][180/394]	time 2.706 (2.725)	data 0.001 (0.014)	eta 13:52:42	loss_t 0.1993 (0.1348)	loss_x 7.8794 (7.8623)	acc 0.9766 (0.5317)	lr 0.001982
+epoch: [4/50][200/394]	time 2.706 (2.724)	data 0.000 (0.013)	eta 13:51:30	loss_t 0.1377 (0.1349)	loss_x 7.8597 (7.8631)	acc 0.3906 (0.5312)	lr 0.001982
+epoch: [4/50][220/394]	time 2.734 (2.721)	data 0.000 (0.012)	eta 13:49:49	loss_t 0.1365 (0.1353)	loss_x 7.8637 (7.8634)	acc 0.5859 (0.5273)	lr 0.001982
+epoch: [4/50][240/394]	time 2.701 (2.720)	data 0.000 (0.011)	eta 13:48:35	loss_t 0.1428 (0.1354)	loss_x 7.8828 (7.8627)	acc 1.1719 (0.5518)	lr 0.001982
+epoch: [4/50][260/394]	time 2.734 (2.720)	data 0.000 (0.010)	eta 13:47:33	loss_t 0.1324 (0.1356)	loss_x 7.8667 (7.8628)	acc 0.1953 (0.5439)	lr 0.001982
+epoch: [4/50][280/394]	time 2.730 (2.719)	data 0.000 (0.009)	eta 13:46:26	loss_t 0.1410 (0.1353)	loss_x 7.8999 (7.8632)	acc 0.7812 (0.5364)	lr 0.001982
+epoch: [4/50][300/394]	time 2.722 (2.718)	data 0.000 (0.009)	eta 13:45:19	loss_t 0.1598 (0.1355)	loss_x 7.8602 (7.8635)	acc 0.5859 (0.5319)	lr 0.001982
+epoch: [4/50][320/394]	time 2.710 (2.718)	data 0.001 (0.008)	eta 13:44:19	loss_t 0.1101 (0.1354)	loss_x 7.8786 (7.8642)	acc 0.5859 (0.5286)	lr 0.001982
+epoch: [4/50][340/394]	time 2.714 (2.717)	data 0.000 (0.008)	eta 13:43:16	loss_t 0.1401 (0.1353)	loss_x 7.8554 (7.8645)	acc 0.3906 (0.5205)	lr 0.001982
+epoch: [4/50][360/394]	time 2.712 (2.717)	data 0.001 (0.007)	eta 13:42:19	loss_t 0.1264 (0.1353)	loss_x 7.8677 (7.8647)	acc 0.3906 (0.5257)	lr 0.001982
+epoch: [4/50][380/394]	time 2.697 (2.717)	data 0.000 (0.007)	eta 13:41:18	loss_t 0.1118 (0.1352)	loss_x 7.8750 (7.8653)	acc 0.0000 (0.5124)	lr 0.001982
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5336 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 7.3%
+CMC curve
+Rank-1  : 38.4%
+Rank-5  : 58.5%
+Rank-10 : 68.5%
+Rank-20 : 77.6%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-4"
+* Only train ['classifier'] (epoch: 5/5)
+epoch: [5/50][20/394]	time 2.717 (2.830)	data 0.001 (0.114)	eta 14:13:49	loss_t 0.1375 (0.1347)	loss_x 7.8545 (7.8547)	acc 0.5859 (0.3613)	lr 0.001969
+epoch: [5/50][40/394]	time 2.711 (2.766)	data 0.001 (0.057)	eta 13:53:48	loss_t 0.1475 (0.1353)	loss_x 7.8545 (7.8568)	acc 0.3906 (0.5176)	lr 0.001969
+epoch: [5/50][60/394]	time 2.721 (2.750)	data 0.000 (0.038)	eta 13:47:47	loss_t 0.1254 (0.1334)	loss_x 7.8588 (7.8579)	acc 0.9766 (0.5827)	lr 0.001969
+epoch: [5/50][80/394]	time 2.696 (2.743)	data 0.001 (0.029)	eta 13:44:50	loss_t 0.1061 (0.1347)	loss_x 7.8553 (7.8588)	acc 0.9766 (0.5981)	lr 0.001969
+epoch: [5/50][100/394]	time 2.713 (2.735)	data 0.001 (0.023)	eta 13:41:43	loss_t 0.1387 (0.1340)	loss_x 7.8482 (7.8601)	acc 0.1953 (0.5781)	lr 0.001969
+epoch: [5/50][120/394]	time 2.693 (2.731)	data 0.000 (0.019)	eta 13:39:26	loss_t 0.1550 (0.1352)	loss_x 7.8605 (7.8620)	acc 0.5859 (0.5729)	lr 0.001969
+epoch: [5/50][140/394]	time 2.699 (2.727)	data 0.000 (0.017)	eta 13:37:26	loss_t 0.1646 (0.1357)	loss_x 7.8627 (7.8617)	acc 0.3906 (0.5720)	lr 0.001969
+epoch: [5/50][160/394]	time 2.717 (2.725)	data 0.000 (0.015)	eta 13:35:54	loss_t 0.1250 (0.1354)	loss_x 7.8937 (7.8620)	acc 1.3672 (0.5737)	lr 0.001969
+epoch: [5/50][180/394]	time 2.707 (2.724)	data 0.000 (0.013)	eta 13:34:32	loss_t 0.1043 (0.1354)	loss_x 7.8804 (7.8633)	acc 0.5859 (0.5762)	lr 0.001969
+epoch: [5/50][200/394]	time 2.708 (2.722)	data 0.000 (0.012)	eta 13:33:10	loss_t 0.1197 (0.1356)	loss_x 7.9068 (7.8629)	acc 0.1953 (0.5869)	lr 0.001969
+epoch: [5/50][220/394]	time 2.695 (2.720)	data 0.000 (0.011)	eta 13:31:45	loss_t 0.1344 (0.1354)	loss_x 7.8716 (7.8629)	acc 0.1953 (0.5824)	lr 0.001969
+epoch: [5/50][240/394]	time 2.682 (2.719)	data 0.000 (0.010)	eta 13:30:25	loss_t 0.1539 (0.1351)	loss_x 7.8637 (7.8631)	acc 0.3906 (0.5802)	lr 0.001969
+epoch: [5/50][260/394]	time 2.711 (2.718)	data 0.001 (0.009)	eta 13:29:14	loss_t 0.1447 (0.1354)	loss_x 7.8589 (7.8629)	acc 0.5859 (0.5852)	lr 0.001969
+epoch: [5/50][280/394]	time 2.696 (2.717)	data 0.001 (0.009)	eta 13:28:03	loss_t 0.1569 (0.1354)	loss_x 7.8899 (7.8631)	acc 0.5859 (0.5748)	lr 0.001969
+epoch: [5/50][300/394]	time 2.707 (2.717)	data 0.000 (0.008)	eta 13:27:06	loss_t 0.1424 (0.1350)	loss_x 7.8678 (7.8636)	acc 0.3906 (0.5736)	lr 0.001969
+epoch: [5/50][320/394]	time 2.714 (2.717)	data 0.000 (0.008)	eta 13:26:04	loss_t 0.1199 (0.1347)	loss_x 7.8690 (7.8637)	acc 0.5859 (0.5646)	lr 0.001969
+epoch: [5/50][340/394]	time 2.715 (2.716)	data 0.001 (0.007)	eta 13:24:59	loss_t 0.1483 (0.1349)	loss_x 7.8633 (7.8639)	acc 0.5859 (0.5578)	lr 0.001969
+epoch: [5/50][360/394]	time 2.724 (2.716)	data 0.000 (0.007)	eta 13:24:03	loss_t 0.1457 (0.1349)	loss_x 7.8525 (7.8639)	acc 0.5859 (0.5534)	lr 0.001969
+epoch: [5/50][380/394]	time 2.706 (2.715)	data 0.000 (0.006)	eta 13:23:02	loss_t 0.1215 (0.1345)	loss_x 7.8328 (7.8641)	acc 0.9766 (0.5510)	lr 0.001969
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5348 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 7.3%
+CMC curve
+Rank-1  : 38.4%
+Rank-5  : 58.5%
+Rank-10 : 68.5%
+Rank-20 : 77.6%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-5"
+epoch: [6/50][20/394]	time 4.356 (4.616)	data 0.000 (0.124)	eta 22:42:37	loss_t 0.4233 (0.6680)	loss_x 7.6994 (7.7340)	acc 0.1953 (0.1953)	lr 0.001951
+epoch: [6/50][40/394]	time 4.125 (4.405)	data 0.001 (0.062)	eta 21:38:50	loss_t 0.3458 (0.5348)	loss_x 7.4004 (7.6119)	acc 0.3906 (0.2490)	lr 0.001951
+epoch: [6/50][60/394]	time 4.166 (4.341)	data 0.000 (0.042)	eta 21:18:17	loss_t 0.3390 (0.4958)	loss_x 7.3042 (7.5221)	acc 0.0000 (0.3060)	lr 0.001951
+epoch: [6/50][80/394]	time 4.274 (4.314)	data 0.001 (0.031)	eta 21:09:08	loss_t 0.4078 (0.4711)	loss_x 7.2443 (7.4540)	acc 0.3906 (0.3369)	lr 0.001951
+epoch: [6/50][100/394]	time 4.141 (4.294)	data 0.000 (0.025)	eta 21:01:45	loss_t 0.2893 (0.4600)	loss_x 6.9970 (7.3857)	acc 0.9766 (0.4336)	lr 0.001951
+epoch: [6/50][120/394]	time 4.273 (4.284)	data 0.001 (0.021)	eta 20:57:22	loss_t 0.4807 (0.4562)	loss_x 6.8999 (7.3200)	acc 0.7812 (0.5094)	lr 0.001951
+epoch: [6/50][140/394]	time 4.281 (4.275)	data 0.001 (0.018)	eta 20:53:20	loss_t 0.4513 (0.4595)	loss_x 6.7414 (7.2547)	acc 1.3672 (0.5873)	lr 0.001951
+epoch: [6/50][160/394]	time 4.177 (4.263)	data 0.000 (0.016)	eta 20:48:20	loss_t 0.6354 (0.4628)	loss_x 6.9707 (7.1964)	acc 0.7812 (0.6958)	lr 0.001951
+epoch: [6/50][180/394]	time 4.249 (4.258)	data 0.001 (0.014)	eta 20:45:28	loss_t 0.3882 (0.4681)	loss_x 6.7169 (7.1515)	acc 1.3672 (0.7617)	lr 0.001951
+epoch: [6/50][200/394]	time 4.258 (4.254)	data 0.000 (0.013)	eta 20:42:58	loss_t 0.6459 (0.4711)	loss_x 6.6258 (7.0969)	acc 1.1719 (0.8760)	lr 0.001951
+epoch: [6/50][220/394]	time 4.259 (4.252)	data 0.001 (0.012)	eta 20:40:48	loss_t 0.5561 (0.4745)	loss_x 6.4423 (7.0424)	acc 2.3438 (0.9846)	lr 0.001951
+epoch: [6/50][240/394]	time 4.140 (4.250)	data 0.001 (0.011)	eta 20:38:49	loss_t 0.5136 (0.4761)	loss_x 6.2783 (6.9821)	acc 2.5391 (1.1597)	lr 0.001951
+epoch: [6/50][260/394]	time 4.263 (4.248)	data 0.000 (0.010)	eta 20:36:51	loss_t 0.4558 (0.4742)	loss_x 6.1190 (6.9211)	acc 2.7344 (1.3289)	lr 0.001951
+epoch: [6/50][280/394]	time 4.271 (4.246)	data 0.001 (0.009)	eta 20:34:50	loss_t 0.3566 (0.4737)	loss_x 6.0302 (6.8589)	acc 5.6641 (1.5632)	lr 0.001951
+epoch: [6/50][300/394]	time 4.251 (4.243)	data 0.000 (0.009)	eta 20:32:31	loss_t 0.5654 (0.4736)	loss_x 5.7978 (6.7958)	acc 7.0312 (1.8431)	lr 0.001951
+epoch: [6/50][320/394]	time 4.207 (4.240)	data 0.000 (0.008)	eta 20:30:12	loss_t 0.4980 (0.4719)	loss_x 5.6191 (6.7294)	acc 8.5938 (2.2009)	lr 0.001951
+epoch: [6/50][340/394]	time 4.271 (4.238)	data 0.001 (0.008)	eta 20:28:18	loss_t 0.4573 (0.4714)	loss_x 5.4266 (6.6615)	acc 9.5703 (2.5925)	lr 0.001951
+epoch: [6/50][360/394]	time 4.238 (4.237)	data 0.001 (0.007)	eta 20:26:30	loss_t 0.3125 (0.4676)	loss_x 5.3358 (6.5931)	acc 11.9141 (3.0263)	lr 0.001951
+epoch: [6/50][380/394]	time 4.247 (4.236)	data 0.000 (0.007)	eta 20:24:46	loss_t 0.4747 (0.4655)	loss_x 5.3048 (6.5237)	acc 12.1094 (3.5403)	lr 0.001951
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5501 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 21.4%
+CMC curve
+Rank-1  : 50.9%
+Rank-5  : 71.4%
+Rank-10 : 78.2%
+Rank-20 : 84.4%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-6"
+epoch: [7/50][20/394]	time 4.213 (4.309)	data 0.000 (0.121)	eta 20:43:28	loss_t 0.4197 (0.3852)	loss_x 4.8888 (4.9690)	acc 19.9219 (17.5879)	lr 0.001930
+epoch: [7/50][40/394]	time 4.220 (4.271)	data 0.001 (0.061)	eta 20:31:12	loss_t 0.4789 (0.3772)	loss_x 4.7786 (4.9096)	acc 22.8516 (18.5498)	lr 0.001930
+epoch: [7/50][60/394]	time 4.259 (4.252)	data 0.000 (0.041)	eta 20:24:25	loss_t 0.3732 (0.3763)	loss_x 4.7597 (4.8504)	acc 21.4844 (19.6875)	lr 0.001930
+epoch: [7/50][80/394]	time 4.226 (4.242)	data 0.000 (0.031)	eta 20:19:52	loss_t 0.4885 (0.3838)	loss_x 4.5909 (4.7894)	acc 24.8047 (20.9106)	lr 0.001930
+epoch: [7/50][100/394]	time 4.274 (4.241)	data 0.001 (0.025)	eta 20:18:19	loss_t 0.3386 (0.3843)	loss_x 4.4148 (4.7255)	acc 27.9297 (22.1523)	lr 0.001930
+epoch: [7/50][120/394]	time 4.273 (4.236)	data 0.000 (0.021)	eta 20:15:26	loss_t 0.3021 (0.3875)	loss_x 4.2011 (4.6742)	acc 34.3750 (23.0794)	lr 0.001930
+epoch: [7/50][140/394]	time 4.280 (4.234)	data 0.000 (0.018)	eta 20:13:34	loss_t 0.4537 (0.3890)	loss_x 4.3384 (4.6202)	acc 30.8594 (24.1071)	lr 0.001930
+epoch: [7/50][160/394]	time 4.111 (4.231)	data 0.000 (0.016)	eta 20:11:17	loss_t 0.2878 (0.3839)	loss_x 4.1467 (4.5641)	acc 35.7422 (25.3748)	lr 0.001930
+epoch: [7/50][180/394]	time 4.200 (4.231)	data 0.000 (0.014)	eta 20:09:47	loss_t 0.3714 (0.3805)	loss_x 3.9439 (4.5071)	acc 36.5234 (26.5983)	lr 0.001930
+epoch: [7/50][200/394]	time 4.171 (4.230)	data 0.000 (0.013)	eta 20:07:59	loss_t 0.3243 (0.3746)	loss_x 3.8906 (4.4485)	acc 41.7969 (27.8369)	lr 0.001930
+epoch: [7/50][220/394]	time 4.251 (4.227)	data 0.000 (0.011)	eta 20:05:55	loss_t 0.2231 (0.3686)	loss_x 3.8000 (4.3900)	acc 43.5547 (29.1087)	lr 0.001930
+epoch: [7/50][240/394]	time 4.209 (4.225)	data 0.000 (0.010)	eta 20:03:58	loss_t 0.2521 (0.3661)	loss_x 3.7244 (4.3378)	acc 44.7266 (30.3125)	lr 0.001930
+epoch: [7/50][260/394]	time 4.178 (4.223)	data 0.001 (0.010)	eta 20:01:53	loss_t 0.1692 (0.3627)	loss_x 3.6076 (4.2855)	acc 47.2656 (31.4926)	lr 0.001930
+epoch: [7/50][280/394]	time 4.198 (4.221)	data 0.000 (0.009)	eta 19:59:58	loss_t 0.3433 (0.3607)	loss_x 3.4992 (4.2386)	acc 45.5078 (32.5091)	lr 0.001930
+epoch: [7/50][300/394]	time 4.205 (4.219)	data 0.000 (0.008)	eta 19:58:00	loss_t 0.3146 (0.3578)	loss_x 3.5041 (4.1907)	acc 50.0000 (33.5983)	lr 0.001930
+epoch: [7/50][320/394]	time 4.252 (4.219)	data 0.000 (0.008)	eta 19:56:38	loss_t 0.2251 (0.3562)	loss_x 3.3145 (4.1463)	acc 55.2734 (34.6362)	lr 0.001930
+epoch: [7/50][340/394]	time 4.089 (4.218)	data 0.000 (0.008)	eta 19:54:43	loss_t 0.3692 (0.3539)	loss_x 3.5662 (4.1055)	acc 47.6562 (35.5934)	lr 0.001930
+epoch: [7/50][360/394]	time 4.213 (4.216)	data 0.000 (0.007)	eta 19:52:57	loss_t 0.4109 (0.3517)	loss_x 3.3628 (4.0648)	acc 53.3203 (36.5614)	lr 0.001930
+epoch: [7/50][380/394]	time 4.101 (4.217)	data 0.000 (0.007)	eta 19:51:38	loss_t 0.1226 (0.3478)	loss_x 3.1856 (4.0250)	acc 60.5469 (37.5195)	lr 0.001930
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5301 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 38.8%
+CMC curve
+Rank-1  : 72.5%
+Rank-5  : 85.4%
+Rank-10 : 89.3%
+Rank-20 : 92.4%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-7"
+epoch: [8/50][20/394]	time 4.234 (4.282)	data 0.001 (0.118)	eta 20:07:37	loss_t 0.1866 (0.2729)	loss_x 3.1326 (3.1022)	acc 58.5938 (59.6289)	lr 0.001905
+epoch: [8/50][40/394]	time 4.221 (4.252)	data 0.000 (0.059)	eta 19:57:48	loss_t 0.3822 (0.2879)	loss_x 3.2149 (3.0883)	acc 56.0547 (59.7998)	lr 0.001905
+epoch: [8/50][60/394]	time 4.246 (4.240)	data 0.000 (0.039)	eta 19:53:07	loss_t 0.3704 (0.2843)	loss_x 3.0304 (3.0837)	acc 60.1562 (60.0977)	lr 0.001905
+epoch: [8/50][80/394]	time 4.219 (4.238)	data 0.001 (0.030)	eta 19:51:07	loss_t 0.1785 (0.2837)	loss_x 2.8904 (3.0637)	acc 66.2109 (60.6152)	lr 0.001905
+epoch: [8/50][100/394]	time 4.268 (4.236)	data 0.000 (0.024)	eta 19:49:09	loss_t 0.2846 (0.2809)	loss_x 2.9699 (3.0504)	acc 63.2812 (60.9199)	lr 0.001905
+epoch: [8/50][120/394]	time 4.091 (4.228)	data 0.000 (0.020)	eta 19:45:28	loss_t 0.1736 (0.2788)	loss_x 3.0406 (3.0352)	acc 61.7188 (61.2988)	lr 0.001905
+epoch: [8/50][140/394]	time 4.179 (4.228)	data 0.000 (0.017)	eta 19:43:51	loss_t 0.2255 (0.2761)	loss_x 2.9585 (3.0226)	acc 64.4531 (61.5109)	lr 0.001905
+epoch: [8/50][160/394]	time 4.256 (4.227)	data 0.000 (0.015)	eta 19:42:14	loss_t 0.2438 (0.2716)	loss_x 2.8794 (3.0056)	acc 62.8906 (61.8896)	lr 0.001905
+epoch: [8/50][180/394]	time 4.169 (4.225)	data 0.000 (0.013)	eta 19:40:14	loss_t 0.3165 (0.2697)	loss_x 2.8732 (2.9899)	acc 66.6016 (62.2852)	lr 0.001905
+epoch: [8/50][200/394]	time 4.116 (4.224)	data 0.001 (0.012)	eta 19:38:33	loss_t 0.1376 (0.2717)	loss_x 2.8302 (2.9815)	acc 66.2109 (62.4873)	lr 0.001905
+epoch: [8/50][220/394]	time 4.210 (4.223)	data 0.000 (0.011)	eta 19:36:55	loss_t 0.3653 (0.2710)	loss_x 2.8071 (2.9714)	acc 67.3828 (62.7335)	lr 0.001905
+epoch: [8/50][240/394]	time 4.201 (4.223)	data 0.000 (0.010)	eta 19:35:32	loss_t 0.3028 (0.2704)	loss_x 2.6940 (2.9595)	acc 72.0703 (63.0225)	lr 0.001905
+epoch: [8/50][260/394]	time 4.258 (4.222)	data 0.000 (0.009)	eta 19:33:52	loss_t 0.2158 (0.2700)	loss_x 2.7182 (2.9493)	acc 68.9453 (63.2317)	lr 0.001905
+epoch: [8/50][280/394]	time 4.249 (4.222)	data 0.000 (0.009)	eta 19:32:30	loss_t 0.1772 (0.2697)	loss_x 2.7793 (2.9388)	acc 69.9219 (63.5135)	lr 0.001905
+epoch: [8/50][300/394]	time 4.148 (4.222)	data 0.000 (0.008)	eta 19:30:59	loss_t 0.2808 (0.2685)	loss_x 2.7715 (2.9272)	acc 67.7734 (63.7936)	lr 0.001905
+epoch: [8/50][320/394]	time 4.249 (4.221)	data 0.000 (0.008)	eta 19:29:25	loss_t 0.2175 (0.2664)	loss_x 2.6684 (2.9157)	acc 68.7500 (64.0479)	lr 0.001905
+epoch: [8/50][340/394]	time 4.191 (4.221)	data 0.000 (0.007)	eta 19:28:02	loss_t 0.2282 (0.2649)	loss_x 2.7470 (2.9043)	acc 70.8984 (64.3313)	lr 0.001905
+epoch: [8/50][360/394]	time 4.249 (4.220)	data 0.001 (0.007)	eta 19:26:14	loss_t 0.2210 (0.2641)	loss_x 2.7905 (2.8916)	acc 68.3594 (64.6479)	lr 0.001905
+epoch: [8/50][380/394]	time 4.196 (4.220)	data 0.000 (0.007)	eta 19:24:44	loss_t 0.2240 (0.2634)	loss_x 2.6390 (2.8798)	acc 72.6562 (64.9496)	lr 0.001905
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5286 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 45.5%
+CMC curve
+Rank-1  : 79.2%
+Rank-5  : 89.2%
+Rank-10 : 92.1%
+Rank-20 : 94.4%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-8"
+epoch: [9/50][20/394]	time 4.208 (4.295)	data 0.000 (0.115)	eta 19:43:02	loss_t 0.1550 (0.2213)	loss_x 2.4357 (2.5118)	acc 75.9766 (74.3652)	lr 0.001876
+epoch: [9/50][40/394]	time 4.217 (4.248)	data 0.001 (0.058)	eta 19:28:42	loss_t 0.2181 (0.2392)	loss_x 2.5593 (2.5305)	acc 73.8281 (73.6865)	lr 0.001876
+epoch: [9/50][60/394]	time 4.271 (4.235)	data 0.000 (0.039)	eta 19:23:41	loss_t 0.2640 (0.2360)	loss_x 2.4248 (2.5239)	acc 74.8047 (73.7826)	lr 0.001876
+epoch: [9/50][80/394]	time 4.207 (4.229)	data 0.000 (0.029)	eta 19:20:41	loss_t 0.2368 (0.2341)	loss_x 2.5774 (2.5261)	acc 74.0234 (73.7061)	lr 0.001876
+epoch: [9/50][100/394]	time 4.143 (4.226)	data 0.000 (0.023)	eta 19:18:35	loss_t 0.2361 (0.2319)	loss_x 2.6662 (2.5270)	acc 71.6797 (73.7324)	lr 0.001876
+epoch: [9/50][120/394]	time 4.269 (4.225)	data 0.000 (0.019)	eta 19:16:44	loss_t 0.2087 (0.2304)	loss_x 2.5404 (2.5268)	acc 72.2656 (73.7288)	lr 0.001876
+epoch: [9/50][140/394]	time 4.217 (4.224)	data 0.000 (0.017)	eta 19:15:07	loss_t 0.1671 (0.2310)	loss_x 2.4734 (2.5229)	acc 75.0000 (73.8658)	lr 0.001876
+epoch: [9/50][160/394]	time 4.221 (4.226)	data 0.000 (0.015)	eta 19:14:19	loss_t 0.2633 (0.2316)	loss_x 2.5194 (2.5201)	acc 74.0234 (73.8977)	lr 0.001876
+epoch: [9/50][180/394]	time 4.262 (4.226)	data 0.000 (0.013)	eta 19:12:59	loss_t 0.1727 (0.2295)	loss_x 2.5442 (2.5162)	acc 72.4609 (73.9974)	lr 0.001876
+epoch: [9/50][200/394]	time 4.265 (4.229)	data 0.000 (0.012)	eta 19:12:16	loss_t 0.3260 (0.2291)	loss_x 2.3877 (2.5120)	acc 77.7344 (74.1172)	lr 0.001876
+epoch: [9/50][220/394]	time 4.242 (4.229)	data 0.000 (0.011)	eta 19:10:44	loss_t 0.2167 (0.2293)	loss_x 2.4274 (2.5087)	acc 76.5625 (74.1948)	lr 0.001876
+epoch: [9/50][240/394]	time 4.282 (4.228)	data 0.000 (0.010)	eta 19:09:15	loss_t 0.1998 (0.2279)	loss_x 2.4857 (2.5028)	acc 75.1953 (74.3270)	lr 0.001876
+epoch: [9/50][260/394]	time 4.199 (4.227)	data 0.000 (0.009)	eta 19:07:33	loss_t 0.2275 (0.2260)	loss_x 2.3954 (2.4956)	acc 78.7109 (74.5305)	lr 0.001876
+epoch: [9/50][280/394]	time 4.247 (4.226)	data 0.001 (0.009)	eta 19:05:48	loss_t 0.3309 (0.2256)	loss_x 2.3376 (2.4904)	acc 76.9531 (74.6631)	lr 0.001876
+epoch: [9/50][300/394]	time 4.213 (4.226)	data 0.001 (0.008)	eta 19:04:20	loss_t 0.2559 (0.2243)	loss_x 2.3629 (2.4872)	acc 78.9062 (74.7728)	lr 0.001876
+epoch: [9/50][320/394]	time 4.221 (4.225)	data 0.001 (0.008)	eta 19:02:39	loss_t 0.2632 (0.2239)	loss_x 2.4757 (2.4845)	acc 74.4141 (74.8486)	lr 0.001876
+epoch: [9/50][340/394]	time 4.141 (4.224)	data 0.000 (0.007)	eta 19:00:56	loss_t 0.2289 (0.2232)	loss_x 2.4134 (2.4812)	acc 76.3672 (74.9236)	lr 0.001876
+epoch: [9/50][360/394]	time 4.183 (4.223)	data 0.000 (0.007)	eta 18:59:15	loss_t 0.1355 (0.2223)	loss_x 2.4305 (2.4777)	acc 74.4141 (75.0293)	lr 0.001876
+epoch: [9/50][380/394]	time 4.211 (4.222)	data 0.000 (0.006)	eta 18:57:47	loss_t 0.1466 (0.2200)	loss_x 2.2398 (2.4715)	acc 81.4453 (75.1938)	lr 0.001876
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5289 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 48.9%
+CMC curve
+Rank-1  : 82.4%
+Rank-5  : 90.9%
+Rank-10 : 93.6%
+Rank-20 : 95.5%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-9"
+epoch: [10/50][20/394]	time 4.198 (4.280)	data 0.000 (0.117)	eta 19:10:56	loss_t 0.2251 (0.2162)	loss_x 2.1735 (2.2459)	acc 82.0312 (80.8398)	lr 0.001844
+epoch: [10/50][40/394]	time 4.246 (4.246)	data 0.001 (0.059)	eta 19:00:26	loss_t 0.1691 (0.2058)	loss_x 2.2866 (2.2481)	acc 81.6406 (80.8887)	lr 0.001844
+epoch: [10/50][60/394]	time 4.181 (4.231)	data 0.000 (0.039)	eta 18:54:53	loss_t 0.2873 (0.2060)	loss_x 2.2519 (2.2490)	acc 80.0781 (80.6901)	lr 0.001844
+epoch: [10/50][80/394]	time 4.156 (4.225)	data 0.000 (0.030)	eta 18:51:47	loss_t 0.1500 (0.2022)	loss_x 2.2836 (2.2543)	acc 79.2969 (80.4492)	lr 0.001844
+epoch: [10/50][100/394]	time 4.109 (4.219)	data 0.001 (0.024)	eta 18:48:50	loss_t 0.1526 (0.2020)	loss_x 2.3029 (2.2603)	acc 80.4688 (80.3770)	lr 0.001844
+epoch: [10/50][120/394]	time 4.249 (4.219)	data 0.000 (0.020)	eta 18:47:30	loss_t 0.3078 (0.2001)	loss_x 2.4498 (2.2630)	acc 77.5391 (80.3092)	lr 0.001844
+epoch: [10/50][140/394]	time 4.224 (4.215)	data 0.000 (0.017)	eta 18:45:02	loss_t 0.1622 (0.2008)	loss_x 2.2978 (2.2665)	acc 79.4922 (80.2581)	lr 0.001844
+epoch: [10/50][160/394]	time 4.239 (4.215)	data 0.000 (0.015)	eta 18:43:34	loss_t 0.1833 (0.2008)	loss_x 2.3330 (2.2674)	acc 77.7344 (80.1648)	lr 0.001844
+epoch: [10/50][180/394]	time 4.165 (4.215)	data 0.000 (0.013)	eta 18:42:05	loss_t 0.1926 (0.1988)	loss_x 2.2161 (2.2680)	acc 80.6641 (80.1226)	lr 0.001844
+epoch: [10/50][200/394]	time 4.186 (4.214)	data 0.000 (0.012)	eta 18:40:34	loss_t 0.1712 (0.1990)	loss_x 2.3028 (2.2680)	acc 81.6406 (80.1562)	lr 0.001844
+epoch: [10/50][220/394]	time 4.164 (4.214)	data 0.000 (0.011)	eta 18:39:03	loss_t 0.2346 (0.2026)	loss_x 2.3147 (2.2681)	acc 78.7109 (80.1456)	lr 0.001844
+epoch: [10/50][240/394]	time 4.197 (4.213)	data 0.000 (0.010)	eta 18:37:29	loss_t 0.1788 (0.2016)	loss_x 2.1381 (2.2691)	acc 83.5938 (80.1408)	lr 0.001844
+epoch: [10/50][260/394]	time 4.194 (4.211)	data 0.000 (0.009)	eta 18:35:37	loss_t 0.2693 (0.2026)	loss_x 2.1827 (2.2692)	acc 82.6172 (80.1487)	lr 0.001844
+epoch: [10/50][280/394]	time 4.235 (4.212)	data 0.001 (0.009)	eta 18:34:20	loss_t 0.2064 (0.2019)	loss_x 2.2626 (2.2678)	acc 81.8359 (80.1821)	lr 0.001844
+epoch: [10/50][300/394]	time 4.273 (4.212)	data 0.000 (0.008)	eta 18:32:49	loss_t 0.1607 (0.2021)	loss_x 2.2169 (2.2668)	acc 81.0547 (80.2096)	lr 0.001844
+epoch: [10/50][320/394]	time 4.305 (4.215)	data 0.001 (0.008)	eta 18:32:24	loss_t 0.2416 (0.2015)	loss_x 2.2918 (2.2650)	acc 77.5391 (80.2356)	lr 0.001844
+epoch: [10/50][340/394]	time 4.231 (4.219)	data 0.001 (0.007)	eta 18:31:54	loss_t 0.0430 (0.2006)	loss_x 2.1307 (2.2633)	acc 83.7891 (80.2935)	lr 0.001844
+epoch: [10/50][360/394]	time 4.439 (4.222)	data 0.001 (0.007)	eta 18:31:29	loss_t 0.2294 (0.2002)	loss_x 2.1733 (2.2605)	acc 81.4453 (80.3304)	lr 0.001844
+epoch: [10/50][380/394]	time 4.258 (4.225)	data 0.000 (0.007)	eta 18:30:49	loss_t 0.2593 (0.2002)	loss_x 2.2115 (2.2586)	acc 82.8125 (80.3475)	lr 0.001844
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5529 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 52.0%
+CMC curve
+Rank-1  : 84.3%
+Rank-5  : 92.2%
+Rank-10 : 94.4%
+Rank-20 : 96.1%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-10"
+epoch: [11/50][20/394]	time 4.307 (4.332)	data 0.001 (0.115)	eta 18:56:21	loss_t 0.1228 (0.1822)	loss_x 2.2255 (2.1254)	acc 81.4453 (83.6328)	lr 0.001809
+epoch: [11/50][40/394]	time 4.254 (4.299)	data 0.001 (0.058)	eta 18:46:16	loss_t 0.2115 (0.1790)	loss_x 2.0440 (2.1054)	acc 86.7188 (84.1211)	lr 0.001809
+epoch: [11/50][60/394]	time 4.145 (4.287)	data 0.001 (0.039)	eta 18:41:38	loss_t 0.0987 (0.1745)	loss_x 2.1231 (2.1093)	acc 85.1562 (84.1243)	lr 0.001809
+epoch: [11/50][80/394]	time 4.269 (4.285)	data 0.001 (0.029)	eta 18:39:50	loss_t 0.1959 (0.1763)	loss_x 2.1258 (2.1011)	acc 84.5703 (84.3433)	lr 0.001809
+epoch: [11/50][100/394]	time 4.296 (4.276)	data 0.001 (0.023)	eta 18:36:08	loss_t 0.2664 (0.1767)	loss_x 2.1451 (2.1010)	acc 83.0078 (84.3184)	lr 0.001809
+epoch: [11/50][120/394]	time 4.264 (4.275)	data 0.000 (0.020)	eta 18:34:27	loss_t 0.1601 (0.1756)	loss_x 2.1091 (2.1064)	acc 84.1797 (84.1423)	lr 0.001809
+epoch: [11/50][140/394]	time 4.271 (4.274)	data 0.001 (0.017)	eta 18:32:39	loss_t 0.1873 (0.1753)	loss_x 2.2051 (2.1089)	acc 82.2266 (84.0988)	lr 0.001809
+epoch: [11/50][160/394]	time 4.214 (4.274)	data 0.001 (0.015)	eta 18:31:12	loss_t 0.2177 (0.1768)	loss_x 2.1379 (2.1122)	acc 82.4219 (83.9783)	lr 0.001809
+epoch: [11/50][180/394]	time 4.237 (4.268)	data 0.000 (0.013)	eta 18:28:19	loss_t 0.1497 (0.1768)	loss_x 2.1911 (2.1151)	acc 82.2266 (83.9128)	lr 0.001809
+epoch: [11/50][200/394]	time 4.303 (4.271)	data 0.000 (0.012)	eta 18:27:32	loss_t 0.1997 (0.1753)	loss_x 2.1414 (2.1188)	acc 83.3984 (83.8301)	lr 0.001809
+epoch: [11/50][220/394]	time 4.240 (4.270)	data 0.001 (0.011)	eta 18:26:00	loss_t 0.1655 (0.1782)	loss_x 2.1475 (2.1191)	acc 83.5938 (83.8042)	lr 0.001809
+epoch: [11/50][240/394]	time 4.310 (4.270)	data 0.001 (0.010)	eta 18:24:38	loss_t 0.1527 (0.1781)	loss_x 2.2098 (2.1202)	acc 81.2500 (83.7435)	lr 0.001809
+epoch: [11/50][260/394]	time 4.275 (4.269)	data 0.000 (0.009)	eta 18:22:43	loss_t 0.0814 (0.1768)	loss_x 2.0889 (2.1214)	acc 83.5938 (83.7139)	lr 0.001809
+epoch: [11/50][280/394]	time 4.273 (4.267)	data 0.000 (0.009)	eta 18:20:55	loss_t 0.1397 (0.1775)	loss_x 2.1449 (2.1220)	acc 83.7891 (83.7130)	lr 0.001809
+epoch: [11/50][300/394]	time 4.236 (4.267)	data 0.001 (0.008)	eta 18:19:31	loss_t 0.1256 (0.1763)	loss_x 2.1548 (2.1216)	acc 82.8125 (83.7161)	lr 0.001809
+epoch: [11/50][320/394]	time 4.295 (4.268)	data 0.000 (0.008)	eta 18:18:22	loss_t 0.1974 (0.1771)	loss_x 2.1389 (2.1242)	acc 83.5938 (83.6597)	lr 0.001809
+epoch: [11/50][340/394]	time 4.275 (4.267)	data 0.000 (0.007)	eta 18:16:31	loss_t 0.1791 (0.1767)	loss_x 2.1137 (2.1248)	acc 84.1797 (83.6299)	lr 0.001809
+epoch: [11/50][360/394]	time 4.306 (4.267)	data 0.000 (0.007)	eta 18:15:09	loss_t 0.2521 (0.1770)	loss_x 2.1457 (2.1243)	acc 82.8125 (83.6279)	lr 0.001809
+epoch: [11/50][380/394]	time 4.309 (4.268)	data 0.001 (0.007)	eta 18:14:06	loss_t 0.2986 (0.1762)	loss_x 2.1752 (2.1241)	acc 82.2266 (83.6261)	lr 0.001809
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5496 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 53.7%
+CMC curve
+Rank-1  : 85.7%
+Rank-5  : 93.2%
+Rank-10 : 95.2%
+Rank-20 : 96.7%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-11"
+epoch: [12/50][20/394]	time 4.288 (4.353)	data 0.001 (0.119)	eta 18:33:17	loss_t 0.2263 (0.1589)	loss_x 1.9532 (1.9981)	acc 89.0625 (87.0898)	lr 0.001771
+epoch: [12/50][40/394]	time 4.242 (4.306)	data 0.000 (0.060)	eta 18:19:52	loss_t 0.1533 (0.1580)	loss_x 1.9970 (1.9899)	acc 86.3281 (86.9580)	lr 0.001771
+epoch: [12/50][60/394]	time 4.200 (4.292)	data 0.000 (0.040)	eta 18:14:57	loss_t 0.1091 (0.1658)	loss_x 1.9367 (1.9923)	acc 87.1094 (86.7969)	lr 0.001771
+epoch: [12/50][80/394]	time 4.222 (4.288)	data 0.001 (0.030)	eta 18:12:27	loss_t 0.1988 (0.1702)	loss_x 1.9314 (1.9961)	acc 89.2578 (86.6553)	lr 0.001771
+epoch: [12/50][100/394]	time 4.296 (4.285)	data 0.000 (0.024)	eta 18:10:07	loss_t 0.1447 (0.1676)	loss_x 2.0371 (2.0039)	acc 85.3516 (86.4746)	lr 0.001771
+epoch: [12/50][120/394]	time 4.126 (4.271)	data 0.000 (0.020)	eta 18:05:18	loss_t 0.1229 (0.1663)	loss_x 1.9723 (2.0068)	acc 86.9141 (86.4518)	lr 0.001771
+epoch: [12/50][140/394]	time 4.303 (4.272)	data 0.000 (0.017)	eta 18:04:12	loss_t 0.3324 (0.1683)	loss_x 2.0104 (2.0101)	acc 87.8906 (86.3644)	lr 0.001771
+epoch: [12/50][160/394]	time 4.149 (4.272)	data 0.000 (0.015)	eta 18:02:44	loss_t 0.1350 (0.1665)	loss_x 2.0056 (2.0148)	acc 86.9141 (86.2268)	lr 0.001771
+epoch: [12/50][180/394]	time 4.381 (4.271)	data 0.001 (0.014)	eta 18:00:58	loss_t 0.1322 (0.1660)	loss_x 1.9291 (2.0170)	acc 88.4766 (86.1708)	lr 0.001771
+epoch: [12/50][200/394]	time 4.244 (4.270)	data 0.000 (0.012)	eta 17:59:24	loss_t 0.2152 (0.1636)	loss_x 2.0994 (2.0190)	acc 84.5703 (86.1133)	lr 0.001771
+epoch: [12/50][220/394]	time 4.266 (4.267)	data 0.000 (0.011)	eta 17:57:08	loss_t 0.1828 (0.1651)	loss_x 2.0250 (2.0202)	acc 86.9141 (86.0884)	lr 0.001771
+epoch: [12/50][240/394]	time 4.290 (4.268)	data 0.000 (0.010)	eta 17:56:03	loss_t 0.2531 (0.1656)	loss_x 2.0556 (2.0230)	acc 83.5938 (86.0189)	lr 0.001771
+epoch: [12/50][260/394]	time 4.240 (4.267)	data 0.001 (0.010)	eta 17:54:20	loss_t 0.1558 (0.1679)	loss_x 2.0638 (2.0261)	acc 84.9609 (85.9255)	lr 0.001771
+epoch: [12/50][280/394]	time 4.227 (4.267)	data 0.000 (0.009)	eta 17:52:44	loss_t 0.1626 (0.1676)	loss_x 2.0482 (2.0295)	acc 85.3516 (85.8301)	lr 0.001771
+epoch: [12/50][300/394]	time 4.148 (4.264)	data 0.000 (0.008)	eta 17:50:47	loss_t 0.0819 (0.1677)	loss_x 2.1000 (2.0325)	acc 83.0078 (85.7559)	lr 0.001771
+epoch: [12/50][320/394]	time 4.233 (4.265)	data 0.000 (0.008)	eta 17:49:25	loss_t 0.2049 (0.1675)	loss_x 2.0318 (2.0333)	acc 85.3516 (85.7690)	lr 0.001771
+epoch: [12/50][340/394]	time 4.251 (4.264)	data 0.001 (0.007)	eta 17:47:51	loss_t 0.1398 (0.1677)	loss_x 2.0729 (2.0359)	acc 84.5703 (85.7083)	lr 0.001771
+epoch: [12/50][360/394]	time 4.281 (4.265)	data 0.000 (0.007)	eta 17:46:44	loss_t 0.2291 (0.1681)	loss_x 2.0600 (2.0383)	acc 85.3516 (85.6554)	lr 0.001771
+epoch: [12/50][380/394]	time 4.259 (4.264)	data 0.001 (0.007)	eta 17:45:04	loss_t 0.1159 (0.1683)	loss_x 2.0377 (2.0401)	acc 83.7891 (85.5936)	lr 0.001771
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5485 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 53.5%
+CMC curve
+Rank-1  : 85.9%
+Rank-5  : 93.2%
+Rank-10 : 95.1%
+Rank-20 : 96.6%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-12"
+epoch: [13/50][20/394]	time 4.277 (4.377)	data 0.001 (0.125)	eta 18:10:39	loss_t 0.2257 (0.1718)	loss_x 1.8651 (1.9282)	acc 90.4297 (88.4961)	lr 0.001729
+epoch: [13/50][40/394]	time 4.311 (4.324)	data 0.000 (0.063)	eta 17:55:58	loss_t 0.2211 (0.1643)	loss_x 1.9562 (1.9261)	acc 86.5234 (88.6572)	lr 0.001729
+epoch: [13/50][60/394]	time 4.294 (4.308)	data 0.000 (0.042)	eta 17:50:35	loss_t 0.1518 (0.1591)	loss_x 1.9129 (1.9259)	acc 89.2578 (88.5254)	lr 0.001729
+epoch: [13/50][80/394]	time 4.121 (4.288)	data 0.001 (0.032)	eta 17:44:15	loss_t 0.1831 (0.1593)	loss_x 1.9260 (1.9270)	acc 89.2578 (88.3569)	lr 0.001729
+epoch: [13/50][100/394]	time 4.276 (4.285)	data 0.000 (0.025)	eta 17:42:02	loss_t 0.1106 (0.1565)	loss_x 1.9257 (1.9281)	acc 88.4766 (88.2461)	lr 0.001729
+epoch: [13/50][120/394]	time 4.231 (4.280)	data 0.000 (0.021)	eta 17:39:27	loss_t 0.1337 (0.1570)	loss_x 1.9805 (1.9328)	acc 85.3516 (88.1071)	lr 0.001729
+epoch: [13/50][140/394]	time 4.295 (4.276)	data 0.001 (0.018)	eta 17:37:05	loss_t 0.0995 (0.1559)	loss_x 1.9423 (1.9353)	acc 87.1094 (88.0845)	lr 0.001729
+epoch: [13/50][160/394]	time 4.293 (4.271)	data 0.001 (0.016)	eta 17:34:26	loss_t 0.1537 (0.1563)	loss_x 1.9256 (1.9393)	acc 88.0859 (88.0029)	lr 0.001729
+epoch: [13/50][180/394]	time 4.328 (4.270)	data 0.000 (0.014)	eta 17:32:47	loss_t 0.1617 (0.1569)	loss_x 2.0383 (1.9438)	acc 85.5469 (87.8689)	lr 0.001729
+epoch: [13/50][200/394]	time 4.303 (4.270)	data 0.000 (0.013)	eta 17:31:09	loss_t 0.2127 (0.1556)	loss_x 1.9972 (1.9473)	acc 87.1094 (87.7988)	lr 0.001729
+epoch: [13/50][220/394]	time 4.301 (4.269)	data 0.000 (0.012)	eta 17:29:37	loss_t 0.1690 (0.1574)	loss_x 2.0266 (1.9522)	acc 85.5469 (87.6642)	lr 0.001729
+epoch: [13/50][240/394]	time 4.244 (4.265)	data 0.001 (0.011)	eta 17:27:13	loss_t 0.1529 (0.1569)	loss_x 1.9599 (1.9542)	acc 88.2812 (87.6400)	lr 0.001729
+epoch: [13/50][260/394]	time 4.298 (4.267)	data 0.001 (0.010)	eta 17:26:22	loss_t 0.0714 (0.1563)	loss_x 2.0095 (1.9572)	acc 87.3047 (87.5338)	lr 0.001729
+epoch: [13/50][280/394]	time 4.212 (4.266)	data 0.001 (0.009)	eta 17:24:38	loss_t 0.1391 (0.1578)	loss_x 1.9414 (1.9603)	acc 86.5234 (87.4637)	lr 0.001729
+epoch: [13/50][300/394]	time 4.239 (4.266)	data 0.000 (0.009)	eta 17:23:14	loss_t 0.0650 (0.1572)	loss_x 1.9861 (1.9619)	acc 86.9141 (87.4375)	lr 0.001729
+epoch: [13/50][320/394]	time 4.177 (4.264)	data 0.000 (0.008)	eta 17:21:14	loss_t 0.1758 (0.1594)	loss_x 2.0933 (1.9659)	acc 83.5938 (87.3193)	lr 0.001729
+epoch: [13/50][340/394]	time 4.271 (4.263)	data 0.000 (0.008)	eta 17:19:36	loss_t 0.2846 (0.1586)	loss_x 1.9507 (1.9680)	acc 87.5000 (87.2702)	lr 0.001729
+epoch: [13/50][360/394]	time 4.169 (4.263)	data 0.000 (0.007)	eta 17:18:08	loss_t 0.3013 (0.1596)	loss_x 2.0305 (1.9691)	acc 86.1328 (87.2418)	lr 0.001729
+epoch: [13/50][380/394]	time 4.268 (4.263)	data 0.000 (0.007)	eta 17:16:40	loss_t 0.1657 (0.1605)	loss_x 1.9793 (1.9713)	acc 86.3281 (87.1829)	lr 0.001729
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5480 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 54.5%
+CMC curve
+Rank-1  : 87.2%
+Rank-5  : 93.6%
+Rank-10 : 95.6%
+Rank-20 : 97.0%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-13"
+epoch: [14/50][20/394]	time 4.169 (4.332)	data 0.000 (0.122)	eta 17:31:12	loss_t 0.1645 (0.1405)	loss_x 1.8416 (1.8818)	acc 90.4297 (89.3066)	lr 0.001685
+epoch: [14/50][40/394]	time 4.207 (4.287)	data 0.001 (0.061)	eta 17:18:50	loss_t 0.2299 (0.1481)	loss_x 1.8242 (1.8755)	acc 91.0156 (89.4189)	lr 0.001685
+epoch: [14/50][60/394]	time 4.234 (4.281)	data 0.001 (0.041)	eta 17:15:45	loss_t 0.1156 (0.1451)	loss_x 1.9063 (1.8721)	acc 88.6719 (89.5508)	lr 0.001685
+epoch: [14/50][80/394]	time 4.233 (4.271)	data 0.000 (0.031)	eta 17:12:05	loss_t 0.0866 (0.1424)	loss_x 1.8630 (1.8758)	acc 89.8438 (89.4751)	lr 0.001685
+epoch: [14/50][100/394]	time 4.047 (4.255)	data 0.000 (0.025)	eta 17:06:38	loss_t 0.2016 (0.1396)	loss_x 1.9379 (1.8784)	acc 87.3047 (89.4004)	lr 0.001685
+epoch: [14/50][120/394]	time 4.180 (4.247)	data 0.000 (0.021)	eta 17:03:16	loss_t 0.1472 (0.1396)	loss_x 1.8918 (1.8794)	acc 89.4531 (89.3717)	lr 0.001685
+epoch: [14/50][140/394]	time 4.193 (4.238)	data 0.000 (0.018)	eta 16:59:47	loss_t 0.0726 (0.1403)	loss_x 1.9245 (1.8826)	acc 88.8672 (89.2648)	lr 0.001685
+epoch: [14/50][160/394]	time 4.186 (4.232)	data 0.000 (0.016)	eta 16:56:59	loss_t 0.1754 (0.1409)	loss_x 1.9564 (1.8848)	acc 86.3281 (89.2102)	lr 0.001685
+epoch: [14/50][180/394]	time 4.228 (4.229)	data 0.000 (0.014)	eta 16:54:43	loss_t 0.2145 (0.1424)	loss_x 1.9790 (1.8883)	acc 87.1094 (89.1450)	lr 0.001685
+epoch: [14/50][200/394]	time 4.161 (4.222)	data 0.000 (0.013)	eta 16:51:38	loss_t 0.1296 (0.1428)	loss_x 1.9271 (1.8910)	acc 88.2812 (89.0820)	lr 0.001685
+epoch: [14/50][220/394]	time 4.229 (4.219)	data 0.001 (0.011)	eta 16:49:41	loss_t 0.1453 (0.1438)	loss_x 1.9256 (1.8951)	acc 88.8672 (89.0110)	lr 0.001685
+epoch: [14/50][240/394]	time 4.242 (4.217)	data 0.001 (0.011)	eta 16:47:41	loss_t 0.1474 (0.1439)	loss_x 1.9106 (1.8973)	acc 88.6719 (88.9388)	lr 0.001685
+epoch: [14/50][260/394]	time 4.282 (4.214)	data 0.000 (0.010)	eta 16:45:40	loss_t 0.1429 (0.1452)	loss_x 1.9377 (1.9030)	acc 88.0859 (88.8093)	lr 0.001685
+epoch: [14/50][280/394]	time 4.254 (4.214)	data 0.000 (0.009)	eta 16:44:05	loss_t 0.2394 (0.1466)	loss_x 1.8947 (1.9058)	acc 87.3047 (88.7354)	lr 0.001685
+epoch: [14/50][300/394]	time 4.210 (4.210)	data 0.000 (0.009)	eta 16:41:44	loss_t 0.1430 (0.1465)	loss_x 1.9673 (1.9085)	acc 87.6953 (88.6706)	lr 0.001685
+epoch: [14/50][320/394]	time 4.099 (4.208)	data 0.000 (0.008)	eta 16:40:02	loss_t 0.0627 (0.1471)	loss_x 1.9723 (1.9111)	acc 87.1094 (88.5913)	lr 0.001685
+epoch: [14/50][340/394]	time 4.190 (4.207)	data 0.001 (0.008)	eta 16:38:12	loss_t 0.2019 (0.1479)	loss_x 1.9061 (1.9130)	acc 88.6719 (88.5495)	lr 0.001685
+epoch: [14/50][360/394]	time 4.261 (4.206)	data 0.000 (0.007)	eta 16:36:45	loss_t 0.2009 (0.1471)	loss_x 1.9390 (1.9141)	acc 86.9141 (88.5324)	lr 0.001685
+epoch: [14/50][380/394]	time 4.171 (4.204)	data 0.001 (0.007)	eta 16:34:54	loss_t 0.1610 (0.1486)	loss_x 1.9921 (1.9168)	acc 87.6953 (88.4796)	lr 0.001685
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5275 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 56.1%
+CMC curve
+Rank-1  : 87.8%
+Rank-5  : 94.3%
+Rank-10 : 95.8%
+Rank-20 : 97.2%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-14"
+epoch: [15/50][20/394]	time 4.238 (4.271)	data 0.000 (0.113)	eta 16:48:18	loss_t 0.1756 (0.1427)	loss_x 1.7929 (1.8258)	acc 91.7969 (90.5664)	lr 0.001637
+epoch: [15/50][40/394]	time 4.222 (4.244)	data 0.000 (0.057)	eta 16:40:21	loss_t 0.1289 (0.1361)	loss_x 1.7416 (1.8219)	acc 93.3594 (90.6348)	lr 0.001637
+epoch: [15/50][60/394]	time 4.178 (4.230)	data 0.001 (0.038)	eta 16:35:38	loss_t 0.1696 (0.1398)	loss_x 1.8507 (1.8227)	acc 89.0625 (90.6380)	lr 0.001637
+epoch: [15/50][80/394]	time 4.196 (4.218)	data 0.000 (0.029)	eta 16:31:33	loss_t 0.1665 (0.1403)	loss_x 1.8743 (1.8305)	acc 89.6484 (90.4736)	lr 0.001637
+epoch: [15/50][100/394]	time 4.120 (4.213)	data 0.000 (0.023)	eta 16:29:00	loss_t 0.2725 (0.1415)	loss_x 1.9063 (1.8342)	acc 89.4531 (90.3906)	lr 0.001637
+epoch: [15/50][120/394]	time 4.206 (4.206)	data 0.000 (0.019)	eta 16:25:53	loss_t 0.1613 (0.1408)	loss_x 1.7950 (1.8364)	acc 90.8203 (90.3499)	lr 0.001637
+epoch: [15/50][140/394]	time 4.194 (4.201)	data 0.000 (0.017)	eta 16:23:12	loss_t 0.1547 (0.1409)	loss_x 1.8637 (1.8391)	acc 88.2812 (90.2288)	lr 0.001637
+epoch: [15/50][160/394]	time 4.061 (4.194)	data 0.000 (0.015)	eta 16:20:17	loss_t 0.1778 (0.1406)	loss_x 1.8617 (1.8401)	acc 88.8672 (90.1794)	lr 0.001637
+epoch: [15/50][180/394]	time 4.231 (4.191)	data 0.001 (0.013)	eta 16:18:04	loss_t 0.0244 (0.1396)	loss_x 1.8922 (1.8436)	acc 87.5000 (90.0738)	lr 0.001637
+epoch: [15/50][200/394]	time 4.185 (4.188)	data 0.000 (0.012)	eta 16:16:01	loss_t 0.1621 (0.1405)	loss_x 1.8355 (1.8466)	acc 90.2344 (90.0127)	lr 0.001637
+epoch: [15/50][220/394]	time 4.227 (4.185)	data 0.000 (0.011)	eta 16:13:56	loss_t 0.0880 (0.1391)	loss_x 1.8572 (1.8491)	acc 89.8438 (89.9583)	lr 0.001637
+epoch: [15/50][240/394]	time 4.190 (4.182)	data 0.000 (0.010)	eta 16:11:59	loss_t 0.1546 (0.1410)	loss_x 1.8928 (1.8523)	acc 89.6484 (89.8958)	lr 0.001637
+epoch: [15/50][260/394]	time 4.058 (4.181)	data 0.000 (0.009)	eta 16:10:11	loss_t 0.0981 (0.1421)	loss_x 1.8412 (1.8567)	acc 89.8438 (89.7844)	lr 0.001637
+epoch: [15/50][280/394]	time 4.059 (4.179)	data 0.000 (0.008)	eta 16:08:23	loss_t 0.1897 (0.1428)	loss_x 1.8615 (1.8611)	acc 89.6484 (89.7028)	lr 0.001637
+epoch: [15/50][300/394]	time 4.184 (4.179)	data 0.000 (0.008)	eta 16:06:57	loss_t 0.2097 (0.1431)	loss_x 1.9789 (1.8650)	acc 86.5234 (89.6198)	lr 0.001637
+epoch: [15/50][320/394]	time 4.066 (4.178)	data 0.000 (0.007)	eta 16:05:22	loss_t 0.0909 (0.1434)	loss_x 1.8757 (1.8674)	acc 89.0625 (89.5312)	lr 0.001637
+epoch: [15/50][340/394]	time 4.216 (4.177)	data 0.000 (0.007)	eta 16:03:50	loss_t 0.1882 (0.1436)	loss_x 1.9293 (1.8698)	acc 87.6953 (89.4531)	lr 0.001637
+epoch: [15/50][360/394]	time 4.226 (4.177)	data 0.001 (0.007)	eta 16:02:21	loss_t 0.1285 (0.1444)	loss_x 1.9292 (1.8714)	acc 88.8672 (89.4119)	lr 0.001637
+epoch: [15/50][380/394]	time 4.164 (4.175)	data 0.000 (0.006)	eta 16:00:38	loss_t 0.1657 (0.1445)	loss_x 1.9564 (1.8730)	acc 88.2812 (89.3765)	lr 0.001637
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5299 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 57.5%
+CMC curve
+Rank-1  : 87.8%
+Rank-5  : 94.6%
+Rank-10 : 96.2%
+Rank-20 : 97.2%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-15"
+epoch: [16/50][20/394]	time 4.216 (4.271)	data 0.000 (0.118)	eta 16:20:16	loss_t 0.1422 (0.1278)	loss_x 1.6914 (1.7799)	acc 92.7734 (91.8262)	lr 0.001588
+epoch: [16/50][40/394]	time 4.102 (4.226)	data 0.001 (0.059)	eta 16:08:32	loss_t 0.1117 (0.1306)	loss_x 1.8328 (1.7836)	acc 91.0156 (91.7578)	lr 0.001588
+epoch: [16/50][60/394]	time 4.221 (4.207)	data 0.000 (0.039)	eta 16:02:44	loss_t 0.1691 (0.1337)	loss_x 1.8407 (1.7894)	acc 91.0156 (91.5104)	lr 0.001588
+epoch: [16/50][80/394]	time 4.186 (4.199)	data 0.000 (0.030)	eta 15:59:32	loss_t 0.1418 (0.1324)	loss_x 1.8633 (1.7945)	acc 90.8203 (91.4526)	lr 0.001588
+epoch: [16/50][100/394]	time 4.236 (4.194)	data 0.000 (0.024)	eta 15:56:57	loss_t 0.2032 (0.1350)	loss_x 1.7799 (1.7961)	acc 90.8203 (91.3926)	lr 0.001588
+epoch: [16/50][120/394]	time 4.182 (4.191)	data 0.000 (0.020)	eta 15:54:44	loss_t 0.0980 (0.1373)	loss_x 1.8295 (1.7999)	acc 92.3828 (91.3118)	lr 0.001588
+epoch: [16/50][140/394]	time 4.124 (4.187)	data 0.000 (0.017)	eta 15:52:38	loss_t 0.1690 (0.1364)	loss_x 1.8359 (1.8029)	acc 90.0391 (91.2054)	lr 0.001588
+epoch: [16/50][160/394]	time 4.130 (4.189)	data 0.000 (0.015)	eta 15:51:29	loss_t 0.2031 (0.1360)	loss_x 1.7911 (1.8086)	acc 90.6250 (91.0474)	lr 0.001588
+epoch: [16/50][180/394]	time 4.271 (4.195)	data 0.000 (0.013)	eta 15:51:31	loss_t 0.0731 (0.1366)	loss_x 1.8656 (1.8132)	acc 90.2344 (90.9549)	lr 0.001588
+epoch: [16/50][200/394]	time 4.382 (4.201)	data 0.001 (0.012)	eta 15:51:28	loss_t 0.1645 (0.1394)	loss_x 1.8630 (1.8162)	acc 89.4531 (90.8740)	lr 0.001588
+epoch: [16/50][220/394]	time 4.248 (4.206)	data 0.000 (0.011)	eta 15:51:16	loss_t 0.1268 (0.1391)	loss_x 1.8612 (1.8198)	acc 90.2344 (90.7812)	lr 0.001588
+epoch: [16/50][240/394]	time 4.156 (4.206)	data 0.000 (0.010)	eta 15:49:57	loss_t 0.1297 (0.1388)	loss_x 1.9003 (1.8218)	acc 88.8672 (90.7373)	lr 0.001588
+epoch: [16/50][260/394]	time 4.132 (4.209)	data 0.000 (0.009)	eta 15:49:08	loss_t 0.1601 (0.1371)	loss_x 1.8868 (1.8226)	acc 89.2578 (90.7054)	lr 0.001588
+epoch: [16/50][280/394]	time 4.283 (4.213)	data 0.001 (0.009)	eta 15:48:41	loss_t 0.1174 (0.1370)	loss_x 1.7218 (1.8243)	acc 93.1641 (90.6606)	lr 0.001588
+epoch: [16/50][300/394]	time 4.213 (4.216)	data 0.001 (0.008)	eta 15:47:50	loss_t 0.1658 (0.1379)	loss_x 1.8976 (1.8284)	acc 90.2344 (90.5664)	lr 0.001588
+epoch: [16/50][320/394]	time 4.217 (4.217)	data 0.000 (0.008)	eta 15:46:42	loss_t 0.0929 (0.1367)	loss_x 1.8516 (1.8297)	acc 90.0391 (90.5054)	lr 0.001588
+epoch: [16/50][340/394]	time 4.283 (4.218)	data 0.000 (0.007)	eta 15:45:34	loss_t 0.2198 (0.1373)	loss_x 1.8452 (1.8315)	acc 88.8672 (90.4446)	lr 0.001588
+epoch: [16/50][360/394]	time 4.301 (4.220)	data 0.001 (0.007)	eta 15:44:34	loss_t 0.1097 (0.1376)	loss_x 1.8944 (1.8342)	acc 89.4531 (90.3689)	lr 0.001588
+epoch: [16/50][380/394]	time 4.135 (4.222)	data 0.001 (0.007)	eta 15:43:36	loss_t 0.1433 (0.1386)	loss_x 1.9121 (1.8366)	acc 89.2578 (90.3289)	lr 0.001588
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5486 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 59.2%
+CMC curve
+Rank-1  : 88.8%
+Rank-5  : 94.9%
+Rank-10 : 96.3%
+Rank-20 : 97.5%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-16"
+epoch: [17/50][20/394]	time 4.185 (4.287)	data 0.000 (0.125)	eta 15:55:37	loss_t 0.0840 (0.1151)	loss_x 1.6910 (1.7470)	acc 92.9688 (92.4805)	lr 0.001536
+epoch: [17/50][40/394]	time 4.281 (4.268)	data 0.001 (0.063)	eta 15:50:06	loss_t 0.1335 (0.1239)	loss_x 1.7065 (1.7444)	acc 93.5547 (92.4561)	lr 0.001536
+epoch: [17/50][60/394]	time 4.301 (4.273)	data 0.000 (0.042)	eta 15:49:51	loss_t 0.1403 (0.1314)	loss_x 1.6690 (1.7520)	acc 94.3359 (92.1973)	lr 0.001536
+epoch: [17/50][80/394]	time 4.221 (4.269)	data 0.000 (0.032)	eta 15:47:25	loss_t 0.0957 (0.1322)	loss_x 1.7880 (1.7594)	acc 91.2109 (92.0972)	lr 0.001536
+epoch: [17/50][100/394]	time 4.196 (4.263)	data 0.000 (0.025)	eta 15:44:41	loss_t 0.1937 (0.1342)	loss_x 1.8115 (1.7640)	acc 90.4297 (92.0215)	lr 0.001536
+epoch: [17/50][120/394]	time 4.326 (4.262)	data 0.001 (0.021)	eta 15:43:08	loss_t 0.1591 (0.1361)	loss_x 1.8078 (1.7703)	acc 90.4297 (91.8734)	lr 0.001536
+epoch: [17/50][140/394]	time 4.264 (4.260)	data 0.000 (0.018)	eta 15:41:12	loss_t 0.0983 (0.1359)	loss_x 1.7749 (1.7761)	acc 91.7969 (91.7355)	lr 0.001536
+epoch: [17/50][160/394]	time 4.210 (4.261)	data 0.000 (0.016)	eta 15:40:04	loss_t 0.1309 (0.1346)	loss_x 1.8282 (1.7767)	acc 89.0625 (91.7273)	lr 0.001536
+epoch: [17/50][180/394]	time 4.245 (4.261)	data 0.000 (0.014)	eta 15:38:31	loss_t 0.1781 (0.1329)	loss_x 1.7751 (1.7787)	acc 89.6484 (91.6526)	lr 0.001536
+epoch: [17/50][200/394]	time 4.275 (4.258)	data 0.000 (0.013)	eta 15:36:27	loss_t 0.0953 (0.1319)	loss_x 1.8384 (1.7808)	acc 90.8203 (91.5840)	lr 0.001536
+epoch: [17/50][220/394]	time 4.317 (4.258)	data 0.001 (0.012)	eta 15:35:00	loss_t 0.1747 (0.1320)	loss_x 1.8297 (1.7825)	acc 89.2578 (91.5181)	lr 0.001536
+epoch: [17/50][240/394]	time 4.210 (4.256)	data 0.001 (0.011)	eta 15:33:17	loss_t 0.2468 (0.1320)	loss_x 1.8090 (1.7859)	acc 91.0156 (91.4193)	lr 0.001536
+epoch: [17/50][260/394]	time 4.173 (4.257)	data 0.000 (0.010)	eta 15:31:55	loss_t 0.1422 (0.1328)	loss_x 1.8114 (1.7893)	acc 90.2344 (91.3544)	lr 0.001536
+epoch: [17/50][280/394]	time 4.207 (4.255)	data 0.001 (0.009)	eta 15:30:11	loss_t 0.1241 (0.1328)	loss_x 1.8533 (1.7916)	acc 91.2109 (91.3051)	lr 0.001536
+epoch: [17/50][300/394]	time 4.269 (4.255)	data 0.001 (0.009)	eta 15:28:45	loss_t 0.1687 (0.1329)	loss_x 1.8626 (1.7946)	acc 89.2578 (91.2376)	lr 0.001536
+epoch: [17/50][320/394]	time 4.246 (4.255)	data 0.000 (0.008)	eta 15:27:18	loss_t 0.1322 (0.1339)	loss_x 1.8472 (1.7966)	acc 91.0156 (91.2030)	lr 0.001536
+epoch: [17/50][340/394]	time 4.225 (4.256)	data 0.000 (0.008)	eta 15:26:02	loss_t 0.1347 (0.1336)	loss_x 1.9381 (1.7999)	acc 89.2578 (91.1202)	lr 0.001536
+epoch: [17/50][360/394]	time 4.326 (4.254)	data 0.000 (0.007)	eta 15:24:19	loss_t 0.1732 (0.1335)	loss_x 1.8529 (1.8025)	acc 90.2344 (91.0482)	lr 0.001536
+epoch: [17/50][380/394]	time 4.347 (4.255)	data 0.000 (0.007)	eta 15:23:07	loss_t 0.2215 (0.1341)	loss_x 1.8063 (1.8041)	acc 90.8203 (91.0017)	lr 0.001536
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5512 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 59.5%
+CMC curve
+Rank-1  : 88.8%
+Rank-5  : 94.7%
+Rank-10 : 96.3%
+Rank-20 : 97.5%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-17"
+epoch: [18/50][20/394]	time 4.292 (4.339)	data 0.001 (0.122)	eta 15:38:55	loss_t 0.1727 (0.1467)	loss_x 1.7309 (1.7271)	acc 91.7969 (92.9883)	lr 0.001482
+epoch: [18/50][40/394]	time 4.224 (4.304)	data 0.000 (0.061)	eta 15:29:42	loss_t 0.1631 (0.1365)	loss_x 1.7572 (1.7216)	acc 92.7734 (93.1104)	lr 0.001482
+epoch: [18/50][60/394]	time 4.261 (4.268)	data 0.000 (0.041)	eta 15:20:34	loss_t 0.1899 (0.1356)	loss_x 1.7211 (1.7282)	acc 92.9688 (92.9818)	lr 0.001482
+epoch: [18/50][80/394]	time 4.247 (4.267)	data 0.000 (0.031)	eta 15:18:54	loss_t 0.1043 (0.1326)	loss_x 1.6909 (1.7304)	acc 93.7500 (92.8418)	lr 0.001482
+epoch: [18/50][100/394]	time 4.282 (4.265)	data 0.001 (0.025)	eta 15:17:09	loss_t 0.1999 (0.1327)	loss_x 1.7781 (1.7369)	acc 91.4062 (92.6680)	lr 0.001482
+epoch: [18/50][120/394]	time 4.258 (4.267)	data 0.001 (0.021)	eta 15:16:02	loss_t 0.0880 (0.1311)	loss_x 1.7661 (1.7427)	acc 92.5781 (92.5570)	lr 0.001482
+epoch: [18/50][140/394]	time 4.254 (4.262)	data 0.001 (0.018)	eta 15:13:33	loss_t 0.1383 (0.1305)	loss_x 1.7824 (1.7463)	acc 90.8203 (92.4693)	lr 0.001482
+epoch: [18/50][160/394]	time 4.261 (4.261)	data 0.000 (0.016)	eta 15:11:57	loss_t 0.0963 (0.1292)	loss_x 1.7518 (1.7496)	acc 92.9688 (92.3816)	lr 0.001482
+epoch: [18/50][180/394]	time 4.272 (4.260)	data 0.001 (0.014)	eta 15:10:17	loss_t 0.0601 (0.1282)	loss_x 1.7462 (1.7505)	acc 91.7969 (92.3589)	lr 0.001482
+epoch: [18/50][200/394]	time 4.280 (4.260)	data 0.001 (0.013)	eta 15:09:01	loss_t 0.1168 (0.1292)	loss_x 1.7770 (1.7537)	acc 91.4062 (92.2578)	lr 0.001482
+epoch: [18/50][220/394]	time 4.261 (4.258)	data 0.000 (0.011)	eta 15:07:00	loss_t 0.1707 (0.1287)	loss_x 1.7890 (1.7569)	acc 90.6250 (92.1822)	lr 0.001482
+epoch: [18/50][240/394]	time 4.274 (4.258)	data 0.000 (0.011)	eta 15:05:46	loss_t 0.0696 (0.1294)	loss_x 1.7740 (1.7588)	acc 91.9922 (92.1338)	lr 0.001482
+epoch: [18/50][260/394]	time 4.294 (4.257)	data 0.001 (0.010)	eta 15:04:07	loss_t 0.1166 (0.1298)	loss_x 1.7335 (1.7625)	acc 92.9688 (92.0215)	lr 0.001482
+epoch: [18/50][280/394]	time 4.291 (4.259)	data 0.000 (0.009)	eta 15:03:04	loss_t 0.1134 (0.1304)	loss_x 1.8790 (1.7650)	acc 88.6719 (91.9406)	lr 0.001482
+epoch: [18/50][300/394]	time 4.231 (4.257)	data 0.000 (0.009)	eta 15:01:17	loss_t 0.1849 (0.1296)	loss_x 1.8363 (1.7676)	acc 90.2344 (91.8822)	lr 0.001482
+epoch: [18/50][320/394]	time 4.262 (4.258)	data 0.001 (0.008)	eta 14:59:59	loss_t 0.1166 (0.1301)	loss_x 1.7303 (1.7691)	acc 93.5547 (91.8481)	lr 0.001482
+epoch: [18/50][340/394]	time 4.251 (4.258)	data 0.000 (0.008)	eta 14:58:29	loss_t 0.0895 (0.1306)	loss_x 1.7208 (1.7709)	acc 91.6016 (91.7906)	lr 0.001482
+epoch: [18/50][360/394]	time 4.131 (4.258)	data 0.001 (0.007)	eta 14:57:04	loss_t 0.1879 (0.1312)	loss_x 1.7914 (1.7729)	acc 90.0391 (91.7274)	lr 0.001482
+epoch: [18/50][380/394]	time 4.215 (4.256)	data 0.000 (0.007)	eta 14:55:16	loss_t 0.1507 (0.1310)	loss_x 1.7982 (1.7748)	acc 92.3828 (91.6889)	lr 0.001482
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5501 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 60.3%
+CMC curve
+Rank-1  : 89.7%
+Rank-5  : 95.3%
+Rank-10 : 96.6%
+Rank-20 : 97.8%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-18"
+epoch: [19/50][20/394]	time 4.225 (4.339)	data 0.000 (0.128)	eta 15:10:17	loss_t 0.1831 (0.1124)	loss_x 1.6769 (1.7065)	acc 93.5547 (93.2910)	lr 0.001426
+epoch: [19/50][40/394]	time 4.326 (4.305)	data 0.001 (0.064)	eta 15:01:46	loss_t 0.0847 (0.1194)	loss_x 1.6229 (1.7081)	acc 95.3125 (93.2715)	lr 0.001426
+epoch: [19/50][60/394]	time 4.283 (4.285)	data 0.001 (0.043)	eta 14:56:05	loss_t 0.1557 (0.1233)	loss_x 1.7181 (1.7066)	acc 93.3594 (93.3366)	lr 0.001426
+epoch: [19/50][80/394]	time 4.105 (4.266)	data 0.001 (0.032)	eta 14:50:49	loss_t 0.0876 (0.1190)	loss_x 1.7234 (1.7061)	acc 92.7734 (93.2764)	lr 0.001426
+epoch: [19/50][100/394]	time 4.295 (4.264)	data 0.000 (0.026)	eta 14:48:56	loss_t 0.1794 (0.1204)	loss_x 1.7232 (1.7102)	acc 92.7734 (93.1426)	lr 0.001426
+epoch: [19/50][120/394]	time 4.251 (4.264)	data 0.000 (0.022)	eta 14:47:29	loss_t 0.0726 (0.1211)	loss_x 1.7482 (1.7141)	acc 92.1875 (93.0518)	lr 0.001426
+epoch: [19/50][140/394]	time 4.277 (4.263)	data 0.000 (0.019)	eta 14:45:48	loss_t 0.0675 (0.1226)	loss_x 1.7459 (1.7175)	acc 93.7500 (92.9632)	lr 0.001426
+epoch: [19/50][160/394]	time 4.201 (4.258)	data 0.000 (0.016)	eta 14:43:29	loss_t 0.1536 (0.1233)	loss_x 1.7738 (1.7197)	acc 91.4062 (92.8735)	lr 0.001426
+epoch: [19/50][180/394]	time 4.270 (4.258)	data 0.000 (0.015)	eta 14:42:02	loss_t 0.0909 (0.1242)	loss_x 1.7802 (1.7251)	acc 91.0156 (92.7420)	lr 0.001426
+epoch: [19/50][200/394]	time 4.267 (4.257)	data 0.000 (0.013)	eta 14:40:24	loss_t 0.1339 (0.1240)	loss_x 1.7409 (1.7271)	acc 92.1875 (92.7100)	lr 0.001426
+epoch: [19/50][220/394]	time 4.198 (4.256)	data 0.001 (0.012)	eta 14:38:44	loss_t 0.0715 (0.1252)	loss_x 1.8243 (1.7322)	acc 89.6484 (92.5763)	lr 0.001426
+epoch: [19/50][240/394]	time 4.179 (4.254)	data 0.001 (0.011)	eta 14:36:57	loss_t 0.0931 (0.1255)	loss_x 1.7802 (1.7348)	acc 90.4297 (92.5269)	lr 0.001426
+epoch: [19/50][260/394]	time 4.113 (4.253)	data 0.001 (0.010)	eta 14:35:14	loss_t 0.1711 (0.1254)	loss_x 1.6797 (1.7363)	acc 93.9453 (92.4812)	lr 0.001426
+epoch: [19/50][280/394]	time 4.254 (4.254)	data 0.000 (0.010)	eta 14:34:01	loss_t 0.1040 (0.1251)	loss_x 1.8136 (1.7403)	acc 90.0391 (92.3933)	lr 0.001426
+epoch: [19/50][300/394]	time 4.279 (4.255)	data 0.000 (0.009)	eta 14:32:48	loss_t 0.0615 (0.1250)	loss_x 1.7681 (1.7425)	acc 92.9688 (92.3431)	lr 0.001426
+epoch: [19/50][320/394]	time 4.034 (4.254)	data 0.000 (0.008)	eta 14:31:12	loss_t 0.0720 (0.1257)	loss_x 1.7111 (1.7439)	acc 93.9453 (92.3175)	lr 0.001426
+epoch: [19/50][340/394]	time 4.238 (4.252)	data 0.000 (0.008)	eta 14:29:20	loss_t 0.0694 (0.1248)	loss_x 1.7695 (1.7456)	acc 91.2109 (92.2737)	lr 0.001426
+epoch: [19/50][360/394]	time 4.273 (4.252)	data 0.000 (0.008)	eta 14:27:59	loss_t 0.0850 (0.1244)	loss_x 1.7635 (1.7463)	acc 91.4062 (92.2521)	lr 0.001426
+epoch: [19/50][380/394]	time 4.253 (4.252)	data 0.000 (0.007)	eta 14:26:34	loss_t 0.1501 (0.1249)	loss_x 1.7224 (1.7477)	acc 93.1641 (92.2338)	lr 0.001426
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5426 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 56.6%
+CMC curve
+Rank-1  : 88.2%
+Rank-5  : 94.2%
+Rank-10 : 95.8%
+Rank-20 : 97.2%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-19"
+epoch: [20/50][20/394]	time 4.138 (4.252)	data 0.000 (0.126)	eta 14:24:07	loss_t 0.1463 (0.1254)	loss_x 1.6493 (1.6722)	acc 95.3125 (94.3262)	lr 0.001368
+epoch: [20/50][40/394]	time 4.167 (4.225)	data 0.000 (0.063)	eta 14:17:13	loss_t 0.1596 (0.1221)	loss_x 1.7199 (1.6756)	acc 92.3828 (94.0918)	lr 0.001368
+epoch: [20/50][60/394]	time 4.229 (4.209)	data 0.000 (0.042)	eta 14:12:32	loss_t 0.0578 (0.1209)	loss_x 1.6526 (1.6756)	acc 94.5312 (94.0234)	lr 0.001368
+epoch: [20/50][80/394]	time 4.192 (4.202)	data 0.001 (0.032)	eta 14:09:52	loss_t 0.1410 (0.1173)	loss_x 1.7574 (1.6780)	acc 91.6016 (93.9575)	lr 0.001368
+epoch: [20/50][100/394]	time 4.037 (4.196)	data 0.000 (0.026)	eta 14:07:16	loss_t 0.1106 (0.1150)	loss_x 1.7446 (1.6801)	acc 92.5781 (93.8984)	lr 0.001368
+epoch: [20/50][120/394]	time 4.254 (4.191)	data 0.001 (0.021)	eta 14:04:48	loss_t 0.1935 (0.1153)	loss_x 1.7296 (1.6834)	acc 92.1875 (93.8118)	lr 0.001368
+epoch: [20/50][140/394]	time 4.218 (4.190)	data 0.000 (0.018)	eta 14:03:09	loss_t 0.1507 (0.1151)	loss_x 1.6393 (1.6862)	acc 95.1172 (93.7193)	lr 0.001368
+epoch: [20/50][160/394]	time 4.170 (4.189)	data 0.000 (0.016)	eta 14:01:32	loss_t 0.1422 (0.1156)	loss_x 1.7270 (1.6894)	acc 92.1875 (93.6438)	lr 0.001368
+epoch: [20/50][180/394]	time 4.158 (4.189)	data 0.000 (0.014)	eta 14:00:05	loss_t 0.1020 (0.1176)	loss_x 1.6603 (1.6937)	acc 93.3594 (93.5200)	lr 0.001368
+epoch: [20/50][200/394]	time 4.177 (4.185)	data 0.000 (0.013)	eta 13:57:56	loss_t 0.0538 (0.1180)	loss_x 1.6833 (1.6978)	acc 93.5547 (93.4326)	lr 0.001368
+epoch: [20/50][220/394]	time 4.193 (4.185)	data 0.000 (0.012)	eta 13:56:29	loss_t 0.1418 (0.1192)	loss_x 1.7329 (1.7021)	acc 91.6016 (93.3150)	lr 0.001368
+epoch: [20/50][240/394]	time 4.245 (4.186)	data 0.001 (0.011)	eta 13:55:20	loss_t 0.1195 (0.1188)	loss_x 1.7629 (1.7046)	acc 92.5781 (93.2625)	lr 0.001368
+epoch: [20/50][260/394]	time 4.059 (4.183)	data 0.000 (0.010)	eta 13:53:23	loss_t 0.1358 (0.1194)	loss_x 1.7454 (1.7069)	acc 90.6250 (93.1941)	lr 0.001368
+epoch: [20/50][280/394]	time 4.149 (4.182)	data 0.000 (0.009)	eta 13:51:46	loss_t 0.0999 (0.1203)	loss_x 1.7153 (1.7105)	acc 93.3594 (93.1083)	lr 0.001368
+epoch: [20/50][300/394]	time 4.184 (4.180)	data 0.000 (0.009)	eta 13:49:55	loss_t 0.0860 (0.1214)	loss_x 1.7726 (1.7147)	acc 91.4062 (93.0247)	lr 0.001368
+epoch: [20/50][320/394]	time 4.326 (4.179)	data 0.001 (0.008)	eta 13:48:22	loss_t 0.1247 (0.1231)	loss_x 1.7730 (1.7176)	acc 92.3828 (92.9736)	lr 0.001368
+epoch: [20/50][340/394]	time 4.200 (4.178)	data 0.000 (0.008)	eta 13:46:53	loss_t 0.1317 (0.1232)	loss_x 1.7352 (1.7204)	acc 92.7734 (92.9050)	lr 0.001368
+epoch: [20/50][360/394]	time 4.182 (4.177)	data 0.000 (0.007)	eta 13:45:15	loss_t 0.0662 (0.1233)	loss_x 1.7058 (1.7224)	acc 93.5547 (92.8559)	lr 0.001368
+epoch: [20/50][380/394]	time 4.226 (4.177)	data 0.000 (0.007)	eta 13:43:55	loss_t 0.0412 (0.1228)	loss_x 1.7039 (1.7249)	acc 93.7500 (92.7796)	lr 0.001368
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5289 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 61.1%
+CMC curve
+Rank-1  : 89.5%
+Rank-5  : 95.3%
+Rank-10 : 96.6%
+Rank-20 : 97.7%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-20"
+epoch: [21/50][20/394]	time 4.205 (4.251)	data 0.000 (0.125)	eta 13:56:07	loss_t 0.0604 (0.1151)	loss_x 1.6525 (1.6573)	acc 95.3125 (94.5703)	lr 0.001309
+epoch: [21/50][40/394]	time 4.179 (4.216)	data 0.000 (0.063)	eta 13:47:43	loss_t 0.1170 (0.1086)	loss_x 1.6323 (1.6497)	acc 94.1406 (94.6094)	lr 0.001309
+epoch: [21/50][60/394]	time 4.209 (4.201)	data 0.001 (0.042)	eta 13:43:29	loss_t 0.1015 (0.1047)	loss_x 1.6512 (1.6457)	acc 94.3359 (94.6257)	lr 0.001309
+epoch: [21/50][80/394]	time 4.251 (4.197)	data 0.001 (0.032)	eta 13:41:10	loss_t 0.1254 (0.1048)	loss_x 1.6503 (1.6497)	acc 94.3359 (94.5410)	lr 0.001309
+epoch: [21/50][100/394]	time 4.204 (4.192)	data 0.000 (0.025)	eta 13:38:46	loss_t 0.0963 (0.1087)	loss_x 1.7212 (1.6551)	acc 92.5781 (94.3691)	lr 0.001309
+epoch: [21/50][120/394]	time 4.230 (4.190)	data 0.000 (0.021)	eta 13:37:03	loss_t 0.1104 (0.1090)	loss_x 1.6606 (1.6601)	acc 93.3594 (94.2578)	lr 0.001309
+epoch: [21/50][140/394]	time 4.213 (4.189)	data 0.000 (0.018)	eta 13:35:25	loss_t 0.1682 (0.1100)	loss_x 1.7816 (1.6661)	acc 92.1875 (94.1253)	lr 0.001309
+epoch: [21/50][160/394]	time 4.168 (4.186)	data 0.000 (0.016)	eta 13:33:23	loss_t 0.0731 (0.1104)	loss_x 1.6903 (1.6710)	acc 93.3594 (93.9893)	lr 0.001309
+epoch: [21/50][180/394]	time 4.134 (4.186)	data 0.000 (0.014)	eta 13:32:01	loss_t 0.1750 (0.1116)	loss_x 1.7130 (1.6749)	acc 92.3828 (93.8596)	lr 0.001309
+epoch: [21/50][200/394]	time 4.231 (4.185)	data 0.000 (0.013)	eta 13:30:25	loss_t 0.0909 (0.1106)	loss_x 1.6765 (1.6772)	acc 94.3359 (93.8027)	lr 0.001309
+epoch: [21/50][220/394]	time 4.209 (4.186)	data 0.000 (0.012)	eta 13:29:16	loss_t 0.1259 (0.1106)	loss_x 1.7139 (1.6793)	acc 93.5547 (93.7553)	lr 0.001309
+epoch: [21/50][240/394]	time 4.215 (4.186)	data 0.000 (0.011)	eta 13:27:57	loss_t 0.1001 (0.1099)	loss_x 1.6615 (1.6808)	acc 94.3359 (93.7061)	lr 0.001309
+epoch: [21/50][260/394]	time 4.161 (4.184)	data 0.000 (0.010)	eta 13:26:12	loss_t 0.0926 (0.1098)	loss_x 1.6294 (1.6824)	acc 94.5312 (93.6599)	lr 0.001309
+epoch: [21/50][280/394]	time 4.178 (4.185)	data 0.001 (0.009)	eta 13:24:54	loss_t 0.0892 (0.1105)	loss_x 1.6636 (1.6841)	acc 95.1172 (93.6203)	lr 0.001309
+epoch: [21/50][300/394]	time 4.227 (4.184)	data 0.000 (0.009)	eta 13:23:22	loss_t 0.1366 (0.1119)	loss_x 1.7732 (1.6882)	acc 91.6016 (93.5247)	lr 0.001309
+epoch: [21/50][320/394]	time 4.157 (4.184)	data 0.000 (0.008)	eta 13:21:51	loss_t 0.1152 (0.1117)	loss_x 1.6945 (1.6897)	acc 93.5547 (93.4845)	lr 0.001309
+epoch: [21/50][340/394]	time 4.174 (4.183)	data 0.000 (0.008)	eta 13:20:22	loss_t 0.1491 (0.1127)	loss_x 1.7788 (1.6918)	acc 90.4297 (93.4582)	lr 0.001309
+epoch: [21/50][360/394]	time 4.169 (4.182)	data 0.000 (0.007)	eta 13:18:49	loss_t 0.1025 (0.1121)	loss_x 1.7640 (1.6945)	acc 92.1875 (93.4012)	lr 0.001309
+epoch: [21/50][380/394]	time 4.146 (4.182)	data 0.000 (0.007)	eta 13:17:19	loss_t 0.1967 (0.1131)	loss_x 1.7808 (1.6968)	acc 91.2109 (93.3512)	lr 0.001309
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5486 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 60.0%
+CMC curve
+Rank-1  : 90.0%
+Rank-5  : 95.4%
+Rank-10 : 96.8%
+Rank-20 : 97.9%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-21"
+epoch: [22/50][20/394]	time 4.173 (4.303)	data 0.000 (0.126)	eta 13:37:55	loss_t 0.1278 (0.1163)	loss_x 1.6704 (1.6314)	acc 94.7266 (94.7656)	lr 0.001249
+epoch: [22/50][40/394]	time 4.268 (4.268)	data 0.001 (0.063)	eta 13:29:57	loss_t 0.1290 (0.1152)	loss_x 1.6146 (1.6323)	acc 94.7266 (94.7656)	lr 0.001249
+epoch: [22/50][60/394]	time 4.262 (4.260)	data 0.000 (0.042)	eta 13:26:56	loss_t 0.0952 (0.1110)	loss_x 1.6320 (1.6366)	acc 94.9219 (94.6680)	lr 0.001249
+epoch: [22/50][80/394]	time 4.228 (4.255)	data 0.000 (0.032)	eta 13:24:31	loss_t 0.1219 (0.1088)	loss_x 1.7078 (1.6397)	acc 92.9688 (94.5923)	lr 0.001249
+epoch: [22/50][100/394]	time 4.220 (4.253)	data 0.001 (0.026)	eta 13:22:47	loss_t 0.1162 (0.1094)	loss_x 1.6208 (1.6421)	acc 94.7266 (94.5566)	lr 0.001249
+epoch: [22/50][120/394]	time 4.164 (4.247)	data 0.000 (0.021)	eta 13:20:14	loss_t 0.1227 (0.1078)	loss_x 1.6925 (1.6436)	acc 92.9688 (94.5345)	lr 0.001249
+epoch: [22/50][140/394]	time 4.278 (4.245)	data 0.000 (0.018)	eta 13:18:32	loss_t 0.1721 (0.1073)	loss_x 1.6880 (1.6458)	acc 94.1406 (94.5271)	lr 0.001249
+epoch: [22/50][160/394]	time 4.249 (4.247)	data 0.000 (0.016)	eta 13:17:30	loss_t 0.0863 (0.1073)	loss_x 1.7262 (1.6468)	acc 91.9922 (94.5142)	lr 0.001249
+epoch: [22/50][180/394]	time 4.251 (4.246)	data 0.001 (0.014)	eta 13:15:52	loss_t 0.1723 (0.1105)	loss_x 1.6693 (1.6497)	acc 94.5312 (94.4683)	lr 0.001249
+epoch: [22/50][200/394]	time 4.235 (4.239)	data 0.000 (0.013)	eta 13:13:12	loss_t 0.0677 (0.1106)	loss_x 1.7052 (1.6540)	acc 92.7734 (94.3730)	lr 0.001249
+epoch: [22/50][220/394]	time 4.124 (4.238)	data 0.001 (0.012)	eta 13:11:35	loss_t 0.1515 (0.1103)	loss_x 1.6621 (1.6568)	acc 94.9219 (94.3022)	lr 0.001249
+epoch: [22/50][240/394]	time 4.194 (4.239)	data 0.001 (0.011)	eta 13:10:20	loss_t 0.0677 (0.1101)	loss_x 1.7429 (1.6596)	acc 92.3828 (94.2253)	lr 0.001249
+epoch: [22/50][260/394]	time 4.180 (4.239)	data 0.001 (0.010)	eta 13:08:57	loss_t 0.0768 (0.1106)	loss_x 1.6605 (1.6616)	acc 92.7734 (94.1925)	lr 0.001249
+epoch: [22/50][280/394]	time 4.273 (4.238)	data 0.000 (0.009)	eta 13:07:12	loss_t 0.1452 (0.1100)	loss_x 1.6861 (1.6640)	acc 93.5547 (94.1162)	lr 0.001249
+epoch: [22/50][300/394]	time 4.182 (4.236)	data 0.000 (0.009)	eta 13:05:35	loss_t 0.0982 (0.1100)	loss_x 1.7204 (1.6663)	acc 93.1641 (94.0378)	lr 0.001249
+epoch: [22/50][320/394]	time 4.191 (4.238)	data 0.001 (0.008)	eta 13:04:28	loss_t 0.1037 (0.1104)	loss_x 1.7157 (1.6697)	acc 93.5547 (93.9526)	lr 0.001249
+epoch: [22/50][340/394]	time 4.255 (4.238)	data 0.000 (0.008)	eta 13:03:07	loss_t 0.1464 (0.1110)	loss_x 1.7738 (1.6722)	acc 90.4297 (93.8890)	lr 0.001249
+epoch: [22/50][360/394]	time 4.224 (4.239)	data 0.001 (0.007)	eta 13:01:43	loss_t 0.2100 (0.1114)	loss_x 1.7895 (1.6745)	acc 92.5781 (93.8482)	lr 0.001249
+epoch: [22/50][380/394]	time 4.281 (4.237)	data 0.000 (0.007)	eta 12:59:56	loss_t 0.1368 (0.1121)	loss_x 1.7067 (1.6769)	acc 92.5781 (93.7968)	lr 0.001249
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5480 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 60.0%
+CMC curve
+Rank-1  : 89.9%
+Rank-5  : 95.3%
+Rank-10 : 96.8%
+Rank-20 : 97.9%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-22"
+epoch: [23/50][20/394]	time 4.264 (4.342)	data 0.001 (0.120)	eta 13:16:50	loss_t 0.0991 (0.0955)	loss_x 1.6108 (1.6164)	acc 95.1172 (94.9219)	lr 0.001187
+epoch: [23/50][40/394]	time 4.268 (4.284)	data 0.000 (0.060)	eta 13:04:54	loss_t 0.1000 (0.1035)	loss_x 1.6193 (1.6132)	acc 94.7266 (95.1562)	lr 0.001187
+epoch: [23/50][60/394]	time 4.204 (4.271)	data 0.000 (0.040)	eta 13:00:56	loss_t 0.1031 (0.1060)	loss_x 1.6463 (1.6188)	acc 95.1172 (95.0326)	lr 0.001187
+epoch: [23/50][80/394]	time 4.220 (4.258)	data 0.000 (0.030)	eta 12:57:14	loss_t 0.0986 (0.1034)	loss_x 1.6722 (1.6182)	acc 93.7500 (94.9976)	lr 0.001187
+epoch: [23/50][100/394]	time 4.217 (4.254)	data 0.001 (0.024)	eta 12:55:02	loss_t 0.1289 (0.1053)	loss_x 1.6918 (1.6234)	acc 93.5547 (94.8867)	lr 0.001187
+epoch: [23/50][120/394]	time 4.198 (4.254)	data 0.001 (0.020)	eta 12:53:36	loss_t 0.0603 (0.1031)	loss_x 1.6585 (1.6251)	acc 94.5312 (94.8763)	lr 0.001187
+epoch: [23/50][140/394]	time 4.275 (4.254)	data 0.000 (0.018)	eta 12:52:11	loss_t 0.0883 (0.1038)	loss_x 1.6384 (1.6266)	acc 95.5078 (94.8856)	lr 0.001187
+epoch: [23/50][160/394]	time 4.192 (4.250)	data 0.000 (0.015)	eta 12:50:01	loss_t 0.1142 (0.1038)	loss_x 1.6615 (1.6310)	acc 93.9453 (94.8083)	lr 0.001187
+epoch: [23/50][180/394]	time 4.278 (4.245)	data 0.001 (0.014)	eta 12:47:50	loss_t 0.1401 (0.1039)	loss_x 1.6828 (1.6323)	acc 93.7500 (94.7559)	lr 0.001187
+epoch: [23/50][200/394]	time 4.208 (4.246)	data 0.001 (0.012)	eta 12:46:32	loss_t 0.1156 (0.1048)	loss_x 1.6277 (1.6348)	acc 94.5312 (94.6865)	lr 0.001187
+epoch: [23/50][220/394]	time 4.319 (4.246)	data 0.000 (0.011)	eta 12:45:09	loss_t 0.0654 (0.1058)	loss_x 1.6814 (1.6389)	acc 95.1172 (94.5987)	lr 0.001187
+epoch: [23/50][240/394]	time 4.298 (4.246)	data 0.001 (0.010)	eta 12:43:38	loss_t 0.0816 (0.1066)	loss_x 1.6821 (1.6421)	acc 94.3359 (94.5280)	lr 0.001187
+epoch: [23/50][260/394]	time 4.264 (4.242)	data 0.000 (0.010)	eta 12:41:29	loss_t 0.0785 (0.1068)	loss_x 1.6846 (1.6451)	acc 92.9688 (94.4539)	lr 0.001187
+epoch: [23/50][280/394]	time 4.250 (4.241)	data 0.001 (0.009)	eta 12:40:01	loss_t 0.0980 (0.1068)	loss_x 1.6945 (1.6471)	acc 93.7500 (94.4120)	lr 0.001187
+epoch: [23/50][300/394]	time 4.414 (4.243)	data 0.000 (0.008)	eta 12:38:51	loss_t 0.0637 (0.1068)	loss_x 1.6769 (1.6489)	acc 93.1641 (94.3789)	lr 0.001187
+epoch: [23/50][320/394]	time 4.217 (4.242)	data 0.001 (0.008)	eta 12:37:24	loss_t 0.0796 (0.1062)	loss_x 1.6586 (1.6512)	acc 93.9453 (94.3335)	lr 0.001187
+epoch: [23/50][340/394]	time 4.230 (4.241)	data 0.001 (0.008)	eta 12:35:44	loss_t 0.1461 (0.1068)	loss_x 1.6686 (1.6535)	acc 95.1172 (94.2750)	lr 0.001187
+epoch: [23/50][360/394]	time 4.208 (4.241)	data 0.000 (0.007)	eta 12:34:16	loss_t 0.0909 (0.1068)	loss_x 1.6908 (1.6549)	acc 92.7734 (94.2421)	lr 0.001187
+epoch: [23/50][380/394]	time 4.255 (4.241)	data 0.001 (0.007)	eta 12:32:55	loss_t 0.1691 (0.1068)	loss_x 1.7004 (1.6571)	acc 92.3828 (94.1956)	lr 0.001187
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5461 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 61.3%
+CMC curve
+Rank-1  : 90.6%
+Rank-5  : 95.4%
+Rank-10 : 96.9%
+Rank-20 : 97.9%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-23"
+epoch: [24/50][20/394]	time 4.176 (4.328)	data 0.000 (0.127)	eta 12:45:54	loss_t 0.1148 (0.1158)	loss_x 1.5929 (1.6116)	acc 95.3125 (95.3613)	lr 0.001125
+epoch: [24/50][40/394]	time 4.271 (4.291)	data 0.000 (0.064)	eta 12:37:58	loss_t 0.1494 (0.1063)	loss_x 1.5726 (1.6062)	acc 96.0938 (95.4639)	lr 0.001125
+epoch: [24/50][60/394]	time 4.280 (4.255)	data 0.001 (0.043)	eta 12:30:09	loss_t 0.1390 (0.1027)	loss_x 1.5899 (1.6027)	acc 95.3125 (95.4525)	lr 0.001125
+epoch: [24/50][80/394]	time 4.271 (4.254)	data 0.001 (0.032)	eta 12:28:34	loss_t 0.1201 (0.1072)	loss_x 1.5960 (1.6012)	acc 96.2891 (95.4590)	lr 0.001125
+epoch: [24/50][100/394]	time 4.248 (4.252)	data 0.001 (0.026)	eta 12:26:44	loss_t 0.1362 (0.1064)	loss_x 1.6794 (1.6033)	acc 93.7500 (95.4355)	lr 0.001125
+epoch: [24/50][120/394]	time 4.186 (4.252)	data 0.000 (0.022)	eta 12:25:23	loss_t 0.0830 (0.1036)	loss_x 1.6134 (1.6056)	acc 95.8984 (95.3646)	lr 0.001125
+epoch: [24/50][140/394]	time 4.122 (4.243)	data 0.000 (0.018)	eta 12:22:22	loss_t 0.0710 (0.1024)	loss_x 1.6184 (1.6069)	acc 94.5312 (95.3376)	lr 0.001125
+epoch: [24/50][160/394]	time 4.389 (4.243)	data 0.000 (0.016)	eta 12:20:56	loss_t 0.1025 (0.1010)	loss_x 1.5991 (1.6094)	acc 95.3125 (95.2832)	lr 0.001125
+epoch: [24/50][180/394]	time 4.255 (4.242)	data 0.001 (0.014)	eta 12:19:21	loss_t 0.0227 (0.1012)	loss_x 1.6427 (1.6123)	acc 94.1406 (95.1997)	lr 0.001125
+epoch: [24/50][200/394]	time 4.248 (4.242)	data 0.001 (0.013)	eta 12:17:55	loss_t 0.0754 (0.1004)	loss_x 1.6828 (1.6150)	acc 93.9453 (95.1270)	lr 0.001125
+epoch: [24/50][220/394]	time 4.212 (4.241)	data 0.000 (0.012)	eta 12:16:24	loss_t 0.1583 (0.0998)	loss_x 1.5857 (1.6178)	acc 94.9219 (95.0524)	lr 0.001125
+epoch: [24/50][240/394]	time 4.290 (4.239)	data 0.001 (0.011)	eta 12:14:41	loss_t 0.1105 (0.1018)	loss_x 1.6158 (1.6204)	acc 95.3125 (94.9919)	lr 0.001125
+epoch: [24/50][260/394]	time 4.227 (4.240)	data 0.001 (0.010)	eta 12:13:23	loss_t 0.1513 (0.1030)	loss_x 1.6857 (1.6240)	acc 93.9453 (94.9264)	lr 0.001125
+epoch: [24/50][280/394]	time 4.270 (4.239)	data 0.000 (0.009)	eta 12:11:51	loss_t 0.1317 (0.1033)	loss_x 1.6468 (1.6259)	acc 94.5312 (94.8793)	lr 0.001125
+epoch: [24/50][300/394]	time 4.199 (4.238)	data 0.001 (0.009)	eta 12:10:15	loss_t 0.0421 (0.1033)	loss_x 1.6948 (1.6280)	acc 92.3828 (94.8288)	lr 0.001125
+epoch: [24/50][320/394]	time 4.241 (4.235)	data 0.000 (0.008)	eta 12:08:18	loss_t 0.0723 (0.1037)	loss_x 1.6093 (1.6304)	acc 95.3125 (94.7620)	lr 0.001125
+epoch: [24/50][340/394]	time 4.222 (4.236)	data 0.001 (0.008)	eta 12:07:04	loss_t 0.1236 (0.1040)	loss_x 1.6955 (1.6334)	acc 92.5781 (94.6754)	lr 0.001125
+epoch: [24/50][360/394]	time 4.242 (4.236)	data 0.000 (0.007)	eta 12:05:38	loss_t 0.0592 (0.1040)	loss_x 1.6430 (1.6352)	acc 94.5312 (94.6354)	lr 0.001125
+epoch: [24/50][380/394]	time 4.214 (4.237)	data 0.001 (0.007)	eta 12:04:18	loss_t 0.0872 (0.1041)	loss_x 1.7125 (1.6370)	acc 91.9922 (94.5970)	lr 0.001125
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5509 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 64.5%
+CMC curve
+Rank-1  : 91.2%
+Rank-5  : 95.8%
+Rank-10 : 97.1%
+Rank-20 : 98.1%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-24"
+epoch: [25/50][20/394]	time 4.374 (4.285)	data 0.000 (0.133)	eta 12:10:06	loss_t 0.1371 (0.1137)	loss_x 1.5712 (1.5769)	acc 96.0938 (96.0059)	lr 0.001063
+epoch: [25/50][40/394]	time 4.247 (4.239)	data 0.000 (0.067)	eta 12:00:51	loss_t 0.1043 (0.1049)	loss_x 1.5841 (1.5786)	acc 96.6797 (95.8154)	lr 0.001063
+epoch: [25/50][60/394]	time 4.226 (4.226)	data 0.000 (0.045)	eta 11:57:13	loss_t 0.0787 (0.1039)	loss_x 1.5591 (1.5813)	acc 95.8984 (95.8040)	lr 0.001063
+epoch: [25/50][80/394]	time 4.235 (4.222)	data 0.000 (0.034)	eta 11:55:17	loss_t 0.0882 (0.1039)	loss_x 1.5487 (1.5820)	acc 96.0938 (95.8203)	lr 0.001063
+epoch: [25/50][100/394]	time 4.155 (4.216)	data 0.000 (0.027)	eta 11:52:43	loss_t 0.0560 (0.1032)	loss_x 1.5717 (1.5837)	acc 96.2891 (95.7949)	lr 0.001063
+epoch: [25/50][120/394]	time 4.200 (4.209)	data 0.000 (0.023)	eta 11:50:09	loss_t 0.0691 (0.1028)	loss_x 1.5464 (1.5861)	acc 96.2891 (95.7422)	lr 0.001063
+epoch: [25/50][140/394]	time 4.209 (4.206)	data 0.000 (0.019)	eta 11:48:16	loss_t 0.0811 (0.1019)	loss_x 1.6477 (1.5878)	acc 93.9453 (95.7045)	lr 0.001063
+epoch: [25/50][160/394]	time 4.241 (4.203)	data 0.001 (0.017)	eta 11:46:25	loss_t 0.1120 (0.1003)	loss_x 1.6182 (1.5905)	acc 95.1172 (95.6238)	lr 0.001063
+epoch: [25/50][180/394]	time 4.255 (4.204)	data 0.001 (0.015)	eta 11:45:13	loss_t 0.0726 (0.0991)	loss_x 1.5442 (1.5916)	acc 96.0938 (95.6163)	lr 0.001063
+epoch: [25/50][200/394]	time 4.231 (4.202)	data 0.001 (0.014)	eta 11:43:20	loss_t 0.1360 (0.0997)	loss_x 1.5939 (1.5942)	acc 94.5312 (95.5410)	lr 0.001063
+epoch: [25/50][220/394]	time 4.215 (4.202)	data 0.000 (0.013)	eta 11:41:56	loss_t 0.0871 (0.0996)	loss_x 1.6176 (1.5968)	acc 94.5312 (95.4794)	lr 0.001063
+epoch: [25/50][240/394]	time 4.198 (4.201)	data 0.000 (0.012)	eta 11:40:30	loss_t 0.1582 (0.0999)	loss_x 1.6033 (1.5998)	acc 95.3125 (95.4085)	lr 0.001063
+epoch: [25/50][260/394]	time 4.143 (4.201)	data 0.000 (0.011)	eta 11:39:05	loss_t 0.1660 (0.1005)	loss_x 1.5464 (1.6025)	acc 96.8750 (95.3456)	lr 0.001063
+epoch: [25/50][280/394]	time 4.104 (4.199)	data 0.000 (0.010)	eta 11:37:21	loss_t 0.1190 (0.1004)	loss_x 1.6862 (1.6044)	acc 94.1406 (95.3209)	lr 0.001063
+epoch: [25/50][300/394]	time 4.232 (4.199)	data 0.001 (0.009)	eta 11:35:53	loss_t 0.1605 (0.1001)	loss_x 1.6643 (1.6070)	acc 93.5547 (95.2591)	lr 0.001063
+epoch: [25/50][320/394]	time 4.209 (4.200)	data 0.000 (0.009)	eta 11:34:36	loss_t 0.0920 (0.1009)	loss_x 1.6881 (1.6091)	acc 93.3594 (95.2197)	lr 0.001063
+epoch: [25/50][340/394]	time 4.218 (4.200)	data 0.000 (0.008)	eta 11:33:12	loss_t 0.1146 (0.1004)	loss_x 1.6067 (1.6102)	acc 94.9219 (95.2039)	lr 0.001063
+epoch: [25/50][360/394]	time 4.152 (4.199)	data 0.000 (0.008)	eta 11:31:45	loss_t 0.1352 (0.1004)	loss_x 1.6605 (1.6125)	acc 94.1406 (95.1476)	lr 0.001063
+epoch: [25/50][380/394]	time 4.254 (4.197)	data 0.000 (0.007)	eta 11:30:02	loss_t 0.1690 (0.1005)	loss_x 1.6510 (1.6142)	acc 93.7500 (95.0905)	lr 0.001063
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5528 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 63.6%
+CMC curve
+Rank-1  : 91.8%
+Rank-5  : 95.9%
+Rank-10 : 97.1%
+Rank-20 : 98.2%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-25"
+epoch: [26/50][20/394]	time 4.211 (4.331)	data 0.001 (0.129)	eta 11:49:38	loss_t 0.0883 (0.1063)	loss_x 1.5758 (1.5653)	acc 96.2891 (96.3574)	lr 0.001000
+epoch: [26/50][40/394]	time 4.201 (4.285)	data 0.001 (0.065)	eta 11:40:40	loss_t 0.0654 (0.0976)	loss_x 1.6070 (1.5634)	acc 94.3359 (96.2451)	lr 0.001000
+epoch: [26/50][60/394]	time 4.267 (4.263)	data 0.000 (0.043)	eta 11:35:32	loss_t 0.0387 (0.0914)	loss_x 1.5517 (1.5625)	acc 96.2891 (96.2305)	lr 0.001000
+epoch: [26/50][80/394]	time 4.079 (4.245)	data 0.001 (0.033)	eta 11:31:15	loss_t 0.1084 (0.0953)	loss_x 1.5609 (1.5631)	acc 95.8984 (96.1792)	lr 0.001000
+epoch: [26/50][100/394]	time 4.319 (4.247)	data 0.000 (0.026)	eta 11:30:08	loss_t 0.0525 (0.0941)	loss_x 1.5928 (1.5633)	acc 94.5312 (96.1719)	lr 0.001000
+epoch: [26/50][120/394]	time 4.223 (4.247)	data 0.001 (0.022)	eta 11:28:42	loss_t 0.0701 (0.0933)	loss_x 1.6103 (1.5649)	acc 95.5078 (96.1572)	lr 0.001000
+epoch: [26/50][140/394]	time 4.283 (4.249)	data 0.001 (0.019)	eta 11:27:33	loss_t 0.0765 (0.0936)	loss_x 1.5932 (1.5666)	acc 95.3125 (96.1454)	lr 0.001000
+epoch: [26/50][160/394]	time 4.252 (4.247)	data 0.000 (0.017)	eta 11:25:50	loss_t 0.1021 (0.0948)	loss_x 1.6127 (1.5703)	acc 95.1172 (96.0620)	lr 0.001000
+epoch: [26/50][180/394]	time 4.177 (4.240)	data 0.000 (0.015)	eta 11:23:22	loss_t 0.0233 (0.0946)	loss_x 1.6072 (1.5748)	acc 95.1172 (95.9245)	lr 0.001000
+epoch: [26/50][200/394]	time 4.216 (4.241)	data 0.000 (0.013)	eta 11:22:03	loss_t 0.0933 (0.0952)	loss_x 1.5945 (1.5762)	acc 95.7031 (95.8857)	lr 0.001000
+epoch: [26/50][220/394]	time 4.276 (4.241)	data 0.000 (0.012)	eta 11:20:36	loss_t 0.0909 (0.0945)	loss_x 1.5720 (1.5792)	acc 97.0703 (95.8327)	lr 0.001000
+epoch: [26/50][240/394]	time 4.229 (4.241)	data 0.001 (0.011)	eta 11:19:19	loss_t 0.0672 (0.0949)	loss_x 1.6161 (1.5816)	acc 95.1172 (95.7650)	lr 0.001000
+epoch: [26/50][260/394]	time 4.233 (4.238)	data 0.000 (0.010)	eta 11:17:22	loss_t 0.1382 (0.0959)	loss_x 1.6619 (1.5834)	acc 93.9453 (95.7242)	lr 0.001000
+epoch: [26/50][280/394]	time 4.260 (4.238)	data 0.000 (0.010)	eta 11:15:57	loss_t 0.1163 (0.0956)	loss_x 1.5875 (1.5854)	acc 95.1172 (95.6696)	lr 0.001000
+epoch: [26/50][300/394]	time 4.183 (4.237)	data 0.000 (0.009)	eta 11:14:25	loss_t 0.1309 (0.0954)	loss_x 1.5211 (1.5874)	acc 97.6562 (95.6230)	lr 0.001000
+epoch: [26/50][320/394]	time 4.235 (4.238)	data 0.000 (0.009)	eta 11:13:03	loss_t 0.1048 (0.0958)	loss_x 1.6347 (1.5897)	acc 94.5312 (95.5670)	lr 0.001000
+epoch: [26/50][340/394]	time 4.239 (4.238)	data 0.000 (0.008)	eta 11:11:44	loss_t 0.1087 (0.0961)	loss_x 1.6091 (1.5923)	acc 95.3125 (95.5072)	lr 0.001000
+epoch: [26/50][360/394]	time 4.269 (4.236)	data 0.001 (0.008)	eta 11:10:03	loss_t 0.1111 (0.0963)	loss_x 1.6300 (1.5939)	acc 93.9453 (95.4704)	lr 0.001000
+epoch: [26/50][380/394]	time 4.250 (4.236)	data 0.000 (0.007)	eta 11:08:38	loss_t 0.1306 (0.0966)	loss_x 1.6446 (1.5955)	acc 93.5547 (95.4225)	lr 0.001000
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5534 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 64.8%
+CMC curve
+Rank-1  : 91.3%
+Rank-5  : 96.0%
+Rank-10 : 97.3%
+Rank-20 : 98.2%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-26"
+epoch: [27/50][20/394]	time 4.274 (4.305)	data 0.001 (0.119)	eta 11:17:00	loss_t 0.0568 (0.0988)	loss_x 1.5629 (1.5590)	acc 96.8750 (96.3086)	lr 0.000937
+epoch: [27/50][40/394]	time 4.250 (4.281)	data 0.001 (0.060)	eta 11:11:50	loss_t 0.0937 (0.0937)	loss_x 1.5604 (1.5557)	acc 95.8984 (96.3037)	lr 0.000937
+epoch: [27/50][60/394]	time 4.185 (4.256)	data 0.000 (0.040)	eta 11:06:30	loss_t 0.0614 (0.0909)	loss_x 1.5274 (1.5513)	acc 97.0703 (96.3704)	lr 0.000937
+epoch: [27/50][80/394]	time 4.283 (4.252)	data 0.000 (0.030)	eta 11:04:23	loss_t 0.0797 (0.0890)	loss_x 1.5184 (1.5497)	acc 96.6797 (96.3354)	lr 0.000937
+epoch: [27/50][100/394]	time 4.341 (4.254)	data 0.000 (0.024)	eta 11:03:18	loss_t 0.0902 (0.0900)	loss_x 1.5500 (1.5521)	acc 96.4844 (96.2949)	lr 0.000937
+epoch: [27/50][120/394]	time 4.274 (4.248)	data 0.000 (0.020)	eta 11:00:58	loss_t 0.1065 (0.0899)	loss_x 1.5675 (1.5552)	acc 97.4609 (96.2451)	lr 0.000937
+epoch: [27/50][140/394]	time 4.173 (4.243)	data 0.000 (0.017)	eta 10:58:51	loss_t 0.0420 (0.0896)	loss_x 1.5732 (1.5549)	acc 96.0938 (96.2640)	lr 0.000937
+epoch: [27/50][160/394]	time 4.248 (4.244)	data 0.001 (0.015)	eta 10:57:35	loss_t 0.0699 (0.0899)	loss_x 1.5129 (1.5546)	acc 96.8750 (96.2866)	lr 0.000937
+epoch: [27/50][180/394]	time 4.101 (4.242)	data 0.001 (0.014)	eta 10:55:49	loss_t 0.0667 (0.0902)	loss_x 1.5590 (1.5565)	acc 96.4844 (96.2261)	lr 0.000937
+epoch: [27/50][200/394]	time 4.103 (4.241)	data 0.001 (0.012)	eta 10:54:14	loss_t 0.1149 (0.0907)	loss_x 1.5474 (1.5595)	acc 96.2891 (96.1992)	lr 0.000937
+epoch: [27/50][220/394]	time 4.230 (4.242)	data 0.001 (0.011)	eta 10:52:55	loss_t 0.0588 (0.0911)	loss_x 1.5905 (1.5604)	acc 94.3359 (96.1488)	lr 0.000937
+epoch: [27/50][240/394]	time 4.216 (4.240)	data 0.000 (0.010)	eta 10:51:12	loss_t 0.0505 (0.0914)	loss_x 1.6141 (1.5627)	acc 94.9219 (96.0946)	lr 0.000937
+epoch: [27/50][260/394]	time 4.261 (4.240)	data 0.000 (0.010)	eta 10:49:48	loss_t 0.0779 (0.0917)	loss_x 1.5664 (1.5650)	acc 96.4844 (96.0291)	lr 0.000937
+epoch: [27/50][280/394]	time 4.186 (4.240)	data 0.000 (0.009)	eta 10:48:30	loss_t 0.1147 (0.0928)	loss_x 1.6004 (1.5671)	acc 95.7031 (95.9912)	lr 0.000937
+epoch: [27/50][300/394]	time 4.127 (4.240)	data 0.000 (0.008)	eta 10:47:03	loss_t 0.0948 (0.0933)	loss_x 1.5817 (1.5696)	acc 94.9219 (95.9323)	lr 0.000937
+epoch: [27/50][320/394]	time 4.271 (4.238)	data 0.000 (0.008)	eta 10:45:16	loss_t 0.1344 (0.0941)	loss_x 1.5698 (1.5722)	acc 96.4844 (95.8820)	lr 0.000937
+epoch: [27/50][340/394]	time 4.295 (4.239)	data 0.000 (0.007)	eta 10:43:58	loss_t 0.1312 (0.0945)	loss_x 1.6410 (1.5740)	acc 94.5312 (95.8490)	lr 0.000937
+epoch: [27/50][360/394]	time 4.239 (4.239)	data 0.000 (0.007)	eta 10:42:36	loss_t 0.0828 (0.0940)	loss_x 1.6439 (1.5757)	acc 94.5312 (95.8154)	lr 0.000937
+epoch: [27/50][380/394]	time 4.208 (4.239)	data 0.000 (0.007)	eta 10:41:17	loss_t 0.1281 (0.0936)	loss_x 1.6164 (1.5772)	acc 95.5078 (95.7741)	lr 0.000937
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5510 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 65.2%
+CMC curve
+Rank-1  : 91.7%
+Rank-5  : 96.2%
+Rank-10 : 97.4%
+Rank-20 : 98.3%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-27"
+epoch: [28/50][20/394]	time 4.167 (4.299)	data 0.000 (0.119)	eta 10:47:49	loss_t 0.0919 (0.0972)	loss_x 1.5047 (1.5329)	acc 97.2656 (96.8457)	lr 0.000875
+epoch: [28/50][40/394]	time 4.260 (4.266)	data 0.000 (0.060)	eta 10:41:28	loss_t 0.1003 (0.0958)	loss_x 1.5581 (1.5322)	acc 94.9219 (96.8115)	lr 0.000875
+epoch: [28/50][60/394]	time 4.278 (4.262)	data 0.000 (0.040)	eta 10:39:26	loss_t 0.0301 (0.0949)	loss_x 1.5159 (1.5292)	acc 97.4609 (96.8392)	lr 0.000875
+epoch: [28/50][80/394]	time 4.293 (4.257)	data 0.000 (0.030)	eta 10:37:20	loss_t 0.1144 (0.0928)	loss_x 1.5385 (1.5304)	acc 96.6797 (96.8262)	lr 0.000875
+epoch: [28/50][100/394]	time 4.090 (4.256)	data 0.000 (0.024)	eta 10:35:38	loss_t 0.0661 (0.0916)	loss_x 1.5277 (1.5301)	acc 96.8750 (96.8066)	lr 0.000875
+epoch: [28/50][120/394]	time 4.250 (4.246)	data 0.001 (0.020)	eta 10:32:49	loss_t 0.0725 (0.0900)	loss_x 1.5694 (1.5321)	acc 95.3125 (96.7773)	lr 0.000875
+epoch: [28/50][140/394]	time 4.104 (4.238)	data 0.001 (0.017)	eta 10:30:14	loss_t 0.1147 (0.0888)	loss_x 1.5361 (1.5332)	acc 95.8984 (96.7467)	lr 0.000875
+epoch: [28/50][160/394]	time 4.186 (4.232)	data 0.001 (0.015)	eta 10:27:56	loss_t 0.0836 (0.0887)	loss_x 1.5777 (1.5347)	acc 96.2891 (96.7053)	lr 0.000875
+epoch: [28/50][180/394]	time 4.236 (4.231)	data 0.001 (0.014)	eta 10:26:17	loss_t 0.1128 (0.0896)	loss_x 1.5844 (1.5379)	acc 95.8984 (96.6341)	lr 0.000875
+epoch: [28/50][200/394]	time 4.256 (4.227)	data 0.001 (0.012)	eta 10:24:21	loss_t 0.0902 (0.0892)	loss_x 1.5899 (1.5391)	acc 95.5078 (96.6123)	lr 0.000875
+epoch: [28/50][220/394]	time 4.241 (4.227)	data 0.000 (0.011)	eta 10:22:58	loss_t 0.0991 (0.0896)	loss_x 1.5941 (1.5417)	acc 95.8984 (96.5483)	lr 0.000875
+epoch: [28/50][240/394]	time 4.385 (4.226)	data 0.001 (0.010)	eta 10:21:18	loss_t 0.0987 (0.0904)	loss_x 1.5360 (1.5439)	acc 97.2656 (96.4958)	lr 0.000875
+epoch: [28/50][260/394]	time 4.207 (4.225)	data 0.000 (0.010)	eta 10:19:48	loss_t 0.1354 (0.0902)	loss_x 1.5785 (1.5458)	acc 94.3359 (96.4453)	lr 0.000875
+epoch: [28/50][280/394]	time 4.071 (4.222)	data 0.001 (0.009)	eta 10:17:54	loss_t 0.0388 (0.0899)	loss_x 1.5291 (1.5483)	acc 96.6797 (96.3756)	lr 0.000875
+epoch: [28/50][300/394]	time 4.232 (4.220)	data 0.000 (0.008)	eta 10:16:14	loss_t 0.0276 (0.0904)	loss_x 1.5569 (1.5499)	acc 96.6797 (96.3438)	lr 0.000875
+epoch: [28/50][320/394]	time 4.212 (4.220)	data 0.000 (0.008)	eta 10:14:47	loss_t 0.1222 (0.0905)	loss_x 1.5822 (1.5521)	acc 95.7031 (96.3129)	lr 0.000875
+epoch: [28/50][340/394]	time 4.258 (4.219)	data 0.001 (0.007)	eta 10:13:21	loss_t 0.0501 (0.0905)	loss_x 1.5951 (1.5540)	acc 95.8984 (96.2580)	lr 0.000875
+epoch: [28/50][360/394]	time 4.268 (4.219)	data 0.000 (0.007)	eta 10:11:54	loss_t 0.0710 (0.0906)	loss_x 1.5407 (1.5559)	acc 96.8750 (96.2169)	lr 0.000875
+epoch: [28/50][380/394]	time 4.206 (4.217)	data 0.001 (0.007)	eta 10:10:13	loss_t 0.1209 (0.0908)	loss_x 1.6231 (1.5576)	acc 95.1172 (96.1780)	lr 0.000875
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5417 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 66.4%
+CMC curve
+Rank-1  : 91.9%
+Rank-5  : 96.4%
+Rank-10 : 97.6%
+Rank-20 : 98.3%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-28"
+epoch: [29/50][20/394]	time 4.262 (4.340)	data 0.001 (0.125)	eta 10:25:33	loss_t 0.0323 (0.0818)	loss_x 1.5208 (1.5086)	acc 96.6797 (97.0898)	lr 0.000813
+epoch: [29/50][40/394]	time 4.215 (4.284)	data 0.001 (0.063)	eta 10:16:00	loss_t 0.1916 (0.0828)	loss_x 1.4629 (1.5026)	acc 98.4375 (97.1924)	lr 0.000813
+epoch: [29/50][60/394]	time 4.272 (4.266)	data 0.000 (0.042)	eta 10:11:58	loss_t 0.0750 (0.0871)	loss_x 1.5268 (1.5058)	acc 96.8750 (97.2070)	lr 0.000813
+epoch: [29/50][80/394]	time 4.184 (4.250)	data 0.001 (0.032)	eta 10:08:20	loss_t 0.0784 (0.0831)	loss_x 1.5087 (1.5085)	acc 97.8516 (97.1631)	lr 0.000813
+epoch: [29/50][100/394]	time 4.228 (4.244)	data 0.000 (0.025)	eta 10:06:03	loss_t 0.1016 (0.0826)	loss_x 1.5493 (1.5117)	acc 96.0938 (97.0625)	lr 0.000813
+epoch: [29/50][120/394]	time 4.136 (4.249)	data 0.001 (0.021)	eta 10:05:21	loss_t 0.0887 (0.0819)	loss_x 1.5289 (1.5157)	acc 97.2656 (97.0036)	lr 0.000813
+epoch: [29/50][140/394]	time 4.216 (4.246)	data 0.001 (0.018)	eta 10:03:32	loss_t 0.0773 (0.0834)	loss_x 1.5322 (1.5171)	acc 97.4609 (97.0131)	lr 0.000813
+epoch: [29/50][160/394]	time 4.054 (4.245)	data 0.000 (0.016)	eta 10:01:53	loss_t 0.0671 (0.0830)	loss_x 1.5047 (1.5184)	acc 97.6562 (96.9873)	lr 0.000813
+epoch: [29/50][180/394]	time 4.271 (4.239)	data 0.001 (0.014)	eta 9:59:42	loss_t 0.1402 (0.0837)	loss_x 1.5879 (1.5201)	acc 95.8984 (96.9466)	lr 0.000813
+epoch: [29/50][200/394]	time 4.451 (4.242)	data 0.001 (0.013)	eta 9:58:38	loss_t 0.1810 (0.0843)	loss_x 1.5542 (1.5224)	acc 95.7031 (96.9082)	lr 0.000813
+epoch: [29/50][220/394]	time 4.207 (4.240)	data 0.000 (0.012)	eta 9:57:02	loss_t 0.1371 (0.0851)	loss_x 1.5572 (1.5247)	acc 96.0938 (96.8732)	lr 0.000813
+epoch: [29/50][240/394]	time 4.304 (4.239)	data 0.000 (0.011)	eta 9:55:29	loss_t 0.0782 (0.0851)	loss_x 1.5475 (1.5263)	acc 97.0703 (96.8408)	lr 0.000813
+epoch: [29/50][260/394]	time 4.170 (4.236)	data 0.000 (0.010)	eta 9:53:36	loss_t 0.0433 (0.0855)	loss_x 1.5892 (1.5292)	acc 96.6797 (96.7849)	lr 0.000813
+epoch: [29/50][280/394]	time 4.247 (4.235)	data 0.000 (0.009)	eta 9:52:02	loss_t 0.0730 (0.0850)	loss_x 1.5814 (1.5309)	acc 95.8984 (96.7390)	lr 0.000813
+epoch: [29/50][300/394]	time 4.263 (4.235)	data 0.000 (0.009)	eta 9:50:41	loss_t 0.0894 (0.0849)	loss_x 1.5567 (1.5328)	acc 94.9219 (96.6895)	lr 0.000813
+epoch: [29/50][320/394]	time 4.103 (4.235)	data 0.001 (0.008)	eta 9:49:13	loss_t 0.0398 (0.0844)	loss_x 1.5403 (1.5349)	acc 97.0703 (96.6437)	lr 0.000813
+epoch: [29/50][340/394]	time 4.164 (4.234)	data 0.000 (0.008)	eta 9:47:43	loss_t 0.1101 (0.0846)	loss_x 1.6162 (1.5363)	acc 95.1172 (96.6039)	lr 0.000813
+epoch: [29/50][360/394]	time 4.241 (4.235)	data 0.001 (0.007)	eta 9:46:21	loss_t 0.1029 (0.0849)	loss_x 1.5803 (1.5382)	acc 95.5078 (96.5630)	lr 0.000813
+epoch: [29/50][380/394]	time 4.265 (4.234)	data 0.001 (0.007)	eta 9:44:53	loss_t 0.1143 (0.0855)	loss_x 1.5918 (1.5397)	acc 95.1172 (96.5363)	lr 0.000813
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5420 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 64.4%
+CMC curve
+Rank-1  : 91.6%
+Rank-5  : 96.2%
+Rank-10 : 97.3%
+Rank-20 : 98.3%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-29"
+epoch: [30/50][20/394]	time 4.307 (4.291)	data 0.000 (0.128)	eta 9:50:20	loss_t 0.0593 (0.0681)	loss_x 1.5145 (1.4908)	acc 98.0469 (97.5586)	lr 0.000751
+epoch: [30/50][40/394]	time 4.226 (4.241)	data 0.000 (0.064)	eta 9:41:58	loss_t 0.0369 (0.0788)	loss_x 1.4579 (1.4885)	acc 97.6562 (97.5537)	lr 0.000751
+epoch: [30/50][60/394]	time 4.294 (4.221)	data 0.000 (0.043)	eta 9:37:53	loss_t 0.0566 (0.0850)	loss_x 1.4749 (1.4934)	acc 97.6562 (97.4512)	lr 0.000751
+epoch: [30/50][80/394]	time 4.177 (4.213)	data 0.000 (0.032)	eta 9:35:18	loss_t 0.0654 (0.0837)	loss_x 1.5304 (1.4971)	acc 97.6562 (97.4121)	lr 0.000751
+epoch: [30/50][100/394]	time 4.184 (4.212)	data 0.001 (0.026)	eta 9:33:47	loss_t 0.0608 (0.0825)	loss_x 1.4984 (1.4999)	acc 96.0938 (97.3574)	lr 0.000751
+epoch: [30/50][120/394]	time 4.237 (4.211)	data 0.000 (0.022)	eta 9:32:17	loss_t 0.0409 (0.0820)	loss_x 1.5099 (1.4991)	acc 97.6562 (97.3958)	lr 0.000751
+epoch: [30/50][140/394]	time 4.204 (4.207)	data 0.000 (0.019)	eta 9:30:19	loss_t 0.0600 (0.0819)	loss_x 1.4850 (1.5013)	acc 98.0469 (97.3493)	lr 0.000751
+epoch: [30/50][160/394]	time 4.160 (4.208)	data 0.000 (0.016)	eta 9:29:00	loss_t 0.0936 (0.0825)	loss_x 1.5059 (1.5036)	acc 96.6797 (97.2998)	lr 0.000751
+epoch: [30/50][180/394]	time 4.256 (4.208)	data 0.001 (0.015)	eta 9:27:38	loss_t 0.0991 (0.0843)	loss_x 1.5677 (1.5058)	acc 95.7031 (97.2580)	lr 0.000751
+epoch: [30/50][200/394]	time 4.237 (4.208)	data 0.001 (0.013)	eta 9:26:16	loss_t 0.1342 (0.0840)	loss_x 1.5198 (1.5084)	acc 96.6797 (97.1924)	lr 0.000751
+epoch: [30/50][220/394]	time 4.161 (4.207)	data 0.000 (0.012)	eta 9:24:44	loss_t 0.1263 (0.0837)	loss_x 1.5669 (1.5109)	acc 96.4844 (97.1413)	lr 0.000751
+epoch: [30/50][240/394]	time 4.162 (4.205)	data 0.001 (0.011)	eta 9:23:05	loss_t 0.1250 (0.0843)	loss_x 1.5355 (1.5127)	acc 96.2891 (97.0931)	lr 0.000751
+epoch: [30/50][260/394]	time 4.194 (4.206)	data 0.001 (0.010)	eta 9:21:46	loss_t 0.1330 (0.0850)	loss_x 1.5579 (1.5142)	acc 96.4844 (97.0763)	lr 0.000751
+epoch: [30/50][280/394]	time 4.167 (4.205)	data 0.000 (0.010)	eta 9:20:17	loss_t 0.0938 (0.0848)	loss_x 1.5452 (1.5164)	acc 95.1172 (97.0068)	lr 0.000751
+epoch: [30/50][300/394]	time 4.152 (4.205)	data 0.001 (0.009)	eta 9:18:48	loss_t 0.0157 (0.0845)	loss_x 1.5582 (1.5180)	acc 97.0703 (96.9805)	lr 0.000751
+epoch: [30/50][320/394]	time 4.180 (4.203)	data 0.000 (0.008)	eta 9:17:12	loss_t 0.0456 (0.0846)	loss_x 1.5390 (1.5199)	acc 96.2891 (96.9403)	lr 0.000751
+epoch: [30/50][340/394]	time 4.234 (4.204)	data 0.001 (0.008)	eta 9:15:55	loss_t 0.1160 (0.0845)	loss_x 1.5405 (1.5208)	acc 96.0938 (96.9072)	lr 0.000751
+epoch: [30/50][360/394]	time 4.258 (4.205)	data 0.000 (0.008)	eta 9:14:39	loss_t 0.0545 (0.0840)	loss_x 1.6337 (1.5228)	acc 94.3359 (96.8517)	lr 0.000751
+epoch: [30/50][380/394]	time 4.189 (4.205)	data 0.001 (0.007)	eta 9:13:14	loss_t 0.0653 (0.0838)	loss_x 1.5637 (1.5246)	acc 96.2891 (96.8087)	lr 0.000751
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5434 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 65.6%
+CMC curve
+Rank-1  : 91.8%
+Rank-5  : 96.3%
+Rank-10 : 97.3%
+Rank-20 : 98.2%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-30"
+epoch: [31/50][20/394]	time 4.167 (4.295)	data 0.001 (0.127)	eta 9:22:35	loss_t 0.1016 (0.0819)	loss_x 1.4549 (1.4775)	acc 98.6328 (97.6758)	lr 0.000691
+epoch: [31/50][40/394]	time 4.313 (4.266)	data 0.000 (0.064)	eta 9:17:29	loss_t 0.0289 (0.0846)	loss_x 1.4755 (1.4765)	acc 97.2656 (97.6025)	lr 0.000691
+epoch: [31/50][60/394]	time 4.214 (4.258)	data 0.001 (0.043)	eta 9:14:57	loss_t 0.1459 (0.0802)	loss_x 1.4730 (1.4768)	acc 97.4609 (97.6628)	lr 0.000691
+epoch: [31/50][80/394]	time 4.239 (4.252)	data 0.001 (0.032)	eta 9:12:42	loss_t 0.1402 (0.0798)	loss_x 1.4745 (1.4801)	acc 97.4609 (97.6025)	lr 0.000691
+epoch: [31/50][100/394]	time 4.225 (4.248)	data 0.000 (0.026)	eta 9:10:49	loss_t 0.0760 (0.0798)	loss_x 1.4939 (1.4822)	acc 96.6797 (97.5078)	lr 0.000691
+epoch: [31/50][120/394]	time 4.180 (4.240)	data 0.000 (0.022)	eta 9:08:24	loss_t 0.0680 (0.0774)	loss_x 1.5406 (1.4829)	acc 95.7031 (97.5179)	lr 0.000691
+epoch: [31/50][140/394]	time 4.266 (4.241)	data 0.001 (0.019)	eta 9:07:06	loss_t 0.0538 (0.0763)	loss_x 1.4497 (1.4834)	acc 98.4375 (97.5209)	lr 0.000691
+epoch: [31/50][160/394]	time 4.213 (4.238)	data 0.000 (0.016)	eta 9:05:18	loss_t 0.0905 (0.0767)	loss_x 1.4744 (1.4855)	acc 97.0703 (97.4683)	lr 0.000691
+epoch: [31/50][180/394]	time 4.222 (4.240)	data 0.000 (0.015)	eta 9:04:11	loss_t 0.0477 (0.0771)	loss_x 1.5058 (1.4877)	acc 96.8750 (97.4349)	lr 0.000691
+epoch: [31/50][200/394]	time 4.106 (4.236)	data 0.000 (0.013)	eta 9:02:12	loss_t 0.0672 (0.0776)	loss_x 1.4466 (1.4890)	acc 98.2422 (97.4248)	lr 0.000691
+epoch: [31/50][220/394]	time 4.202 (4.236)	data 0.000 (0.012)	eta 9:00:47	loss_t 0.1254 (0.0789)	loss_x 1.4620 (1.4904)	acc 98.0469 (97.3855)	lr 0.000691
+epoch: [31/50][240/394]	time 4.256 (4.236)	data 0.000 (0.011)	eta 8:59:25	loss_t 0.0863 (0.0784)	loss_x 1.4946 (1.4914)	acc 97.8516 (97.3698)	lr 0.000691
+epoch: [31/50][260/394]	time 4.239 (4.237)	data 0.000 (0.010)	eta 8:58:04	loss_t 0.1041 (0.0776)	loss_x 1.5186 (1.4932)	acc 97.2656 (97.3453)	lr 0.000691
+epoch: [31/50][280/394]	time 4.143 (4.236)	data 0.000 (0.010)	eta 8:56:34	loss_t 0.1145 (0.0779)	loss_x 1.5106 (1.4947)	acc 96.8750 (97.3193)	lr 0.000691
+epoch: [31/50][300/394]	time 4.248 (4.234)	data 0.001 (0.009)	eta 8:54:51	loss_t 0.0585 (0.0777)	loss_x 1.5334 (1.4963)	acc 97.0703 (97.2858)	lr 0.000691
+epoch: [31/50][320/394]	time 4.234 (4.234)	data 0.001 (0.008)	eta 8:53:27	loss_t 0.0894 (0.0786)	loss_x 1.5279 (1.4976)	acc 96.6797 (97.2589)	lr 0.000691
+epoch: [31/50][340/394]	time 4.250 (4.232)	data 0.001 (0.008)	eta 8:51:52	loss_t 0.0508 (0.0791)	loss_x 1.5358 (1.4997)	acc 96.4844 (97.2323)	lr 0.000691
+epoch: [31/50][360/394]	time 4.193 (4.232)	data 0.001 (0.008)	eta 8:50:24	loss_t 0.1299 (0.0794)	loss_x 1.5643 (1.5013)	acc 96.0938 (97.2038)	lr 0.000691
+epoch: [31/50][380/394]	time 4.260 (4.231)	data 0.000 (0.007)	eta 8:48:56	loss_t 0.0381 (0.0796)	loss_x 1.5635 (1.5032)	acc 95.5078 (97.1669)	lr 0.000691
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5432 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 67.0%
+CMC curve
+Rank-1  : 92.3%
+Rank-5  : 96.6%
+Rank-10 : 97.5%
+Rank-20 : 98.3%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-31"
+epoch: [32/50][20/394]	time 4.293 (4.337)	data 0.000 (0.129)	eta 8:59:41	loss_t 0.1157 (0.0740)	loss_x 1.4533 (1.4743)	acc 98.4375 (97.9395)	lr 0.000632
+epoch: [32/50][40/394]	time 4.255 (4.278)	data 0.000 (0.065)	eta 8:50:57	loss_t 0.0775 (0.0751)	loss_x 1.4627 (1.4651)	acc 98.0469 (97.9785)	lr 0.000632
+epoch: [32/50][60/394]	time 4.248 (4.267)	data 0.000 (0.043)	eta 8:48:05	loss_t 0.0288 (0.0734)	loss_x 1.4492 (1.4629)	acc 98.4375 (98.0176)	lr 0.000632
+epoch: [32/50][80/394]	time 4.146 (4.248)	data 0.001 (0.033)	eta 8:44:23	loss_t 0.0318 (0.0750)	loss_x 1.4519 (1.4663)	acc 99.0234 (97.9126)	lr 0.000632
+epoch: [32/50][100/394]	time 4.286 (4.243)	data 0.001 (0.026)	eta 8:42:17	loss_t 0.0742 (0.0737)	loss_x 1.4430 (1.4671)	acc 99.2188 (97.9141)	lr 0.000632
+epoch: [32/50][120/394]	time 4.255 (4.240)	data 0.000 (0.022)	eta 8:40:35	loss_t 0.0695 (0.0731)	loss_x 1.5100 (1.4691)	acc 96.4844 (97.8809)	lr 0.000632
+epoch: [32/50][140/394]	time 4.219 (4.239)	data 0.000 (0.019)	eta 8:38:58	loss_t 0.1101 (0.0737)	loss_x 1.5009 (1.4702)	acc 96.8750 (97.8390)	lr 0.000632
+epoch: [32/50][160/394]	time 4.157 (4.237)	data 0.000 (0.017)	eta 8:37:20	loss_t 0.0787 (0.0740)	loss_x 1.4769 (1.4715)	acc 97.2656 (97.8064)	lr 0.000632
+epoch: [32/50][180/394]	time 4.236 (4.234)	data 0.001 (0.015)	eta 8:35:32	loss_t 0.0333 (0.0747)	loss_x 1.4740 (1.4729)	acc 97.6562 (97.7713)	lr 0.000632
+epoch: [32/50][200/394]	time 4.221 (4.235)	data 0.000 (0.013)	eta 8:34:14	loss_t 0.0577 (0.0763)	loss_x 1.4980 (1.4758)	acc 97.2656 (97.7197)	lr 0.000632
+epoch: [32/50][220/394]	time 4.278 (4.234)	data 0.000 (0.012)	eta 8:32:42	loss_t 0.0913 (0.0765)	loss_x 1.5251 (1.4785)	acc 96.4844 (97.6429)	lr 0.000632
+epoch: [32/50][240/394]	time 4.394 (4.235)	data 0.001 (0.011)	eta 8:31:26	loss_t 0.1314 (0.0771)	loss_x 1.5106 (1.4806)	acc 96.6797 (97.5985)	lr 0.000632
+epoch: [32/50][260/394]	time 4.255 (4.232)	data 0.000 (0.010)	eta 8:29:42	loss_t 0.0815 (0.0763)	loss_x 1.4829 (1.4815)	acc 97.2656 (97.5992)	lr 0.000632
+epoch: [32/50][280/394]	time 4.245 (4.233)	data 0.000 (0.010)	eta 8:28:19	loss_t 0.1264 (0.0757)	loss_x 1.4965 (1.4827)	acc 97.0703 (97.5809)	lr 0.000632
+epoch: [32/50][300/394]	time 4.248 (4.234)	data 0.001 (0.009)	eta 8:27:04	loss_t 0.0757 (0.0755)	loss_x 1.4946 (1.4836)	acc 97.4609 (97.5729)	lr 0.000632
+epoch: [32/50][320/394]	time 4.285 (4.235)	data 0.000 (0.009)	eta 8:25:46	loss_t 0.1412 (0.0766)	loss_x 1.4933 (1.4853)	acc 97.0703 (97.5378)	lr 0.000632
+epoch: [32/50][340/394]	time 4.232 (4.235)	data 0.001 (0.008)	eta 8:24:19	loss_t 0.0255 (0.0767)	loss_x 1.5260 (1.4875)	acc 96.0938 (97.4879)	lr 0.000632
+epoch: [32/50][360/394]	time 4.224 (4.234)	data 0.000 (0.008)	eta 8:22:50	loss_t 0.0582 (0.0767)	loss_x 1.5123 (1.4883)	acc 96.8750 (97.4593)	lr 0.000632
+epoch: [32/50][380/394]	time 4.142 (4.235)	data 0.000 (0.007)	eta 8:21:30	loss_t 0.0482 (0.0770)	loss_x 1.5265 (1.4896)	acc 96.6797 (97.4286)	lr 0.000632
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5418 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 66.6%
+CMC curve
+Rank-1  : 92.0%
+Rank-5  : 96.4%
+Rank-10 : 97.4%
+Rank-20 : 98.1%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-32"
+epoch: [33/50][20/394]	time 4.189 (4.323)	data 0.001 (0.132)	eta 8:29:29	loss_t 0.0629 (0.0662)	loss_x 1.4490 (1.4514)	acc 98.6328 (98.2715)	lr 0.000574
+epoch: [33/50][40/394]	time 4.206 (4.279)	data 0.000 (0.066)	eta 8:22:53	loss_t 0.0455 (0.0665)	loss_x 1.4108 (1.4497)	acc 99.0234 (98.2471)	lr 0.000574
+epoch: [33/50][60/394]	time 4.220 (4.256)	data 0.000 (0.044)	eta 8:18:49	loss_t 0.0632 (0.0650)	loss_x 1.4237 (1.4463)	acc 99.0234 (98.3105)	lr 0.000574
+epoch: [33/50][80/394]	time 4.250 (4.251)	data 0.001 (0.033)	eta 8:16:49	loss_t 0.0659 (0.0674)	loss_x 1.4808 (1.4483)	acc 97.6562 (98.2568)	lr 0.000574
+epoch: [33/50][100/394]	time 4.209 (4.246)	data 0.000 (0.027)	eta 8:14:46	loss_t 0.0815 (0.0668)	loss_x 1.4326 (1.4485)	acc 98.6328 (98.2676)	lr 0.000574
+epoch: [33/50][120/394]	time 4.266 (4.245)	data 0.000 (0.022)	eta 8:13:16	loss_t 0.0766 (0.0679)	loss_x 1.4570 (1.4495)	acc 97.8516 (98.2438)	lr 0.000574
+epoch: [33/50][140/394]	time 4.305 (4.239)	data 0.001 (0.019)	eta 8:11:09	loss_t 0.1304 (0.0682)	loss_x 1.4590 (1.4510)	acc 98.2422 (98.2408)	lr 0.000574
+epoch: [33/50][160/394]	time 4.107 (4.239)	data 0.000 (0.017)	eta 8:09:47	loss_t 0.0849 (0.0677)	loss_x 1.4636 (1.4526)	acc 98.6328 (98.1982)	lr 0.000574
+epoch: [33/50][180/394]	time 4.306 (4.239)	data 0.000 (0.015)	eta 8:08:21	loss_t 0.0629 (0.0681)	loss_x 1.4830 (1.4543)	acc 98.2422 (98.1586)	lr 0.000574
+epoch: [33/50][200/394]	time 4.434 (4.239)	data 0.000 (0.014)	eta 8:06:58	loss_t 0.1114 (0.0683)	loss_x 1.5172 (1.4560)	acc 97.2656 (98.1279)	lr 0.000574
+epoch: [33/50][220/394]	time 4.142 (4.236)	data 0.000 (0.012)	eta 8:05:09	loss_t 0.0529 (0.0679)	loss_x 1.4737 (1.4574)	acc 97.2656 (98.0886)	lr 0.000574
+epoch: [33/50][240/394]	time 4.244 (4.234)	data 0.001 (0.011)	eta 8:03:29	loss_t 0.0529 (0.0670)	loss_x 1.4978 (1.4576)	acc 96.8750 (98.0794)	lr 0.000574
+epoch: [33/50][260/394]	time 4.249 (4.234)	data 0.001 (0.011)	eta 8:02:04	loss_t 0.0335 (0.0668)	loss_x 1.4562 (1.4586)	acc 97.8516 (98.0634)	lr 0.000574
+epoch: [33/50][280/394]	time 4.280 (4.233)	data 0.000 (0.010)	eta 8:00:37	loss_t 0.0565 (0.0679)	loss_x 1.4615 (1.4599)	acc 97.2656 (98.0343)	lr 0.000574
+epoch: [33/50][300/394]	time 4.291 (4.234)	data 0.000 (0.009)	eta 7:59:14	loss_t 0.0832 (0.0688)	loss_x 1.5112 (1.4622)	acc 96.2891 (97.9720)	lr 0.000574
+epoch: [33/50][320/394]	time 4.290 (4.232)	data 0.000 (0.009)	eta 7:57:38	loss_t 0.1051 (0.0693)	loss_x 1.5249 (1.4641)	acc 97.2656 (97.9376)	lr 0.000574
+epoch: [33/50][340/394]	time 4.213 (4.232)	data 0.001 (0.008)	eta 7:56:16	loss_t 0.0911 (0.0697)	loss_x 1.5129 (1.4661)	acc 96.6797 (97.8929)	lr 0.000574
+epoch: [33/50][360/394]	time 4.289 (4.233)	data 0.000 (0.008)	eta 7:54:57	loss_t 0.0670 (0.0694)	loss_x 1.5091 (1.4679)	acc 97.2656 (97.8451)	lr 0.000574
+epoch: [33/50][380/394]	time 4.243 (4.234)	data 0.000 (0.007)	eta 7:53:36	loss_t 0.0307 (0.0701)	loss_x 1.4741 (1.4690)	acc 97.0703 (97.8207)	lr 0.000574
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5437 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 67.9%
+CMC curve
+Rank-1  : 92.5%
+Rank-5  : 96.7%
+Rank-10 : 97.7%
+Rank-20 : 98.4%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-33"
+epoch: [34/50][20/394]	time 4.125 (4.263)	data 0.000 (0.122)	eta 7:54:28	loss_t 0.0577 (0.0712)	loss_x 1.4410 (1.4327)	acc 98.2422 (98.5254)	lr 0.000518
+epoch: [34/50][40/394]	time 4.259 (4.258)	data 0.001 (0.061)	eta 7:52:31	loss_t 0.0696 (0.0627)	loss_x 1.4542 (1.4335)	acc 98.2422 (98.4277)	lr 0.000518
+epoch: [34/50][60/394]	time 4.181 (4.251)	data 0.001 (0.041)	eta 7:50:19	loss_t 0.0942 (0.0629)	loss_x 1.4602 (1.4333)	acc 97.6562 (98.4408)	lr 0.000518
+epoch: [34/50][80/394]	time 4.252 (4.247)	data 0.000 (0.031)	eta 7:48:28	loss_t 0.0054 (0.0596)	loss_x 1.4232 (1.4345)	acc 98.8281 (98.4009)	lr 0.000518
+epoch: [34/50][100/394]	time 4.245 (4.242)	data 0.000 (0.025)	eta 7:46:25	loss_t 0.0274 (0.0596)	loss_x 1.4277 (1.4339)	acc 98.6328 (98.4160)	lr 0.000518
+epoch: [34/50][120/394]	time 4.238 (4.236)	data 0.001 (0.021)	eta 7:44:24	loss_t 0.1169 (0.0614)	loss_x 1.4651 (1.4351)	acc 98.0469 (98.4033)	lr 0.000518
+epoch: [34/50][140/394]	time 4.233 (4.234)	data 0.000 (0.018)	eta 7:42:45	loss_t 0.0427 (0.0611)	loss_x 1.4314 (1.4371)	acc 98.0469 (98.3733)	lr 0.000518
+epoch: [34/50][160/394]	time 4.269 (4.232)	data 0.001 (0.016)	eta 7:41:09	loss_t 0.0211 (0.0624)	loss_x 1.4361 (1.4395)	acc 98.6328 (98.3508)	lr 0.000518
+epoch: [34/50][180/394]	time 4.220 (4.232)	data 0.000 (0.014)	eta 7:39:44	loss_t 0.0758 (0.0623)	loss_x 1.4216 (1.4406)	acc 98.4375 (98.3344)	lr 0.000518
+epoch: [34/50][200/394]	time 4.296 (4.231)	data 0.000 (0.013)	eta 7:38:11	loss_t 0.0451 (0.0621)	loss_x 1.4746 (1.4412)	acc 98.0469 (98.3193)	lr 0.000518
+epoch: [34/50][220/394]	time 4.264 (4.232)	data 0.000 (0.012)	eta 7:36:52	loss_t 0.0493 (0.0628)	loss_x 1.4640 (1.4432)	acc 97.8516 (98.2750)	lr 0.000518
+epoch: [34/50][240/394]	time 4.235 (4.231)	data 0.001 (0.011)	eta 7:35:26	loss_t 0.0256 (0.0635)	loss_x 1.4848 (1.4448)	acc 97.6562 (98.2406)	lr 0.000518
+epoch: [34/50][260/394]	time 4.194 (4.232)	data 0.000 (0.010)	eta 7:34:08	loss_t 0.0334 (0.0627)	loss_x 1.4611 (1.4458)	acc 97.4609 (98.2234)	lr 0.000518
+epoch: [34/50][280/394]	time 4.160 (4.230)	data 0.000 (0.009)	eta 7:32:28	loss_t 0.1136 (0.0633)	loss_x 1.4554 (1.4472)	acc 98.2422 (98.2031)	lr 0.000518
+epoch: [34/50][300/394]	time 4.188 (4.231)	data 0.000 (0.009)	eta 7:31:09	loss_t 0.0236 (0.0633)	loss_x 1.4653 (1.4485)	acc 99.0234 (98.1895)	lr 0.000518
+W0103 08:59:10.479000 111352 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received 1 death signal, shutting down workers
+W0103 08:59:10.479000 111352 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 111377 closing signal SIGHUP
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 923, in <module>
+    main()
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+             ^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 111352 got signal: 1

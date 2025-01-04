@@ -923,3 +923,55 @@ epoch: [26/30][240/394]	time 3.693 (3.714)	data 0.000 (0.011)	eta 1:47:05	loss_t
 epoch: [26/30][260/394]	time 3.727 (3.711)	data 0.001 (0.010)	eta 1:45:45	loss_t 0.0315 (0.0594)	loss_x 1.4356 (1.4296)	acc 97.6562 (98.1415)	lr 0.000134
 epoch: [26/30][280/394]	time 3.694 (3.711)	data 0.001 (0.010)	eta 1:44:32	loss_t 0.0402 (0.0592)	loss_x 1.4576 (1.4303)	acc 97.4609 (98.1355)	lr 0.000134
 epoch: [26/30][300/394]	time 3.637 (3.711)	data 0.000 (0.009)	eta 1:43:16	loss_t 0.0952 (0.0603)	loss_x 1.4468 (1.4306)	acc 98.2422 (98.1250)	lr 0.000134
+epoch: [26/30][320/394]	time 3.691 (3.710)	data 0.000 (0.009)	eta 1:42:01	loss_t 0.1407 (0.0604)	loss_x 1.4320 (1.4309)	acc 98.0469 (98.1165)	lr 0.000134
+epoch: [26/30][340/394]	time 3.672 (3.709)	data 0.001 (0.008)	eta 1:40:46	loss_t 0.0783 (0.0606)	loss_x 1.4615 (1.4309)	acc 96.2891 (98.1129)	lr 0.000134
+epoch: [26/30][360/394]	time 3.699 (3.706)	data 0.001 (0.008)	eta 1:39:27	loss_t 0.0751 (0.0607)	loss_x 1.4324 (1.4307)	acc 98.6328 (98.1114)	lr 0.000134
+epoch: [26/30][380/394]	time 3.685 (3.706)	data 0.000 (0.007)	eta 1:38:12	loss_t 0.1080 (0.0607)	loss_x 1.4506 (1.4303)	acc 97.6562 (98.1229)	lr 0.000134
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 1.1033 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 79.5%
+CMC curve
+Rank-1  : 96.4%
+Rank-5  : 98.7%
+Rank-10 : 99.2%
+Rank-20 : 99.6%
+Checkpoint saved to "resutls/osnet_ain_x1_0_market1501_triplet/241021/model/model.pth.tar-26"
+epoch: [27/30][20/394]	time 3.662 (3.733)	data 0.000 (0.126)	eta 1:36:48	loss_t 0.0365 (0.0620)	loss_x 1.3965 (1.4249)	acc 98.8281 (98.3105)	lr 0.000086
+W0101 09:57:36.681000 32822 site-packages/torch/distributed/elastic/agent/server/api.py:704] Received 15 death signal, shutting down workers
+W0101 09:57:36.681000 32822 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 32847 closing signal SIGTERM
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 923, in <module>
+    main()
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 260, in launch_agent
+    result = agent.run()
+             ^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/metrics/api.py", line 137, in wrapper
+    result = f(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/agent/server/api.py", line 696, in run
+    result = self._invoke_run(role)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/agent/server/api.py", line 855, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/trild/miniconda3/envs/dfine/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 32822 got signal: 15
