@@ -57,7 +57,7 @@ def export_onnx(model, im, file, opset, train=False, dynamic=True, simplify=Fals
     try:
         import onnx
 
-        f = file.with_suffix('.onnx')
+        f = str(file.with_suffix('.onnx'))
         print(f'\nStarting export with onnx {onnx.__version__}...')
 
         torch.onnx.export(
