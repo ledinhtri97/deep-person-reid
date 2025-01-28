@@ -1,7 +1,7 @@
 from __future__ import division, print_function, absolute_import
 
 from torchreid import metrics
-from torchreid.losses import ArcFaceLoss
+from torchreid.losses import ArcFaceLoss1, ArcFaceLoss2, CrossEntropyLoss
 import torch 
 
 from ..engine import Engine
@@ -73,10 +73,21 @@ class ImageArcfaceEngine(Engine):
         self.scheduler = scheduler
         self.register_model('model', model, optimizer, scheduler)
         
-        self.criterion = ArcFaceLoss(
+        self.criterion_t = ArcFaceLoss1(
             embed_size=self.model.module.feature_dim,
             num_classes=self.datamanager.num_train_pids,
-            scale=scale, margin=margin, easy_margin=easy_margin,
+            scale=scale, margin=margin, easy_margin=easy_margin, label_smooth=label_smooth,
+            use_gpu=self.use_gpu,
+        )
+        
+        # self.criterion_t = ArcFaceLoss2(
+        #     embed_size=self.model.module.feature_dim,
+        #     num_classes=self.datamanager.num_train_pids,
+        #     use_gpu=self.use_gpu,
+        # )
+        
+        self.criterion_x = CrossEntropyLoss(
+            num_classes=self.datamanager.num_train_pids,
             use_gpu=self.use_gpu,
             label_smooth=label_smooth
         )
@@ -88,13 +99,17 @@ class ImageArcfaceEngine(Engine):
             imgs = imgs.cuda()
             pids = pids.cuda()
 
-        emds = self.model(imgs)
+        loss = 0
+        outputs, emds = self.model(imgs)
         # print(f"compute_loss imgs shape: {imgs.size()}")
         # print(f"compute_loss pids shape: {pids.size()}")
         # print(f"compute_loss output shape: {outputs.size()}")
-        res = self.compute_loss(self.criterion, emds, pids)
-        loss = res['loss']
-        outputs = res['probs']
+        loss_t = self.compute_loss(self.criterion_t, emds, pids)
+        loss_x = self.compute_loss(self.criterion_x, outputs, pids)
+        
+        loss = loss_t * 0.5 + loss_x
+        # loss = res['loss']
+        # outputs = res['probs']
         
         # """ probs [B, Numclasses] """
         # print(probs.size())
@@ -109,7 +124,8 @@ class ImageArcfaceEngine(Engine):
         self.optimizer.step()
 
         loss_summary = {
-            'loss': loss.item(),
+            'loss_t': loss_t.item(),
+            'loss_x': loss_x.item(),
             'acc': metrics.accuracy(outputs, pids)[0].item()
         }
 

@@ -336,7 +336,7 @@ def build_transforms(
 
     if 'random_flip' in transforms:
         print('+ random flip')
-        transform_tr += [v2.RandomHorizontalFlip(), v2.RandomVerticalFlip()]
+        transform_tr += [v2.RandomHorizontalFlip(p=0.25), v2.RandomVerticalFlip(p=0.05)]
         
     if 'random_perpective' in transforms:
         print('+ random perpective')

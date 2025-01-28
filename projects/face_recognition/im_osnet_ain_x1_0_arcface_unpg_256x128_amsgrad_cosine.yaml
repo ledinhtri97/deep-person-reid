@@ -1,0 +1,42 @@
+model:
+  name: 'osnet_ain_x1_0'
+  pretrained: True
+  load_weights: ''
+  resume: ''
+
+data:
+  type: 'image'
+  sources: ['market1501']
+  targets: ['market1501']
+  height: 256
+  width: 128
+  combineall: False
+  transforms: ['random_flip', 'color_jitter', 'random_crop', 'random_erase', 'random_blackwhite']
+  save_dir: 'resutls/osnet_ain_x1_0_market1501_arcface'
+
+loss:
+  name: 'arcface'
+  arcface:
+    scale: 64
+    margin: 0.5
+    easy_margin: False
+    label_smooth: True
+
+train:
+  optim: 'amsgrad'
+  lr: 0.002
+  max_epoch: 100
+  batch_size: 32
+  fixbase_epoch: 10
+  open_layers: ['classifier']
+  lr_scheduler: 'cosine'
+
+test:
+  batch_size: 16
+  dist_metric: 'cosine'
+  normalize_feature: False
+  evaluate: False
+  visrank: False
+  eval_freq: 5
+  rerank: False
+  start_eval: 2

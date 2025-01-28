@@ -447,7 +447,7 @@ class OSNet(nn.Module):
         elif self.loss == 'triplet':
             return y, v
         elif self.loss == 'arcface':
-            return v
+            return y, v
         else:
             raise KeyError("Unsupported loss: {}".format(self.loss))
 
@@ -491,6 +491,7 @@ def init_pretrained_weights(model, key=''):
     cached_file = os.path.join(model_dir, filename)
 
     if not os.path.exists(cached_file):
+        print("url:", pretrained_urls[key], "-> filename:", cached_file)
         gdown.download(pretrained_urls[key], cached_file, quiet=False)
 
     state_dict = torch.load(cached_file)
