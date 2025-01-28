@@ -47,6 +47,17 @@ def build_engine(cfg, datamanager, model, optimizer, scheduler):
                 easy_margin=cfg.loss.arcface.easy_margin,
                 label_smooth=cfg.loss.arcface.label_smooth
             )
+        elif cfg.loss.name == 'octuplet':
+            engine = torchreid.engine.ImageOctupletEngine(
+                datamanager,
+                model,
+                optimizer=optimizer,
+                scheduler=scheduler,
+                use_gpu=cfg.use_gpu,
+                margin=cfg.loss.octuplet.margin,
+                metric=cfg.loss.octuplet.metric,
+                configuration=cfg.loss.octuplet.configuration
+            )
         else:
             engine = torchreid.engine.ImageTripletEngine(
                 datamanager,

@@ -3,6 +3,8 @@ from __future__ import division, print_function, absolute_import
 from .cross_entropy_loss import CrossEntropyLoss
 from .hard_mine_triplet_loss import TripletLoss
 from .arcface_loss import ArcFaceLoss1, ArcFaceLoss2
+from .arcface_loss import ArcFaceLoss
+from .octuplet_loss import OctupletLoss
 
 def DeepSupervision(criterion, xs, y):
     """DeepSupervision

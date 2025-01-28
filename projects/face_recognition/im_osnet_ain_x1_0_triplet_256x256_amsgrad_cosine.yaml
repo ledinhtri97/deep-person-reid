@@ -2,25 +2,25 @@ model:
   name: 'osnet_ain_x1_0'
   pretrained: True
   load_weights: ''
-  resume: ''
+  resume: 'resutls/osnet_ain_x1_0_market1501_triplet5/model/model.pth.tar-10'
 
 data:
   type: 'image'
   sources: ['market1501']
   targets: ['market1501']
   height: 256
-  width: 128
+  width: 256
   combineall: False
-  transforms: ['random_flip', 'color_jitter', 'random_erase', 'random_blackwhite', 'random_perpective', 'random_rotation']
-  save_dir: 'resutls/osnet_ain_x1_0_market1501_triplet3/'
+  transforms: ['random_flip', 'color_jitter', 'random_blackwhite', 'random_perpective', 'random_rotation']
+  save_dir: 'resutls/osnet_ain_x1_0_market1501_triplet5/'
 
 loss:
   name: 'triplet'
   softmax:
     label_smooth: True
   triplet:
-    margin: 0.3
-    weight_t: 0.5
+    margin: 0.35
+    weight_t: 0.75
     weight_x: 1.
   # dml:
   #   weight_ml: 1.
@@ -29,13 +29,13 @@ train:
   optim: 'amsgrad'
   lr: 0.002
   max_epoch: 80
-  batch_size: 512
+  batch_size: 256
   fixbase_epoch: 10
   open_layers: ['classifier']
   lr_scheduler: 'cosine'
 
 test:
-  batch_size: 256
+  batch_size: 128
   dist_metric: 'cosine'
   normalize_feature: False
   evaluate: False

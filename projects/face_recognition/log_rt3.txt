@@ -41,10 +41,10 @@ loss:
 market1501:
   use_500k_distractors: False
 model:
-  load_weights: r50_market1501_triplet_model.pth.tar-50
+  load_weights: 
   name: resnet50_fc512
   pretrained: True
-  resume: 
+  resume: r50_market1501_triplet2_model.pth.tar-46
 rmsprop:
   alpha: 0.99
 sampler:
@@ -60,7 +60,7 @@ sgd:
 test:
   batch_size: 64
   dist_metric: cosine
-  eval_freq: 1
+  eval_freq: 2
   evaluate: False
   normalize_feature: False
   ranks: [1, 5, 10, 20]
@@ -75,7 +75,7 @@ train:
   gamma: 0.1
   lr: 0.001
   lr_scheduler: cosine
-  max_epoch: 50
+  max_epoch: 80
   new_layers: ['classifier']
   open_layers: ['classifier']
   optim: amsgrad
@@ -223,333 +223,937 @@ Building test transforms ...
 
 
 Building model: resnet50_fc512
-/home/trild/workspace/deep-person-reid/torchreid/utils/torchtools.py:85: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  checkpoint = torch.load(fpath, map_location=map_location)
-Successfully loaded pretrained weights from "r50_market1501_triplet_model.pth.tar-50"
 use gpu model: resnet50_fc512
 Model complexity: params=0 flops=4,054,319,616
+Loading checkpoint from "r50_market1501_triplet2_model.pth.tar-46"
+/home/trild/workspace/deep-person-reid/torchreid/utils/torchtools.py:85: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(fpath, map_location=map_location)
+Loaded model weights
+Loaded optimizer
+Loaded scheduler
+Last epoch = 46
+Last rank1 = 94.0%
 Building triplet-engine for image-reid
 =========================TRILD============================
 
 => Start training
-* Only train ['classifier'] (epoch: 1/5)
-epoch: [1/50][20/394]	time 2.651 (2.880)	data 0.000 (0.143)	eta 15:44:37	loss_t 1.7984 (1.5852)	loss_x 6.8427 (6.9483)	acc 15.4297 (15.3516)	lr 0.001000
-epoch: [1/50][40/394]	time 2.675 (2.768)	data 0.001 (0.072)	eta 15:06:55	loss_t 1.0876 (1.5369)	loss_x 6.4921 (6.7682)	acc 16.9922 (16.0449)	lr 0.001000
-epoch: [1/50][60/394]	time 2.640 (2.732)	data 0.000 (0.048)	eta 14:54:16	loss_t 1.5296 (1.5222)	loss_x 6.5111 (6.6666)	acc 15.8203 (16.4225)	lr 0.001000
-epoch: [1/50][80/394]	time 2.661 (2.713)	data 0.001 (0.036)	eta 14:47:05	loss_t 1.6702 (1.5206)	loss_x 6.2855 (6.5824)	acc 18.3594 (17.0679)	lr 0.001000
-epoch: [1/50][100/394]	time 2.678 (2.703)	data 0.000 (0.029)	eta 14:42:52	loss_t 1.3072 (1.5045)	loss_x 6.0915 (6.5114)	acc 20.3125 (17.5098)	lr 0.001000
-epoch: [1/50][120/394]	time 2.644 (2.696)	data 0.000 (0.024)	eta 14:39:49	loss_t 1.3781 (1.5008)	loss_x 6.0726 (6.4564)	acc 20.1172 (17.8516)	lr 0.001000
-epoch: [1/50][140/394]	time 2.665 (2.691)	data 0.000 (0.021)	eta 14:37:20	loss_t 1.7628 (1.4947)	loss_x 5.9059 (6.4126)	acc 22.4609 (18.0901)	lr 0.001000
-epoch: [1/50][160/394]	time 2.653 (2.687)	data 0.000 (0.018)	eta 14:34:57	loss_t 1.2354 (1.4778)	loss_x 6.0626 (6.3720)	acc 18.5547 (18.3032)	lr 0.001000
-epoch: [1/50][180/394]	time 2.641 (2.683)	data 0.000 (0.016)	eta 14:32:48	loss_t 1.3710 (1.4765)	loss_x 6.1892 (6.3376)	acc 16.9922 (18.4635)	lr 0.001000
-epoch: [1/50][200/394]	time 2.653 (2.681)	data 0.000 (0.015)	eta 14:31:17	loss_t 1.5591 (1.4807)	loss_x 5.8954 (6.3061)	acc 20.8984 (18.6455)	lr 0.001000
-epoch: [1/50][220/394]	time 2.655 (2.679)	data 0.000 (0.013)	eta 14:29:50	loss_t 1.5687 (1.4900)	loss_x 5.9447 (6.2755)	acc 19.5312 (18.8423)	lr 0.001000
-epoch: [1/50][240/394]	time 2.653 (2.676)	data 0.000 (0.012)	eta 14:28:03	loss_t 1.0120 (1.4921)	loss_x 6.0821 (6.2466)	acc 16.0156 (19.0039)	lr 0.001000
-epoch: [1/50][260/394]	time 2.644 (2.674)	data 0.001 (0.011)	eta 14:26:20	loss_t 1.3322 (1.4916)	loss_x 5.8978 (6.2180)	acc 21.6797 (19.2383)	lr 0.001000
-epoch: [1/50][280/394]	time 2.658 (2.673)	data 0.000 (0.011)	eta 14:25:13	loss_t 1.6638 (1.4950)	loss_x 5.9147 (6.1960)	acc 22.2656 (19.3841)	lr 0.001000
-epoch: [1/50][300/394]	time 2.661 (2.672)	data 0.000 (0.010)	eta 14:24:04	loss_t 1.6322 (1.4927)	loss_x 5.8321 (6.1719)	acc 22.4609 (19.5560)	lr 0.001000
-epoch: [1/50][320/394]	time 2.656 (2.671)	data 0.000 (0.009)	eta 14:22:52	loss_t 2.1141 (1.4924)	loss_x 5.8746 (6.1518)	acc 21.6797 (19.7064)	lr 0.001000
-epoch: [1/50][340/394]	time 2.667 (2.670)	data 0.001 (0.009)	eta 14:21:40	loss_t 1.3861 (1.4879)	loss_x 5.7739 (6.1327)	acc 24.4141 (19.8277)	lr 0.001000
-epoch: [1/50][360/394]	time 2.658 (2.670)	data 0.000 (0.008)	eta 14:20:44	loss_t 1.3179 (1.4866)	loss_x 5.8648 (6.1155)	acc 21.8750 (19.9360)	lr 0.001000
-epoch: [1/50][380/394]	time 2.650 (2.670)	data 0.000 (0.008)	eta 14:19:36	loss_t 1.4377 (1.4840)	loss_x 5.8894 (6.0977)	acc 21.2891 (20.0689)	lr 0.001000
-* Only train ['classifier'] (epoch: 2/5)
-epoch: [2/50][20/394]	time 2.660 (2.813)	data 0.000 (0.153)	eta 15:04:07	loss_t 1.3590 (1.4247)	loss_x 5.8575 (5.6874)	acc 23.4375 (23.1836)	lr 0.000999
-epoch: [2/50][40/394]	time 2.647 (2.735)	data 0.000 (0.077)	eta 14:38:09	loss_t 2.0150 (1.4747)	loss_x 5.7535 (5.6848)	acc 21.4844 (23.0176)	lr 0.000999
-epoch: [2/50][60/394]	time 2.659 (2.709)	data 0.000 (0.051)	eta 14:28:54	loss_t 1.2203 (1.4722)	loss_x 5.5366 (5.6823)	acc 23.4375 (22.8711)	lr 0.000999
-epoch: [2/50][80/394]	time 2.627 (2.694)	data 0.000 (0.039)	eta 14:23:20	loss_t 1.2219 (1.5053)	loss_x 5.7671 (5.6830)	acc 19.5312 (22.8003)	lr 0.000999
-epoch: [2/50][100/394]	time 2.670 (2.685)	data 0.000 (0.031)	eta 14:19:35	loss_t 1.6177 (1.5062)	loss_x 5.4084 (5.6747)	acc 25.1953 (22.8906)	lr 0.000999
-epoch: [2/50][120/394]	time 2.662 (2.681)	data 0.001 (0.026)	eta 14:17:17	loss_t 2.0436 (1.5161)	loss_x 5.7698 (5.6662)	acc 20.5078 (22.9525)	lr 0.000999
-epoch: [2/50][140/394]	time 2.642 (2.680)	data 0.001 (0.022)	eta 14:15:57	loss_t 1.1740 (1.5017)	loss_x 5.3931 (5.6611)	acc 26.3672 (23.0176)	lr 0.000999
-epoch: [2/50][160/394]	time 2.653 (2.677)	data 0.001 (0.020)	eta 14:14:14	loss_t 1.5887 (1.5080)	loss_x 5.5752 (5.6579)	acc 24.6094 (23.1458)	lr 0.000999
-epoch: [2/50][180/394]	time 2.661 (2.675)	data 0.001 (0.017)	eta 14:12:33	loss_t 1.8011 (1.5040)	loss_x 5.5454 (5.6575)	acc 24.8047 (23.1087)	lr 0.000999
-epoch: [2/50][200/394]	time 2.626 (2.673)	data 0.000 (0.016)	eta 14:11:01	loss_t 1.3625 (1.4984)	loss_x 5.5401 (5.6509)	acc 24.0234 (23.1738)	lr 0.000999
-epoch: [2/50][220/394]	time 2.651 (2.671)	data 0.000 (0.014)	eta 14:09:30	loss_t 1.3882 (1.4940)	loss_x 5.7527 (5.6464)	acc 22.0703 (23.2235)	lr 0.000999
-epoch: [2/50][240/394]	time 2.644 (2.669)	data 0.000 (0.013)	eta 14:08:12	loss_t 1.2404 (1.4904)	loss_x 5.6208 (5.6436)	acc 24.2188 (23.2389)	lr 0.000999
-epoch: [2/50][260/394]	time 2.659 (2.668)	data 0.001 (0.012)	eta 14:06:51	loss_t 1.5938 (1.4973)	loss_x 5.4863 (5.6405)	acc 28.7109 (23.2632)	lr 0.000999
-epoch: [2/50][280/394]	time 2.679 (2.667)	data 0.001 (0.011)	eta 14:05:49	loss_t 1.5302 (1.4923)	loss_x 5.7054 (5.6353)	acc 20.7031 (23.2917)	lr 0.000999
-epoch: [2/50][300/394]	time 2.641 (2.667)	data 0.000 (0.011)	eta 14:04:45	loss_t 1.2597 (1.4944)	loss_x 5.5134 (5.6346)	acc 25.1953 (23.2591)	lr 0.000999
-epoch: [2/50][320/394]	time 2.643 (2.666)	data 0.001 (0.010)	eta 14:03:36	loss_t 1.4873 (1.4936)	loss_x 5.5025 (5.6308)	acc 23.6328 (23.2922)	lr 0.000999
-epoch: [2/50][340/394]	time 2.667 (2.665)	data 0.000 (0.009)	eta 14:02:27	loss_t 1.2689 (1.4956)	loss_x 5.5878 (5.6266)	acc 20.5078 (23.2858)	lr 0.000999
-epoch: [2/50][360/394]	time 2.647 (2.665)	data 0.000 (0.009)	eta 14:01:30	loss_t 1.2797 (1.4947)	loss_x 5.6370 (5.6203)	acc 22.2656 (23.3757)	lr 0.000999
-epoch: [2/50][380/394]	time 2.673 (2.665)	data 0.000 (0.009)	eta 14:00:38	loss_t 2.0562 (1.4968)	loss_x 5.5674 (5.6169)	acc 22.2656 (23.3907)	lr 0.000999
+epoch: [47/80][20/394]	time 4.080 (4.585)	data 0.000 (0.152)	eta 17:02:05	loss_t 0.1595 (0.1184)	loss_x 1.6253 (1.5789)	acc 94.7266 (95.6738)	lr 0.000016
+epoch: [47/80][40/394]	time 4.170 (4.340)	data 0.001 (0.076)	eta 16:06:04	loss_t 0.0620 (0.1215)	loss_x 1.5410 (1.5838)	acc 96.6797 (95.7031)	lr 0.000016
+epoch: [47/80][60/394]	time 4.061 (4.266)	data 0.000 (0.051)	eta 15:48:08	loss_t 0.1150 (0.1235)	loss_x 1.5965 (1.5846)	acc 95.7031 (95.7129)	lr 0.000016
+epoch: [47/80][80/394]	time 4.113 (4.224)	data 0.000 (0.038)	eta 15:37:23	loss_t 0.1312 (0.1219)	loss_x 1.5542 (1.5848)	acc 95.7031 (95.7080)	lr 0.000016
+epoch: [47/80][100/394]	time 4.151 (4.198)	data 0.000 (0.031)	eta 15:30:13	loss_t 0.1275 (0.1229)	loss_x 1.5307 (1.5833)	acc 95.8984 (95.7305)	lr 0.000016
+epoch: [47/80][120/394]	time 4.073 (4.187)	data 0.001 (0.026)	eta 15:26:21	loss_t 0.1251 (0.1262)	loss_x 1.5470 (1.5859)	acc 97.0703 (95.7113)	lr 0.000016
+epoch: [47/80][140/394]	time 4.153 (4.177)	data 0.001 (0.022)	eta 15:22:45	loss_t 0.0927 (0.1254)	loss_x 1.5371 (1.5861)	acc 96.0938 (95.6975)	lr 0.000016
+epoch: [47/80][160/394]	time 4.233 (4.178)	data 0.001 (0.019)	eta 15:21:37	loss_t 0.1883 (0.1235)	loss_x 1.5957 (1.5866)	acc 95.3125 (95.6641)	lr 0.000016
+epoch: [47/80][180/394]	time 4.194 (4.177)	data 0.001 (0.017)	eta 15:20:03	loss_t 0.1064 (0.1244)	loss_x 1.6240 (1.5864)	acc 94.3359 (95.6684)	lr 0.000016
+epoch: [47/80][200/394]	time 4.236 (4.178)	data 0.001 (0.016)	eta 15:18:53	loss_t 0.1574 (0.1268)	loss_x 1.6083 (1.5865)	acc 94.9219 (95.6826)	lr 0.000016
+epoch: [47/80][220/394]	time 4.162 (4.178)	data 0.000 (0.014)	eta 15:17:30	loss_t 0.1238 (0.1269)	loss_x 1.5601 (1.5869)	acc 96.6797 (95.6587)	lr 0.000016
+epoch: [47/80][240/394]	time 4.200 (4.176)	data 0.001 (0.013)	eta 15:15:39	loss_t 0.0535 (0.1279)	loss_x 1.6205 (1.5875)	acc 96.2891 (95.6283)	lr 0.000016
+epoch: [47/80][260/394]	time 4.120 (4.175)	data 0.000 (0.012)	eta 15:14:06	loss_t 0.1597 (0.1274)	loss_x 1.6151 (1.5872)	acc 95.1172 (95.6295)	lr 0.000016
+epoch: [47/80][280/394]	time 4.182 (4.174)	data 0.000 (0.011)	eta 15:12:31	loss_t 0.0982 (0.1276)	loss_x 1.6200 (1.5870)	acc 96.0938 (95.6383)	lr 0.000016
+epoch: [47/80][300/394]	time 4.067 (4.173)	data 0.001 (0.011)	eta 15:10:44	loss_t 0.1137 (0.1272)	loss_x 1.5734 (1.5857)	acc 96.0938 (95.6641)	lr 0.000016
+epoch: [47/80][320/394]	time 4.167 (4.173)	data 0.001 (0.010)	eta 15:09:23	loss_t 0.2795 (0.1279)	loss_x 1.5900 (1.5867)	acc 96.4844 (95.6378)	lr 0.000016
+epoch: [47/80][340/394]	time 4.122 (4.173)	data 0.000 (0.009)	eta 15:07:57	loss_t 0.0825 (0.1277)	loss_x 1.5858 (1.5867)	acc 95.3125 (95.6221)	lr 0.000016
+epoch: [47/80][360/394]	time 4.185 (4.172)	data 0.000 (0.009)	eta 15:06:28	loss_t 0.0736 (0.1273)	loss_x 1.6125 (1.5870)	acc 92.9688 (95.6255)	lr 0.000016
+epoch: [47/80][380/394]	time 4.241 (4.173)	data 0.000 (0.008)	eta 15:05:09	loss_t 0.1527 (0.1275)	loss_x 1.5895 (1.5867)	acc 95.3125 (95.6353)	lr 0.000016
+epoch: [48/80][20/394]	time 4.241 (4.285)	data 0.000 (0.140)	eta 15:27:07	loss_t 0.1172 (0.1057)	loss_x 1.6061 (1.5739)	acc 95.8984 (95.8691)	lr 0.000009
+epoch: [48/80][40/394]	time 4.151 (4.233)	data 0.000 (0.070)	eta 15:14:27	loss_t 0.2384 (0.1186)	loss_x 1.6199 (1.5728)	acc 94.1406 (95.9521)	lr 0.000009
+epoch: [48/80][60/394]	time 4.264 (4.219)	data 0.000 (0.047)	eta 15:09:58	loss_t 0.0905 (0.1205)	loss_x 1.6149 (1.5766)	acc 94.7266 (95.8333)	lr 0.000009
+epoch: [48/80][80/394]	time 4.219 (4.208)	data 0.001 (0.035)	eta 15:06:13	loss_t 0.1574 (0.1268)	loss_x 1.5679 (1.5787)	acc 95.7031 (95.7886)	lr 0.000009
+epoch: [48/80][100/394]	time 4.211 (4.201)	data 0.001 (0.028)	eta 15:03:19	loss_t 0.1108 (0.1310)	loss_x 1.5954 (1.5805)	acc 95.8984 (95.7520)	lr 0.000009
+epoch: [48/80][120/394]	time 4.230 (4.196)	data 0.000 (0.024)	eta 15:00:52	loss_t 0.2201 (0.1288)	loss_x 1.5824 (1.5794)	acc 95.5078 (95.7878)	lr 0.000009
+epoch: [48/80][140/394]	time 4.129 (4.191)	data 0.000 (0.020)	eta 14:58:21	loss_t 0.1262 (0.1295)	loss_x 1.5579 (1.5809)	acc 94.3359 (95.7157)	lr 0.000009
+epoch: [48/80][160/394]	time 4.166 (4.189)	data 0.001 (0.018)	eta 14:56:30	loss_t 0.1243 (0.1300)	loss_x 1.5627 (1.5810)	acc 96.6797 (95.7434)	lr 0.000009
+epoch: [48/80][180/394]	time 4.090 (4.184)	data 0.000 (0.016)	eta 14:54:11	loss_t 0.1616 (0.1294)	loss_x 1.5693 (1.5810)	acc 95.8984 (95.7303)	lr 0.000009
+epoch: [48/80][200/394]	time 4.144 (4.183)	data 0.000 (0.015)	eta 14:52:26	loss_t 0.1993 (0.1309)	loss_x 1.5952 (1.5817)	acc 95.3125 (95.7139)	lr 0.000009
+epoch: [48/80][220/394]	time 4.156 (4.182)	data 0.001 (0.013)	eta 14:50:57	loss_t 0.1491 (0.1320)	loss_x 1.5915 (1.5815)	acc 95.7031 (95.7120)	lr 0.000009
+epoch: [48/80][240/394]	time 4.231 (4.182)	data 0.001 (0.012)	eta 14:49:26	loss_t 0.0727 (0.1323)	loss_x 1.6048 (1.5816)	acc 95.1172 (95.7007)	lr 0.000009
+epoch: [48/80][260/394]	time 4.233 (4.181)	data 0.000 (0.011)	eta 14:47:56	loss_t 0.0930 (0.1316)	loss_x 1.5719 (1.5818)	acc 96.8750 (95.6994)	lr 0.000009
+epoch: [48/80][280/394]	time 4.133 (4.181)	data 0.001 (0.011)	eta 14:46:32	loss_t 0.1325 (0.1315)	loss_x 1.5738 (1.5816)	acc 95.8984 (95.7045)	lr 0.000009
+epoch: [48/80][300/394]	time 4.138 (4.179)	data 0.001 (0.010)	eta 14:44:46	loss_t 0.1224 (0.1315)	loss_x 1.5543 (1.5823)	acc 96.6797 (95.6823)	lr 0.000009
+epoch: [48/80][320/394]	time 4.216 (4.180)	data 0.000 (0.009)	eta 14:43:36	loss_t 0.0721 (0.1308)	loss_x 1.5828 (1.5828)	acc 96.0938 (95.6659)	lr 0.000009
+epoch: [48/80][340/394]	time 4.117 (4.180)	data 0.001 (0.009)	eta 14:42:04	loss_t 0.2005 (0.1306)	loss_x 1.5419 (1.5822)	acc 96.6797 (95.6847)	lr 0.000009
+epoch: [48/80][360/394]	time 4.235 (4.180)	data 0.001 (0.008)	eta 14:40:39	loss_t 0.1275 (0.1304)	loss_x 1.5723 (1.5826)	acc 95.3125 (95.6700)	lr 0.000009
+epoch: [48/80][380/394]	time 4.238 (4.179)	data 0.000 (0.008)	eta 14:39:01	loss_t 0.1275 (0.1303)	loss_x 1.5718 (1.5822)	acc 94.7266 (95.6713)	lr 0.000009
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5798 sec/batch
+Speed: 0.5656 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 75.4%
+mAP: 72.1%
 CMC curve
-Rank-1  : 94.9%
-Rank-5  : 97.8%
-Rank-10 : 98.4%
+Rank-1  : 94.1%
+Rank-5  : 97.4%
+Rank-10 : 98.3%
 Rank-20 : 98.9%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-2"
-* Only train ['classifier'] (epoch: 3/5)
-epoch: [3/50][20/394]	time 2.661 (2.829)	data 0.001 (0.166)	eta 14:50:54	loss_t 1.4280 (1.4605)	loss_x 5.5651 (5.5297)	acc 23.0469 (24.1211)	lr 0.000996
-epoch: [3/50][40/394]	time 2.624 (2.744)	data 0.000 (0.083)	eta 14:23:06	loss_t 1.5414 (1.5013)	loss_x 5.3895 (5.4965)	acc 26.9531 (24.3359)	lr 0.000996
-epoch: [3/50][60/394]	time 2.682 (2.712)	data 0.000 (0.056)	eta 14:12:15	loss_t 1.4607 (1.4757)	loss_x 5.5346 (5.4922)	acc 23.4375 (24.3945)	lr 0.000996
-epoch: [3/50][80/394]	time 2.655 (2.698)	data 0.001 (0.042)	eta 14:06:57	loss_t 1.4326 (1.4737)	loss_x 5.5343 (5.4819)	acc 24.0234 (24.6606)	lr 0.000996
-epoch: [3/50][100/394]	time 2.651 (2.690)	data 0.001 (0.034)	eta 14:03:30	loss_t 1.5663 (1.4796)	loss_x 5.3669 (5.4808)	acc 26.5625 (24.7715)	lr 0.000996
-epoch: [3/50][120/394]	time 2.665 (2.685)	data 0.001 (0.028)	eta 14:00:57	loss_t 1.4472 (1.5016)	loss_x 5.4355 (5.4729)	acc 26.9531 (24.8600)	lr 0.000996
-epoch: [3/50][140/394]	time 2.631 (2.681)	data 0.000 (0.024)	eta 13:58:46	loss_t 1.4603 (1.5035)	loss_x 5.5452 (5.4789)	acc 24.8047 (24.7475)	lr 0.000996
-epoch: [3/50][160/394]	time 2.650 (2.678)	data 0.000 (0.021)	eta 13:56:58	loss_t 1.6093 (1.5093)	loss_x 5.5957 (5.4817)	acc 22.0703 (24.7314)	lr 0.000996
-epoch: [3/50][180/394]	time 2.710 (2.677)	data 0.000 (0.019)	eta 13:55:41	loss_t 1.3461 (1.5011)	loss_x 5.4599 (5.4807)	acc 24.2188 (24.7320)	lr 0.000996
-epoch: [3/50][200/394]	time 2.685 (2.676)	data 0.000 (0.017)	eta 13:54:39	loss_t 1.5401 (1.5054)	loss_x 5.5287 (5.4812)	acc 25.5859 (24.7314)	lr 0.000996
-epoch: [3/50][220/394]	time 2.669 (2.675)	data 0.000 (0.016)	eta 13:53:19	loss_t 1.7958 (1.5100)	loss_x 5.4769 (5.4797)	acc 22.8516 (24.7337)	lr 0.000996
-epoch: [3/50][240/394]	time 2.657 (2.674)	data 0.000 (0.014)	eta 13:52:06	loss_t 1.8478 (1.5193)	loss_x 5.5474 (5.4814)	acc 22.8516 (24.6989)	lr 0.000996
-epoch: [3/50][260/394]	time 2.694 (2.673)	data 0.001 (0.013)	eta 13:51:01	loss_t 1.1994 (1.5183)	loss_x 5.5209 (5.4835)	acc 23.6328 (24.6837)	lr 0.000996
-epoch: [3/50][280/394]	time 2.644 (2.671)	data 0.000 (0.012)	eta 13:49:31	loss_t 1.6221 (1.5212)	loss_x 5.5755 (5.4827)	acc 24.6094 (24.7307)	lr 0.000996
-epoch: [3/50][300/394]	time 2.707 (2.671)	data 0.000 (0.012)	eta 13:48:28	loss_t 1.7607 (1.5201)	loss_x 5.5087 (5.4858)	acc 21.6797 (24.6309)	lr 0.000996
-epoch: [3/50][320/394]	time 2.645 (2.670)	data 0.000 (0.011)	eta 13:47:18	loss_t 1.7398 (1.5178)	loss_x 5.4034 (5.4832)	acc 24.8047 (24.6692)	lr 0.000996
-epoch: [3/50][340/394]	time 2.683 (2.669)	data 0.001 (0.010)	eta 13:46:13	loss_t 1.5372 (1.5184)	loss_x 5.3369 (5.4789)	acc 27.3438 (24.7156)	lr 0.000996
-epoch: [3/50][360/394]	time 2.624 (2.668)	data 0.001 (0.010)	eta 13:45:04	loss_t 1.2446 (1.5203)	loss_x 5.4557 (5.4758)	acc 23.6328 (24.7700)	lr 0.000996
-epoch: [3/50][380/394]	time 2.650 (2.668)	data 0.000 (0.009)	eta 13:44:06	loss_t 1.7276 (1.5210)	loss_x 5.4509 (5.4741)	acc 23.4375 (24.7574)	lr 0.000996
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-48"
+epoch: [49/80][20/394]	time 4.165 (4.287)	data 0.000 (0.159)	eta 14:59:19	loss_t 0.1121 (0.1303)	loss_x 1.5607 (1.5815)	acc 96.4844 (95.8203)	lr 0.000004
+epoch: [49/80][40/394]	time 4.075 (4.222)	data 0.001 (0.080)	eta 14:44:26	loss_t 0.2189 (0.1362)	loss_x 1.5924 (1.5833)	acc 96.2891 (95.7861)	lr 0.000004
+epoch: [49/80][60/394]	time 4.208 (4.201)	data 0.001 (0.053)	eta 14:38:33	loss_t 0.0946 (0.1312)	loss_x 1.5813 (1.5769)	acc 96.4844 (95.8789)	lr 0.000004
+epoch: [49/80][80/394]	time 4.231 (4.188)	data 0.001 (0.040)	eta 14:34:26	loss_t 0.1260 (0.1335)	loss_x 1.6316 (1.5796)	acc 94.7266 (95.8716)	lr 0.000004
+epoch: [49/80][100/394]	time 4.069 (4.185)	data 0.000 (0.032)	eta 14:32:25	loss_t 0.1764 (0.1339)	loss_x 1.5390 (1.5806)	acc 96.8750 (95.7871)	lr 0.000004
+epoch: [49/80][120/394]	time 4.210 (4.178)	data 0.001 (0.027)	eta 14:29:34	loss_t 0.1052 (0.1349)	loss_x 1.5718 (1.5786)	acc 96.6797 (95.8464)	lr 0.000004
+epoch: [49/80][140/394]	time 4.077 (4.174)	data 0.001 (0.023)	eta 14:27:20	loss_t 0.0994 (0.1336)	loss_x 1.6001 (1.5779)	acc 95.3125 (95.8677)	lr 0.000004
+epoch: [49/80][160/394]	time 4.164 (4.172)	data 0.001 (0.020)	eta 14:25:33	loss_t 0.1599 (0.1321)	loss_x 1.6235 (1.5778)	acc 95.8984 (95.8850)	lr 0.000004
+epoch: [49/80][180/394]	time 4.213 (4.171)	data 0.000 (0.018)	eta 14:23:58	loss_t 0.0810 (0.1310)	loss_x 1.6060 (1.5777)	acc 95.1172 (95.8594)	lr 0.000004
+epoch: [49/80][200/394]	time 4.195 (4.167)	data 0.001 (0.016)	eta 14:21:41	loss_t 0.1610 (0.1323)	loss_x 1.5832 (1.5786)	acc 94.9219 (95.8008)	lr 0.000004
+epoch: [49/80][220/394]	time 4.132 (4.162)	data 0.001 (0.015)	eta 14:19:20	loss_t 0.1357 (0.1317)	loss_x 1.5481 (1.5782)	acc 97.0703 (95.7928)	lr 0.000004
+epoch: [49/80][240/394]	time 4.156 (4.161)	data 0.001 (0.014)	eta 14:17:39	loss_t 0.1873 (0.1318)	loss_x 1.5901 (1.5776)	acc 96.0938 (95.8114)	lr 0.000004
+epoch: [49/80][260/394]	time 4.174 (4.159)	data 0.000 (0.013)	eta 14:16:01	loss_t 0.0974 (0.1305)	loss_x 1.5871 (1.5785)	acc 95.5078 (95.7858)	lr 0.000004
+epoch: [49/80][280/394]	time 4.115 (4.158)	data 0.001 (0.012)	eta 14:14:15	loss_t 0.1973 (0.1307)	loss_x 1.6035 (1.5783)	acc 94.7266 (95.7903)	lr 0.000004
+epoch: [49/80][300/394]	time 4.171 (4.157)	data 0.000 (0.011)	eta 14:12:42	loss_t 0.1617 (0.1301)	loss_x 1.5450 (1.5785)	acc 96.4844 (95.7878)	lr 0.000004
+epoch: [49/80][320/394]	time 4.085 (4.154)	data 0.001 (0.010)	eta 14:10:49	loss_t 0.0989 (0.1305)	loss_x 1.5957 (1.5789)	acc 95.8984 (95.7709)	lr 0.000004
+epoch: [49/80][340/394]	time 4.110 (4.154)	data 0.001 (0.010)	eta 14:09:18	loss_t 0.1469 (0.1303)	loss_x 1.5720 (1.5788)	acc 95.7031 (95.7835)	lr 0.000004
+epoch: [49/80][360/394]	time 4.154 (4.153)	data 0.000 (0.009)	eta 14:07:44	loss_t 0.1297 (0.1305)	loss_x 1.6048 (1.5790)	acc 95.1172 (95.7758)	lr 0.000004
+epoch: [49/80][380/394]	time 4.044 (4.152)	data 0.000 (0.009)	eta 14:06:12	loss_t 0.1783 (0.1305)	loss_x 1.5567 (1.5789)	acc 96.6797 (95.7802)	lr 0.000004
+epoch: [50/80][20/394]	time 4.179 (4.265)	data 0.000 (0.156)	eta 14:26:42	loss_t 0.1183 (0.1362)	loss_x 1.5823 (1.5743)	acc 95.3125 (95.8105)	lr 0.000001
+epoch: [50/80][40/394]	time 4.168 (4.202)	data 0.001 (0.078)	eta 14:12:32	loss_t 0.1629 (0.1251)	loss_x 1.5836 (1.5793)	acc 96.0938 (95.6689)	lr 0.000001
+epoch: [50/80][60/394]	time 4.146 (4.183)	data 0.000 (0.052)	eta 14:07:17	loss_t 0.2409 (0.1240)	loss_x 1.5836 (1.5777)	acc 95.8984 (95.6999)	lr 0.000001
+epoch: [50/80][80/394]	time 4.135 (4.169)	data 0.000 (0.039)	eta 14:03:10	loss_t 0.0989 (0.1261)	loss_x 1.5552 (1.5776)	acc 95.7031 (95.7031)	lr 0.000001
+epoch: [50/80][100/394]	time 4.079 (4.160)	data 0.000 (0.032)	eta 13:59:59	loss_t 0.0831 (0.1265)	loss_x 1.5732 (1.5789)	acc 96.4844 (95.6836)	lr 0.000001
+epoch: [50/80][120/394]	time 4.157 (4.155)	data 0.001 (0.026)	eta 13:57:35	loss_t 0.1918 (0.1284)	loss_x 1.5904 (1.5773)	acc 95.3125 (95.7178)	lr 0.000001
+epoch: [50/80][140/394]	time 4.145 (4.153)	data 0.001 (0.023)	eta 13:55:48	loss_t 0.1034 (0.1285)	loss_x 1.5985 (1.5753)	acc 94.5312 (95.7366)	lr 0.000001
+epoch: [50/80][160/394]	time 4.098 (4.149)	data 0.000 (0.020)	eta 13:53:33	loss_t 0.1218 (0.1303)	loss_x 1.5418 (1.5766)	acc 97.2656 (95.6970)	lr 0.000001
+epoch: [50/80][180/394]	time 4.131 (4.148)	data 0.001 (0.018)	eta 13:51:57	loss_t 0.1073 (0.1327)	loss_x 1.5915 (1.5783)	acc 94.7266 (95.6944)	lr 0.000001
+epoch: [50/80][200/394]	time 4.050 (4.146)	data 0.000 (0.016)	eta 13:50:08	loss_t 0.1061 (0.1329)	loss_x 1.5808 (1.5799)	acc 96.8750 (95.6631)	lr 0.000001
+epoch: [50/80][220/394]	time 4.075 (4.145)	data 0.001 (0.015)	eta 13:48:36	loss_t 0.1261 (0.1315)	loss_x 1.5784 (1.5793)	acc 96.2891 (95.6800)	lr 0.000001
+epoch: [50/80][240/394]	time 4.154 (4.145)	data 0.001 (0.013)	eta 13:47:17	loss_t 0.1161 (0.1313)	loss_x 1.5451 (1.5791)	acc 96.2891 (95.7048)	lr 0.000001
+epoch: [50/80][260/394]	time 4.186 (4.145)	data 0.000 (0.012)	eta 13:45:43	loss_t 0.0513 (0.1307)	loss_x 1.5922 (1.5793)	acc 95.7031 (95.7197)	lr 0.000001
+epoch: [50/80][280/394]	time 4.147 (4.145)	data 0.002 (0.012)	eta 13:44:22	loss_t 0.0627 (0.1307)	loss_x 1.5763 (1.5794)	acc 96.8750 (95.7345)	lr 0.000001
+epoch: [50/80][300/394]	time 4.144 (4.145)	data 0.000 (0.011)	eta 13:42:58	loss_t 0.0945 (0.1305)	loss_x 1.5714 (1.5800)	acc 95.7031 (95.7233)	lr 0.000001
+epoch: [50/80][320/394]	time 4.186 (4.144)	data 0.001 (0.010)	eta 13:41:30	loss_t 0.1774 (0.1311)	loss_x 1.5483 (1.5795)	acc 95.7031 (95.7318)	lr 0.000001
+epoch: [50/80][340/394]	time 4.052 (4.142)	data 0.001 (0.010)	eta 13:39:39	loss_t 0.2854 (0.1307)	loss_x 1.6680 (1.5797)	acc 94.5312 (95.7232)	lr 0.000001
+epoch: [50/80][360/394]	time 4.185 (4.141)	data 0.000 (0.009)	eta 13:38:05	loss_t 0.1400 (0.1296)	loss_x 1.6632 (1.5806)	acc 93.1641 (95.7010)	lr 0.000001
+epoch: [50/80][380/394]	time 4.164 (4.140)	data 0.000 (0.009)	eta 13:36:36	loss_t 0.2073 (0.1294)	loss_x 1.6144 (1.5806)	acc 95.1172 (95.7031)	lr 0.000001
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5474 sec/batch
+Speed: 0.5639 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 75.4%
+mAP: 72.1%
 CMC curve
-Rank-1  : 94.9%
-Rank-5  : 97.8%
-Rank-10 : 98.4%
+Rank-1  : 94.1%
+Rank-5  : 97.3%
+Rank-10 : 98.3%
 Rank-20 : 98.9%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-3"
-* Only train ['classifier'] (epoch: 4/5)
-epoch: [4/50][20/394]	time 2.643 (2.811)	data 0.000 (0.148)	eta 14:26:39	loss_t 1.8821 (1.4716)	loss_x 5.3686 (5.3613)	acc 26.1719 (26.2305)	lr 0.000991
-epoch: [4/50][40/394]	time 2.659 (2.733)	data 0.001 (0.074)	eta 14:01:47	loss_t 1.4037 (1.4861)	loss_x 5.4428 (5.3905)	acc 24.2188 (25.5322)	lr 0.000991
-epoch: [4/50][60/394]	time 2.636 (2.709)	data 0.001 (0.050)	eta 13:53:25	loss_t 1.6881 (1.5265)	loss_x 5.3913 (5.3893)	acc 25.3906 (25.6510)	lr 0.000991
-epoch: [4/50][80/394]	time 2.654 (2.695)	data 0.001 (0.037)	eta 13:48:02	loss_t 1.7071 (1.5132)	loss_x 5.4477 (5.3892)	acc 23.8281 (25.6104)	lr 0.000991
-epoch: [4/50][100/394]	time 2.671 (2.686)	data 0.001 (0.030)	eta 13:44:28	loss_t 1.3235 (1.5044)	loss_x 5.3615 (5.3958)	acc 27.3438 (25.4980)	lr 0.000991
-epoch: [4/50][120/394]	time 2.638 (2.681)	data 0.000 (0.025)	eta 13:42:10	loss_t 1.4662 (1.5201)	loss_x 5.4760 (5.3987)	acc 23.8281 (25.4736)	lr 0.000991
-epoch: [4/50][140/394]	time 2.658 (2.677)	data 0.000 (0.022)	eta 13:39:51	loss_t 1.8433 (1.5256)	loss_x 5.4490 (5.3941)	acc 23.0469 (25.4646)	lr 0.000991
-epoch: [4/50][160/394]	time 2.640 (2.675)	data 0.000 (0.019)	eta 13:38:23	loss_t 1.3387 (1.5050)	loss_x 5.5052 (5.3961)	acc 21.8750 (25.4382)	lr 0.000991
-epoch: [4/50][180/394]	time 2.657 (2.673)	data 0.001 (0.017)	eta 13:36:59	loss_t 2.2492 (1.5061)	loss_x 5.4827 (5.3952)	acc 24.8047 (25.4980)	lr 0.000991
-epoch: [4/50][200/394]	time 2.670 (2.673)	data 0.000 (0.015)	eta 13:36:02	loss_t 1.4814 (1.5050)	loss_x 5.2887 (5.3969)	acc 26.9531 (25.4346)	lr 0.000991
-epoch: [4/50][220/394]	time 2.658 (2.672)	data 0.000 (0.014)	eta 13:34:49	loss_t 1.6601 (1.5038)	loss_x 5.4512 (5.3951)	acc 23.6328 (25.4395)	lr 0.000991
-epoch: [4/50][240/394]	time 2.642 (2.670)	data 0.000 (0.013)	eta 13:33:18	loss_t 1.5673 (1.5008)	loss_x 5.3966 (5.3945)	acc 25.9766 (25.4761)	lr 0.000991
-epoch: [4/50][260/394]	time 2.641 (2.668)	data 0.001 (0.012)	eta 13:31:50	loss_t 1.5111 (1.5016)	loss_x 5.3581 (5.3963)	acc 26.1719 (25.4530)	lr 0.000991
-epoch: [4/50][280/394]	time 2.638 (2.667)	data 0.001 (0.011)	eta 13:30:40	loss_t 1.6411 (1.5009)	loss_x 5.5127 (5.3981)	acc 25.5859 (25.4311)	lr 0.000991
-epoch: [4/50][300/394]	time 2.706 (2.666)	data 0.000 (0.010)	eta 13:29:37	loss_t 1.6315 (1.5017)	loss_x 5.2343 (5.3956)	acc 30.2734 (25.4837)	lr 0.000991
-epoch: [4/50][320/394]	time 2.642 (2.666)	data 0.000 (0.010)	eta 13:28:31	loss_t 1.1648 (1.4969)	loss_x 5.4303 (5.3976)	acc 26.1719 (25.4199)	lr 0.000991
-epoch: [4/50][340/394]	time 2.659 (2.665)	data 0.000 (0.009)	eta 13:27:26	loss_t 1.5266 (1.4929)	loss_x 5.3812 (5.3993)	acc 22.6562 (25.3866)	lr 0.000991
-epoch: [4/50][360/394]	time 2.646 (2.665)	data 0.001 (0.009)	eta 13:26:28	loss_t 1.5044 (1.4950)	loss_x 5.4371 (5.4013)	acc 23.6328 (25.3494)	lr 0.000991
-epoch: [4/50][380/394]	time 2.666 (2.664)	data 0.000 (0.008)	eta 13:25:22	loss_t 1.1687 (1.4947)	loss_x 5.5709 (5.4035)	acc 23.6328 (25.3166)	lr 0.000991
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-50"
+epoch: [51/80][20/394]	time 4.188 (4.307)	data 0.000 (0.156)	eta 14:07:02	loss_t 0.1074 (0.1362)	loss_x 1.5745 (1.5780)	acc 96.4844 (96.0449)	lr 0.000000
+epoch: [51/80][40/394]	time 4.189 (4.230)	data 0.000 (0.078)	eta 13:50:29	loss_t 0.0651 (0.1311)	loss_x 1.5567 (1.5789)	acc 95.8984 (95.9912)	lr 0.000000
+epoch: [51/80][60/394]	time 4.182 (4.206)	data 0.000 (0.052)	eta 13:44:18	loss_t 0.0529 (0.1305)	loss_x 1.5462 (1.5759)	acc 96.4844 (95.9961)	lr 0.000000
+epoch: [51/80][80/394]	time 4.208 (4.199)	data 0.001 (0.039)	eta 13:41:40	loss_t 0.0792 (0.1250)	loss_x 1.6064 (1.5779)	acc 94.1406 (95.9082)	lr 0.000000
+epoch: [51/80][100/394]	time 4.185 (4.195)	data 0.000 (0.032)	eta 13:39:30	loss_t 0.1099 (0.1301)	loss_x 1.5877 (1.5787)	acc 95.5078 (95.8496)	lr 0.000000
+epoch: [51/80][120/394]	time 4.104 (4.191)	data 0.001 (0.026)	eta 13:37:09	loss_t 0.1661 (0.1324)	loss_x 1.5793 (1.5783)	acc 95.7031 (95.8431)	lr 0.000000
+epoch: [51/80][140/394]	time 4.231 (4.189)	data 0.000 (0.023)	eta 13:35:28	loss_t 0.0457 (0.1300)	loss_x 1.5937 (1.5779)	acc 95.3125 (95.8329)	lr 0.000000
+epoch: [51/80][160/394]	time 4.220 (4.187)	data 0.000 (0.020)	eta 13:33:43	loss_t 0.1570 (0.1299)	loss_x 1.5877 (1.5779)	acc 95.5078 (95.8398)	lr 0.000000
+epoch: [51/80][180/394]	time 4.145 (4.185)	data 0.001 (0.018)	eta 13:31:59	loss_t 0.1484 (0.1302)	loss_x 1.6538 (1.5781)	acc 93.3594 (95.8431)	lr 0.000000
+epoch: [51/80][200/394]	time 4.136 (4.186)	data 0.001 (0.016)	eta 13:30:44	loss_t 0.0756 (0.1303)	loss_x 1.5408 (1.5779)	acc 97.0703 (95.8525)	lr 0.000000
+epoch: [51/80][220/394]	time 4.205 (4.185)	data 0.000 (0.015)	eta 13:29:02	loss_t 0.1099 (0.1301)	loss_x 1.5992 (1.5784)	acc 95.1172 (95.8381)	lr 0.000000
+epoch: [51/80][240/394]	time 4.221 (4.184)	data 0.001 (0.013)	eta 13:27:34	loss_t 0.0806 (0.1285)	loss_x 1.5492 (1.5789)	acc 96.4844 (95.8228)	lr 0.000000
+epoch: [51/80][260/394]	time 4.250 (4.184)	data 0.000 (0.012)	eta 13:26:11	loss_t 0.1246 (0.1285)	loss_x 1.5953 (1.5790)	acc 96.4844 (95.8286)	lr 0.000000
+epoch: [51/80][280/394]	time 4.141 (4.183)	data 0.001 (0.012)	eta 13:24:37	loss_t 0.1046 (0.1268)	loss_x 1.6135 (1.5794)	acc 95.1172 (95.8161)	lr 0.000000
+epoch: [51/80][300/394]	time 4.209 (4.183)	data 0.001 (0.011)	eta 13:23:05	loss_t 0.0833 (0.1266)	loss_x 1.5805 (1.5799)	acc 95.5078 (95.8145)	lr 0.000000
+epoch: [51/80][320/394]	time 4.167 (4.182)	data 0.001 (0.010)	eta 13:21:32	loss_t 0.1369 (0.1259)	loss_x 1.5578 (1.5792)	acc 96.0938 (95.8185)	lr 0.000000
+epoch: [51/80][340/394]	time 4.151 (4.180)	data 0.000 (0.010)	eta 13:19:46	loss_t 0.0996 (0.1251)	loss_x 1.6234 (1.5795)	acc 94.3359 (95.7979)	lr 0.000000
+epoch: [51/80][360/394]	time 4.265 (4.180)	data 0.001 (0.009)	eta 13:18:25	loss_t 0.1394 (0.1255)	loss_x 1.5791 (1.5798)	acc 96.6797 (95.7845)	lr 0.000000
+epoch: [51/80][380/394]	time 4.137 (4.179)	data 0.000 (0.009)	eta 13:16:48	loss_t 0.1218 (0.1261)	loss_x 1.5462 (1.5793)	acc 97.0703 (95.7910)	lr 0.000000
+epoch: [52/80][20/394]	time 4.235 (4.320)	data 0.001 (0.142)	eta 13:41:14	loss_t 0.1358 (0.1212)	loss_x 1.6025 (1.5781)	acc 95.7031 (95.6152)	lr 0.000001
+epoch: [52/80][40/394]	time 4.224 (4.253)	data 0.000 (0.071)	eta 13:27:02	loss_t 0.2107 (0.1234)	loss_x 1.5758 (1.5789)	acc 95.5078 (95.6689)	lr 0.000001
+epoch: [52/80][60/394]	time 4.116 (4.223)	data 0.001 (0.048)	eta 13:19:54	loss_t 0.0897 (0.1239)	loss_x 1.5406 (1.5782)	acc 96.8750 (95.7259)	lr 0.000001
+epoch: [52/80][80/394]	time 4.166 (4.212)	data 0.000 (0.036)	eta 13:16:24	loss_t 0.1902 (0.1233)	loss_x 1.5630 (1.5768)	acc 96.2891 (95.8008)	lr 0.000001
+epoch: [52/80][100/394]	time 4.218 (4.204)	data 0.001 (0.029)	eta 13:13:31	loss_t 0.1297 (0.1250)	loss_x 1.5717 (1.5772)	acc 96.0938 (95.8066)	lr 0.000001
+epoch: [52/80][120/394]	time 4.146 (4.198)	data 0.000 (0.024)	eta 13:11:06	loss_t 0.2118 (0.1274)	loss_x 1.6324 (1.5763)	acc 94.7266 (95.8480)	lr 0.000001
+epoch: [52/80][140/394]	time 4.151 (4.196)	data 0.001 (0.021)	eta 13:09:12	loss_t 0.1826 (0.1284)	loss_x 1.6091 (1.5768)	acc 96.2891 (95.8482)	lr 0.000001
+epoch: [52/80][160/394]	time 4.109 (4.191)	data 0.000 (0.018)	eta 13:06:57	loss_t 0.0850 (0.1293)	loss_x 1.5842 (1.5777)	acc 95.3125 (95.8325)	lr 0.000001
+epoch: [52/80][180/394]	time 4.109 (4.189)	data 0.000 (0.016)	eta 13:05:07	loss_t 0.0504 (0.1303)	loss_x 1.5739 (1.5791)	acc 95.8984 (95.7812)	lr 0.000001
+epoch: [52/80][200/394]	time 4.219 (4.189)	data 0.000 (0.015)	eta 13:03:40	loss_t 0.0704 (0.1301)	loss_x 1.5855 (1.5780)	acc 94.9219 (95.8242)	lr 0.000001
+epoch: [52/80][220/394]	time 4.113 (4.187)	data 0.001 (0.013)	eta 13:01:59	loss_t 0.0776 (0.1280)	loss_x 1.6001 (1.5783)	acc 95.7031 (95.7999)	lr 0.000001
+epoch: [52/80][240/394]	time 4.218 (4.187)	data 0.000 (0.012)	eta 13:00:37	loss_t 0.1688 (0.1270)	loss_x 1.5386 (1.5795)	acc 96.2891 (95.7861)	lr 0.000001
+epoch: [52/80][260/394]	time 4.153 (4.187)	data 0.000 (0.011)	eta 12:59:09	loss_t 0.1908 (0.1269)	loss_x 1.5774 (1.5791)	acc 95.8984 (95.7820)	lr 0.000001
+epoch: [52/80][280/394]	time 4.183 (4.185)	data 0.000 (0.011)	eta 12:57:29	loss_t 0.1025 (0.1274)	loss_x 1.5680 (1.5792)	acc 96.8750 (95.7812)	lr 0.000001
+epoch: [52/80][300/394]	time 4.160 (4.185)	data 0.001 (0.010)	eta 12:56:01	loss_t 0.1490 (0.1278)	loss_x 1.5521 (1.5797)	acc 96.2891 (95.7865)	lr 0.000001
+epoch: [52/80][320/394]	time 4.178 (4.184)	data 0.000 (0.009)	eta 12:54:25	loss_t 0.0760 (0.1265)	loss_x 1.5525 (1.5799)	acc 96.4844 (95.7825)	lr 0.000001
+epoch: [52/80][340/394]	time 4.240 (4.182)	data 0.001 (0.009)	eta 12:52:45	loss_t 0.1214 (0.1265)	loss_x 1.5259 (1.5799)	acc 96.0938 (95.7721)	lr 0.000001
+epoch: [52/80][360/394]	time 4.151 (4.183)	data 0.000 (0.008)	eta 12:51:26	loss_t 0.0884 (0.1268)	loss_x 1.5369 (1.5795)	acc 97.4609 (95.7737)	lr 0.000001
+epoch: [52/80][380/394]	time 4.105 (4.179)	data 0.000 (0.008)	eta 12:49:19	loss_t 0.1823 (0.1266)	loss_x 1.5675 (1.5793)	acc 96.6797 (95.7833)	lr 0.000001
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5682 sec/batch
+Speed: 0.5449 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 75.4%
+mAP: 72.1%
 CMC curve
-Rank-1  : 94.8%
-Rank-5  : 97.8%
-Rank-10 : 98.4%
+Rank-1  : 94.0%
+Rank-5  : 97.3%
+Rank-10 : 98.3%
 Rank-20 : 98.9%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-4"
-* Only train ['classifier'] (epoch: 5/5)
-epoch: [5/50][20/394]	time 2.659 (2.816)	data 0.000 (0.146)	eta 14:09:38	loss_t 1.5293 (1.4733)	loss_x 5.3829 (5.3444)	acc 24.4141 (25.7910)	lr 0.000984
-epoch: [5/50][40/394]	time 2.643 (2.730)	data 0.001 (0.073)	eta 13:42:43	loss_t 1.3282 (1.4708)	loss_x 5.3457 (5.3577)	acc 26.1719 (25.7861)	lr 0.000984
-epoch: [5/50][60/394]	time 2.672 (2.707)	data 0.000 (0.049)	eta 13:35:07	loss_t 1.3850 (1.4487)	loss_x 5.3370 (5.3432)	acc 28.1250 (26.0156)	lr 0.000984
-epoch: [5/50][80/394]	time 2.638 (2.695)	data 0.000 (0.037)	eta 13:30:31	loss_t 1.2288 (1.4680)	loss_x 5.3583 (5.3439)	acc 24.0234 (25.9717)	lr 0.000984
-epoch: [5/50][100/394]	time 2.652 (2.687)	data 0.000 (0.029)	eta 13:27:14	loss_t 1.7984 (1.4651)	loss_x 5.4424 (5.3470)	acc 24.0234 (25.9590)	lr 0.000984
-epoch: [5/50][120/394]	time 2.637 (2.683)	data 0.001 (0.025)	eta 13:25:11	loss_t 1.5569 (1.4729)	loss_x 5.4599 (5.3458)	acc 25.1953 (25.9668)	lr 0.000984
-epoch: [5/50][140/394]	time 2.639 (2.679)	data 0.000 (0.021)	eta 13:23:07	loss_t 1.7541 (1.4797)	loss_x 5.4553 (5.3459)	acc 25.9766 (25.9710)	lr 0.000984
-epoch: [5/50][160/394]	time 2.639 (2.677)	data 0.000 (0.019)	eta 13:21:29	loss_t 1.2259 (1.4809)	loss_x 5.2230 (5.3485)	acc 29.2969 (25.9277)	lr 0.000984
-epoch: [5/50][180/394]	time 2.691 (2.675)	data 0.001 (0.017)	eta 13:19:58	loss_t 1.2245 (1.4841)	loss_x 5.4565 (5.3518)	acc 24.6094 (25.8767)	lr 0.000984
-epoch: [5/50][200/394]	time 2.656 (2.673)	data 0.001 (0.015)	eta 13:18:23	loss_t 1.2828 (1.4876)	loss_x 5.4475 (5.3505)	acc 25.1953 (25.9053)	lr 0.000984
-epoch: [5/50][220/394]	time 2.667 (2.671)	data 0.001 (0.014)	eta 13:17:05	loss_t 1.4556 (1.4855)	loss_x 5.5092 (5.3508)	acc 22.8516 (25.9544)	lr 0.000984
-epoch: [5/50][240/394]	time 2.647 (2.669)	data 0.001 (0.013)	eta 13:15:33	loss_t 1.6442 (1.4819)	loss_x 5.3124 (5.3551)	acc 27.1484 (25.8813)	lr 0.000984
-epoch: [5/50][260/394]	time 2.641 (2.668)	data 0.001 (0.012)	eta 13:14:19	loss_t 1.5533 (1.4859)	loss_x 5.1895 (5.3525)	acc 28.5156 (25.8842)	lr 0.000984
-epoch: [5/50][280/394]	time 2.678 (2.668)	data 0.000 (0.011)	eta 13:13:26	loss_t 1.6486 (1.4872)	loss_x 5.3388 (5.3487)	acc 24.8047 (25.9473)	lr 0.000984
-epoch: [5/50][300/394]	time 2.628 (2.667)	data 0.001 (0.010)	eta 13:12:15	loss_t 1.6168 (1.4820)	loss_x 5.2649 (5.3489)	acc 26.7578 (25.9329)	lr 0.000984
-epoch: [5/50][320/394]	time 2.647 (2.666)	data 0.000 (0.010)	eta 13:11:09	loss_t 1.3427 (1.4823)	loss_x 5.2597 (5.3512)	acc 26.5625 (25.8990)	lr 0.000984
-epoch: [5/50][340/394]	time 2.658 (2.666)	data 0.000 (0.009)	eta 13:10:09	loss_t 1.5639 (1.4835)	loss_x 5.2735 (5.3512)	acc 27.1484 (25.8973)	lr 0.000984
-epoch: [5/50][360/394]	time 2.647 (2.665)	data 0.000 (0.009)	eta 13:09:08	loss_t 1.7492 (1.4828)	loss_x 5.2995 (5.3512)	acc 26.1719 (25.8784)	lr 0.000984
-epoch: [5/50][380/394]	time 2.685 (2.665)	data 0.000 (0.008)	eta 13:08:08	loss_t 1.3516 (1.4789)	loss_x 5.3430 (5.3514)	acc 25.5859 (25.8789)	lr 0.000984
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-52"
+epoch: [53/80][20/394]	time 4.094 (4.179)	data 0.000 (0.138)	eta 12:46:55	loss_t 0.0967 (0.1341)	loss_x 1.6160 (1.5832)	acc 95.3125 (95.7812)	lr 0.000004
+epoch: [53/80][40/394]	time 4.018 (4.142)	data 0.000 (0.069)	eta 12:38:50	loss_t 0.1077 (0.1405)	loss_x 1.5703 (1.5794)	acc 96.2891 (95.7764)	lr 0.000004
+epoch: [53/80][60/394]	time 4.179 (4.126)	data 0.000 (0.046)	eta 12:34:30	loss_t 0.1396 (0.1407)	loss_x 1.5526 (1.5768)	acc 96.6797 (95.8594)	lr 0.000004
+epoch: [53/80][80/394]	time 4.182 (4.130)	data 0.001 (0.035)	eta 12:33:49	loss_t 0.0537 (0.1380)	loss_x 1.5703 (1.5753)	acc 96.4844 (95.8740)	lr 0.000004
+epoch: [53/80][100/394]	time 4.124 (4.127)	data 0.000 (0.028)	eta 12:31:55	loss_t 0.0958 (0.1395)	loss_x 1.5664 (1.5747)	acc 96.0938 (95.8691)	lr 0.000004
+epoch: [53/80][120/394]	time 4.202 (4.127)	data 0.000 (0.023)	eta 12:30:34	loss_t 0.1163 (0.1371)	loss_x 1.5837 (1.5757)	acc 96.8750 (95.8610)	lr 0.000004
+epoch: [53/80][140/394]	time 4.074 (4.122)	data 0.000 (0.020)	eta 12:28:15	loss_t 0.0757 (0.1364)	loss_x 1.5538 (1.5744)	acc 96.4844 (95.9040)	lr 0.000004
+epoch: [53/80][160/394]	time 4.078 (4.119)	data 0.000 (0.018)	eta 12:26:26	loss_t 0.2543 (0.1357)	loss_x 1.6058 (1.5751)	acc 94.5312 (95.8899)	lr 0.000004
+epoch: [53/80][180/394]	time 4.080 (4.119)	data 0.001 (0.016)	eta 12:24:55	loss_t 0.0927 (0.1353)	loss_x 1.5954 (1.5760)	acc 95.3125 (95.8876)	lr 0.000004
+epoch: [53/80][200/394]	time 4.192 (4.117)	data 0.001 (0.014)	eta 12:23:16	loss_t 0.0676 (0.1344)	loss_x 1.5563 (1.5756)	acc 96.4844 (95.8984)	lr 0.000004
+epoch: [53/80][220/394]	time 4.001 (4.116)	data 0.000 (0.013)	eta 12:21:43	loss_t 0.1473 (0.1353)	loss_x 1.5789 (1.5762)	acc 95.5078 (95.8798)	lr 0.000004
+epoch: [53/80][240/394]	time 4.105 (4.115)	data 0.000 (0.012)	eta 12:20:08	loss_t 0.1270 (0.1354)	loss_x 1.5474 (1.5764)	acc 96.0938 (95.8757)	lr 0.000004
+epoch: [53/80][260/394]	time 4.002 (4.114)	data 0.000 (0.011)	eta 12:18:38	loss_t 0.1460 (0.1348)	loss_x 1.5604 (1.5768)	acc 96.0938 (95.8691)	lr 0.000004
+epoch: [53/80][280/394]	time 4.086 (4.113)	data 0.000 (0.010)	eta 12:17:03	loss_t 0.1158 (0.1341)	loss_x 1.5415 (1.5773)	acc 97.0703 (95.8468)	lr 0.000004
+epoch: [53/80][300/394]	time 4.174 (4.113)	data 0.000 (0.010)	eta 12:15:40	loss_t 0.1503 (0.1340)	loss_x 1.5411 (1.5776)	acc 96.0938 (95.8210)	lr 0.000004
+epoch: [53/80][320/394]	time 4.207 (4.113)	data 0.000 (0.009)	eta 12:14:15	loss_t 0.1070 (0.1331)	loss_x 1.5741 (1.5782)	acc 95.7031 (95.8105)	lr 0.000004
+epoch: [53/80][340/394]	time 4.162 (4.114)	data 0.000 (0.009)	eta 12:13:03	loss_t 0.1135 (0.1337)	loss_x 1.5621 (1.5790)	acc 95.5078 (95.7922)	lr 0.000004
+epoch: [53/80][360/394]	time 4.130 (4.114)	data 0.000 (0.008)	eta 12:11:46	loss_t 0.1396 (0.1331)	loss_x 1.5872 (1.5794)	acc 95.3125 (95.7867)	lr 0.000004
+epoch: [53/80][380/394]	time 4.187 (4.115)	data 0.000 (0.008)	eta 12:10:29	loss_t 0.1323 (0.1320)	loss_x 1.5659 (1.5794)	acc 96.6797 (95.7920)	lr 0.000004
+epoch: [54/80][20/394]	time 4.108 (4.242)	data 0.000 (0.138)	eta 12:30:39	loss_t 0.2187 (0.1366)	loss_x 1.5410 (1.5732)	acc 96.4844 (95.9863)	lr 0.000009
+epoch: [54/80][40/394]	time 4.174 (4.179)	data 0.001 (0.069)	eta 12:18:12	loss_t 0.0961 (0.1264)	loss_x 1.6020 (1.5772)	acc 95.3125 (95.8105)	lr 0.000009
+epoch: [54/80][60/394]	time 4.213 (4.152)	data 0.001 (0.046)	eta 12:12:05	loss_t 0.0909 (0.1271)	loss_x 1.5696 (1.5769)	acc 95.8984 (95.7552)	lr 0.000009
+epoch: [54/80][80/394]	time 4.018 (4.140)	data 0.000 (0.035)	eta 12:08:32	loss_t 0.0733 (0.1278)	loss_x 1.5741 (1.5778)	acc 95.8984 (95.7129)	lr 0.000009
+epoch: [54/80][100/394]	time 4.114 (4.134)	data 0.000 (0.028)	eta 12:06:02	loss_t 0.1178 (0.1278)	loss_x 1.5502 (1.5780)	acc 96.6797 (95.7383)	lr 0.000009
+epoch: [54/80][120/394]	time 4.024 (4.127)	data 0.000 (0.023)	eta 12:03:31	loss_t 0.1940 (0.1293)	loss_x 1.5810 (1.5793)	acc 95.3125 (95.7096)	lr 0.000009
+epoch: [54/80][140/394]	time 4.104 (4.124)	data 0.000 (0.020)	eta 12:01:31	loss_t 0.1141 (0.1281)	loss_x 1.5788 (1.5792)	acc 96.0938 (95.7338)	lr 0.000009
+epoch: [54/80][160/394]	time 4.086 (4.121)	data 0.000 (0.018)	eta 11:59:38	loss_t 0.2426 (0.1294)	loss_x 1.6123 (1.5798)	acc 94.3359 (95.7141)	lr 0.000009
+epoch: [54/80][180/394]	time 4.023 (4.117)	data 0.000 (0.016)	eta 11:57:39	loss_t 0.1748 (0.1303)	loss_x 1.5866 (1.5791)	acc 95.5078 (95.7487)	lr 0.000009
+epoch: [54/80][200/394]	time 4.097 (4.116)	data 0.000 (0.014)	eta 11:56:02	loss_t 0.1663 (0.1306)	loss_x 1.5679 (1.5788)	acc 95.7031 (95.7588)	lr 0.000009
+epoch: [54/80][220/394]	time 4.038 (4.114)	data 0.000 (0.013)	eta 11:54:20	loss_t 0.1773 (0.1303)	loss_x 1.6112 (1.5790)	acc 95.5078 (95.7608)	lr 0.000009
+epoch: [54/80][240/394]	time 4.009 (4.112)	data 0.000 (0.012)	eta 11:52:38	loss_t 0.1132 (0.1294)	loss_x 1.5704 (1.5797)	acc 96.4844 (95.7454)	lr 0.000009
+epoch: [54/80][260/394]	time 4.103 (4.111)	data 0.001 (0.011)	eta 11:51:06	loss_t 0.1565 (0.1282)	loss_x 1.5522 (1.5793)	acc 96.2891 (95.7505)	lr 0.000009
+epoch: [54/80][280/394]	time 4.110 (4.110)	data 0.000 (0.010)	eta 11:49:32	loss_t 0.1474 (0.1274)	loss_x 1.5821 (1.5792)	acc 95.5078 (95.7506)	lr 0.000009
+epoch: [54/80][300/394]	time 4.118 (4.111)	data 0.000 (0.010)	eta 11:48:15	loss_t 0.0772 (0.1270)	loss_x 1.5852 (1.5793)	acc 95.7031 (95.7493)	lr 0.000009
+epoch: [54/80][320/394]	time 4.084 (4.111)	data 0.001 (0.009)	eta 11:46:53	loss_t 0.1478 (0.1279)	loss_x 1.5582 (1.5798)	acc 97.0703 (95.7220)	lr 0.000009
+epoch: [54/80][340/394]	time 4.120 (4.110)	data 0.000 (0.009)	eta 11:45:26	loss_t 0.0659 (0.1285)	loss_x 1.5444 (1.5800)	acc 97.6562 (95.7301)	lr 0.000009
+epoch: [54/80][360/394]	time 4.160 (4.111)	data 0.000 (0.008)	eta 11:44:15	loss_t 0.2577 (0.1283)	loss_x 1.6129 (1.5804)	acc 95.7031 (95.7259)	lr 0.000009
+epoch: [54/80][380/394]	time 4.094 (4.110)	data 0.000 (0.008)	eta 11:42:41	loss_t 0.0738 (0.1276)	loss_x 1.5565 (1.5810)	acc 95.5078 (95.7083)	lr 0.000009
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5382 sec/batch
+Speed: 0.5708 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 75.4%
+mAP: 72.1%
 CMC curve
-Rank-1  : 94.9%
-Rank-5  : 97.8%
-Rank-10 : 98.4%
+Rank-1  : 94.1%
+Rank-5  : 97.4%
+Rank-10 : 98.3%
 Rank-20 : 98.9%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-5"
-epoch: [6/50][20/394]	time 4.162 (4.626)	data 0.001 (0.149)	eta 22:45:20	loss_t 0.7294 (0.9923)	loss_x 4.7131 (5.2999)	acc 28.7109 (22.4902)	lr 0.000976
-epoch: [6/50][40/394]	time 4.216 (4.420)	data 0.001 (0.075)	eta 21:43:07	loss_t 0.5657 (0.8775)	loss_x 4.1605 (4.8622)	acc 40.8203 (27.9834)	lr 0.000976
-epoch: [6/50][60/394]	time 4.249 (4.359)	data 0.000 (0.050)	eta 21:23:38	loss_t 0.6260 (0.8015)	loss_x 3.8424 (4.5961)	acc 44.1406 (31.9792)	lr 0.000976
-epoch: [6/50][80/394]	time 4.201 (4.322)	data 0.000 (0.038)	eta 21:11:28	loss_t 0.4660 (0.7454)	loss_x 3.7435 (4.3957)	acc 46.8750 (35.1440)	lr 0.000976
-epoch: [6/50][100/394]	time 4.328 (4.299)	data 0.001 (0.030)	eta 21:03:12	loss_t 0.4040 (0.7057)	loss_x 3.4379 (4.2474)	acc 54.1016 (37.7480)	lr 0.000976
-epoch: [6/50][120/394]	time 4.216 (4.285)	data 0.000 (0.025)	eta 20:57:40	loss_t 0.5249 (0.6758)	loss_x 3.4993 (4.1346)	acc 52.7344 (39.8633)	lr 0.000976
-epoch: [6/50][140/394]	time 4.201 (4.271)	data 0.001 (0.022)	eta 20:52:06	loss_t 0.3852 (0.6550)	loss_x 3.2221 (4.0399)	acc 57.2266 (41.6211)	lr 0.000976
-epoch: [6/50][160/394]	time 4.172 (4.264)	data 0.000 (0.019)	eta 20:48:38	loss_t 0.5580 (0.6352)	loss_x 3.4260 (3.9602)	acc 54.2969 (43.1702)	lr 0.000976
-epoch: [6/50][180/394]	time 4.171 (4.255)	data 0.000 (0.017)	eta 20:44:32	loss_t 0.3498 (0.6218)	loss_x 3.2991 (3.8911)	acc 57.4219 (44.5323)	lr 0.000976
-epoch: [6/50][200/394]	time 4.241 (4.249)	data 0.001 (0.015)	eta 20:41:26	loss_t 0.4631 (0.6057)	loss_x 3.2045 (3.8280)	acc 59.3750 (45.8135)	lr 0.000976
-epoch: [6/50][220/394]	time 4.139 (4.244)	data 0.000 (0.014)	eta 20:38:26	loss_t 0.4671 (0.5937)	loss_x 3.1417 (3.7705)	acc 61.5234 (46.9762)	lr 0.000976
-epoch: [6/50][240/394]	time 4.207 (4.239)	data 0.000 (0.013)	eta 20:35:38	loss_t 0.3804 (0.5846)	loss_x 3.0499 (3.7199)	acc 60.3516 (47.9753)	lr 0.000976
-epoch: [6/50][260/394]	time 4.213 (4.236)	data 0.000 (0.012)	eta 20:33:27	loss_t 0.3726 (0.5720)	loss_x 3.0644 (3.6744)	acc 60.3516 (48.9070)	lr 0.000976
-epoch: [6/50][280/394]	time 4.082 (4.232)	data 0.000 (0.011)	eta 20:30:56	loss_t 0.3752 (0.5621)	loss_x 3.0134 (3.6317)	acc 60.5469 (49.8263)	lr 0.000976
-epoch: [6/50][300/394]	time 4.212 (4.230)	data 0.001 (0.010)	eta 20:28:45	loss_t 0.5999 (0.5533)	loss_x 2.9352 (3.5934)	acc 63.6719 (50.5964)	lr 0.000976
-epoch: [6/50][320/394]	time 4.216 (4.228)	data 0.000 (0.010)	eta 20:26:46	loss_t 0.5373 (0.5456)	loss_x 2.9615 (3.5589)	acc 63.6719 (51.2982)	lr 0.000976
-epoch: [6/50][340/394]	time 4.172 (4.225)	data 0.001 (0.009)	eta 20:24:31	loss_t 0.4498 (0.5402)	loss_x 2.8963 (3.5272)	acc 64.8438 (51.9543)	lr 0.000976
-epoch: [6/50][360/394]	time 4.179 (4.223)	data 0.000 (0.009)	eta 20:22:29	loss_t 0.4062 (0.5314)	loss_x 3.0028 (3.4966)	acc 62.1094 (52.5977)	lr 0.000976
-epoch: [6/50][380/394]	time 4.130 (4.221)	data 0.000 (0.008)	eta 20:20:36	loss_t 0.4949 (0.5245)	loss_x 2.9709 (3.4659)	acc 62.5000 (53.2314)	lr 0.000976
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-54"
+epoch: [55/80][20/394]	time 4.101 (4.212)	data 0.000 (0.141)	eta 11:57:43	loss_t 0.1475 (0.1257)	loss_x 1.5822 (1.5693)	acc 96.0938 (96.0352)	lr 0.000016
+epoch: [55/80][40/394]	time 4.206 (4.183)	data 0.001 (0.071)	eta 11:51:27	loss_t 0.1650 (0.1349)	loss_x 1.6228 (1.5756)	acc 94.7266 (95.9082)	lr 0.000016
+epoch: [55/80][60/394]	time 4.149 (4.188)	data 0.000 (0.047)	eta 11:50:49	loss_t 0.1029 (0.1277)	loss_x 1.5834 (1.5757)	acc 96.4844 (95.9440)	lr 0.000016
+epoch: [55/80][80/394]	time 4.247 (4.189)	data 0.001 (0.036)	eta 11:49:33	loss_t 0.1131 (0.1304)	loss_x 1.5438 (1.5786)	acc 95.5078 (95.8813)	lr 0.000016
+epoch: [55/80][100/394]	time 4.218 (4.187)	data 0.001 (0.029)	eta 11:47:56	loss_t 0.1701 (0.1306)	loss_x 1.5894 (1.5798)	acc 96.0938 (95.8633)	lr 0.000016
+epoch: [55/80][120/394]	time 4.128 (4.183)	data 0.000 (0.024)	eta 11:45:51	loss_t 0.1192 (0.1303)	loss_x 1.6388 (1.5810)	acc 93.5547 (95.8154)	lr 0.000016
+epoch: [55/80][140/394]	time 4.137 (4.181)	data 0.001 (0.021)	eta 11:44:02	loss_t 0.2071 (0.1301)	loss_x 1.6049 (1.5814)	acc 95.5078 (95.7771)	lr 0.000016
+epoch: [55/80][160/394]	time 4.259 (4.181)	data 0.000 (0.018)	eta 11:42:36	loss_t 0.1446 (0.1291)	loss_x 1.5690 (1.5808)	acc 96.2891 (95.7751)	lr 0.000016
+epoch: [55/80][180/394]	time 4.160 (4.180)	data 0.001 (0.016)	eta 11:41:10	loss_t 0.1220 (0.1290)	loss_x 1.6666 (1.5814)	acc 94.1406 (95.7595)	lr 0.000016
+epoch: [55/80][200/394]	time 4.140 (4.182)	data 0.000 (0.015)	eta 11:40:00	loss_t 0.1482 (0.1288)	loss_x 1.5587 (1.5817)	acc 95.3125 (95.7217)	lr 0.000016
+epoch: [55/80][220/394]	time 4.254 (4.179)	data 0.001 (0.013)	eta 11:38:14	loss_t 0.1144 (0.1277)	loss_x 1.5664 (1.5809)	acc 95.7031 (95.7182)	lr 0.000016
+epoch: [55/80][240/394]	time 4.180 (4.179)	data 0.001 (0.012)	eta 11:36:50	loss_t 0.0630 (0.1279)	loss_x 1.5461 (1.5821)	acc 96.4844 (95.7056)	lr 0.000016
+epoch: [55/80][260/394]	time 4.155 (4.179)	data 0.001 (0.011)	eta 11:35:19	loss_t 0.1667 (0.1275)	loss_x 1.5884 (1.5823)	acc 96.2891 (95.7084)	lr 0.000016
+epoch: [55/80][280/394]	time 4.181 (4.179)	data 0.001 (0.011)	eta 11:34:02	loss_t 0.2011 (0.1283)	loss_x 1.6456 (1.5832)	acc 94.1406 (95.6850)	lr 0.000016
+epoch: [55/80][300/394]	time 4.235 (4.177)	data 0.001 (0.010)	eta 11:32:17	loss_t 0.1298 (0.1279)	loss_x 1.5818 (1.5833)	acc 95.5078 (95.7018)	lr 0.000016
+epoch: [55/80][320/394]	time 4.151 (4.178)	data 0.000 (0.009)	eta 11:30:57	loss_t 0.1922 (0.1287)	loss_x 1.5646 (1.5825)	acc 95.8984 (95.7159)	lr 0.000016
+epoch: [55/80][340/394]	time 4.162 (4.178)	data 0.000 (0.009)	eta 11:29:39	loss_t 0.1224 (0.1290)	loss_x 1.5848 (1.5828)	acc 94.7266 (95.6997)	lr 0.000016
+epoch: [55/80][360/394]	time 4.212 (4.181)	data 0.001 (0.008)	eta 11:28:41	loss_t 0.0718 (0.1284)	loss_x 1.5665 (1.5823)	acc 95.5078 (95.6999)	lr 0.000016
+epoch: [55/80][380/394]	time 4.158 (4.179)	data 0.000 (0.008)	eta 11:27:02	loss_t 0.1138 (0.1282)	loss_x 1.5393 (1.5820)	acc 97.8516 (95.7129)	lr 0.000016
+epoch: [56/80][20/394]	time 4.172 (4.294)	data 0.001 (0.148)	eta 11:43:28	loss_t 0.0941 (0.1264)	loss_x 1.6234 (1.5786)	acc 94.9219 (95.7520)	lr 0.000024
+epoch: [56/80][40/394]	time 4.248 (4.236)	data 0.000 (0.074)	eta 11:32:38	loss_t 0.2193 (0.1365)	loss_x 1.5553 (1.5766)	acc 97.0703 (95.8789)	lr 0.000024
+epoch: [56/80][60/394]	time 4.259 (4.222)	data 0.000 (0.050)	eta 11:28:57	loss_t 0.1445 (0.1358)	loss_x 1.5758 (1.5790)	acc 97.0703 (95.8952)	lr 0.000024
+epoch: [56/80][80/394]	time 4.164 (4.198)	data 0.000 (0.037)	eta 11:23:31	loss_t 0.1141 (0.1352)	loss_x 1.5055 (1.5804)	acc 97.6562 (95.8838)	lr 0.000024
+epoch: [56/80][100/394]	time 4.253 (4.195)	data 0.001 (0.030)	eta 11:21:44	loss_t 0.0650 (0.1359)	loss_x 1.5341 (1.5806)	acc 97.0703 (95.8867)	lr 0.000024
+epoch: [56/80][120/394]	time 4.250 (4.190)	data 0.001 (0.025)	eta 11:19:26	loss_t 0.1111 (0.1374)	loss_x 1.6128 (1.5817)	acc 93.9453 (95.8415)	lr 0.000024
+epoch: [56/80][140/394]	time 4.120 (4.187)	data 0.001 (0.022)	eta 11:17:32	loss_t 0.1451 (0.1365)	loss_x 1.6228 (1.5829)	acc 95.5078 (95.8161)	lr 0.000024
+epoch: [56/80][160/394]	time 4.154 (4.182)	data 0.001 (0.019)	eta 11:15:28	loss_t 0.1038 (0.1325)	loss_x 1.5801 (1.5813)	acc 95.3125 (95.8582)	lr 0.000024
+epoch: [56/80][180/394]	time 4.349 (4.183)	data 0.001 (0.017)	eta 11:14:13	loss_t 0.0892 (0.1318)	loss_x 1.5629 (1.5813)	acc 95.7031 (95.8312)	lr 0.000024
+epoch: [56/80][200/394]	time 4.148 (4.182)	data 0.001 (0.015)	eta 11:12:36	loss_t 0.0899 (0.1320)	loss_x 1.6089 (1.5820)	acc 95.8984 (95.8086)	lr 0.000024
+epoch: [56/80][220/394]	time 4.161 (4.182)	data 0.001 (0.014)	eta 11:11:14	loss_t 0.1679 (0.1318)	loss_x 1.5968 (1.5820)	acc 95.1172 (95.8114)	lr 0.000024
+epoch: [56/80][240/394]	time 4.183 (4.181)	data 0.000 (0.013)	eta 11:09:35	loss_t 0.1186 (0.1316)	loss_x 1.5900 (1.5816)	acc 96.0938 (95.8114)	lr 0.000024
+epoch: [56/80][260/394]	time 4.156 (4.179)	data 0.000 (0.012)	eta 11:07:55	loss_t 0.1290 (0.1317)	loss_x 1.5951 (1.5829)	acc 95.1172 (95.7797)	lr 0.000024
+epoch: [56/80][280/394]	time 4.151 (4.179)	data 0.001 (0.011)	eta 11:06:29	loss_t 0.0858 (0.1318)	loss_x 1.5600 (1.5831)	acc 96.4844 (95.7680)	lr 0.000024
+epoch: [56/80][300/394]	time 4.121 (4.180)	data 0.001 (0.010)	eta 11:05:15	loss_t 0.1659 (0.1314)	loss_x 1.6210 (1.5829)	acc 94.3359 (95.7812)	lr 0.000024
+epoch: [56/80][320/394]	time 4.095 (4.179)	data 0.001 (0.010)	eta 11:03:46	loss_t 0.1242 (0.1308)	loss_x 1.5809 (1.5839)	acc 95.5078 (95.7568)	lr 0.000024
+epoch: [56/80][340/394]	time 4.192 (4.177)	data 0.001 (0.009)	eta 11:02:06	loss_t 0.0769 (0.1306)	loss_x 1.5879 (1.5836)	acc 94.9219 (95.7692)	lr 0.000024
+epoch: [56/80][360/394]	time 4.162 (4.178)	data 0.000 (0.009)	eta 11:00:49	loss_t 0.0641 (0.1308)	loss_x 1.6058 (1.5835)	acc 96.0938 (95.7666)	lr 0.000024
+epoch: [56/80][380/394]	time 4.140 (4.178)	data 0.000 (0.008)	eta 10:59:24	loss_t 0.0819 (0.1300)	loss_x 1.5673 (1.5831)	acc 96.2891 (95.7812)	lr 0.000024
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5809 sec/batch
+Speed: 0.5851 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 51.8%
+mAP: 72.0%
 CMC curve
-Rank-1  : 85.8%
-Rank-5  : 93.3%
-Rank-10 : 95.2%
-Rank-20 : 96.9%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-6"
-epoch: [7/50][20/394]	time 4.209 (4.329)	data 0.000 (0.161)	eta 20:49:22	loss_t 0.4629 (0.3797)	loss_x 2.8385 (2.8071)	acc 66.2109 (67.4707)	lr 0.000965
-epoch: [7/50][40/394]	time 4.234 (4.272)	data 0.000 (0.081)	eta 20:31:27	loss_t 0.4818 (0.3741)	loss_x 2.7011 (2.8039)	acc 69.7266 (67.4854)	lr 0.000965
-epoch: [7/50][60/394]	time 4.218 (4.246)	data 0.000 (0.054)	eta 20:22:31	loss_t 0.4597 (0.3885)	loss_x 2.9609 (2.7984)	acc 63.4766 (67.6237)	lr 0.000965
-epoch: [7/50][80/394]	time 4.267 (4.234)	data 0.000 (0.041)	eta 20:17:39	loss_t 0.4624 (0.3886)	loss_x 2.7475 (2.7917)	acc 69.9219 (67.8271)	lr 0.000965
-epoch: [7/50][100/394]	time 4.187 (4.228)	data 0.001 (0.033)	eta 20:14:42	loss_t 0.2357 (0.3853)	loss_x 2.7670 (2.7815)	acc 70.3125 (68.1875)	lr 0.000965
-epoch: [7/50][120/394]	time 4.244 (4.226)	data 0.000 (0.027)	eta 20:12:31	loss_t 0.3368 (0.3920)	loss_x 2.6715 (2.7740)	acc 69.5312 (68.3398)	lr 0.000965
-epoch: [7/50][140/394]	time 4.298 (4.222)	data 0.000 (0.023)	eta 20:10:07	loss_t 0.3639 (0.3932)	loss_x 2.7451 (2.7684)	acc 68.3594 (68.4682)	lr 0.000965
-epoch: [7/50][160/394]	time 4.226 (4.220)	data 0.000 (0.021)	eta 20:08:03	loss_t 0.2835 (0.3889)	loss_x 2.6749 (2.7630)	acc 72.2656 (68.5901)	lr 0.000965
-epoch: [7/50][180/394]	time 4.212 (4.220)	data 0.000 (0.018)	eta 20:06:36	loss_t 0.4527 (0.3863)	loss_x 2.5928 (2.7558)	acc 73.0469 (68.7391)	lr 0.000965
-epoch: [7/50][200/394]	time 4.198 (4.220)	data 0.001 (0.017)	eta 20:05:13	loss_t 0.3518 (0.3835)	loss_x 2.6784 (2.7495)	acc 69.9219 (68.8672)	lr 0.000965
-epoch: [7/50][220/394]	time 4.161 (4.220)	data 0.000 (0.015)	eta 20:03:50	loss_t 0.2772 (0.3809)	loss_x 2.7260 (2.7402)	acc 69.9219 (69.0927)	lr 0.000965
-epoch: [7/50][240/394]	time 4.172 (4.218)	data 0.000 (0.014)	eta 20:01:45	loss_t 0.3388 (0.3795)	loss_x 2.6660 (2.7364)	acc 70.3125 (69.1797)	lr 0.000965
-epoch: [7/50][260/394]	time 4.254 (4.217)	data 0.001 (0.013)	eta 20:00:11	loss_t 0.2728 (0.3782)	loss_x 2.7138 (2.7312)	acc 68.1641 (69.2894)	lr 0.000965
-epoch: [7/50][280/394]	time 4.085 (4.215)	data 0.000 (0.012)	eta 19:58:03	loss_t 0.4187 (0.3772)	loss_x 2.6599 (2.7269)	acc 69.1406 (69.3555)	lr 0.000965
-epoch: [7/50][300/394]	time 4.076 (4.211)	data 0.000 (0.011)	eta 19:55:37	loss_t 0.3947 (0.3758)	loss_x 2.6465 (2.7203)	acc 71.6797 (69.5247)	lr 0.000965
-epoch: [7/50][320/394]	time 4.202 (4.208)	data 0.000 (0.010)	eta 19:53:26	loss_t 0.2701 (0.3757)	loss_x 2.6410 (2.7138)	acc 68.9453 (69.6606)	lr 0.000965
-epoch: [7/50][340/394]	time 4.079 (4.205)	data 0.000 (0.010)	eta 19:51:08	loss_t 0.3692 (0.3759)	loss_x 2.6238 (2.7091)	acc 72.4609 (69.7610)	lr 0.000965
-epoch: [7/50][360/394]	time 4.198 (4.202)	data 0.000 (0.009)	eta 19:48:59	loss_t 0.4245 (0.3753)	loss_x 2.5992 (2.7027)	acc 74.0234 (69.9240)	lr 0.000965
-epoch: [7/50][380/394]	time 4.181 (4.201)	data 0.001 (0.009)	eta 19:47:11	loss_t 0.1569 (0.3721)	loss_x 2.4932 (2.6964)	acc 74.4141 (70.0822)	lr 0.000965
+Rank-1  : 94.2%
+Rank-5  : 97.4%
+Rank-10 : 98.2%
+Rank-20 : 98.9%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-56"
+epoch: [57/80][20/394]	time 4.093 (4.254)	data 0.000 (0.148)	eta 11:08:59	loss_t 0.0533 (0.1230)	loss_x 1.5456 (1.5847)	acc 96.8750 (95.4492)	lr 0.000035
+epoch: [57/80][40/394]	time 4.151 (4.199)	data 0.000 (0.074)	eta 10:58:59	loss_t 0.0891 (0.1373)	loss_x 1.5629 (1.5872)	acc 95.7031 (95.5518)	lr 0.000035
+epoch: [57/80][60/394]	time 4.229 (4.189)	data 0.001 (0.050)	eta 10:55:56	loss_t 0.1654 (0.1337)	loss_x 1.5613 (1.5855)	acc 96.4844 (95.6315)	lr 0.000035
+epoch: [57/80][80/394]	time 4.224 (4.187)	data 0.000 (0.037)	eta 10:54:19	loss_t 0.1551 (0.1358)	loss_x 1.6144 (1.5870)	acc 94.9219 (95.6006)	lr 0.000035
+epoch: [57/80][100/394]	time 4.214 (4.185)	data 0.000 (0.030)	eta 10:52:36	loss_t 0.1659 (0.1348)	loss_x 1.6084 (1.5874)	acc 95.3125 (95.6113)	lr 0.000035
+epoch: [57/80][120/394]	time 4.204 (4.172)	data 0.000 (0.025)	eta 10:49:06	loss_t 0.1470 (0.1324)	loss_x 1.5733 (1.5898)	acc 96.8750 (95.5566)	lr 0.000035
+epoch: [57/80][140/394]	time 4.137 (4.171)	data 0.001 (0.022)	eta 10:47:38	loss_t 0.0912 (0.1332)	loss_x 1.5406 (1.5891)	acc 97.2656 (95.5943)	lr 0.000035
+epoch: [57/80][160/394]	time 4.126 (4.168)	data 0.001 (0.019)	eta 10:45:48	loss_t 0.0765 (0.1320)	loss_x 1.5871 (1.5887)	acc 94.5312 (95.5786)	lr 0.000035
+epoch: [57/80][180/394]	time 4.143 (4.169)	data 0.001 (0.017)	eta 10:44:33	loss_t 0.1177 (0.1292)	loss_x 1.5980 (1.5884)	acc 95.7031 (95.5968)	lr 0.000035
+epoch: [57/80][200/394]	time 4.202 (4.164)	data 0.001 (0.015)	eta 10:42:23	loss_t 0.2173 (0.1303)	loss_x 1.6063 (1.5887)	acc 95.8984 (95.5742)	lr 0.000035
+epoch: [57/80][220/394]	time 4.221 (4.167)	data 0.001 (0.014)	eta 10:41:23	loss_t 0.1755 (0.1305)	loss_x 1.6131 (1.5887)	acc 95.3125 (95.5700)	lr 0.000035
+epoch: [57/80][240/394]	time 4.155 (4.166)	data 0.001 (0.013)	eta 10:39:51	loss_t 0.0899 (0.1298)	loss_x 1.5705 (1.5884)	acc 95.3125 (95.5737)	lr 0.000035
+epoch: [57/80][260/394]	time 4.183 (4.166)	data 0.000 (0.012)	eta 10:38:26	loss_t 0.1244 (0.1297)	loss_x 1.5485 (1.5876)	acc 96.0938 (95.5867)	lr 0.000035
+epoch: [57/80][280/394]	time 4.164 (4.165)	data 0.001 (0.011)	eta 10:36:56	loss_t 0.2762 (0.1298)	loss_x 1.5961 (1.5877)	acc 95.5078 (95.5887)	lr 0.000035
+epoch: [57/80][300/394]	time 4.132 (4.165)	data 0.000 (0.010)	eta 10:35:31	loss_t 0.1069 (0.1298)	loss_x 1.5732 (1.5885)	acc 95.7031 (95.5651)	lr 0.000035
+epoch: [57/80][320/394]	time 4.222 (4.165)	data 0.001 (0.010)	eta 10:34:09	loss_t 0.1360 (0.1296)	loss_x 1.5920 (1.5897)	acc 95.8984 (95.5432)	lr 0.000035
+epoch: [57/80][340/394]	time 4.158 (4.164)	data 0.001 (0.009)	eta 10:32:43	loss_t 0.2105 (0.1303)	loss_x 1.6441 (1.5901)	acc 94.1406 (95.5383)	lr 0.000035
+epoch: [57/80][360/394]	time 4.232 (4.164)	data 0.001 (0.009)	eta 10:31:12	loss_t 0.1054 (0.1293)	loss_x 1.6157 (1.5901)	acc 94.7266 (95.5463)	lr 0.000035
+epoch: [57/80][380/394]	time 4.256 (4.163)	data 0.001 (0.008)	eta 10:29:43	loss_t 0.1027 (0.1289)	loss_x 1.5368 (1.5902)	acc 96.6797 (95.5387)	lr 0.000035
+epoch: [58/80][20/394]	time 4.111 (4.299)	data 0.001 (0.149)	eta 10:47:49	loss_t 0.0762 (0.1315)	loss_x 1.6091 (1.5825)	acc 95.3125 (95.7031)	lr 0.000048
+epoch: [58/80][40/394]	time 4.207 (4.229)	data 0.001 (0.075)	eta 10:35:52	loss_t 0.1540 (0.1375)	loss_x 1.5726 (1.5839)	acc 96.0938 (95.6787)	lr 0.000048
+epoch: [58/80][60/394]	time 4.098 (4.203)	data 0.000 (0.050)	eta 10:30:37	loss_t 0.1601 (0.1338)	loss_x 1.6452 (1.5865)	acc 94.3359 (95.6543)	lr 0.000048
+epoch: [58/80][80/394]	time 4.211 (4.190)	data 0.001 (0.038)	eta 10:27:12	loss_t 0.1738 (0.1303)	loss_x 1.6134 (1.5878)	acc 94.7266 (95.6128)	lr 0.000048
+epoch: [58/80][100/394]	time 4.127 (4.183)	data 0.001 (0.030)	eta 10:24:46	loss_t 0.1559 (0.1319)	loss_x 1.5953 (1.5897)	acc 95.8984 (95.5566)	lr 0.000048
+epoch: [58/80][120/394]	time 4.164 (4.180)	data 0.000 (0.025)	eta 10:22:56	loss_t 0.2514 (0.1336)	loss_x 1.6629 (1.5888)	acc 93.7500 (95.5648)	lr 0.000048
+epoch: [58/80][140/394]	time 4.009 (4.178)	data 0.000 (0.022)	eta 10:21:13	loss_t 0.1125 (0.1329)	loss_x 1.6201 (1.5891)	acc 94.1406 (95.5580)	lr 0.000048
+epoch: [58/80][160/394]	time 4.193 (4.172)	data 0.001 (0.019)	eta 10:19:00	loss_t 0.1446 (0.1318)	loss_x 1.6232 (1.5907)	acc 94.1406 (95.5310)	lr 0.000048
+epoch: [58/80][180/394]	time 4.055 (4.170)	data 0.001 (0.017)	eta 10:17:21	loss_t 0.1223 (0.1327)	loss_x 1.6062 (1.5914)	acc 95.5078 (95.5132)	lr 0.000048
+epoch: [58/80][200/394]	time 4.193 (4.170)	data 0.000 (0.015)	eta 10:15:55	loss_t 0.0736 (0.1337)	loss_x 1.6081 (1.5911)	acc 95.3125 (95.5312)	lr 0.000048
+epoch: [58/80][220/394]	time 4.166 (4.168)	data 0.000 (0.014)	eta 10:14:12	loss_t 0.1438 (0.1336)	loss_x 1.5937 (1.5920)	acc 96.2891 (95.5211)	lr 0.000048
+epoch: [58/80][240/394]	time 4.078 (4.161)	data 0.000 (0.013)	eta 10:11:47	loss_t 0.1404 (0.1329)	loss_x 1.6115 (1.5926)	acc 95.5078 (95.5233)	lr 0.000048
+epoch: [58/80][260/394]	time 4.164 (4.158)	data 0.001 (0.012)	eta 10:09:58	loss_t 0.1720 (0.1325)	loss_x 1.5491 (1.5929)	acc 96.2891 (95.5071)	lr 0.000048
+epoch: [58/80][280/394]	time 4.040 (4.154)	data 0.000 (0.011)	eta 10:08:02	loss_t 0.1212 (0.1327)	loss_x 1.6034 (1.5928)	acc 93.9453 (95.4973)	lr 0.000048
+epoch: [58/80][300/394]	time 4.173 (4.152)	data 0.001 (0.010)	eta 10:06:20	loss_t 0.1530 (0.1322)	loss_x 1.5795 (1.5932)	acc 95.7031 (95.4902)	lr 0.000048
+epoch: [58/80][320/394]	time 4.125 (4.150)	data 0.000 (0.010)	eta 10:04:37	loss_t 0.1867 (0.1324)	loss_x 1.5838 (1.5932)	acc 97.0703 (95.4950)	lr 0.000048
+epoch: [58/80][340/394]	time 4.088 (4.147)	data 0.000 (0.009)	eta 10:02:46	loss_t 0.2040 (0.1323)	loss_x 1.5936 (1.5937)	acc 95.7031 (95.4848)	lr 0.000048
+epoch: [58/80][360/394]	time 4.210 (4.146)	data 0.000 (0.009)	eta 10:01:20	loss_t 0.1436 (0.1314)	loss_x 1.6040 (1.5939)	acc 94.1406 (95.4850)	lr 0.000048
+epoch: [58/80][380/394]	time 4.170 (4.145)	data 0.001 (0.008)	eta 9:59:43	loss_t 0.2019 (0.1318)	loss_x 1.5873 (1.5940)	acc 95.7031 (95.4919)	lr 0.000048
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5724 sec/batch
+Speed: 0.5701 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 52.4%
+mAP: 72.0%
 CMC curve
-Rank-1  : 86.2%
-Rank-5  : 93.4%
-Rank-10 : 95.4%
-Rank-20 : 96.9%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-7"
-epoch: [8/50][20/394]	time 4.129 (4.242)	data 0.000 (0.142)	eta 19:56:22	loss_t 0.2812 (0.3349)	loss_x 2.6117 (2.5116)	acc 72.6562 (74.5996)	lr 0.000952
-epoch: [8/50][40/394]	time 4.186 (4.201)	data 0.000 (0.071)	eta 19:43:18	loss_t 0.4406 (0.3474)	loss_x 2.5352 (2.4953)	acc 72.0703 (74.8047)	lr 0.000952
-epoch: [8/50][60/394]	time 4.091 (4.184)	data 0.000 (0.048)	eta 19:37:11	loss_t 0.3719 (0.3471)	loss_x 2.4616 (2.5038)	acc 75.5859 (74.6582)	lr 0.000952
-epoch: [8/50][80/394]	time 4.098 (4.172)	data 0.000 (0.036)	eta 19:32:21	loss_t 0.2984 (0.3494)	loss_x 2.4086 (2.5092)	acc 76.5625 (74.4458)	lr 0.000952
-epoch: [8/50][100/394]	time 4.150 (4.169)	data 0.000 (0.029)	eta 19:30:12	loss_t 0.3939 (0.3462)	loss_x 2.4324 (2.5030)	acc 78.1250 (74.6699)	lr 0.000952
-epoch: [8/50][120/394]	time 4.093 (4.163)	data 0.001 (0.024)	eta 19:27:06	loss_t 0.3356 (0.3485)	loss_x 2.5544 (2.5025)	acc 75.7812 (74.7217)	lr 0.000952
-epoch: [8/50][140/394]	time 4.095 (4.159)	data 0.000 (0.021)	eta 19:24:44	loss_t 0.2941 (0.3457)	loss_x 2.5486 (2.5029)	acc 73.0469 (74.6903)	lr 0.000952
-epoch: [8/50][160/394]	time 4.162 (4.160)	data 0.000 (0.018)	eta 19:23:24	loss_t 0.3431 (0.3425)	loss_x 2.4541 (2.4980)	acc 74.6094 (74.7705)	lr 0.000952
-epoch: [8/50][180/394]	time 4.150 (4.158)	data 0.000 (0.016)	eta 19:21:31	loss_t 0.3710 (0.3425)	loss_x 2.4632 (2.4954)	acc 75.9766 (74.7960)	lr 0.000952
-epoch: [8/50][200/394]	time 4.263 (4.158)	data 0.000 (0.015)	eta 19:20:11	loss_t 0.2790 (0.3441)	loss_x 2.5449 (2.4953)	acc 73.0469 (74.7744)	lr 0.000952
-epoch: [8/50][220/394]	time 4.141 (4.158)	data 0.000 (0.013)	eta 19:18:42	loss_t 0.4506 (0.3437)	loss_x 2.4258 (2.4935)	acc 78.3203 (74.8065)	lr 0.000952
-epoch: [8/50][240/394]	time 4.182 (4.157)	data 0.000 (0.012)	eta 19:17:04	loss_t 0.4423 (0.3454)	loss_x 2.4811 (2.4899)	acc 75.3906 (74.8755)	lr 0.000952
-epoch: [8/50][260/394]	time 4.186 (4.157)	data 0.000 (0.011)	eta 19:15:40	loss_t 0.2535 (0.3455)	loss_x 2.4128 (2.4914)	acc 78.5156 (74.8595)	lr 0.000952
-epoch: [8/50][280/394]	time 4.144 (4.156)	data 0.000 (0.011)	eta 19:14:14	loss_t 0.1901 (0.3439)	loss_x 2.4249 (2.4908)	acc 76.9531 (74.8689)	lr 0.000952
-epoch: [8/50][300/394]	time 4.181 (4.157)	data 0.000 (0.010)	eta 19:12:58	loss_t 0.3308 (0.3432)	loss_x 2.5503 (2.4882)	acc 74.0234 (74.9382)	lr 0.000952
-epoch: [8/50][320/394]	time 4.103 (4.156)	data 0.000 (0.009)	eta 19:11:20	loss_t 0.2371 (0.3422)	loss_x 2.4436 (2.4875)	acc 74.6094 (74.9469)	lr 0.000952
-epoch: [8/50][340/394]	time 4.189 (4.156)	data 0.000 (0.009)	eta 19:10:02	loss_t 0.2443 (0.3409)	loss_x 2.3983 (2.4843)	acc 77.7344 (75.0281)	lr 0.000952
-epoch: [8/50][360/394]	time 4.204 (4.156)	data 0.000 (0.008)	eta 19:08:38	loss_t 0.3138 (0.3404)	loss_x 2.4638 (2.4814)	acc 77.1484 (75.1020)	lr 0.000952
-epoch: [8/50][380/394]	time 4.159 (4.156)	data 0.000 (0.008)	eta 19:07:15	loss_t 0.3254 (0.3388)	loss_x 2.4375 (2.4784)	acc 76.1719 (75.1573)	lr 0.000952
+Rank-1  : 93.9%
+Rank-5  : 97.4%
+Rank-10 : 98.3%
+Rank-20 : 98.8%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-58"
+epoch: [59/80][20/394]	time 4.059 (4.229)	data 0.001 (0.143)	eta 10:09:32	loss_t 0.1801 (0.1288)	loss_x 1.5767 (1.5932)	acc 95.5078 (95.3223)	lr 0.000062
+epoch: [59/80][40/394]	time 4.101 (4.164)	data 0.000 (0.072)	eta 9:58:48	loss_t 0.1197 (0.1300)	loss_x 1.5798 (1.6007)	acc 94.9219 (95.2100)	lr 0.000062
+epoch: [59/80][60/394]	time 4.093 (4.147)	data 0.000 (0.048)	eta 9:54:53	loss_t 0.1169 (0.1256)	loss_x 1.6096 (1.5940)	acc 94.9219 (95.4134)	lr 0.000062
+epoch: [59/80][80/394]	time 4.104 (4.134)	data 0.000 (0.036)	eta 9:51:40	loss_t 0.1918 (0.1220)	loss_x 1.6015 (1.5939)	acc 94.3359 (95.4565)	lr 0.000062
+epoch: [59/80][100/394]	time 4.144 (4.131)	data 0.001 (0.029)	eta 9:49:58	loss_t 0.0967 (0.1226)	loss_x 1.5864 (1.5945)	acc 95.3125 (95.4355)	lr 0.000062
+epoch: [59/80][120/394]	time 4.127 (4.128)	data 0.001 (0.024)	eta 9:48:04	loss_t 0.1256 (0.1237)	loss_x 1.5908 (1.5937)	acc 96.0938 (95.4639)	lr 0.000062
+epoch: [59/80][140/394]	time 4.064 (4.127)	data 0.001 (0.021)	eta 9:46:32	loss_t 0.1696 (0.1253)	loss_x 1.6446 (1.5934)	acc 94.9219 (95.4729)	lr 0.000062
+epoch: [59/80][160/394]	time 4.064 (4.124)	data 0.000 (0.018)	eta 9:44:43	loss_t 0.1475 (0.1265)	loss_x 1.5559 (1.5924)	acc 96.6797 (95.5042)	lr 0.000062
+epoch: [59/80][180/394]	time 4.094 (4.123)	data 0.000 (0.016)	eta 9:43:15	loss_t 0.0524 (0.1266)	loss_x 1.6070 (1.5947)	acc 95.1172 (95.4829)	lr 0.000062
+epoch: [59/80][200/394]	time 4.083 (4.123)	data 0.000 (0.015)	eta 9:41:52	loss_t 0.0815 (0.1300)	loss_x 1.5309 (1.5956)	acc 97.2656 (95.4541)	lr 0.000062
+epoch: [59/80][220/394]	time 4.394 (4.124)	data 0.000 (0.013)	eta 9:40:35	loss_t 0.1572 (0.1307)	loss_x 1.6042 (1.5962)	acc 95.8984 (95.4412)	lr 0.000062
+epoch: [59/80][240/394]	time 4.189 (4.122)	data 0.000 (0.012)	eta 9:39:01	loss_t 0.1541 (0.1302)	loss_x 1.5731 (1.5960)	acc 95.3125 (95.4313)	lr 0.000062
+epoch: [59/80][260/394]	time 4.108 (4.121)	data 0.000 (0.011)	eta 9:37:26	loss_t 0.0655 (0.1291)	loss_x 1.5842 (1.5969)	acc 96.0938 (95.4289)	lr 0.000062
+epoch: [59/80][280/394]	time 4.064 (4.121)	data 0.000 (0.011)	eta 9:36:07	loss_t 0.1776 (0.1287)	loss_x 1.5755 (1.5969)	acc 95.3125 (95.4381)	lr 0.000062
+epoch: [59/80][300/394]	time 4.102 (4.120)	data 0.000 (0.010)	eta 9:34:37	loss_t 0.1791 (0.1286)	loss_x 1.5935 (1.5980)	acc 95.5078 (95.4102)	lr 0.000062
+epoch: [59/80][320/394]	time 4.168 (4.120)	data 0.000 (0.009)	eta 9:33:13	loss_t 0.0966 (0.1287)	loss_x 1.6207 (1.5986)	acc 95.8984 (95.3864)	lr 0.000062
+epoch: [59/80][340/394]	time 4.177 (4.120)	data 0.000 (0.009)	eta 9:31:49	loss_t 0.1470 (0.1302)	loss_x 1.6035 (1.5985)	acc 95.3125 (95.3964)	lr 0.000062
+epoch: [59/80][360/394]	time 4.104 (4.120)	data 0.001 (0.008)	eta 9:30:25	loss_t 0.1771 (0.1304)	loss_x 1.5807 (1.5993)	acc 94.9219 (95.3781)	lr 0.000062
+epoch: [59/80][380/394]	time 4.094 (4.120)	data 0.001 (0.008)	eta 9:29:04	loss_t 0.1203 (0.1300)	loss_x 1.6137 (1.5993)	acc 95.1172 (95.3932)	lr 0.000062
+epoch: [60/80][20/394]	time 4.109 (4.237)	data 0.000 (0.146)	eta 9:42:49	loss_t 0.1198 (0.1253)	loss_x 1.6189 (1.6039)	acc 95.3125 (95.2734)	lr 0.000078
+epoch: [60/80][40/394]	time 4.105 (4.169)	data 0.001 (0.073)	eta 9:32:08	loss_t 0.1177 (0.1264)	loss_x 1.5957 (1.6003)	acc 95.7031 (95.2490)	lr 0.000078
+epoch: [60/80][60/394]	time 4.305 (4.155)	data 0.000 (0.049)	eta 9:28:49	loss_t 0.0976 (0.1249)	loss_x 1.6178 (1.6030)	acc 94.1406 (95.1986)	lr 0.000078
+epoch: [60/80][80/394]	time 4.100 (4.140)	data 0.000 (0.037)	eta 9:25:21	loss_t 0.1796 (0.1272)	loss_x 1.6736 (1.6019)	acc 95.1172 (95.2832)	lr 0.000078
+epoch: [60/80][100/394]	time 4.167 (4.138)	data 0.000 (0.030)	eta 9:23:41	loss_t 0.1541 (0.1297)	loss_x 1.5877 (1.6024)	acc 96.2891 (95.2695)	lr 0.000078
+epoch: [60/80][120/394]	time 4.189 (4.134)	data 0.000 (0.025)	eta 9:21:49	loss_t 0.1528 (0.1291)	loss_x 1.5798 (1.6032)	acc 96.6797 (95.2930)	lr 0.000078
+epoch: [60/80][140/394]	time 4.082 (4.134)	data 0.000 (0.021)	eta 9:20:29	loss_t 0.1449 (0.1269)	loss_x 1.6443 (1.6034)	acc 94.7266 (95.2748)	lr 0.000078
+epoch: [60/80][160/394]	time 4.133 (4.132)	data 0.000 (0.019)	eta 9:18:48	loss_t 0.1739 (0.1261)	loss_x 1.6239 (1.6041)	acc 94.3359 (95.2844)	lr 0.000078
+epoch: [60/80][180/394]	time 4.026 (4.129)	data 0.000 (0.017)	eta 9:17:02	loss_t 0.1018 (0.1258)	loss_x 1.6112 (1.6044)	acc 95.5078 (95.2713)	lr 0.000078
+epoch: [60/80][200/394]	time 4.188 (4.128)	data 0.000 (0.015)	eta 9:15:28	loss_t 0.1692 (0.1253)	loss_x 1.6149 (1.6044)	acc 95.7031 (95.2900)	lr 0.000078
+epoch: [60/80][220/394]	time 4.117 (4.126)	data 0.000 (0.014)	eta 9:13:49	loss_t 0.0906 (0.1265)	loss_x 1.5843 (1.6037)	acc 95.7031 (95.3125)	lr 0.000078
+epoch: [60/80][240/394]	time 4.099 (4.125)	data 0.000 (0.013)	eta 9:12:17	loss_t 0.0905 (0.1270)	loss_x 1.6492 (1.6038)	acc 95.1172 (95.3084)	lr 0.000078
+epoch: [60/80][260/394]	time 4.110 (4.124)	data 0.000 (0.012)	eta 9:10:53	loss_t 0.0729 (0.1265)	loss_x 1.5448 (1.6035)	acc 96.6797 (95.3087)	lr 0.000078
+epoch: [60/80][280/394]	time 4.079 (4.122)	data 0.001 (0.011)	eta 9:09:13	loss_t 0.1189 (0.1271)	loss_x 1.6409 (1.6043)	acc 95.3125 (95.2930)	lr 0.000078
+epoch: [60/80][300/394]	time 4.105 (4.123)	data 0.000 (0.010)	eta 9:07:55	loss_t 0.1272 (0.1272)	loss_x 1.5817 (1.6041)	acc 95.7031 (95.2865)	lr 0.000078
+epoch: [60/80][320/394]	time 4.098 (4.122)	data 0.000 (0.010)	eta 9:06:25	loss_t 0.1298 (0.1278)	loss_x 1.6114 (1.6047)	acc 94.7266 (95.2802)	lr 0.000078
+epoch: [60/80][340/394]	time 4.096 (4.121)	data 0.000 (0.009)	eta 9:04:57	loss_t 0.1070 (0.1264)	loss_x 1.5859 (1.6046)	acc 95.8984 (95.2826)	lr 0.000078
+epoch: [60/80][360/394]	time 4.077 (4.121)	data 0.000 (0.009)	eta 9:03:33	loss_t 0.1598 (0.1276)	loss_x 1.6133 (1.6043)	acc 93.7500 (95.2805)	lr 0.000078
+epoch: [60/80][380/394]	time 4.154 (4.121)	data 0.000 (0.008)	eta 9:02:07	loss_t 0.2399 (0.1272)	loss_x 1.6473 (1.6047)	acc 94.5312 (95.2642)	lr 0.000078
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5796 sec/batch
+Speed: 0.5608 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 52.7%
+mAP: 71.0%
 CMC curve
-Rank-1  : 87.4%
-Rank-5  : 94.2%
-Rank-10 : 95.9%
-Rank-20 : 97.2%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-8"
-epoch: [9/50][20/394]	time 4.182 (4.269)	data 0.000 (0.142)	eta 19:35:57	loss_t 0.2050 (0.3121)	loss_x 2.3065 (2.3653)	acc 78.5156 (77.9102)	lr 0.000938
-epoch: [9/50][40/394]	time 4.113 (4.228)	data 0.000 (0.071)	eta 19:23:10	loss_t 0.2677 (0.3292)	loss_x 2.2993 (2.3738)	acc 79.2969 (77.7344)	lr 0.000938
-epoch: [9/50][60/394]	time 4.125 (4.201)	data 0.000 (0.048)	eta 19:14:32	loss_t 0.3746 (0.3220)	loss_x 2.3582 (2.3694)	acc 77.7344 (77.8483)	lr 0.000938
-epoch: [9/50][80/394]	time 4.175 (4.195)	data 0.000 (0.036)	eta 19:11:30	loss_t 0.3122 (0.3231)	loss_x 2.4132 (2.3739)	acc 77.9297 (77.6807)	lr 0.000938
-epoch: [9/50][100/394]	time 4.188 (4.188)	data 0.000 (0.029)	eta 19:08:05	loss_t 0.3633 (0.3181)	loss_x 2.4115 (2.3728)	acc 76.5625 (77.7598)	lr 0.000938
-epoch: [9/50][120/394]	time 4.218 (4.185)	data 0.000 (0.024)	eta 19:05:57	loss_t 0.3255 (0.3207)	loss_x 2.4183 (2.3770)	acc 77.1484 (77.6758)	lr 0.000938
-epoch: [9/50][140/394]	time 4.218 (4.185)	data 0.000 (0.021)	eta 19:04:31	loss_t 0.2069 (0.3227)	loss_x 2.3157 (2.3750)	acc 78.3203 (77.6660)	lr 0.000938
-epoch: [9/50][160/394]	time 4.119 (4.181)	data 0.000 (0.018)	eta 19:01:56	loss_t 0.2365 (0.3226)	loss_x 2.3661 (2.3732)	acc 78.5156 (77.6794)	lr 0.000938
-epoch: [9/50][180/394]	time 4.211 (4.177)	data 0.000 (0.016)	eta 18:59:29	loss_t 0.2787 (0.3182)	loss_x 2.4200 (2.3737)	acc 74.6094 (77.6704)	lr 0.000938
-epoch: [9/50][200/394]	time 4.190 (4.179)	data 0.000 (0.015)	eta 18:58:30	loss_t 0.4871 (0.3192)	loss_x 2.4135 (2.3719)	acc 78.3203 (77.7471)	lr 0.000938
-epoch: [9/50][220/394]	time 4.203 (4.177)	data 0.000 (0.013)	eta 18:56:47	loss_t 0.4321 (0.3197)	loss_x 2.3806 (2.3707)	acc 76.3672 (77.7601)	lr 0.000938
-epoch: [9/50][240/394]	time 4.217 (4.177)	data 0.001 (0.012)	eta 18:55:26	loss_t 0.3158 (0.3187)	loss_x 2.2985 (2.3690)	acc 77.7344 (77.7775)	lr 0.000938
-epoch: [9/50][260/394]	time 4.222 (4.178)	data 0.000 (0.011)	eta 18:54:15	loss_t 0.2742 (0.3177)	loss_x 2.2593 (2.3672)	acc 79.6875 (77.7877)	lr 0.000938
-epoch: [9/50][280/394]	time 4.081 (4.176)	data 0.000 (0.011)	eta 18:52:15	loss_t 0.4572 (0.3176)	loss_x 2.3026 (2.3665)	acc 80.0781 (77.8076)	lr 0.000938
-epoch: [9/50][300/394]	time 4.080 (4.174)	data 0.000 (0.010)	eta 18:50:14	loss_t 0.2482 (0.3164)	loss_x 2.3125 (2.3671)	acc 78.1250 (77.8092)	lr 0.000938
-epoch: [9/50][320/394]	time 4.205 (4.173)	data 0.000 (0.009)	eta 18:48:45	loss_t 0.3398 (0.3166)	loss_x 2.4119 (2.3687)	acc 75.9766 (77.7802)	lr 0.000938
-epoch: [9/50][340/394]	time 4.105 (4.172)	data 0.000 (0.009)	eta 18:47:07	loss_t 0.4774 (0.3174)	loss_x 2.4498 (2.3675)	acc 77.5391 (77.8320)	lr 0.000938
-epoch: [9/50][360/394]	time 4.097 (4.171)	data 0.000 (0.008)	eta 18:45:21	loss_t 0.2152 (0.3160)	loss_x 2.3695 (2.3670)	acc 77.1484 (77.8700)	lr 0.000938
-epoch: [9/50][380/394]	time 4.183 (4.171)	data 0.000 (0.008)	eta 18:43:55	loss_t 0.2820 (0.3145)	loss_x 2.2405 (2.3661)	acc 80.6641 (77.8793)	lr 0.000938
+Rank-1  : 94.0%
+Rank-5  : 97.3%
+Rank-10 : 98.1%
+Rank-20 : 98.8%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-60"
+epoch: [61/80][20/394]	time 4.116 (4.232)	data 0.001 (0.140)	eta 9:14:23	loss_t 0.1577 (0.1255)	loss_x 1.5544 (1.5953)	acc 96.6797 (95.4883)	lr 0.000095
+epoch: [61/80][40/394]	time 4.225 (4.200)	data 0.001 (0.070)	eta 9:08:47	loss_t 0.1290 (0.1309)	loss_x 1.5867 (1.6003)	acc 95.5078 (95.3320)	lr 0.000095
+epoch: [61/80][60/394]	time 4.131 (4.196)	data 0.001 (0.047)	eta 9:06:51	loss_t 0.0767 (0.1344)	loss_x 1.5484 (1.6012)	acc 96.0938 (95.3874)	lr 0.000095
+epoch: [61/80][80/394]	time 4.130 (4.193)	data 0.001 (0.035)	eta 9:05:04	loss_t 0.1380 (0.1340)	loss_x 1.6067 (1.6018)	acc 95.8984 (95.4395)	lr 0.000095
+epoch: [61/80][100/394]	time 4.180 (4.192)	data 0.001 (0.028)	eta 9:03:34	loss_t 0.1550 (0.1333)	loss_x 1.6252 (1.6033)	acc 95.1172 (95.4297)	lr 0.000095
+epoch: [61/80][120/394]	time 4.233 (4.189)	data 0.001 (0.024)	eta 9:01:43	loss_t 0.1163 (0.1327)	loss_x 1.5978 (1.6044)	acc 96.8750 (95.4264)	lr 0.000095
+epoch: [61/80][140/394]	time 4.167 (4.188)	data 0.001 (0.020)	eta 9:00:16	loss_t 0.2049 (0.1340)	loss_x 1.6609 (1.6061)	acc 93.1641 (95.3850)	lr 0.000095
+epoch: [61/80][160/394]	time 4.148 (4.188)	data 0.000 (0.018)	eta 8:58:48	loss_t 0.1277 (0.1333)	loss_x 1.6310 (1.6076)	acc 94.5312 (95.3369)	lr 0.000095
+epoch: [61/80][180/394]	time 4.253 (4.189)	data 0.001 (0.016)	eta 8:57:36	loss_t 0.1289 (0.1332)	loss_x 1.6005 (1.6077)	acc 96.4844 (95.3451)	lr 0.000095
+epoch: [61/80][200/394]	time 4.074 (4.186)	data 0.001 (0.015)	eta 8:55:45	loss_t 0.1318 (0.1311)	loss_x 1.6419 (1.6070)	acc 95.1172 (95.3564)	lr 0.000095
+epoch: [61/80][220/394]	time 4.242 (4.187)	data 0.000 (0.013)	eta 8:54:31	loss_t 0.2164 (0.1322)	loss_x 1.6139 (1.6066)	acc 94.9219 (95.3667)	lr 0.000095
+epoch: [61/80][240/394]	time 4.100 (4.187)	data 0.000 (0.012)	eta 8:53:06	loss_t 0.1382 (0.1317)	loss_x 1.6048 (1.6072)	acc 95.5078 (95.3581)	lr 0.000095
+epoch: [61/80][260/394]	time 4.155 (4.187)	data 0.000 (0.011)	eta 8:51:47	loss_t 0.1283 (0.1326)	loss_x 1.6393 (1.6084)	acc 95.3125 (95.3275)	lr 0.000095
+epoch: [61/80][280/394]	time 4.108 (4.186)	data 0.000 (0.011)	eta 8:50:15	loss_t 0.1068 (0.1326)	loss_x 1.6108 (1.6091)	acc 94.5312 (95.3195)	lr 0.000095
+epoch: [61/80][300/394]	time 4.219 (4.186)	data 0.000 (0.010)	eta 8:48:48	loss_t 0.0892 (0.1325)	loss_x 1.6408 (1.6104)	acc 94.3359 (95.2747)	lr 0.000095
+epoch: [61/80][320/394]	time 4.173 (4.186)	data 0.000 (0.009)	eta 8:47:22	loss_t 0.1294 (0.1323)	loss_x 1.5935 (1.6105)	acc 95.7031 (95.2716)	lr 0.000095
+epoch: [61/80][340/394]	time 4.257 (4.185)	data 0.000 (0.009)	eta 8:45:53	loss_t 0.1110 (0.1316)	loss_x 1.6457 (1.6108)	acc 94.1406 (95.2642)	lr 0.000095
+epoch: [61/80][360/394]	time 4.227 (4.186)	data 0.000 (0.008)	eta 8:44:35	loss_t 0.1135 (0.1319)	loss_x 1.5753 (1.6111)	acc 96.4844 (95.2658)	lr 0.000095
+epoch: [61/80][380/394]	time 4.214 (4.183)	data 0.001 (0.008)	eta 8:42:53	loss_t 0.1038 (0.1320)	loss_x 1.6148 (1.6116)	acc 95.3125 (95.2462)	lr 0.000095
+epoch: [62/80][20/394]	time 4.155 (4.313)	data 0.001 (0.154)	eta 8:56:40	loss_t 0.1200 (0.1303)	loss_x 1.6009 (1.6090)	acc 94.9219 (95.1953)	lr 0.000115
+epoch: [62/80][40/394]	time 4.145 (4.244)	data 0.001 (0.077)	eta 8:46:38	loss_t 0.1159 (0.1220)	loss_x 1.6042 (1.6113)	acc 94.5312 (95.2051)	lr 0.000115
+epoch: [62/80][60/394]	time 4.188 (4.219)	data 0.000 (0.052)	eta 8:42:09	loss_t 0.1571 (0.1292)	loss_x 1.6624 (1.6139)	acc 93.5547 (95.1790)	lr 0.000115
+epoch: [62/80][80/394]	time 4.150 (4.204)	data 0.001 (0.039)	eta 8:38:51	loss_t 0.1337 (0.1310)	loss_x 1.5781 (1.6150)	acc 94.3359 (95.1562)	lr 0.000115
+epoch: [62/80][100/394]	time 4.154 (4.200)	data 0.001 (0.031)	eta 8:37:01	loss_t 0.1281 (0.1342)	loss_x 1.5969 (1.6153)	acc 96.6797 (95.1250)	lr 0.000115
+epoch: [62/80][120/394]	time 4.154 (4.198)	data 0.001 (0.026)	eta 8:35:20	loss_t 0.0445 (0.1329)	loss_x 1.5942 (1.6162)	acc 95.1172 (95.0667)	lr 0.000115
+epoch: [62/80][140/394]	time 4.105 (4.196)	data 0.001 (0.022)	eta 8:33:46	loss_t 0.0732 (0.1335)	loss_x 1.5961 (1.6162)	acc 95.8984 (95.1144)	lr 0.000115
+epoch: [62/80][160/394]	time 4.169 (4.190)	data 0.000 (0.020)	eta 8:31:37	loss_t 0.1305 (0.1335)	loss_x 1.6125 (1.6166)	acc 94.3359 (95.1025)	lr 0.000115
+epoch: [62/80][180/394]	time 4.140 (4.189)	data 0.001 (0.018)	eta 8:30:04	loss_t 0.0583 (0.1334)	loss_x 1.6361 (1.6177)	acc 93.3594 (95.0749)	lr 0.000115
+epoch: [62/80][200/394]	time 4.224 (4.189)	data 0.001 (0.016)	eta 8:28:41	loss_t 0.1144 (0.1344)	loss_x 1.5940 (1.6176)	acc 96.4844 (95.0908)	lr 0.000115
+epoch: [62/80][220/394]	time 4.164 (4.190)	data 0.000 (0.014)	eta 8:27:22	loss_t 0.1614 (0.1343)	loss_x 1.5999 (1.6181)	acc 95.1172 (95.0914)	lr 0.000115
+epoch: [62/80][240/394]	time 4.113 (4.186)	data 0.001 (0.013)	eta 8:25:34	loss_t 0.1324 (0.1327)	loss_x 1.6523 (1.6181)	acc 93.5547 (95.0854)	lr 0.000115
+epoch: [62/80][260/394]	time 4.141 (4.187)	data 0.001 (0.012)	eta 8:24:16	loss_t 0.0902 (0.1339)	loss_x 1.5760 (1.6185)	acc 96.4844 (95.0864)	lr 0.000115
+epoch: [62/80][280/394]	time 4.160 (4.187)	data 0.001 (0.011)	eta 8:22:50	loss_t 0.1882 (0.1338)	loss_x 1.6089 (1.6191)	acc 95.1172 (95.0851)	lr 0.000115
+epoch: [62/80][300/394]	time 4.161 (4.186)	data 0.001 (0.011)	eta 8:21:21	loss_t 0.0923 (0.1339)	loss_x 1.5854 (1.6196)	acc 95.7031 (95.0807)	lr 0.000115
+epoch: [62/80][320/394]	time 4.099 (4.185)	data 0.000 (0.010)	eta 8:19:48	loss_t 0.1239 (0.1341)	loss_x 1.6414 (1.6199)	acc 93.9453 (95.0677)	lr 0.000115
+epoch: [62/80][340/394]	time 4.231 (4.185)	data 0.000 (0.010)	eta 8:18:22	loss_t 0.1410 (0.1335)	loss_x 1.6448 (1.6200)	acc 94.1406 (95.0471)	lr 0.000115
+epoch: [62/80][360/394]	time 4.126 (4.185)	data 0.001 (0.009)	eta 8:17:00	loss_t 0.1216 (0.1330)	loss_x 1.5963 (1.6203)	acc 95.1172 (95.0288)	lr 0.000115
+epoch: [62/80][380/394]	time 4.150 (4.185)	data 0.001 (0.009)	eta 8:15:39	loss_t 0.1541 (0.1328)	loss_x 1.6001 (1.6208)	acc 96.0938 (95.0216)	lr 0.000115
 ##### Evaluating market1501 (source) #####
 Extracting features from query set ...
 Done, obtained 10254-by-512 matrix
 Extracting features from gallery set ...
 Done, obtained 23265-by-512 matrix
-Speed: 0.5801 sec/batch
+Speed: 0.5624 sec/batch
 Computing distance matrix with metric=cosine ...
 Computing CMC and mAP ...
 ** Results **
-mAP: 54.3%
+mAP: 71.2%
 CMC curve
-Rank-1  : 88.2%
-Rank-5  : 94.4%
-Rank-10 : 96.0%
-Rank-20 : 97.3%
-Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-9"
-epoch: [10/50][20/394]	time 4.199 (4.250)	data 0.000 (0.144)	eta 19:02:50	loss_t 0.3074 (0.3131)	loss_x 2.2279 (2.2747)	acc 82.2266 (80.2637)	lr 0.000922
-epoch: [10/50][40/394]	time 4.244 (4.206)	data 0.000 (0.072)	eta 18:49:39	loss_t 0.2413 (0.3037)	loss_x 2.2514 (2.2695)	acc 79.2969 (80.4150)	lr 0.000922
-epoch: [10/50][60/394]	time 4.079 (4.185)	data 0.000 (0.048)	eta 18:42:32	loss_t 0.4222 (0.2997)	loss_x 2.1808 (2.2615)	acc 81.6406 (80.6510)	lr 0.000922
-epoch: [10/50][80/394]	time 4.210 (4.173)	data 0.000 (0.036)	eta 18:37:57	loss_t 0.3570 (0.3026)	loss_x 2.3737 (2.2641)	acc 77.9297 (80.5151)	lr 0.000922
-epoch: [10/50][100/394]	time 4.173 (4.171)	data 0.000 (0.029)	eta 18:35:59	loss_t 0.2229 (0.2997)	loss_x 2.2342 (2.2692)	acc 83.3984 (80.3145)	lr 0.000922
-epoch: [10/50][120/394]	time 4.064 (4.164)	data 0.000 (0.024)	eta 18:32:44	loss_t 0.3663 (0.2966)	loss_x 2.4148 (2.2707)	acc 76.3672 (80.2458)	lr 0.000922
-epoch: [10/50][140/394]	time 4.209 (4.164)	data 0.000 (0.021)	eta 18:31:19	loss_t 0.2619 (0.2989)	loss_x 2.3385 (2.2761)	acc 77.9297 (80.0963)	lr 0.000922
-epoch: [10/50][160/394]	time 4.093 (4.161)	data 0.000 (0.018)	eta 18:29:05	loss_t 0.2869 (0.3011)	loss_x 2.3203 (2.2766)	acc 77.5391 (80.0623)	lr 0.000922
-epoch: [10/50][180/394]	time 4.085 (4.161)	data 0.000 (0.016)	eta 18:27:45	loss_t 0.3103 (0.3006)	loss_x 2.2639 (2.2774)	acc 80.8594 (80.0423)	lr 0.000922
-epoch: [10/50][200/394]	time 4.061 (4.157)	data 0.001 (0.015)	eta 18:25:23	loss_t 0.2821 (0.3018)	loss_x 2.2608 (2.2795)	acc 81.8359 (80.0215)	lr 0.000922
-epoch: [10/50][220/394]	time 4.061 (4.156)	data 0.000 (0.013)	eta 18:23:41	loss_t 0.2553 (0.3045)	loss_x 2.2865 (2.2800)	acc 80.2734 (79.9938)	lr 0.000922
-epoch: [10/50][240/394]	time 4.094 (4.154)	data 0.000 (0.012)	eta 18:21:39	loss_t 0.2635 (0.3029)	loss_x 2.1915 (2.2827)	acc 81.4453 (79.9373)	lr 0.000922
-epoch: [10/50][260/394]	time 4.091 (4.153)	data 0.000 (0.011)	eta 18:20:13	loss_t 0.3460 (0.3038)	loss_x 2.2362 (2.2829)	acc 81.0547 (79.9392)	lr 0.000922
-epoch: [10/50][280/394]	time 4.104 (4.153)	data 0.000 (0.011)	eta 18:18:49	loss_t 0.4136 (0.3031)	loss_x 2.3414 (2.2828)	acc 77.3438 (79.9498)	lr 0.000922
-epoch: [10/50][300/394]	time 4.186 (4.153)	data 0.000 (0.010)	eta 18:17:15	loss_t 0.3423 (0.3034)	loss_x 2.2359 (2.2831)	acc 80.0781 (79.9401)	lr 0.000922
-epoch: [10/50][320/394]	time 4.173 (4.153)	data 0.000 (0.009)	eta 18:16:03	loss_t 0.2953 (0.3024)	loss_x 2.3853 (2.2820)	acc 77.9297 (79.9329)	lr 0.000922
-epoch: [10/50][340/394]	time 4.084 (4.153)	data 0.000 (0.009)	eta 18:14:28	loss_t 0.1337 (0.3027)	loss_x 2.2659 (2.2816)	acc 79.4922 (79.9540)	lr 0.000922
+Rank-1  : 94.0%
+Rank-5  : 97.3%
+Rank-10 : 98.2%
+Rank-20 : 98.8%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-62"
+epoch: [63/80][20/394]	time 4.000 (4.264)	data 0.000 (0.151)	eta 8:22:34	loss_t 0.2619 (0.1656)	loss_x 1.6519 (1.6201)	acc 93.7500 (95.0391)	lr 0.000136
+epoch: [63/80][40/394]	time 4.032 (4.206)	data 0.000 (0.076)	eta 8:14:19	loss_t 0.1056 (0.1448)	loss_x 1.6312 (1.6184)	acc 94.9219 (95.0879)	lr 0.000136
+epoch: [63/80][60/394]	time 4.252 (4.201)	data 0.001 (0.051)	eta 8:12:23	loss_t 0.1678 (0.1435)	loss_x 1.5734 (1.6183)	acc 96.2891 (95.1302)	lr 0.000136
+epoch: [63/80][80/394]	time 4.389 (4.200)	data 0.001 (0.038)	eta 8:10:49	loss_t 0.0889 (0.1406)	loss_x 1.6289 (1.6178)	acc 94.3359 (95.1294)	lr 0.000136
+epoch: [63/80][100/394]	time 4.005 (4.193)	data 0.001 (0.031)	eta 8:08:39	loss_t 0.0669 (0.1422)	loss_x 1.5781 (1.6194)	acc 97.0703 (95.1504)	lr 0.000136
+epoch: [63/80][120/394]	time 4.198 (4.183)	data 0.001 (0.026)	eta 8:06:06	loss_t 0.1451 (0.1402)	loss_x 1.6281 (1.6207)	acc 94.7266 (95.1172)	lr 0.000136
+epoch: [63/80][140/394]	time 4.166 (4.182)	data 0.001 (0.022)	eta 8:04:32	loss_t 0.1084 (0.1405)	loss_x 1.6727 (1.6237)	acc 94.3359 (95.0628)	lr 0.000136
+epoch: [63/80][160/394]	time 4.154 (4.180)	data 0.001 (0.019)	eta 8:02:53	loss_t 0.1681 (0.1416)	loss_x 1.6341 (1.6254)	acc 94.5312 (95.0049)	lr 0.000136
+epoch: [63/80][180/394]	time 4.143 (4.180)	data 0.001 (0.017)	eta 8:01:28	loss_t 0.1375 (0.1397)	loss_x 1.6379 (1.6270)	acc 93.9453 (94.9631)	lr 0.000136
+epoch: [63/80][200/394]	time 4.077 (4.174)	data 0.001 (0.016)	eta 7:59:26	loss_t 0.0783 (0.1406)	loss_x 1.6876 (1.6275)	acc 93.9453 (94.9521)	lr 0.000136
+epoch: [63/80][220/394]	time 4.245 (4.173)	data 0.001 (0.014)	eta 7:57:59	loss_t 0.0666 (0.1410)	loss_x 1.6259 (1.6287)	acc 94.5312 (94.9174)	lr 0.000136
+epoch: [63/80][240/394]	time 4.242 (4.174)	data 0.001 (0.013)	eta 7:56:39	loss_t 0.2223 (0.1399)	loss_x 1.6462 (1.6284)	acc 95.3125 (94.9007)	lr 0.000136
+epoch: [63/80][260/394]	time 4.161 (4.175)	data 0.000 (0.012)	eta 7:55:26	loss_t 0.0806 (0.1397)	loss_x 1.6767 (1.6303)	acc 93.3594 (94.8513)	lr 0.000136
+epoch: [63/80][280/394]	time 4.087 (4.173)	data 0.000 (0.011)	eta 7:53:43	loss_t 0.2549 (0.1410)	loss_x 1.6498 (1.6310)	acc 94.9219 (94.8556)	lr 0.000136
+epoch: [63/80][300/394]	time 4.248 (4.172)	data 0.001 (0.011)	eta 7:52:14	loss_t 0.1171 (0.1408)	loss_x 1.6983 (1.6320)	acc 94.1406 (94.8392)	lr 0.000136
+epoch: [63/80][320/394]	time 4.211 (4.173)	data 0.001 (0.010)	eta 7:50:57	loss_t 0.1428 (0.1400)	loss_x 1.5938 (1.6325)	acc 95.3125 (94.8376)	lr 0.000136
+epoch: [63/80][340/394]	time 4.118 (4.173)	data 0.001 (0.009)	eta 7:49:39	loss_t 0.1417 (0.1406)	loss_x 1.6922 (1.6326)	acc 94.5312 (94.8334)	lr 0.000136
+epoch: [63/80][360/394]	time 4.081 (4.173)	data 0.000 (0.009)	eta 7:48:11	loss_t 0.1600 (0.1405)	loss_x 1.6350 (1.6329)	acc 95.3125 (94.8280)	lr 0.000136
+epoch: [63/80][380/394]	time 4.116 (4.171)	data 0.001 (0.008)	eta 7:46:36	loss_t 0.0890 (0.1405)	loss_x 1.6687 (1.6325)	acc 94.9219 (94.8453)	lr 0.000136
+epoch: [64/80][20/394]	time 4.203 (4.295)	data 0.001 (0.146)	eta 7:58:00	loss_t 0.1407 (0.1289)	loss_x 1.5817 (1.6275)	acc 95.8984 (94.9316)	lr 0.000158
+epoch: [64/80][40/394]	time 4.243 (4.229)	data 0.001 (0.074)	eta 7:49:15	loss_t 0.2582 (0.1392)	loss_x 1.6392 (1.6287)	acc 95.1172 (94.9805)	lr 0.000158
+epoch: [64/80][60/394]	time 4.013 (4.197)	data 0.000 (0.049)	eta 7:44:16	loss_t 0.1192 (0.1353)	loss_x 1.6334 (1.6308)	acc 94.9219 (94.8926)	lr 0.000158
+epoch: [64/80][80/394]	time 4.211 (4.192)	data 0.001 (0.037)	eta 7:42:20	loss_t 0.0854 (0.1348)	loss_x 1.6463 (1.6329)	acc 94.9219 (94.8706)	lr 0.000158
+epoch: [64/80][100/394]	time 4.132 (4.187)	data 0.000 (0.030)	eta 7:40:22	loss_t 0.1351 (0.1325)	loss_x 1.6664 (1.6350)	acc 94.3359 (94.7949)	lr 0.000158
+epoch: [64/80][120/394]	time 4.125 (4.181)	data 0.001 (0.025)	eta 7:38:23	loss_t 0.1074 (0.1327)	loss_x 1.6298 (1.6353)	acc 94.9219 (94.7803)	lr 0.000158
+epoch: [64/80][140/394]	time 4.106 (4.177)	data 0.000 (0.021)	eta 7:36:35	loss_t 0.1198 (0.1329)	loss_x 1.6442 (1.6357)	acc 93.5547 (94.7503)	lr 0.000158
+epoch: [64/80][160/394]	time 4.196 (4.170)	data 0.001 (0.019)	eta 7:34:22	loss_t 0.1895 (0.1338)	loss_x 1.6681 (1.6365)	acc 94.1406 (94.7314)	lr 0.000158
+epoch: [64/80][180/394]	time 4.096 (4.167)	data 0.000 (0.017)	eta 7:32:39	loss_t 0.1724 (0.1345)	loss_x 1.6572 (1.6373)	acc 93.7500 (94.7168)	lr 0.000158
+epoch: [64/80][200/394]	time 4.230 (4.167)	data 0.000 (0.015)	eta 7:31:14	loss_t 0.1037 (0.1337)	loss_x 1.6214 (1.6378)	acc 95.3125 (94.7051)	lr 0.000158
+epoch: [64/80][220/394]	time 4.259 (4.168)	data 0.000 (0.014)	eta 7:30:00	loss_t 0.1629 (0.1356)	loss_x 1.6545 (1.6385)	acc 94.9219 (94.7053)	lr 0.000158
+epoch: [64/80][240/394]	time 4.183 (4.165)	data 0.001 (0.013)	eta 7:28:15	loss_t 0.1444 (0.1362)	loss_x 1.6332 (1.6385)	acc 93.7500 (94.6965)	lr 0.000158
+epoch: [64/80][260/394]	time 4.132 (4.165)	data 0.000 (0.012)	eta 7:26:56	loss_t 0.1363 (0.1362)	loss_x 1.6342 (1.6393)	acc 95.1172 (94.6883)	lr 0.000158
+epoch: [64/80][280/394]	time 4.248 (4.167)	data 0.001 (0.011)	eta 7:25:40	loss_t 0.1015 (0.1374)	loss_x 1.5576 (1.6402)	acc 96.0938 (94.6443)	lr 0.000158
+epoch: [64/80][300/394]	time 4.173 (4.167)	data 0.001 (0.010)	eta 7:24:19	loss_t 0.1391 (0.1376)	loss_x 1.6243 (1.6412)	acc 95.1172 (94.6211)	lr 0.000158
+epoch: [64/80][320/394]	time 4.156 (4.165)	data 0.001 (0.010)	eta 7:22:42	loss_t 0.0791 (0.1378)	loss_x 1.6526 (1.6423)	acc 94.7266 (94.5813)	lr 0.000158
+epoch: [64/80][340/394]	time 4.251 (4.164)	data 0.001 (0.009)	eta 7:21:17	loss_t 0.2476 (0.1380)	loss_x 1.5940 (1.6419)	acc 95.7031 (94.5910)	lr 0.000158
+epoch: [64/80][360/394]	time 4.263 (4.165)	data 0.000 (0.009)	eta 7:19:59	loss_t 0.1741 (0.1378)	loss_x 1.6122 (1.6417)	acc 95.1172 (94.6088)	lr 0.000158
+epoch: [64/80][380/394]	time 4.157 (4.167)	data 0.001 (0.008)	eta 7:18:43	loss_t 0.1429 (0.1385)	loss_x 1.7035 (1.6421)	acc 92.7734 (94.5981)	lr 0.000158
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5653 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 70.1%
+CMC curve
+Rank-1  : 93.5%
+Rank-5  : 97.0%
+Rank-10 : 98.1%
+Rank-20 : 98.7%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-64"
+epoch: [65/80][20/394]	time 4.195 (4.163)	data 0.000 (0.135)	eta 7:15:57	loss_t 0.1589 (0.1302)	loss_x 1.6572 (1.6284)	acc 95.3125 (95.0195)	lr 0.000181
+epoch: [65/80][40/394]	time 4.017 (4.114)	data 0.000 (0.068)	eta 7:09:31	loss_t 0.2063 (0.1293)	loss_x 1.6052 (1.6355)	acc 95.5078 (94.9805)	lr 0.000181
+epoch: [65/80][60/394]	time 4.120 (4.097)	data 0.000 (0.045)	eta 7:06:18	loss_t 0.2063 (0.1361)	loss_x 1.6331 (1.6365)	acc 94.9219 (94.9707)	lr 0.000181
+epoch: [65/80][80/394]	time 4.018 (4.089)	data 0.000 (0.034)	eta 7:04:11	loss_t 0.1375 (0.1382)	loss_x 1.5884 (1.6375)	acc 97.0703 (94.9390)	lr 0.000181
+epoch: [65/80][100/394]	time 4.033 (4.089)	data 0.000 (0.027)	eta 7:02:49	loss_t 0.2456 (0.1415)	loss_x 1.7339 (1.6394)	acc 92.9688 (94.9199)	lr 0.000181
+epoch: [65/80][120/394]	time 4.108 (4.086)	data 0.000 (0.023)	eta 7:01:07	loss_t 0.1755 (0.1407)	loss_x 1.6459 (1.6412)	acc 93.7500 (94.7998)	lr 0.000181
+epoch: [65/80][140/394]	time 4.008 (4.081)	data 0.001 (0.020)	eta 6:59:14	loss_t 0.1174 (0.1395)	loss_x 1.6362 (1.6411)	acc 95.1172 (94.8186)	lr 0.000181
+epoch: [65/80][160/394]	time 4.041 (4.079)	data 0.000 (0.017)	eta 6:57:41	loss_t 0.1818 (0.1409)	loss_x 1.6456 (1.6420)	acc 95.1172 (94.8083)	lr 0.000181
+epoch: [65/80][180/394]	time 4.032 (4.080)	data 0.000 (0.015)	eta 6:56:28	loss_t 0.1054 (0.1414)	loss_x 1.6301 (1.6436)	acc 94.7266 (94.7385)	lr 0.000181
+epoch: [65/80][200/394]	time 4.118 (4.081)	data 0.000 (0.014)	eta 6:55:12	loss_t 0.1070 (0.1402)	loss_x 1.6130 (1.6446)	acc 95.8984 (94.6904)	lr 0.000181
+epoch: [65/80][220/394]	time 4.054 (4.082)	data 0.000 (0.013)	eta 6:53:56	loss_t 0.0822 (0.1398)	loss_x 1.6215 (1.6445)	acc 95.5078 (94.7070)	lr 0.000181
+epoch: [65/80][240/394]	time 4.029 (4.080)	data 0.001 (0.012)	eta 6:52:23	loss_t 0.1813 (0.1416)	loss_x 1.6523 (1.6446)	acc 94.3359 (94.6867)	lr 0.000181
+epoch: [65/80][260/394]	time 4.109 (4.078)	data 0.000 (0.011)	eta 6:50:48	loss_t 0.1167 (0.1422)	loss_x 1.6842 (1.6467)	acc 92.3828 (94.6236)	lr 0.000181
+epoch: [65/80][280/394]	time 4.048 (4.077)	data 0.000 (0.010)	eta 6:49:21	loss_t 0.1771 (0.1437)	loss_x 1.6434 (1.6479)	acc 95.5078 (94.5766)	lr 0.000181
+epoch: [65/80][300/394]	time 4.233 (4.077)	data 0.000 (0.009)	eta 6:47:58	loss_t 0.1466 (0.1443)	loss_x 1.6619 (1.6491)	acc 92.3828 (94.5312)	lr 0.000181
+epoch: [65/80][320/394]	time 4.113 (4.076)	data 0.000 (0.009)	eta 6:46:32	loss_t 0.0706 (0.1447)	loss_x 1.6540 (1.6500)	acc 94.3359 (94.5117)	lr 0.000181
+epoch: [65/80][340/394]	time 4.011 (4.075)	data 0.000 (0.008)	eta 6:45:02	loss_t 0.1492 (0.1437)	loss_x 1.6926 (1.6504)	acc 93.1641 (94.5077)	lr 0.000181
+epoch: [65/80][360/394]	time 4.129 (4.075)	data 0.000 (0.008)	eta 6:43:40	loss_t 0.1602 (0.1444)	loss_x 1.7047 (1.6512)	acc 93.1641 (94.4819)	lr 0.000181
+epoch: [65/80][380/394]	time 4.045 (4.074)	data 0.000 (0.008)	eta 6:42:14	loss_t 0.1930 (0.1442)	loss_x 1.6600 (1.6512)	acc 93.1641 (94.4732)	lr 0.000181
+epoch: [66/80][20/394]	time 3.995 (4.203)	data 0.000 (0.155)	eta 6:52:38	loss_t 0.1759 (0.1452)	loss_x 1.6433 (1.6378)	acc 94.7266 (94.7656)	lr 0.000206
+epoch: [66/80][40/394]	time 4.000 (4.121)	data 0.000 (0.078)	eta 6:43:13	loss_t 0.0777 (0.1562)	loss_x 1.6916 (1.6507)	acc 93.7500 (94.5654)	lr 0.000206
+epoch: [66/80][60/394]	time 4.003 (4.099)	data 0.000 (0.052)	eta 6:39:36	loss_t 0.1508 (0.1550)	loss_x 1.7329 (1.6556)	acc 92.5781 (94.3978)	lr 0.000206
+epoch: [66/80][80/394]	time 3.993 (4.090)	data 0.000 (0.039)	eta 6:37:21	loss_t 0.0786 (0.1507)	loss_x 1.7149 (1.6617)	acc 93.3594 (94.2700)	lr 0.000206
+epoch: [66/80][100/394]	time 4.012 (4.086)	data 0.000 (0.031)	eta 6:35:40	loss_t 0.1670 (0.1496)	loss_x 1.6926 (1.6622)	acc 93.7500 (94.3223)	lr 0.000206
+epoch: [66/80][120/394]	time 4.104 (4.084)	data 0.001 (0.026)	eta 6:34:09	loss_t 0.1058 (0.1480)	loss_x 1.6698 (1.6630)	acc 94.1406 (94.3083)	lr 0.000206
+epoch: [66/80][140/394]	time 4.149 (4.082)	data 0.000 (0.023)	eta 6:32:34	loss_t 0.1484 (0.1492)	loss_x 1.7014 (1.6632)	acc 93.1641 (94.2746)	lr 0.000206
+epoch: [66/80][160/394]	time 3.990 (4.080)	data 0.000 (0.020)	eta 6:30:58	loss_t 0.1067 (0.1481)	loss_x 1.6435 (1.6645)	acc 93.7500 (94.2261)	lr 0.000206
+epoch: [66/80][180/394]	time 3.990 (4.075)	data 0.001 (0.018)	eta 6:29:10	loss_t 0.1885 (0.1475)	loss_x 1.6943 (1.6660)	acc 93.7500 (94.1927)	lr 0.000206
+epoch: [66/80][200/394]	time 4.018 (4.072)	data 0.000 (0.016)	eta 6:27:31	loss_t 0.1756 (0.1473)	loss_x 1.6799 (1.6664)	acc 93.3594 (94.1777)	lr 0.000206
+epoch: [66/80][220/394]	time 4.007 (4.070)	data 0.001 (0.014)	eta 6:25:58	loss_t 0.1693 (0.1477)	loss_x 1.7006 (1.6676)	acc 94.1406 (94.1442)	lr 0.000206
+epoch: [66/80][240/394]	time 3.986 (4.069)	data 0.000 (0.013)	eta 6:24:28	loss_t 0.1109 (0.1475)	loss_x 1.6663 (1.6670)	acc 94.3359 (94.1805)	lr 0.000206
+epoch: [66/80][260/394]	time 4.016 (4.067)	data 0.000 (0.012)	eta 6:22:57	loss_t 0.1067 (0.1469)	loss_x 1.6244 (1.6671)	acc 94.9219 (94.1556)	lr 0.000206
+epoch: [66/80][280/394]	time 4.091 (4.064)	data 0.000 (0.011)	eta 6:21:22	loss_t 0.2202 (0.1482)	loss_x 1.6238 (1.6671)	acc 95.1172 (94.1581)	lr 0.000206
+epoch: [66/80][300/394]	time 4.003 (4.064)	data 0.000 (0.011)	eta 6:19:58	loss_t 0.1484 (0.1483)	loss_x 1.6829 (1.6675)	acc 93.7500 (94.1465)	lr 0.000206
+epoch: [66/80][320/394]	time 4.106 (4.063)	data 0.000 (0.010)	eta 6:18:34	loss_t 0.1694 (0.1484)	loss_x 1.6024 (1.6680)	acc 94.9219 (94.1382)	lr 0.000206
+epoch: [66/80][340/394]	time 4.257 (4.063)	data 0.000 (0.010)	eta 6:17:10	loss_t 0.1509 (0.1490)	loss_x 1.6895 (1.6677)	acc 93.1641 (94.1556)	lr 0.000206
+epoch: [66/80][360/394]	time 3.997 (4.063)	data 0.000 (0.009)	eta 6:15:51	loss_t 0.1430 (0.1497)	loss_x 1.6312 (1.6686)	acc 94.7266 (94.1249)	lr 0.000206
+epoch: [66/80][380/394]	time 4.088 (4.062)	data 0.000 (0.009)	eta 6:14:22	loss_t 0.1276 (0.1498)	loss_x 1.6721 (1.6694)	acc 93.9453 (94.1082)	lr 0.000206
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5547 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 69.3%
+CMC curve
+Rank-1  : 93.0%
+Rank-5  : 97.1%
+Rank-10 : 97.9%
+Rank-20 : 98.7%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-66"
+epoch: [67/80][20/394]	time 4.051 (4.189)	data 0.001 (0.148)	eta 6:23:41	loss_t 0.1383 (0.1521)	loss_x 1.6429 (1.6747)	acc 94.7266 (93.9746)	lr 0.000232
+epoch: [67/80][40/394]	time 4.133 (4.153)	data 0.001 (0.074)	eta 6:19:03	loss_t 0.1123 (0.1534)	loss_x 1.6766 (1.6719)	acc 94.1406 (93.9697)	lr 0.000232
+epoch: [67/80][60/394]	time 4.200 (4.154)	data 0.000 (0.050)	eta 6:17:42	loss_t 0.1649 (0.1530)	loss_x 1.6674 (1.6735)	acc 94.3359 (93.9779)	lr 0.000232
+epoch: [67/80][80/394]	time 4.195 (4.153)	data 0.000 (0.037)	eta 6:16:15	loss_t 0.0926 (0.1508)	loss_x 1.6667 (1.6721)	acc 95.8984 (94.0894)	lr 0.000232
+epoch: [67/80][100/394]	time 4.103 (4.145)	data 0.000 (0.030)	eta 6:14:09	loss_t 0.1791 (0.1477)	loss_x 1.6064 (1.6703)	acc 94.1406 (94.1230)	lr 0.000232
+epoch: [67/80][120/394]	time 4.173 (4.145)	data 0.000 (0.025)	eta 6:12:46	loss_t 0.1254 (0.1484)	loss_x 1.7494 (1.6720)	acc 92.1875 (94.0544)	lr 0.000232
+epoch: [67/80][140/394]	time 4.233 (4.142)	data 0.000 (0.022)	eta 6:11:04	loss_t 0.1271 (0.1512)	loss_x 1.6805 (1.6726)	acc 94.3359 (94.0179)	lr 0.000232
+epoch: [67/80][160/394]	time 4.093 (4.140)	data 0.000 (0.019)	eta 6:09:33	loss_t 0.1014 (0.1523)	loss_x 1.6725 (1.6728)	acc 94.7266 (94.0125)	lr 0.000232
+epoch: [67/80][180/394]	time 4.105 (4.136)	data 0.000 (0.017)	eta 6:07:49	loss_t 0.1151 (0.1521)	loss_x 1.6427 (1.6740)	acc 94.3359 (93.9833)	lr 0.000232
+epoch: [67/80][200/394]	time 4.107 (4.133)	data 0.000 (0.015)	eta 6:06:13	loss_t 0.1889 (0.1522)	loss_x 1.6248 (1.6741)	acc 96.0938 (93.9922)	lr 0.000232
+epoch: [67/80][220/394]	time 4.162 (4.133)	data 0.000 (0.014)	eta 6:04:45	loss_t 0.1114 (0.1511)	loss_x 1.6620 (1.6743)	acc 93.9453 (93.9959)	lr 0.000232
+epoch: [67/80][240/394]	time 4.187 (4.132)	data 0.000 (0.013)	eta 6:03:20	loss_t 0.1664 (0.1514)	loss_x 1.6550 (1.6746)	acc 93.9453 (94.0023)	lr 0.000232
+epoch: [67/80][260/394]	time 4.115 (4.132)	data 0.000 (0.012)	eta 6:01:57	loss_t 0.1270 (0.1520)	loss_x 1.7047 (1.6752)	acc 94.3359 (93.9874)	lr 0.000232
+epoch: [67/80][280/394]	time 4.096 (4.131)	data 0.000 (0.011)	eta 6:00:27	loss_t 0.2423 (0.1524)	loss_x 1.6828 (1.6750)	acc 93.7500 (93.9997)	lr 0.000232
+epoch: [67/80][300/394]	time 4.116 (4.130)	data 0.000 (0.010)	eta 5:59:00	loss_t 0.1387 (0.1524)	loss_x 1.6675 (1.6751)	acc 95.5078 (93.9915)	lr 0.000232
+epoch: [67/80][320/394]	time 4.091 (4.130)	data 0.000 (0.010)	eta 5:57:39	loss_t 0.0984 (0.1524)	loss_x 1.6750 (1.6756)	acc 93.9453 (93.9825)	lr 0.000232
+epoch: [67/80][340/394]	time 4.001 (4.127)	data 0.000 (0.009)	eta 5:55:59	loss_t 0.1636 (0.1527)	loss_x 1.7071 (1.6761)	acc 92.9688 (93.9666)	lr 0.000232
+epoch: [67/80][360/394]	time 4.181 (4.126)	data 0.000 (0.009)	eta 5:54:33	loss_t 0.1645 (0.1526)	loss_x 1.6969 (1.6769)	acc 93.9453 (93.9453)	lr 0.000232
+epoch: [67/80][380/394]	time 4.091 (4.124)	data 0.000 (0.008)	eta 5:53:02	loss_t 0.1510 (0.1528)	loss_x 1.6780 (1.6778)	acc 94.7266 (93.9268)	lr 0.000232
+epoch: [68/80][20/394]	time 4.112 (4.229)	data 0.000 (0.140)	eta 5:59:36	loss_t 0.2207 (0.1407)	loss_x 1.6672 (1.6589)	acc 95.3125 (94.3359)	lr 0.000259
+epoch: [68/80][40/394]	time 4.069 (4.171)	data 0.001 (0.070)	eta 5:53:16	loss_t 0.1323 (0.1472)	loss_x 1.6628 (1.6638)	acc 94.3359 (94.2969)	lr 0.000259
+epoch: [68/80][60/394]	time 4.101 (4.159)	data 0.000 (0.047)	eta 5:50:52	loss_t 0.1267 (0.1514)	loss_x 1.5906 (1.6716)	acc 96.0938 (94.1309)	lr 0.000259
+epoch: [68/80][80/394]	time 4.102 (4.146)	data 0.001 (0.035)	eta 5:48:24	loss_t 0.0550 (0.1489)	loss_x 1.6918 (1.6755)	acc 95.7031 (94.0674)	lr 0.000259
+epoch: [68/80][100/394]	time 4.077 (4.138)	data 0.000 (0.028)	eta 5:46:22	loss_t 0.2048 (0.1509)	loss_x 1.6885 (1.6785)	acc 92.9688 (93.9941)	lr 0.000259
+epoch: [68/80][120/394]	time 4.180 (4.136)	data 0.000 (0.024)	eta 5:44:48	loss_t 0.1678 (0.1512)	loss_x 1.6925 (1.6828)	acc 93.3594 (93.8704)	lr 0.000259
+epoch: [68/80][140/394]	time 4.186 (4.133)	data 0.001 (0.020)	eta 5:43:08	loss_t 0.1270 (0.1523)	loss_x 1.6836 (1.6854)	acc 93.5547 (93.8295)	lr 0.000259
+epoch: [68/80][160/394]	time 4.094 (4.130)	data 0.000 (0.018)	eta 5:41:34	loss_t 0.1262 (0.1515)	loss_x 1.6947 (1.6848)	acc 92.3828 (93.8416)	lr 0.000259
+epoch: [68/80][180/394]	time 4.103 (4.128)	data 0.001 (0.016)	eta 5:40:00	loss_t 0.2121 (0.1502)	loss_x 1.6540 (1.6845)	acc 93.1641 (93.8270)	lr 0.000259
+epoch: [68/80][200/394]	time 4.208 (4.127)	data 0.000 (0.014)	eta 5:38:32	loss_t 0.0936 (0.1510)	loss_x 1.7087 (1.6846)	acc 93.7500 (93.8193)	lr 0.000259
+epoch: [68/80][220/394]	time 4.087 (4.125)	data 0.000 (0.013)	eta 5:37:01	loss_t 0.2204 (0.1505)	loss_x 1.7513 (1.6857)	acc 91.4062 (93.7757)	lr 0.000259
+epoch: [68/80][240/394]	time 4.122 (4.124)	data 0.000 (0.012)	eta 5:35:34	loss_t 0.2373 (0.1504)	loss_x 1.6907 (1.6869)	acc 94.5312 (93.7476)	lr 0.000259
+epoch: [68/80][260/394]	time 4.109 (4.122)	data 0.001 (0.011)	eta 5:34:02	loss_t 0.1997 (0.1502)	loss_x 1.6648 (1.6878)	acc 94.5312 (93.7267)	lr 0.000259
+epoch: [68/80][280/394]	time 4.158 (4.124)	data 0.001 (0.010)	eta 5:32:49	loss_t 0.2058 (0.1507)	loss_x 1.7279 (1.6883)	acc 92.7734 (93.7109)	lr 0.000259
+epoch: [68/80][300/394]	time 4.137 (4.127)	data 0.000 (0.010)	eta 5:31:42	loss_t 0.1400 (0.1506)	loss_x 1.6726 (1.6885)	acc 92.9688 (93.7109)	lr 0.000259
+epoch: [68/80][320/394]	time 4.159 (4.130)	data 0.000 (0.009)	eta 5:30:33	loss_t 0.1162 (0.1516)	loss_x 1.7013 (1.6890)	acc 93.3594 (93.6877)	lr 0.000259
+epoch: [68/80][340/394]	time 4.182 (4.134)	data 0.000 (0.009)	eta 5:29:26	loss_t 0.1612 (0.1523)	loss_x 1.7589 (1.6895)	acc 90.8203 (93.6564)	lr 0.000259
+epoch: [68/80][360/394]	time 4.114 (4.135)	data 0.000 (0.008)	eta 5:28:09	loss_t 0.2428 (0.1526)	loss_x 1.7515 (1.6912)	acc 91.9922 (93.5943)	lr 0.000259
+epoch: [68/80][380/394]	time 4.275 (4.137)	data 0.001 (0.008)	eta 5:26:57	loss_t 0.1710 (0.1530)	loss_x 1.7035 (1.6918)	acc 92.3828 (93.5763)	lr 0.000259
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5673 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 67.4%
+CMC curve
+Rank-1  : 93.0%
+Rank-5  : 97.0%
+Rank-10 : 98.0%
+Rank-20 : 98.6%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-68"
+epoch: [69/80][20/394]	time 4.256 (4.271)	data 0.001 (0.145)	eta 5:35:08	loss_t 0.1968 (0.1712)	loss_x 1.7291 (1.6867)	acc 92.1875 (93.5059)	lr 0.000287
+epoch: [69/80][40/394]	time 4.107 (4.236)	data 0.000 (0.073)	eta 5:30:59	loss_t 0.1895 (0.1611)	loss_x 1.7606 (1.6838)	acc 93.1641 (93.6182)	lr 0.000287
+epoch: [69/80][60/394]	time 4.094 (4.208)	data 0.000 (0.049)	eta 5:27:23	loss_t 0.2418 (0.1630)	loss_x 1.6591 (1.6919)	acc 94.9219 (93.3952)	lr 0.000287
+epoch: [69/80][80/394]	time 4.215 (4.198)	data 0.000 (0.037)	eta 5:25:10	loss_t 0.1901 (0.1595)	loss_x 1.6715 (1.6935)	acc 93.5547 (93.3984)	lr 0.000287
+epoch: [69/80][100/394]	time 4.143 (4.198)	data 0.000 (0.029)	eta 5:23:47	loss_t 0.1732 (0.1604)	loss_x 1.7485 (1.6973)	acc 91.6016 (93.3145)	lr 0.000287
+epoch: [69/80][120/394]	time 4.121 (4.193)	data 0.001 (0.025)	eta 5:22:01	loss_t 0.1967 (0.1586)	loss_x 1.6564 (1.6991)	acc 93.5547 (93.2764)	lr 0.000287
+epoch: [69/80][140/394]	time 4.013 (4.192)	data 0.001 (0.021)	eta 5:20:30	loss_t 0.2032 (0.1585)	loss_x 1.7011 (1.6995)	acc 92.5781 (93.2757)	lr 0.000287
+epoch: [69/80][160/394]	time 4.163 (4.185)	data 0.000 (0.019)	eta 5:18:37	loss_t 0.1731 (0.1569)	loss_x 1.7549 (1.7006)	acc 90.8203 (93.2959)	lr 0.000287
+epoch: [69/80][180/394]	time 4.256 (4.185)	data 0.000 (0.017)	eta 5:17:15	loss_t 0.1069 (0.1578)	loss_x 1.6814 (1.7005)	acc 93.7500 (93.3312)	lr 0.000287
+epoch: [69/80][200/394]	time 4.185 (4.184)	data 0.000 (0.015)	eta 5:15:44	loss_t 0.1379 (0.1593)	loss_x 1.6799 (1.7024)	acc 92.7734 (93.3301)	lr 0.000287
+epoch: [69/80][220/394]	time 4.167 (4.182)	data 0.001 (0.014)	eta 5:14:14	loss_t 0.2148 (0.1589)	loss_x 1.6825 (1.7027)	acc 95.1172 (93.3354)	lr 0.000287
+epoch: [69/80][240/394]	time 4.192 (4.179)	data 0.001 (0.013)	eta 5:12:35	loss_t 0.1629 (0.1593)	loss_x 1.7426 (1.7019)	acc 92.9688 (93.3382)	lr 0.000287
+epoch: [69/80][260/394]	time 4.242 (4.179)	data 0.000 (0.012)	eta 5:11:11	loss_t 0.1681 (0.1595)	loss_x 1.7165 (1.7037)	acc 92.7734 (93.2948)	lr 0.000287
+epoch: [69/80][280/394]	time 4.223 (4.179)	data 0.001 (0.011)	eta 5:09:50	loss_t 0.0907 (0.1599)	loss_x 1.7473 (1.7037)	acc 93.1641 (93.2861)	lr 0.000287
+epoch: [69/80][300/394]	time 4.247 (4.180)	data 0.001 (0.010)	eta 5:08:30	loss_t 0.1933 (0.1598)	loss_x 1.7178 (1.7038)	acc 93.7500 (93.2949)	lr 0.000287
+epoch: [69/80][320/394]	time 4.117 (4.179)	data 0.000 (0.010)	eta 5:07:01	loss_t 0.1042 (0.1597)	loss_x 1.6710 (1.7036)	acc 94.5312 (93.2977)	lr 0.000287
+epoch: [69/80][340/394]	time 4.233 (4.179)	data 0.001 (0.009)	eta 5:05:37	loss_t 0.0969 (0.1598)	loss_x 1.6325 (1.7044)	acc 95.5078 (93.2910)	lr 0.000287
+epoch: [69/80][360/394]	time 4.233 (4.179)	data 0.000 (0.009)	eta 5:04:12	loss_t 0.2126 (0.1601)	loss_x 1.6534 (1.7050)	acc 94.5312 (93.2699)	lr 0.000287
+epoch: [69/80][380/394]	time 4.150 (4.179)	data 0.001 (0.008)	eta 5:02:52	loss_t 0.2380 (0.1595)	loss_x 1.7001 (1.7056)	acc 93.1641 (93.2473)	lr 0.000287
+epoch: [70/80][20/394]	time 4.160 (4.244)	data 0.001 (0.143)	eta 5:05:09	loss_t 0.2228 (0.1692)	loss_x 1.6941 (1.6939)	acc 93.7500 (93.5840)	lr 0.000316
+epoch: [70/80][40/394]	time 4.187 (4.209)	data 0.001 (0.072)	eta 5:01:13	loss_t 0.1480 (0.1670)	loss_x 1.6907 (1.6963)	acc 92.5781 (93.5986)	lr 0.000316
+epoch: [70/80][60/394]	time 4.159 (4.191)	data 0.001 (0.048)	eta 4:58:31	loss_t 0.1810 (0.1712)	loss_x 1.6583 (1.7038)	acc 93.5547 (93.3105)	lr 0.000316
+epoch: [70/80][80/394]	time 4.389 (4.187)	data 0.001 (0.036)	eta 4:56:52	loss_t 0.1156 (0.1714)	loss_x 1.6655 (1.7053)	acc 93.3594 (93.3008)	lr 0.000316
+epoch: [70/80][100/394]	time 4.143 (4.177)	data 0.001 (0.029)	eta 4:54:45	loss_t 0.1534 (0.1699)	loss_x 1.6809 (1.7079)	acc 92.7734 (93.2656)	lr 0.000316
+epoch: [70/80][120/394]	time 4.163 (4.177)	data 0.001 (0.024)	eta 4:53:23	loss_t 0.1579 (0.1676)	loss_x 1.6935 (1.7096)	acc 93.5547 (93.2650)	lr 0.000316
+epoch: [70/80][140/394]	time 4.210 (4.178)	data 0.001 (0.021)	eta 4:52:04	loss_t 0.1733 (0.1666)	loss_x 1.6865 (1.7078)	acc 93.9453 (93.3022)	lr 0.000316
+epoch: [70/80][160/394]	time 4.148 (4.177)	data 0.000 (0.018)	eta 4:50:35	loss_t 0.1740 (0.1669)	loss_x 1.7339 (1.7105)	acc 91.9922 (93.2556)	lr 0.000316
+epoch: [70/80][180/394]	time 4.097 (4.175)	data 0.000 (0.016)	eta 4:49:02	loss_t 0.2122 (0.1676)	loss_x 1.7090 (1.7119)	acc 93.5547 (93.2303)	lr 0.000316
+epoch: [70/80][200/394]	time 4.176 (4.175)	data 0.001 (0.015)	eta 4:47:38	loss_t 0.2533 (0.1683)	loss_x 1.6866 (1.7124)	acc 94.7266 (93.2139)	lr 0.000316
+epoch: [70/80][220/394]	time 4.136 (4.175)	data 0.001 (0.013)	eta 4:46:16	loss_t 0.0902 (0.1691)	loss_x 1.6267 (1.7151)	acc 95.5078 (93.1241)	lr 0.000316
+epoch: [70/80][240/394]	time 4.251 (4.176)	data 0.000 (0.012)	eta 4:44:55	loss_t 0.2637 (0.1712)	loss_x 1.7423 (1.7172)	acc 92.9688 (93.0786)	lr 0.000316
+epoch: [70/80][260/394]	time 4.127 (4.175)	data 0.000 (0.011)	eta 4:43:28	loss_t 0.2292 (0.1719)	loss_x 1.7336 (1.7186)	acc 92.7734 (93.0491)	lr 0.000316
+epoch: [70/80][280/394]	time 4.150 (4.172)	data 0.001 (0.011)	eta 4:41:54	loss_t 0.1923 (0.1707)	loss_x 1.6824 (1.7188)	acc 94.1406 (93.0448)	lr 0.000316
+epoch: [70/80][300/394]	time 4.177 (4.173)	data 0.001 (0.010)	eta 4:40:33	loss_t 0.1642 (0.1702)	loss_x 1.7935 (1.7192)	acc 91.4062 (93.0332)	lr 0.000316
+epoch: [70/80][320/394]	time 4.215 (4.172)	data 0.000 (0.009)	eta 4:39:07	loss_t 0.2083 (0.1712)	loss_x 1.7136 (1.7193)	acc 93.5547 (93.0212)	lr 0.000316
+epoch: [70/80][340/394]	time 4.140 (4.172)	data 0.000 (0.009)	eta 4:37:43	loss_t 0.1075 (0.1702)	loss_x 1.6949 (1.7203)	acc 93.5547 (92.9957)	lr 0.000316
+epoch: [70/80][360/394]	time 4.227 (4.171)	data 0.000 (0.008)	eta 4:36:14	loss_t 0.1487 (0.1699)	loss_x 1.8185 (1.7206)	acc 89.8438 (92.9807)	lr 0.000316
+epoch: [70/80][380/394]	time 4.157 (4.171)	data 0.001 (0.008)	eta 4:34:51	loss_t 0.1439 (0.1692)	loss_x 1.7088 (1.7219)	acc 93.1641 (92.9410)	lr 0.000316
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5607 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 68.2%
+CMC curve
+Rank-1  : 93.0%
+Rank-5  : 97.0%
+Rank-10 : 97.8%
+Rank-20 : 98.6%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-70"
+epoch: [71/80][20/394]	time 4.227 (4.277)	data 0.001 (0.158)	eta 4:39:24	loss_t 0.1813 (0.1856)	loss_x 1.7281 (1.7189)	acc 92.3828 (93.1055)	lr 0.000345
+epoch: [71/80][40/394]	time 4.243 (4.233)	data 0.001 (0.079)	eta 4:35:08	loss_t 0.1971 (0.1727)	loss_x 1.7464 (1.7207)	acc 90.8203 (92.8906)	lr 0.000345
+epoch: [71/80][60/394]	time 4.112 (4.199)	data 0.000 (0.053)	eta 4:31:33	loss_t 0.1579 (0.1720)	loss_x 1.7786 (1.7232)	acc 91.2109 (92.8776)	lr 0.000345
+epoch: [71/80][80/394]	time 4.219 (4.196)	data 0.001 (0.040)	eta 4:29:56	loss_t 0.1124 (0.1733)	loss_x 1.7117 (1.7233)	acc 93.1641 (92.8638)	lr 0.000345
+epoch: [71/80][100/394]	time 4.123 (4.193)	data 0.001 (0.032)	eta 4:28:19	loss_t 0.1629 (0.1733)	loss_x 1.6764 (1.7241)	acc 93.7500 (92.8848)	lr 0.000345
+epoch: [71/80][120/394]	time 4.151 (4.187)	data 0.001 (0.027)	eta 4:26:35	loss_t 0.2618 (0.1738)	loss_x 1.7280 (1.7240)	acc 93.1641 (92.9297)	lr 0.000345
+epoch: [71/80][140/394]	time 4.118 (4.183)	data 0.000 (0.023)	eta 4:24:53	loss_t 0.1415 (0.1755)	loss_x 1.7425 (1.7263)	acc 93.1641 (92.9116)	lr 0.000345
+epoch: [71/80][160/394]	time 4.161 (4.181)	data 0.000 (0.020)	eta 4:23:24	loss_t 0.0596 (0.1727)	loss_x 1.7525 (1.7283)	acc 92.1875 (92.8442)	lr 0.000345
+epoch: [71/80][180/394]	time 4.220 (4.181)	data 0.000 (0.018)	eta 4:22:02	loss_t 0.1438 (0.1746)	loss_x 1.7398 (1.7314)	acc 91.4062 (92.7778)	lr 0.000345
+epoch: [71/80][200/394]	time 4.177 (4.179)	data 0.001 (0.016)	eta 4:20:28	loss_t 0.2613 (0.1731)	loss_x 1.7290 (1.7311)	acc 93.3594 (92.7539)	lr 0.000345
+epoch: [71/80][220/394]	time 4.243 (4.179)	data 0.000 (0.015)	eta 4:19:04	loss_t 0.2706 (0.1752)	loss_x 1.7802 (1.7332)	acc 89.8438 (92.6926)	lr 0.000345
+epoch: [71/80][240/394]	time 4.175 (4.175)	data 0.000 (0.014)	eta 4:17:29	loss_t 0.1977 (0.1745)	loss_x 1.7805 (1.7348)	acc 90.6250 (92.6693)	lr 0.000345
+epoch: [71/80][260/394]	time 4.131 (4.176)	data 0.000 (0.013)	eta 4:16:09	loss_t 0.1014 (0.1736)	loss_x 1.7672 (1.7363)	acc 91.9922 (92.6224)	lr 0.000345
+epoch: [71/80][280/394]	time 4.162 (4.175)	data 0.001 (0.012)	eta 4:14:40	loss_t 0.1359 (0.1729)	loss_x 1.7138 (1.7372)	acc 92.5781 (92.5893)	lr 0.000345
+epoch: [71/80][300/394]	time 4.226 (4.174)	data 0.001 (0.011)	eta 4:13:14	loss_t 0.1194 (0.1730)	loss_x 1.6659 (1.7373)	acc 94.7266 (92.5924)	lr 0.000345
+epoch: [71/80][320/394]	time 4.192 (4.173)	data 0.000 (0.010)	eta 4:11:47	loss_t 0.1233 (0.1726)	loss_x 1.7867 (1.7381)	acc 92.3828 (92.5677)	lr 0.000345
+epoch: [71/80][340/394]	time 4.142 (4.174)	data 0.001 (0.010)	eta 4:10:25	loss_t 0.2547 (0.1722)	loss_x 1.8363 (1.7382)	acc 90.2344 (92.5678)	lr 0.000345
+epoch: [71/80][360/394]	time 4.124 (4.174)	data 0.001 (0.009)	eta 4:09:02	loss_t 0.1622 (0.1716)	loss_x 1.7737 (1.7392)	acc 90.6250 (92.5412)	lr 0.000345
+epoch: [71/80][380/394]	time 4.115 (4.174)	data 0.001 (0.009)	eta 4:07:38	loss_t 0.2554 (0.1715)	loss_x 1.6862 (1.7401)	acc 93.1641 (92.5154)	lr 0.000345
+epoch: [72/80][20/394]	time 4.161 (4.264)	data 0.000 (0.149)	eta 4:10:33	loss_t 0.1417 (0.1693)	loss_x 1.6801 (1.7020)	acc 94.3359 (93.5156)	lr 0.000376
+epoch: [72/80][40/394]	time 4.225 (4.220)	data 0.001 (0.075)	eta 4:06:34	loss_t 0.2225 (0.1661)	loss_x 1.7301 (1.7137)	acc 91.9922 (93.1738)	lr 0.000376
+epoch: [72/80][60/394]	time 4.152 (4.203)	data 0.001 (0.050)	eta 4:04:10	loss_t 0.1872 (0.1718)	loss_x 1.7549 (1.7202)	acc 91.4062 (92.8711)	lr 0.000376
+epoch: [72/80][80/394]	time 4.178 (4.199)	data 0.001 (0.038)	eta 4:02:32	loss_t 0.1126 (0.1710)	loss_x 1.8112 (1.7252)	acc 91.4062 (92.7490)	lr 0.000376
+epoch: [72/80][100/394]	time 4.154 (4.187)	data 0.000 (0.030)	eta 4:00:30	loss_t 0.1613 (0.1673)	loss_x 1.7461 (1.7250)	acc 91.9922 (92.7598)	lr 0.000376
+epoch: [72/80][120/394]	time 4.168 (4.185)	data 0.001 (0.025)	eta 3:58:58	loss_t 0.2540 (0.1682)	loss_x 1.6995 (1.7267)	acc 93.7500 (92.7393)	lr 0.000376
+epoch: [72/80][140/394]	time 4.238 (4.183)	data 0.001 (0.022)	eta 3:57:27	loss_t 0.1414 (0.1679)	loss_x 1.6373 (1.7268)	acc 94.5312 (92.7232)	lr 0.000376
+epoch: [72/80][160/394]	time 4.199 (4.183)	data 0.001 (0.019)	eta 3:56:04	loss_t 0.1917 (0.1671)	loss_x 1.8064 (1.7295)	acc 89.8438 (92.6465)	lr 0.000376
+epoch: [72/80][180/394]	time 4.202 (4.179)	data 0.000 (0.017)	eta 3:54:27	loss_t 0.2456 (0.1697)	loss_x 1.6895 (1.7313)	acc 93.9453 (92.6345)	lr 0.000376
+epoch: [72/80][200/394]	time 4.128 (4.177)	data 0.001 (0.015)	eta 3:52:55	loss_t 0.1392 (0.1705)	loss_x 1.7223 (1.7337)	acc 92.7734 (92.5703)	lr 0.000376
+epoch: [72/80][220/394]	time 4.192 (4.178)	data 0.000 (0.014)	eta 3:51:35	loss_t 0.1879 (0.1716)	loss_x 1.7558 (1.7355)	acc 91.2109 (92.5124)	lr 0.000376
+epoch: [72/80][240/394]	time 4.191 (4.178)	data 0.000 (0.013)	eta 3:50:11	loss_t 0.1360 (0.1704)	loss_x 1.7668 (1.7365)	acc 91.7969 (92.4919)	lr 0.000376
+epoch: [72/80][260/394]	time 4.177 (4.178)	data 0.000 (0.012)	eta 3:48:50	loss_t 0.1357 (0.1714)	loss_x 1.7170 (1.7372)	acc 92.5781 (92.4805)	lr 0.000376
+epoch: [72/80][280/394]	time 4.236 (4.177)	data 0.001 (0.011)	eta 3:47:21	loss_t 0.1942 (0.1720)	loss_x 1.7648 (1.7397)	acc 92.5781 (92.4665)	lr 0.000376
+epoch: [72/80][300/394]	time 4.059 (4.176)	data 0.001 (0.010)	eta 3:45:56	loss_t 0.1472 (0.1729)	loss_x 1.8117 (1.7422)	acc 89.8438 (92.4154)	lr 0.000376
+epoch: [72/80][320/394]	time 4.093 (4.173)	data 0.000 (0.010)	eta 3:44:22	loss_t 0.1537 (0.1729)	loss_x 1.7654 (1.7432)	acc 92.7734 (92.4048)	lr 0.000376
+epoch: [72/80][340/394]	time 4.096 (4.170)	data 0.000 (0.009)	eta 3:42:47	loss_t 0.1401 (0.1720)	loss_x 1.7047 (1.7432)	acc 92.5781 (92.3932)	lr 0.000376
+epoch: [72/80][360/394]	time 4.098 (4.166)	data 0.000 (0.009)	eta 3:41:13	loss_t 0.0617 (0.1728)	loss_x 1.7192 (1.7443)	acc 94.1406 (92.3676)	lr 0.000376
+epoch: [72/80][380/394]	time 4.154 (4.163)	data 0.000 (0.008)	eta 3:39:39	loss_t 0.1236 (0.1718)	loss_x 1.7018 (1.7453)	acc 93.5547 (92.3453)	lr 0.000376
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5547 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 65.5%
+CMC curve
+Rank-1  : 92.3%
+Rank-5  : 96.6%
+Rank-10 : 97.7%
+Rank-20 : 98.5%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-72"
+epoch: [73/80][20/394]	time 4.053 (4.209)	data 0.001 (0.140)	eta 3:39:41	loss_t 0.1566 (0.1715)	loss_x 1.7297 (1.7286)	acc 93.1641 (92.7148)	lr 0.000406
+epoch: [73/80][40/394]	time 4.096 (4.160)	data 0.000 (0.070)	eta 3:35:45	loss_t 0.2533 (0.1704)	loss_x 1.7253 (1.7302)	acc 92.9688 (92.7051)	lr 0.000406
+epoch: [73/80][60/394]	time 4.171 (4.142)	data 0.000 (0.047)	eta 3:33:26	loss_t 0.1435 (0.1685)	loss_x 1.7193 (1.7315)	acc 94.3359 (92.6693)	lr 0.000406
+epoch: [73/80][80/394]	time 4.087 (4.133)	data 0.000 (0.035)	eta 3:31:36	loss_t 0.1807 (0.1690)	loss_x 1.7015 (1.7392)	acc 92.7734 (92.5220)	lr 0.000406
+epoch: [73/80][100/394]	time 4.087 (4.128)	data 0.000 (0.028)	eta 3:29:58	loss_t 0.2383 (0.1715)	loss_x 1.8238 (1.7430)	acc 91.2109 (92.4199)	lr 0.000406
+epoch: [73/80][120/394]	time 4.101 (4.126)	data 0.000 (0.024)	eta 3:28:31	loss_t 0.2418 (0.1707)	loss_x 1.7354 (1.7443)	acc 91.2109 (92.4089)	lr 0.000406
+epoch: [73/80][140/394]	time 4.103 (4.126)	data 0.000 (0.020)	eta 3:27:07	loss_t 0.2038 (0.1710)	loss_x 1.8305 (1.7454)	acc 90.8203 (92.4051)	lr 0.000406
+epoch: [73/80][160/394]	time 4.095 (4.126)	data 0.000 (0.018)	eta 3:25:45	loss_t 0.0825 (0.1707)	loss_x 1.7034 (1.7473)	acc 91.9922 (92.3730)	lr 0.000406
+epoch: [73/80][180/394]	time 4.178 (4.124)	data 0.000 (0.016)	eta 3:24:16	loss_t 0.2328 (0.1715)	loss_x 1.7325 (1.7490)	acc 92.9688 (92.3199)	lr 0.000406
+epoch: [73/80][200/394]	time 4.099 (4.123)	data 0.000 (0.014)	eta 3:22:50	loss_t 0.1898 (0.1715)	loss_x 1.7942 (1.7509)	acc 90.4297 (92.2441)	lr 0.000406
+epoch: [73/80][220/394]	time 4.102 (4.122)	data 0.000 (0.013)	eta 3:21:25	loss_t 0.1182 (0.1714)	loss_x 1.7371 (1.7515)	acc 92.9688 (92.2275)	lr 0.000406
+epoch: [73/80][240/394]	time 4.104 (4.118)	data 0.001 (0.012)	eta 3:19:51	loss_t 0.1104 (0.1708)	loss_x 1.6888 (1.7520)	acc 93.1641 (92.2103)	lr 0.000406
+epoch: [73/80][260/394]	time 3.988 (4.116)	data 0.000 (0.011)	eta 3:18:24	loss_t 0.0954 (0.1712)	loss_x 1.7102 (1.7519)	acc 92.5781 (92.2040)	lr 0.000406
+epoch: [73/80][280/394]	time 4.104 (4.113)	data 0.001 (0.010)	eta 3:16:53	loss_t 0.1885 (0.1715)	loss_x 1.7438 (1.7515)	acc 92.7734 (92.1987)	lr 0.000406
+epoch: [73/80][300/394]	time 4.082 (4.113)	data 0.000 (0.010)	eta 3:15:31	loss_t 0.1676 (0.1721)	loss_x 1.7972 (1.7536)	acc 92.7734 (92.1589)	lr 0.000406
+epoch: [73/80][320/394]	time 4.003 (4.113)	data 0.000 (0.009)	eta 3:14:08	loss_t 0.1623 (0.1713)	loss_x 1.7312 (1.7536)	acc 92.5781 (92.1436)	lr 0.000406
+epoch: [73/80][340/394]	time 4.172 (4.112)	data 0.000 (0.009)	eta 3:12:42	loss_t 0.1548 (0.1716)	loss_x 1.7628 (1.7541)	acc 90.4297 (92.1484)	lr 0.000406
+epoch: [73/80][360/394]	time 4.109 (4.112)	data 0.000 (0.008)	eta 3:11:21	loss_t 0.1938 (0.1715)	loss_x 1.8122 (1.7553)	acc 91.0156 (92.1034)	lr 0.000406
+epoch: [73/80][380/394]	time 4.127 (4.113)	data 0.000 (0.008)	eta 3:10:01	loss_t 0.2232 (0.1719)	loss_x 1.7952 (1.7559)	acc 90.8203 (92.0832)	lr 0.000406
+epoch: [74/80][20/394]	time 4.163 (4.262)	data 0.001 (0.137)	eta 3:14:30	loss_t 0.1717 (0.1595)	loss_x 1.7217 (1.7412)	acc 93.3594 (92.3145)	lr 0.000437
+epoch: [74/80][40/394]	time 4.110 (4.178)	data 0.001 (0.068)	eta 3:09:16	loss_t 0.2148 (0.1793)	loss_x 1.7493 (1.7557)	acc 91.9922 (92.1680)	lr 0.000437
+epoch: [74/80][60/394]	time 4.172 (4.156)	data 0.000 (0.046)	eta 3:06:51	loss_t 0.1283 (0.1796)	loss_x 1.7647 (1.7572)	acc 91.0156 (92.0703)	lr 0.000437
+epoch: [74/80][80/394]	time 4.098 (4.142)	data 0.000 (0.034)	eta 3:04:52	loss_t 0.1475 (0.1783)	loss_x 1.7959 (1.7607)	acc 90.6250 (91.9775)	lr 0.000437
+epoch: [74/80][100/394]	time 4.170 (4.137)	data 0.000 (0.028)	eta 3:03:16	loss_t 0.2580 (0.1782)	loss_x 1.7458 (1.7609)	acc 92.1875 (92.0020)	lr 0.000437
+epoch: [74/80][120/394]	time 4.100 (4.131)	data 0.000 (0.023)	eta 3:01:37	loss_t 0.2093 (0.1769)	loss_x 1.7246 (1.7624)	acc 93.3594 (91.9450)	lr 0.000437
+epoch: [74/80][140/394]	time 4.078 (4.126)	data 0.000 (0.020)	eta 3:00:01	loss_t 0.1968 (0.1770)	loss_x 1.8445 (1.7642)	acc 89.2578 (91.8820)	lr 0.000437
+epoch: [74/80][160/394]	time 4.066 (4.123)	data 0.000 (0.017)	eta 2:58:31	loss_t 0.1606 (0.1774)	loss_x 1.8710 (1.7655)	acc 87.5000 (91.8530)	lr 0.000437
+epoch: [74/80][180/394]	time 4.109 (4.120)	data 0.000 (0.016)	eta 2:57:02	loss_t 0.1791 (0.1777)	loss_x 1.7045 (1.7664)	acc 92.9688 (91.8424)	lr 0.000437
+epoch: [74/80][200/394]	time 4.084 (4.119)	data 0.000 (0.014)	eta 2:55:36	loss_t 0.1439 (0.1780)	loss_x 1.7142 (1.7664)	acc 92.1875 (91.8223)	lr 0.000437
+epoch: [74/80][220/394]	time 4.091 (4.118)	data 0.000 (0.013)	eta 2:54:11	loss_t 0.1809 (0.1812)	loss_x 1.8514 (1.7686)	acc 89.0625 (91.7631)	lr 0.000437
+epoch: [74/80][240/394]	time 4.092 (4.118)	data 0.000 (0.012)	eta 2:52:49	loss_t 0.1955 (0.1812)	loss_x 1.8104 (1.7706)	acc 90.2344 (91.7025)	lr 0.000437
+epoch: [74/80][260/394]	time 4.102 (4.117)	data 0.000 (0.011)	eta 2:51:24	loss_t 0.1510 (0.1816)	loss_x 1.7702 (1.7717)	acc 91.2109 (91.6887)	lr 0.000437
+epoch: [74/80][280/394]	time 4.159 (4.116)	data 0.001 (0.010)	eta 2:49:59	loss_t 0.2059 (0.1816)	loss_x 1.7992 (1.7727)	acc 92.1875 (91.6602)	lr 0.000437
+epoch: [74/80][300/394]	time 4.108 (4.116)	data 0.000 (0.010)	eta 2:48:38	loss_t 0.1724 (0.1815)	loss_x 1.8711 (1.7738)	acc 88.6719 (91.6419)	lr 0.000437
+epoch: [74/80][320/394]	time 4.060 (4.116)	data 0.001 (0.009)	eta 2:47:13	loss_t 0.1726 (0.1808)	loss_x 1.7552 (1.7749)	acc 92.9688 (91.6248)	lr 0.000437
+epoch: [74/80][340/394]	time 4.099 (4.115)	data 0.000 (0.008)	eta 2:45:50	loss_t 0.1365 (0.1813)	loss_x 1.7151 (1.7758)	acc 93.1641 (91.5998)	lr 0.000437
+epoch: [74/80][360/394]	time 4.079 (4.115)	data 0.000 (0.008)	eta 2:44:28	loss_t 0.0654 (0.1812)	loss_x 1.7833 (1.7763)	acc 90.4297 (91.5853)	lr 0.000437
+epoch: [74/80][380/394]	time 4.116 (4.114)	data 0.000 (0.008)	eta 2:43:03	loss_t 0.1022 (0.1808)	loss_x 1.7305 (1.7765)	acc 93.5547 (91.5779)	lr 0.000437
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5669 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 65.5%
+CMC curve
+Rank-1  : 92.1%
+Rank-5  : 96.4%
+Rank-10 : 97.5%
+Rank-20 : 98.4%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-74"
+epoch: [75/80][20/394]	time 3.989 (4.194)	data 0.000 (0.137)	eta 2:43:50	loss_t 0.1830 (0.1863)	loss_x 1.7645 (1.7634)	acc 91.2109 (91.8457)	lr 0.000469
+epoch: [75/80][40/394]	time 4.168 (4.146)	data 0.000 (0.069)	eta 2:40:35	loss_t 0.2323 (0.1982)	loss_x 1.7431 (1.7670)	acc 91.7969 (91.9238)	lr 0.000469
+epoch: [75/80][60/394]	time 4.173 (4.135)	data 0.000 (0.046)	eta 2:38:47	loss_t 0.1223 (0.1927)	loss_x 1.7730 (1.7696)	acc 91.7969 (91.8652)	lr 0.000469
+epoch: [75/80][80/394]	time 4.020 (4.118)	data 0.000 (0.034)	eta 2:36:45	loss_t 0.2030 (0.1878)	loss_x 1.7993 (1.7731)	acc 91.0156 (91.8140)	lr 0.000469
+epoch: [75/80][100/394]	time 4.143 (4.117)	data 0.000 (0.028)	eta 2:35:20	loss_t 0.1912 (0.1862)	loss_x 1.8058 (1.7784)	acc 91.0156 (91.6562)	lr 0.000469
+epoch: [75/80][120/394]	time 4.160 (4.125)	data 0.001 (0.023)	eta 2:34:15	loss_t 0.2027 (0.1858)	loss_x 1.7053 (1.7783)	acc 92.7734 (91.5983)	lr 0.000469
+epoch: [75/80][140/394]	time 4.046 (4.127)	data 0.000 (0.020)	eta 2:32:57	loss_t 0.1839 (0.1872)	loss_x 1.7916 (1.7766)	acc 91.0156 (91.6629)	lr 0.000469
+epoch: [75/80][160/394]	time 4.067 (4.131)	data 0.000 (0.018)	eta 2:31:45	loss_t 0.2937 (0.1891)	loss_x 1.7982 (1.7797)	acc 91.7969 (91.5601)	lr 0.000469
+epoch: [75/80][180/394]	time 4.101 (4.135)	data 0.001 (0.016)	eta 2:30:31	loss_t 0.2240 (0.1893)	loss_x 1.7702 (1.7827)	acc 92.5781 (91.4952)	lr 0.000469
+epoch: [75/80][200/394]	time 4.165 (4.135)	data 0.001 (0.014)	eta 2:29:07	loss_t 0.1424 (0.1893)	loss_x 1.8055 (1.7828)	acc 90.2344 (91.5020)	lr 0.000469
+epoch: [75/80][220/394]	time 4.098 (4.136)	data 0.001 (0.013)	eta 2:27:48	loss_t 0.1874 (0.1873)	loss_x 1.8814 (1.7836)	acc 88.8672 (91.4835)	lr 0.000469
+epoch: [75/80][240/394]	time 4.161 (4.137)	data 0.001 (0.012)	eta 2:26:26	loss_t 0.0905 (0.1870)	loss_x 1.8267 (1.7848)	acc 91.0156 (91.4844)	lr 0.000469
+epoch: [75/80][260/394]	time 4.140 (4.139)	data 0.001 (0.011)	eta 2:25:07	loss_t 0.1647 (0.1868)	loss_x 1.8045 (1.7849)	acc 90.8203 (91.4678)	lr 0.000469
+epoch: [75/80][280/394]	time 4.135 (4.136)	data 0.001 (0.010)	eta 2:23:38	loss_t 0.1969 (0.1865)	loss_x 1.8241 (1.7864)	acc 89.8438 (91.4474)	lr 0.000469
+epoch: [75/80][300/394]	time 4.229 (4.137)	data 0.001 (0.010)	eta 2:22:18	loss_t 0.2447 (0.1870)	loss_x 1.7611 (1.7872)	acc 91.9922 (91.4186)	lr 0.000469
+epoch: [75/80][320/394]	time 4.247 (4.139)	data 0.001 (0.009)	eta 2:20:59	loss_t 0.2246 (0.1873)	loss_x 1.8359 (1.7868)	acc 89.2578 (91.4270)	lr 0.000469
+epoch: [75/80][340/394]	time 4.155 (4.140)	data 0.001 (0.009)	eta 2:19:38	loss_t 0.2497 (0.1872)	loss_x 1.7584 (1.7872)	acc 92.1875 (91.4206)	lr 0.000469
+epoch: [75/80][360/394]	time 4.013 (4.140)	data 0.001 (0.008)	eta 2:18:15	loss_t 0.1661 (0.1874)	loss_x 1.8096 (1.7878)	acc 91.6016 (91.3987)	lr 0.000469
+epoch: [75/80][380/394]	time 4.138 (4.140)	data 0.001 (0.008)	eta 2:16:54	loss_t 0.1830 (0.1875)	loss_x 1.8887 (1.7889)	acc 88.8672 (91.3641)	lr 0.000469
+epoch: [76/80][20/394]	time 4.135 (4.277)	data 0.001 (0.144)	eta 2:19:00	loss_t 0.1491 (0.1761)	loss_x 1.7627 (1.7668)	acc 92.1875 (91.8262)	lr 0.000500
+epoch: [76/80][40/394]	time 4.150 (4.220)	data 0.001 (0.072)	eta 2:15:45	loss_t 0.2369 (0.1848)	loss_x 1.7721 (1.7729)	acc 91.2109 (91.7383)	lr 0.000500
+epoch: [76/80][60/394]	time 4.034 (4.189)	data 0.001 (0.048)	eta 2:13:21	loss_t 0.1928 (0.1834)	loss_x 1.8146 (1.7777)	acc 91.0156 (91.6634)	lr 0.000500
+epoch: [76/80][80/394]	time 4.237 (4.181)	data 0.001 (0.036)	eta 2:11:42	loss_t 0.1265 (0.1790)	loss_x 1.8591 (1.7784)	acc 91.2109 (91.5991)	lr 0.000500
+epoch: [76/80][100/394]	time 4.116 (4.183)	data 0.001 (0.029)	eta 2:10:22	loss_t 0.2016 (0.1793)	loss_x 1.8331 (1.7800)	acc 91.4062 (91.5645)	lr 0.000500
+epoch: [76/80][120/394]	time 4.142 (4.178)	data 0.000 (0.025)	eta 2:08:49	loss_t 0.1613 (0.1777)	loss_x 1.7621 (1.7803)	acc 93.3594 (91.5592)	lr 0.000500
+epoch: [76/80][140/394]	time 4.076 (4.173)	data 0.001 (0.021)	eta 2:07:16	loss_t 0.1360 (0.1800)	loss_x 1.7594 (1.7809)	acc 92.1875 (91.5611)	lr 0.000500
+epoch: [76/80][160/394]	time 4.234 (4.169)	data 0.001 (0.019)	eta 2:05:46	loss_t 0.2081 (0.1822)	loss_x 1.7549 (1.7846)	acc 91.7969 (91.4282)	lr 0.000500
+epoch: [76/80][180/394]	time 4.048 (4.168)	data 0.000 (0.017)	eta 2:04:20	loss_t 0.1798 (0.1810)	loss_x 1.7773 (1.7840)	acc 90.4297 (91.4421)	lr 0.000500
+epoch: [76/80][200/394]	time 4.149 (4.167)	data 0.001 (0.015)	eta 2:02:56	loss_t 0.1438 (0.1803)	loss_x 1.7244 (1.7846)	acc 92.7734 (91.4180)	lr 0.000500
+epoch: [76/80][220/394]	time 4.021 (4.166)	data 0.000 (0.014)	eta 2:01:30	loss_t 0.1452 (0.1810)	loss_x 1.8298 (1.7858)	acc 91.7969 (91.3885)	lr 0.000500
+epoch: [76/80][240/394]	time 4.236 (4.163)	data 0.001 (0.013)	eta 2:00:02	loss_t 0.1764 (0.1817)	loss_x 1.8016 (1.7863)	acc 91.6016 (91.3761)	lr 0.000500
+epoch: [76/80][260/394]	time 4.114 (4.163)	data 0.001 (0.012)	eta 1:58:38	loss_t 0.1444 (0.1816)	loss_x 1.8323 (1.7881)	acc 90.0391 (91.3304)	lr 0.000500
+epoch: [76/80][280/394]	time 4.171 (4.162)	data 0.001 (0.011)	eta 1:57:14	loss_t 0.1704 (0.1826)	loss_x 1.8328 (1.7885)	acc 90.0391 (91.3267)	lr 0.000500
+epoch: [76/80][300/394]	time 4.257 (4.164)	data 0.000 (0.010)	eta 1:55:53	loss_t 0.2336 (0.1828)	loss_x 1.8096 (1.7906)	acc 91.2109 (91.3164)	lr 0.000500
+epoch: [76/80][320/394]	time 4.068 (4.159)	data 0.001 (0.010)	eta 1:54:22	loss_t 0.1848 (0.1827)	loss_x 1.7552 (1.7914)	acc 93.5547 (91.3031)	lr 0.000500
+epoch: [76/80][340/394]	time 4.126 (4.160)	data 0.001 (0.009)	eta 1:53:00	loss_t 0.3015 (0.1834)	loss_x 1.8163 (1.7926)	acc 90.8203 (91.2655)	lr 0.000500
+epoch: [76/80][360/394]	time 4.229 (4.160)	data 0.001 (0.009)	eta 1:51:37	loss_t 0.1654 (0.1833)	loss_x 1.7721 (1.7925)	acc 91.9922 (91.2717)	lr 0.000500
+epoch: [76/80][380/394]	time 4.221 (4.159)	data 0.001 (0.008)	eta 1:50:12	loss_t 0.2953 (0.1840)	loss_x 1.8369 (1.7938)	acc 91.0156 (91.2500)	lr 0.000500
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5679 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 64.8%
+CMC curve
+Rank-1  : 92.1%
+Rank-5  : 96.7%
+Rank-10 : 97.8%
+Rank-20 : 98.5%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-76"
+epoch: [77/80][20/394]	time 4.081 (4.259)	data 0.001 (0.155)	eta 1:50:27	loss_t 0.2071 (0.1977)	loss_x 1.7275 (1.7797)	acc 93.9453 (91.8555)	lr 0.000531
+epoch: [77/80][40/394]	time 4.163 (4.219)	data 0.001 (0.078)	eta 1:48:00	loss_t 0.2679 (0.1915)	loss_x 1.7794 (1.7844)	acc 91.7969 (91.6016)	lr 0.000531
+epoch: [77/80][60/394]	time 4.153 (4.209)	data 0.001 (0.052)	eta 1:46:20	loss_t 0.2350 (0.1889)	loss_x 1.7917 (1.7876)	acc 92.3828 (91.3867)	lr 0.000531
+epoch: [77/80][80/394]	time 4.132 (4.201)	data 0.001 (0.039)	eta 1:44:44	loss_t 0.2126 (0.1924)	loss_x 1.8258 (1.7882)	acc 89.0625 (91.3647)	lr 0.000531
+epoch: [77/80][100/394]	time 4.134 (4.192)	data 0.000 (0.031)	eta 1:43:06	loss_t 0.2028 (0.1911)	loss_x 1.7881 (1.7884)	acc 90.8203 (91.3984)	lr 0.000531
+epoch: [77/80][120/394]	time 4.156 (4.185)	data 0.001 (0.026)	eta 1:41:33	loss_t 0.1226 (0.1870)	loss_x 1.7721 (1.7876)	acc 91.0156 (91.4046)	lr 0.000531
+epoch: [77/80][140/394]	time 4.246 (4.183)	data 0.001 (0.023)	eta 1:40:07	loss_t 0.1151 (0.1853)	loss_x 1.7828 (1.7882)	acc 91.9922 (91.3658)	lr 0.000531
+epoch: [77/80][160/394]	time 4.141 (4.181)	data 0.000 (0.020)	eta 1:38:40	loss_t 0.2259 (0.1850)	loss_x 1.7651 (1.7901)	acc 91.2109 (91.3184)	lr 0.000531
+epoch: [77/80][180/394]	time 4.229 (4.182)	data 0.001 (0.018)	eta 1:37:18	loss_t 0.0792 (0.1847)	loss_x 1.7580 (1.7905)	acc 93.7500 (91.3162)	lr 0.000531
+epoch: [77/80][200/394]	time 4.177 (4.178)	data 0.000 (0.016)	eta 1:35:49	loss_t 0.1744 (0.1846)	loss_x 1.8911 (1.7921)	acc 89.6484 (91.2881)	lr 0.000531
+epoch: [77/80][220/394]	time 4.151 (4.179)	data 0.001 (0.015)	eta 1:34:27	loss_t 0.2853 (0.1849)	loss_x 1.7470 (1.7958)	acc 92.3828 (91.1763)	lr 0.000531
+epoch: [77/80][240/394]	time 4.170 (4.178)	data 0.001 (0.013)	eta 1:33:02	loss_t 0.2057 (0.1872)	loss_x 1.7746 (1.7971)	acc 91.0156 (91.1353)	lr 0.000531
+epoch: [77/80][260/394]	time 4.136 (4.178)	data 0.001 (0.012)	eta 1:31:38	loss_t 0.2070 (0.1867)	loss_x 1.8170 (1.7993)	acc 91.4062 (91.1013)	lr 0.000531
+epoch: [77/80][280/394]	time 4.126 (4.175)	data 0.001 (0.012)	eta 1:30:10	loss_t 0.1818 (0.1863)	loss_x 1.8769 (1.7995)	acc 89.0625 (91.0882)	lr 0.000531
+epoch: [77/80][300/394]	time 4.342 (4.175)	data 0.001 (0.011)	eta 1:28:47	loss_t 0.1087 (0.1855)	loss_x 1.8181 (1.7998)	acc 90.6250 (91.0951)	lr 0.000531
+epoch: [77/80][320/394]	time 4.153 (4.175)	data 0.001 (0.010)	eta 1:27:23	loss_t 0.1556 (0.1868)	loss_x 1.7616 (1.8015)	acc 91.2109 (91.0590)	lr 0.000531
+epoch: [77/80][340/394]	time 4.190 (4.175)	data 0.001 (0.010)	eta 1:26:00	loss_t 0.2342 (0.1873)	loss_x 1.8424 (1.8040)	acc 89.6484 (90.9898)	lr 0.000531
+epoch: [77/80][360/394]	time 4.116 (4.174)	data 0.000 (0.009)	eta 1:24:36	loss_t 0.1397 (0.1869)	loss_x 1.7855 (1.8048)	acc 91.4062 (90.9760)	lr 0.000531
+epoch: [77/80][380/394]	time 4.171 (4.173)	data 0.001 (0.009)	eta 1:23:10	loss_t 0.1126 (0.1868)	loss_x 1.8360 (1.8052)	acc 89.6484 (90.9632)	lr 0.000531
+epoch: [78/80][20/394]	time 4.139 (4.307)	data 0.001 (0.150)	eta 1:23:24	loss_t 0.2231 (0.1916)	loss_x 1.8166 (1.7841)	acc 91.7969 (91.2988)	lr 0.000563
+epoch: [78/80][40/394]	time 4.242 (4.249)	data 0.000 (0.075)	eta 1:20:52	loss_t 0.1002 (0.1908)	loss_x 1.8017 (1.7879)	acc 90.8203 (91.1816)	lr 0.000563
+epoch: [78/80][60/394]	time 4.124 (4.220)	data 0.001 (0.050)	eta 1:18:54	loss_t 0.2775 (0.1952)	loss_x 1.8138 (1.7949)	acc 89.6484 (91.0254)	lr 0.000563
+epoch: [78/80][80/394]	time 4.158 (4.206)	data 0.001 (0.038)	eta 1:17:14	loss_t 0.2161 (0.1947)	loss_x 1.7858 (1.8002)	acc 92.3828 (90.9570)	lr 0.000563
+epoch: [78/80][100/394]	time 4.138 (4.203)	data 0.000 (0.030)	eta 1:15:48	loss_t 0.1413 (0.1949)	loss_x 1.8440 (1.8055)	acc 90.2344 (90.9316)	lr 0.000563
+epoch: [78/80][120/394]	time 4.108 (4.197)	data 0.000 (0.025)	eta 1:14:17	loss_t 0.1857 (0.1919)	loss_x 1.8395 (1.8065)	acc 90.0391 (90.9147)	lr 0.000563
+epoch: [78/80][140/394]	time 4.079 (4.191)	data 0.000 (0.022)	eta 1:12:46	loss_t 0.1514 (0.1925)	loss_x 1.8156 (1.8070)	acc 90.2344 (90.9110)	lr 0.000563
+epoch: [78/80][160/394]	time 4.141 (4.187)	data 0.000 (0.019)	eta 1:11:19	loss_t 0.2503 (0.1919)	loss_x 1.8685 (1.8061)	acc 88.2812 (90.9131)	lr 0.000563
+epoch: [78/80][180/394]	time 4.169 (4.187)	data 0.001 (0.017)	eta 1:09:54	loss_t 0.1010 (0.1935)	loss_x 1.7730 (1.8075)	acc 93.3594 (90.8898)	lr 0.000563
+epoch: [78/80][200/394]	time 4.146 (4.187)	data 0.001 (0.015)	eta 1:08:31	loss_t 0.2347 (0.1937)	loss_x 1.8699 (1.8108)	acc 88.2812 (90.8301)	lr 0.000563
+epoch: [78/80][220/394]	time 4.123 (4.186)	data 0.001 (0.014)	eta 1:07:06	loss_t 0.2093 (0.1949)	loss_x 1.8443 (1.8127)	acc 88.0859 (90.8017)	lr 0.000563
+epoch: [78/80][240/394]	time 4.166 (4.182)	data 0.000 (0.013)	eta 1:05:39	loss_t 0.2587 (0.1966)	loss_x 1.8799 (1.8148)	acc 89.4531 (90.7528)	lr 0.000563
+epoch: [78/80][260/394]	time 4.159 (4.182)	data 0.001 (0.012)	eta 1:04:15	loss_t 0.1532 (0.1954)	loss_x 1.9221 (1.8171)	acc 86.5234 (90.6971)	lr 0.000563
+epoch: [78/80][280/394]	time 4.144 (4.179)	data 0.001 (0.011)	eta 1:02:49	loss_t 0.1558 (0.1951)	loss_x 1.8147 (1.8192)	acc 89.8438 (90.6390)	lr 0.000563
+epoch: [78/80][300/394]	time 4.181 (4.179)	data 0.001 (0.011)	eta 1:01:26	loss_t 0.1838 (0.1943)	loss_x 1.8046 (1.8189)	acc 90.0391 (90.6452)	lr 0.000563
+epoch: [78/80][320/394]	time 4.148 (4.176)	data 0.001 (0.010)	eta 0:59:59	loss_t 0.1797 (0.1941)	loss_x 1.8696 (1.8190)	acc 89.4531 (90.6329)	lr 0.000563
+epoch: [78/80][340/394]	time 4.234 (4.176)	data 0.001 (0.009)	eta 0:58:36	loss_t 0.1362 (0.1929)	loss_x 1.8153 (1.8192)	acc 90.0391 (90.6273)	lr 0.000563
+epoch: [78/80][360/394]	time 4.202 (4.176)	data 0.001 (0.009)	eta 0:57:12	loss_t 0.2390 (0.1924)	loss_x 1.7980 (1.8209)	acc 91.4062 (90.5724)	lr 0.000563
+epoch: [78/80][380/394]	time 4.218 (4.176)	data 0.001 (0.008)	eta 0:55:49	loss_t 0.1794 (0.1918)	loss_x 1.7682 (1.8214)	acc 90.6250 (90.5679)	lr 0.000563
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5623 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 62.7%
+CMC curve
+Rank-1  : 91.6%
+Rank-5  : 96.1%
+Rank-10 : 97.3%
+Rank-20 : 98.2%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-78"
+epoch: [79/80][20/394]	time 4.087 (4.246)	data 0.001 (0.152)	eta 0:54:20	loss_t 0.1996 (0.2023)	loss_x 1.8095 (1.8053)	acc 90.4297 (90.8984)	lr 0.000594
+epoch: [79/80][40/394]	time 4.149 (4.213)	data 0.001 (0.076)	eta 0:52:31	loss_t 0.2326 (0.1938)	loss_x 1.8593 (1.8079)	acc 90.0391 (90.8984)	lr 0.000594
+epoch: [79/80][60/394]	time 4.212 (4.200)	data 0.000 (0.051)	eta 0:50:57	loss_t 0.2131 (0.1967)	loss_x 1.8019 (1.8134)	acc 92.1875 (90.8203)	lr 0.000594
+epoch: [79/80][80/394]	time 4.170 (4.190)	data 0.001 (0.038)	eta 0:49:26	loss_t 0.1443 (0.1933)	loss_x 1.8412 (1.8131)	acc 89.6484 (90.8325)	lr 0.000594
+epoch: [79/80][100/394]	time 4.097 (4.188)	data 0.000 (0.031)	eta 0:48:01	loss_t 0.1607 (0.1886)	loss_x 1.8122 (1.8120)	acc 90.8203 (90.8594)	lr 0.000594
+epoch: [79/80][120/394]	time 4.203 (4.179)	data 0.001 (0.026)	eta 0:46:31	loss_t 0.2951 (0.1930)	loss_x 1.7715 (1.8132)	acc 91.2109 (90.8073)	lr 0.000594
+epoch: [79/80][140/394]	time 4.083 (4.170)	data 0.000 (0.022)	eta 0:45:01	loss_t 0.2761 (0.1949)	loss_x 1.8553 (1.8164)	acc 88.8672 (90.7715)	lr 0.000594
+epoch: [79/80][160/394]	time 4.114 (4.161)	data 0.000 (0.019)	eta 0:43:33	loss_t 0.2304 (0.1940)	loss_x 1.8209 (1.8190)	acc 89.0625 (90.6921)	lr 0.000594
+epoch: [79/80][180/394]	time 4.087 (4.155)	data 0.000 (0.017)	eta 0:42:06	loss_t 0.1875 (0.1933)	loss_x 1.7808 (1.8205)	acc 91.2109 (90.6445)	lr 0.000594
+epoch: [79/80][200/394]	time 4.080 (4.150)	data 0.000 (0.016)	eta 0:40:40	loss_t 0.1893 (0.1924)	loss_x 1.7647 (1.8221)	acc 92.3828 (90.6084)	lr 0.000594
+epoch: [79/80][220/394]	time 4.074 (4.146)	data 0.000 (0.014)	eta 0:39:15	loss_t 0.2277 (0.1909)	loss_x 1.8503 (1.8212)	acc 88.8672 (90.6259)	lr 0.000594
+epoch: [79/80][240/394]	time 4.093 (4.143)	data 0.000 (0.013)	eta 0:37:50	loss_t 0.1728 (0.1923)	loss_x 1.8999 (1.8234)	acc 87.6953 (90.5355)	lr 0.000594
+epoch: [79/80][260/394]	time 4.098 (4.139)	data 0.000 (0.012)	eta 0:36:25	loss_t 0.2745 (0.1918)	loss_x 1.7860 (1.8239)	acc 92.3828 (90.5379)	lr 0.000594
+epoch: [79/80][280/394]	time 4.018 (4.138)	data 0.001 (0.011)	eta 0:35:02	loss_t 0.1912 (0.1919)	loss_x 1.7835 (1.8245)	acc 91.4062 (90.5106)	lr 0.000594
+epoch: [79/80][300/394]	time 4.101 (4.136)	data 0.001 (0.011)	eta 0:33:38	loss_t 0.0863 (0.1939)	loss_x 1.7931 (1.8255)	acc 91.4062 (90.4746)	lr 0.000594
+epoch: [79/80][320/394]	time 4.103 (4.134)	data 0.001 (0.010)	eta 0:32:14	loss_t 0.2161 (0.1950)	loss_x 1.8913 (1.8275)	acc 89.0625 (90.4419)	lr 0.000594
+epoch: [79/80][340/394]	time 4.078 (4.133)	data 0.000 (0.009)	eta 0:30:51	loss_t 0.1336 (0.1949)	loss_x 1.7768 (1.8278)	acc 91.2109 (90.4205)	lr 0.000594
+epoch: [79/80][360/394]	time 4.087 (4.132)	data 0.001 (0.009)	eta 0:29:28	loss_t 0.1428 (0.1946)	loss_x 1.8654 (1.8288)	acc 88.6719 (90.3879)	lr 0.000594
+epoch: [79/80][380/394]	time 4.084 (4.131)	data 0.001 (0.008)	eta 0:28:05	loss_t 0.2454 (0.1953)	loss_x 1.9156 (1.8291)	acc 88.2812 (90.3845)	lr 0.000594
+epoch: [80/80][20/394]	time 4.094 (4.235)	data 0.000 (0.135)	eta 0:26:23	loss_t 0.1789 (0.1954)	loss_x 1.8774 (1.8134)	acc 90.2344 (90.8008)	lr 0.000624
+epoch: [80/80][40/394]	time 4.072 (4.174)	data 0.001 (0.068)	eta 0:24:37	loss_t 0.1334 (0.1861)	loss_x 1.8761 (1.8099)	acc 88.4766 (90.8936)	lr 0.000624
+epoch: [80/80][60/394]	time 4.122 (4.151)	data 0.000 (0.045)	eta 0:23:06	loss_t 0.1598 (0.1822)	loss_x 1.7523 (1.8076)	acc 93.3594 (90.9570)	lr 0.000624
+epoch: [80/80][80/394]	time 4.091 (4.142)	data 0.000 (0.034)	eta 0:21:40	loss_t 0.1906 (0.1882)	loss_x 1.8614 (1.8134)	acc 88.4766 (90.8081)	lr 0.000624
+epoch: [80/80][100/394]	time 4.184 (4.136)	data 0.001 (0.027)	eta 0:20:16	loss_t 0.0890 (0.1892)	loss_x 1.7976 (1.8112)	acc 91.2109 (90.8320)	lr 0.000624
+epoch: [80/80][120/394]	time 4.103 (4.133)	data 0.000 (0.023)	eta 0:18:52	loss_t 0.1504 (0.1889)	loss_x 1.8100 (1.8138)	acc 90.4297 (90.7682)	lr 0.000624
+epoch: [80/80][140/394]	time 4.076 (4.127)	data 0.000 (0.020)	eta 0:17:28	loss_t 0.1813 (0.1912)	loss_x 1.8717 (1.8167)	acc 87.8906 (90.7031)	lr 0.000624
+epoch: [80/80][160/394]	time 4.116 (4.124)	data 0.000 (0.017)	eta 0:16:04	loss_t 0.2124 (0.1914)	loss_x 1.8015 (1.8186)	acc 91.0156 (90.6311)	lr 0.000624
+epoch: [80/80][180/394]	time 4.082 (4.121)	data 0.001 (0.015)	eta 0:14:41	loss_t 0.1327 (0.1901)	loss_x 1.8472 (1.8233)	acc 89.0625 (90.5360)	lr 0.000624
+epoch: [80/80][200/394]	time 4.086 (4.119)	data 0.000 (0.014)	eta 0:13:19	loss_t 0.1433 (0.1916)	loss_x 1.8168 (1.8235)	acc 91.9922 (90.5078)	lr 0.000624
+epoch: [80/80][220/394]	time 4.111 (4.118)	data 0.000 (0.013)	eta 0:11:56	loss_t 0.2163 (0.1915)	loss_x 1.7789 (1.8253)	acc 91.7969 (90.4785)	lr 0.000624
+epoch: [80/80][240/394]	time 4.061 (4.116)	data 0.000 (0.012)	eta 0:10:33	loss_t 0.1429 (0.1928)	loss_x 1.8576 (1.8270)	acc 90.2344 (90.4142)	lr 0.000624
+epoch: [80/80][260/394]	time 4.076 (4.117)	data 0.000 (0.011)	eta 0:09:11	loss_t 0.1748 (0.1926)	loss_x 1.7954 (1.8279)	acc 91.9922 (90.3899)	lr 0.000624
+epoch: [80/80][280/394]	time 4.054 (4.116)	data 0.000 (0.010)	eta 0:07:49	loss_t 0.2509 (0.1921)	loss_x 1.8191 (1.8286)	acc 90.4297 (90.3836)	lr 0.000624
+epoch: [80/80][300/394]	time 4.099 (4.115)	data 0.000 (0.009)	eta 0:06:26	loss_t 0.2586 (0.1928)	loss_x 1.7335 (1.8296)	acc 92.9688 (90.3555)	lr 0.000624
+epoch: [80/80][320/394]	time 4.107 (4.114)	data 0.001 (0.009)	eta 0:05:04	loss_t 0.2365 (0.1939)	loss_x 1.9094 (1.8316)	acc 86.7188 (90.3210)	lr 0.000624
+epoch: [80/80][340/394]	time 4.101 (4.113)	data 0.000 (0.008)	eta 0:03:42	loss_t 0.1539 (0.1936)	loss_x 1.8399 (1.8330)	acc 90.4297 (90.3068)	lr 0.000624
+epoch: [80/80][360/394]	time 4.085 (4.112)	data 0.000 (0.008)	eta 0:02:19	loss_t 0.2163 (0.1945)	loss_x 1.8366 (1.8337)	acc 88.2812 (90.2691)	lr 0.000624
+epoch: [80/80][380/394]	time 4.060 (4.112)	data 0.001 (0.008)	eta 0:00:57	loss_t 0.1925 (0.1934)	loss_x 1.8190 (1.8340)	acc 90.4297 (90.2498)	lr 0.000624
+=> Final test
+##### Evaluating market1501 (source) #####
+Extracting features from query set ...
+Done, obtained 10254-by-512 matrix
+Extracting features from gallery set ...
+Done, obtained 23265-by-512 matrix
+Speed: 0.5545 sec/batch
+Computing distance matrix with metric=cosine ...
+Computing CMC and mAP ...
+** Results **
+mAP: 65.6%
+CMC curve
+Rank-1  : 92.3%
+Rank-5  : 96.6%
+Rank-10 : 97.8%
+Rank-20 : 98.5%
+Checkpoint saved to "resutls/resnet50_market1501_triplet1/model/model.pth.tar-80"
+Elapsed 16:54:30

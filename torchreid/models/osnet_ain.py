@@ -444,7 +444,7 @@ class OSNet(nn.Module):
         # print("y", y.size())
         if self.loss == 'softmax':
             return y
-        elif self.loss == 'triplet':
+        elif self.loss in ['triplet', 'octuplet']:
             return y, v
         elif self.loss == 'arcface':
             return y, v

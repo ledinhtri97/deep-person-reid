@@ -3,3 +3,4 @@ from __future__ import absolute_import
 from .softmax import ImageSoftmaxEngine
 from .triplet import ImageTripletEngine
 from .arcface import ImageArcfaceEngine
+from .octuplet import ImageOctupletEngine

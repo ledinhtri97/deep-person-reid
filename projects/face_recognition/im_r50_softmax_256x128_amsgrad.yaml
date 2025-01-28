@@ -1,8 +1,8 @@
 model:
   name: 'resnet50_fc512'
-  load_weights: 'r50_market1501_triplet_model.pth.tar-50'
+  # load_weights: 'r50_market1501_triplet_model.pth.tar-50'
   # pretrained: True
-  # resume: ''
+  resume: 'r50_market1501_triplet2_model.pth.tar-46'
 
 data:
   type: 'image'
@@ -29,7 +29,7 @@ loss:
 train:
   optim: 'amsgrad'
   lr: 0.001
-  max_epoch: 50
+  max_epoch: 80
   batch_size: 512
   fixbase_epoch: 5
   open_layers: ['classifier']
@@ -41,6 +41,6 @@ test:
   normalize_feature: False
   evaluate: False
   visrank: False
-  eval_freq: 1
+  eval_freq: 2
   rerank: False
   start_eval: 2

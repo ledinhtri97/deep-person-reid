@@ -97,6 +97,10 @@ def get_default_config():
     cfg.loss.arcface.margin = 0.5 # angular margin
     cfg.loss.arcface.easy_margin = False # easy margin
     cfg.loss.arcface.label_smooth = True # use label smoothing regularizer
+    cfg.loss.octuplet = CN()
+    cfg.loss.octuplet.margin = 0.5 # distance margin
+    cfg.loss.octuplet.metric = 'euclidean' # distance metric, ['euclidean', 'euclidean_squared', 'cosine']
+    cfg.loss.octuplet.configuration = [True, True, True, True] # configuration of triplet loss functions
     
     # test
     cfg.test = CN()
